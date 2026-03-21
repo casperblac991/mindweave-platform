@@ -2,21 +2,32 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>المدونة | MindWeave</title>
 <link rel="stylesheet" href="css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
 .lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-[data-lang="en"]{display:none}body.en [data-lang="ar"]{display:none}body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:right}
+.lang-switch:hover{background:#6C5CE7}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
 .page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem;padding:2rem}
-.blog-card{background:#1A1A2E;border-radius:15px;padding:1.5rem;border:1px solid rgba(108,92,231,0.2)}
-.read-more{color:#6C5CE7;text-decoration:none}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:2rem;max-width:1200px;margin:auto;padding:2rem}
+.blog-card{background:#1A1A2E;border-radius:15px;padding:1.5rem;border:1px solid rgba(108,92,231,0.2);transition:transform 0.3s}
+.blog-card:hover{transform:translateY(-5px);border-color:#6C5CE7}
+.blog-image{font-size:2.5rem;margin-bottom:1rem}
+.read-more{color:#6C5CE7;text-decoration:none;display:inline-block;margin-top:1rem}
 </style>
 </head>
 <body>
-<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
 <ul class="nav-menu">
 <li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
@@ -26,20 +37,86 @@ body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:rig
 <li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
 <li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
 </ul>
-<div><button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button></div>
-</nav></header>
-<main><section class="page-header"><div class="container"><h1 data-lang="ar">المدونة</h1><h1 data-lang="en">Blog</h1><p data-lang="ar">أحدث المقالات في عالم الذكاء الاصطناعي</p><p data-lang="en">Latest articles about AI</p></div></section>
-<div class="blog-grid" id="blogGrid"></div></main>
-<footer><div class="container"><div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 data-lang="ar">المدونة</h1>
+<h1 data-lang="en">Blog</h1>
+<p data-lang="ar">أحدث المقالات والأدلة التعليمية في عالم الذكاء الاصطناعي</p>
+<p data-lang="en">Latest articles and educational guides in the world of AI</p>
+</div>
+</section>
+
+<div class="blog-grid" id="blogGrid"></div>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
+
 <script>
-const posts=[
-{titleAr:"كيف تكتب أوامر احترافية لـ ChatGPT",titleEn:"How to Write Professional ChatGPT Prompts",descAr:"دليل شامل لكتابة prompts فعالة",descEn:"Complete guide to effective prompts"},
-{titleAr:"أفضل 20 أمر Midjourney لتصميم شعارات",titleEn:"Best 20 Midjourney Prompts for Logo Design",descAr:"مجموعة أوامر لتصميم هويات بصرية",descEn:"Prompts for visual identity design"}
+const posts = [
+    { titleAr: "كيف تكتب أوامر احترافية لـ ChatGPT", titleEn: "How to Write Professional ChatGPT Prompts", descAr: "دليل شامل للمبتدئين لكتابة prompts فعالة تحصل على نتائج دقيقة.", descEn: "A complete guide for beginners to write effective prompts that get accurate results.", image: "📝", link: "#" },
+    { titleAr: "أفضل 20 أمر Midjourney لتصميم شعارات", titleEn: "Best 20 Midjourney Prompts for Logo Design", descAr: "مجموعة من الأوامر المخصصة لتصميم هويات بصرية احترافية.", descEn: "A collection of prompts for designing professional visual identities.", image: "🎨", link: "#" },
+    { titleAr: "دليل أدوات الذكاء الاصطناعي المجانية 2026", titleEn: "Free AI Tools Directory 2026", descAr: "أكثر من 50 أداة مجانية لزيادة إنتاجيتك وتوفير الوقت.", descEn: "Over 50 free tools to boost your productivity and save time.", image: "🛠️", link: "#" },
+    { titleAr: "كيف تبدأ مشروعك الجانبي باستخدام الذكاء الاصطناعي", titleEn: "How to Start Your Side Project Using AI", descAr: "أفكار عملية لتحويل مهاراتك في AI إلى مصدر دخل.", descEn: "Practical ideas to turn your AI skills into an income source.", image: "💡", link: "#" },
+    { titleAr: "10 طرق لاستخدام الذكاء الاصطناعي في التسويق الرقمي", titleEn: "10 Ways to Use AI in Digital Marketing", descAr: "استراتيجيات مبتكرة لتحسين حملاتك التسويقية بالذكاء الاصطناعي.", descEn: "Innovative strategies to improve your marketing campaigns with AI.", image: "📊", link: "#" },
+    { titleAr: "كيف تكتب سيرة ذاتية احترافية بالذكاء الاصطناعي", titleEn: "How to Write a Professional Resume Using AI", descAr: "استخدم AI لإنشاء سيرة ذاتية تلفت انتباه أصحاب العمل.", descEn: "Use AI to create a resume that grabs employers' attention.", image: "📄", link: "#" }
 ];
-function toggleLanguage(){document.body.classList.toggle('en');let lang=document.body.classList.contains('en')?'en':'ar';localStorage.setItem('lang',lang);document.getElementById('langBtn').textContent=lang=='ar'?'English':'عربي';renderPosts();}
-function renderPosts(){let isEn=document.body.classList.contains('en');document.getElementById('blogGrid').innerHTML=posts.map(p=>`<div class="blog-card"><h3>${isEn?p.titleEn:p.titleAr}</h3><p>${isEn?p.descEn:p.descAr}</p><a href="#" class="read-more">${isEn?'Read more →':'اقرأ المزيد →'}</a></div>`).join('');}
-if(localStorage.getItem('lang')=='en')document.body.classList.add('en');document.getElementById('langBtn').textContent=localStorage.getItem('lang')=='en'?'عربي':'English';
-renderPosts();
+
+let currentLang = localStorage.getItem('lang') || 'ar';
+
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    renderBlog();
+}
+
+function applyLanguage() {
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    renderBlog();
+}
+
+function renderBlog() {
+    const isEn = currentLang === 'en';
+    const container = document.getElementById('blogGrid');
+    container.innerHTML = posts.map(p => `
+        <div class="blog-card">
+            <div class="blog-image">${p.image}</div>
+            <h3>${isEn ? p.titleEn : p.titleAr}</h3>
+            <p>${isEn ? p.descEn : p.descAr}</p>
+            <a href="${p.link}" class="read-more">${isEn ? 'Read more →' : 'اقرأ المزيد →'}</a>
+        </div>
+    `).join('');
+}
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function updateCartDisplay() {
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
+}
+
+applyLanguage();
+updateCartDisplay();
 </script>
 </body>
 </html>
