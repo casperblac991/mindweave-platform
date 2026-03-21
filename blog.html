@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>المدونة | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+[data-lang="en"]{display:none}body.en [data-lang="ar"]{display:none}body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:right}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem;padding:2rem}
+.blog-card{background:#1A1A2E;border-radius:15px;padding:1.5rem;border:1px solid rgba(108,92,231,0.2)}
+.read-more{color:#6C5CE7;text-decoration:none}
+</style>
+</head>
+<body>
+<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
+<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
+</ul>
+<div><button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button></div>
+</nav></header>
+<main><section class="page-header"><div class="container"><h1 data-lang="ar">المدونة</h1><h1 data-lang="en">Blog</h1><p data-lang="ar">أحدث المقالات في عالم الذكاء الاصطناعي</p><p data-lang="en">Latest articles about AI</p></div></section>
+<div class="blog-grid" id="blogGrid"></div></main>
+<footer><div class="container"><div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
+<script>
+const posts=[
+{titleAr:"كيف تكتب أوامر احترافية لـ ChatGPT",titleEn:"How to Write Professional ChatGPT Prompts",descAr:"دليل شامل لكتابة prompts فعالة",descEn:"Complete guide to effective prompts"},
+{titleAr:"أفضل 20 أمر Midjourney لتصميم شعارات",titleEn:"Best 20 Midjourney Prompts for Logo Design",descAr:"مجموعة أوامر لتصميم هويات بصرية",descEn:"Prompts for visual identity design"}
+];
+function toggleLanguage(){document.body.classList.toggle('en');let lang=document.body.classList.contains('en')?'en':'ar';localStorage.setItem('lang',lang);document.getElementById('langBtn').textContent=lang=='ar'?'English':'عربي';renderPosts();}
+function renderPosts(){let isEn=document.body.classList.contains('en');document.getElementById('blogGrid').innerHTML=posts.map(p=>`<div class="blog-card"><h3>${isEn?p.titleEn:p.titleAr}</h3><p>${isEn?p.descEn:p.descAr}</p><a href="#" class="read-more">${isEn?'Read more →':'اقرأ المزيد →'}</a></div>`).join('');}
+if(localStorage.getItem('lang')=='en')document.body.classList.add('en');document.getElementById('langBtn').textContent=localStorage.getItem('lang')=='en'?'عربي':'English';
+renderPosts();
+</script>
+</body>
+</html>
