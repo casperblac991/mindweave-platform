@@ -1,8 +1,158 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><title>سلة التسوق | MindWeave</title><link rel="stylesheet" href="css/style.css"><style>.page-header{padding:120px 0 40px;text-align:center}.cart-item{display:flex;justify-content:space-between;background:#1A1A2E;padding:1rem;margin:1rem 0;border-radius:15px}.cart-total{font-size:1.5rem;margin-top:2rem;text-align:center}.btn-checkout{background:#6C5CE7;color:white;padding:12px 30px;border-radius:50px;text-decoration:none;display:inline-block;margin-top:1rem}</style></head>
-<body><header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div><ul><li><a href="index.html">الرئيسية</a></li><li><a href="library.html">المكتبة</a></li><li><a href="store.html">المتجر</a></li><li><a href="about.html">من نحن</a></li><li><a href="contact.html">اتصل بنا</a></li></ul></nav></header>
-<main><section class="page-header"><h1>سلة التسوق</h1></section>
-<div class="container" id="cartContainer"><p>سلة التسوق فارغة</p></div></main>
-<footer><div class="container"><p>© 2026 MindWeave</p></div></footer>
-<script>let cart=JSON.parse(localStorage.getItem('cart'))||[];if(cart.length){let html='';let total=0;cart.forEach(item=>{total+=item.price*item.quantity;html+=`<div class="cart-item"><span>${item.name}</span><span>${item.quantity} × $${item.price}</span></div>`;});html+=`<div class="cart-total">الإجمالي: $${total}</div><a href="checkout.html" class="btn-checkout">إتمام الطلب</a>`;document.getElementById('cartContainer').innerHTML=html;}else{document.getElementById('cartContainer').innerHTML='<p>سلة التسوق فارغة</p>';}</script></body></html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سلة التسوق | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+.lang-switch:hover{background:#6C5CE7}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.cart-container{max-width:800px;margin:auto;padding:2rem}
+.cart-item{background:#1A1A2E;border-radius:15px;padding:1rem;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;border:1px solid rgba(108,92,231,0.2)}
+.cart-item-info{flex:1}
+.cart-item-price{color:#6C5CE7;font-weight:bold}
+.cart-item-actions button{background:#6C5CE7;color:white;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;margin:0 5px}
+.remove-btn{background:#ff4757!important}
+.cart-total{text-align:center;margin-top:2rem;padding:1rem;background:#1A1A2E;border-radius:15px}
+.btn-checkout{background:#6C5CE7;color:white;padding:12px 30px;border-radius:50px;text-decoration:none;display:inline-block;margin-top:1rem}
+.empty-cart{text-align:center;padding:3rem}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
+<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 data-lang="ar">سلة التسوق</h1>
+<h1 data-lang="en">Shopping Cart</h1>
+</div>
+</section>
+
+<div class="cart-container" id="cartContainer"></div>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
+
+<script>
+let currentLang = localStorage.getItem('lang') || 'ar';
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    renderCart();
+}
+function applyLanguage() {
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    renderCart();
+}
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function updateCartDisplay() {
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function updateQuantity(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+            cart = cart.filter(i => i.id !== id);
+        }
+        updateCartDisplay();
+        renderCart();
+    }
+}
+
+function removeItem(id) {
+    cart = cart.filter(i => i.id !== id);
+    updateCartDisplay();
+    renderCart();
+}
+
+function renderCart() {
+    const container = document.getElementById('cartContainer');
+    const isEn = currentLang === 'en';
+    
+    if (cart.length === 0) {
+        container.innerHTML = `<div class="empty-cart"><i class="fas fa-shopping-cart" style="font-size:3rem;color:#6C5CE7"></i><h3>${isEn ? 'Your cart is empty' : 'سلة التسوق فارغة'}</h3><p>${isEn ? 'Start shopping to add items' : 'ابدأ التسوق لإضافة منتجات'}</p><a href="store.html" class="btn-primary">${isEn ? 'Browse Products' : 'تصفح المنتجات'}</a></div>`;
+        return;
+    }
+    
+    let total = 0;
+    let itemsHtml = '';
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        itemsHtml += `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h3>${item.name}</h3>
+                    <div class="cart-item-price">$${item.price}</div>
+                </div>
+                <div class="cart-item-actions">
+                    <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                    <span style="margin:0 10px">${item.quantity}</span>
+                    <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                    <button class="remove-btn" onclick="removeItem(${item.id})"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = `
+        ${itemsHtml}
+        <div class="cart-total">
+            <h3>${isEn ? 'Total' : 'الإجمالي'}: $${total.toFixed(2)}</h3>
+            <a href="checkout.html" class="btn-checkout">${isEn ? 'Proceed to Checkout' : 'إتمام الطلب'}</a>
+        </div>
+    `;
+}
+
+applyLanguage();
+updateCartDisplay();
+</script>
+</body>
+</html>
