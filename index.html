@@ -15,6 +15,7 @@
         body.en [data-lang="en"] { display: block; }
         body.en { direction: ltr; text-align: left; }
         body:not(.en) { direction: rtl; text-align: right; }
+        .hero-badge, .hero h1, .hero p, .section-title, .section-subtitle, .category-card h3, .feature-card h3, .feature-card p, .plan-card h3, .plan-features li span, .footer-col p, .footer-col h4, .footer-col ul li a, .chatbot-toggle span { transition: all 0.2s; }
     </style>
 </head>
 <body>
@@ -39,8 +40,6 @@
 </header>
 
 <main>
-
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-badge" data-lang="ar">✨ نَسَّاج العقول بالذكاء الاصطناعي</div>
@@ -58,7 +57,6 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
     <section class="stats">
         <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label" data-lang="ar">أمر مجاني</span><span class="stat-label" data-lang="en">Free Prompts</span></div>
         <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label" data-lang="ar">منتج رقمي</span><span class="stat-label" data-lang="en">Digital Products</span></div>
@@ -66,7 +64,6 @@
         <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label" data-lang="ar">دعم فوري</span><span class="stat-label" data-lang="en">Support</span></div>
     </section>
 
-    <!-- Categories Section -->
     <section class="categories">
         <div class="container">
             <h2 class="section-title" data-lang="ar">الفئات</h2>
@@ -84,7 +81,6 @@
         </div>
     </section>
 
-    <!-- Featured Products Section -->
     <section class="featured-products">
         <div class="container">
             <h2 class="section-title" data-lang="ar">المنتجات المميزة</h2>
@@ -92,17 +88,22 @@
             <p class="section-subtitle" data-lang="ar">أحدث حزم الأوامر والقوالب بأفضل الأسعار</p>
             <p class="section-subtitle" data-lang="en">Latest prompts and templates at best prices</p>
             <div class="products-grid">
+                <!-- Product 1 -->
                 <div class="product-card"><div class="product-badge">🔥 الأكثر مبيعاً -11%</div><div class="product-icon">🎨</div><h3>Midjourney Prompts Pack</h3><p data-lang="ar">100 أمر احترافي لتوليد صور تجارية وشعارات</p><p data-lang="en">100 professional prompts for commercial images and logos</p><div class="price">$9.99 <span class="old-price">$19.99</span></div><button class="btn-buy" onclick="addToCart('Midjourney Pack', 9.99)">اشتري الآن</button></div>
+                <!-- Product 2 -->
                 <div class="product-card"><div class="product-badge">⭐ مميز -14%</div><div class="product-icon">📝</div><h3>ChatGPT Prompts Pack</h3><p data-lang="ar">50 أمر مخصص للتسويق والمبيعات وإعلانات</p><p data-lang="en">50 prompts for marketing, sales, and ads</p><div class="price">$7.99 <span class="old-price">$12.99</span></div><button class="btn-buy" onclick="addToCart('ChatGPT Pack', 7.99)">اشتري الآن</button></div>
+                <!-- Product 3 -->
                 <div class="product-card"><div class="product-badge">💎 حصري -11%</div><div class="product-icon">📊</div><h3>Notion AI Template</h3><p data-lang="ar">إدارة المشاريع بالذكاء الاصطناعي مع أتمتة كاملة</p><p data-lang="en">Project management with AI and full automation</p><div class="price">$12.99 <span class="old-price">$19.99</span></div><button class="btn-buy" onclick="addToCart('Notion Template', 12.99)">اشتري الآن</button></div>
+                <!-- Product 4 -->
                 <div class="product-card"><div class="product-badge">🔥 الأكثر مبيعاً -13%</div><div class="product-icon">📚</div><h3>AI Tools Directory</h3><p data-lang="ar">أكثر من 50 أداة مجانية مع شرح مفصل</p><p data-lang="en">50+ free AI tools with detailed explanations</p><div class="price">$5.99 <span class="old-price">$9.99</span></div><button class="btn-buy" onclick="addToCart('AI Tools', 5.99)">اشتري الآن</button></div>
+                <!-- Product 5 -->
                 <div class="product-card"><div class="product-badge">⭐ مميز -13%</div><div class="product-icon">🎯</div><h3>AI Logo Design Service</h3><p data-lang="ar">تصميم احترافي خلال 24 ساعة مع 3 تعديلات</p><p data-lang="en">Professional design in 24h with 3 revisions</p><div class="price">$19.99 <span class="old-price">$29.99</span></div><button class="btn-buy" onclick="addToCart('Logo Design', 19.99)">اشتري الآن</button></div>
+                <!-- Product 6 -->
                 <div class="product-card"><div class="product-badge">💎 حصري -13%</div><div class="product-icon">💻</div><h3>Coding Prompts Pack</h3><p data-lang="ar">50 أمر لتوليد أكواد برمجية وحل المشاكل</p><p data-lang="en">50 prompts for code generation and debugging</p><div class="price">$14.99 <span class="old-price">$24.99</span></div><button class="btn-buy" onclick="addToCart('Coding Pack', 14.99)">اشتري الآن</button></div>
             </div>
         </div>
     </section>
 
-    <!-- Subscription Plans -->
     <section class="plans">
         <div class="container">
             <h2 class="section-title" data-lang="ar">خطط النسيج</h2>
@@ -110,14 +111,13 @@
             <p class="section-subtitle" data-lang="ar">اختر الباقة المناسبة لاحتياجاتك</p>
             <p class="section-subtitle" data-lang="en">Choose the plan that fits your needs</p>
             <div class="plans-grid">
-                <div class="plan-card"><h3 data-lang="ar">نَسَّاج أساسي</h3><h3 data-lang="en">Basic Weaver</h3><div class="plan-price">$4.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">5 تحميلات يومياً</span><span data-lang="en">5 downloads per day</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">تحديثات شهرية</span><span data-lang="en">Monthly updates</span></li></ul><a href="subscription.html" class="btn-plan">اشترك الآن</a></div>
+                <div class="plan-card"><h3 data-lang="ar">نَسَّاج أساسي</h3><h3 data-lang="en">Basic Weaver</h3><div class="plan-price">$4.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">5 تحميلات يومياً</span><span data-lang="en">5 downloads/day</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">تحديثات شهرية</span><span data-lang="en">Monthly updates</span></li></ul><a href="subscription.html" class="btn-plan">اشترك الآن</a></div>
                 <div class="plan-card popular"><div class="plan-badge">⭐ الأكثر شعبية</div><h3 data-lang="ar">نَسَّاج محترف</h3><h3 data-lang="en">Pro Weaver</h3><div class="plan-price">$9.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">تحميلات غير محدودة</span><span data-lang="en">Unlimited downloads</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">محتوى حصري</span><span data-lang="en">Exclusive content</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">دعم 24/7</span><span data-lang="en">24/7 support</span></li></ul><a href="subscription.html" class="btn-plan">اشترك الآن</a></div>
                 <div class="plan-card"><h3 data-lang="ar">نَسَّاج أعمال</h3><h3 data-lang="en">Business Weaver</h3><div class="plan-price">$19.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">كل مميزات المحترف</span><span data-lang="en">All Pro features</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">تقارير شهرية PDF</span><span data-lang="en">Monthly PDF reports</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">استشارة شهرية مجانية</span><span data-lang="en">Free monthly consultation</span></li></ul><a href="subscription.html" class="btn-plan">اشترك الآن</a></div>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
     <section class="features">
         <div class="container">
             <h2 class="section-title" data-lang="ar">لماذا MindWeave؟</h2>
@@ -133,7 +133,6 @@
         </div>
     </section>
 
-    <!-- Newsletter -->
     <section class="newsletter">
         <div class="container">
             <div class="newsletter-content">
@@ -176,29 +175,28 @@
             btn.textContent = 'English';
             localStorage.setItem('lang', 'ar');
         }
+        // إعادة عرض المنتجات في library.html إذا كانت مفتوحة
+        if (typeof displayPrompts === 'function') displayPrompts();
     }
-    
     const savedLang = localStorage.getItem('lang');
     if (savedLang === 'en') {
         document.body.classList.add('en');
         document.getElementById('langBtn').textContent = 'عربي';
     }
-    
     let cartCount = localStorage.getItem('cart') || 0;
-    document.querySelector('.cart-count').textContent = cartCount;
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = cartCount;
     window.addToCart = function(name, price) {
         cartCount++;
         localStorage.setItem('cart', cartCount);
-        document.querySelector('.cart-count').textContent = cartCount;
+        if (cartSpan) cartSpan.textContent = cartCount;
         alert(`✅ ${name} added to cart`);
     };
-    
     document.getElementById('newsletter-form')?.addEventListener('submit', function(e) {
         e.preventDefault();
         alert('✅ Thank you! Check your email.');
         this.reset();
     });
-    
     document.getElementById('chatbot-toggle')?.addEventListener('click', () => {
         alert('🤖 AI Assistant: Hello! How can I help?\n\nReply: support@mindweave.store');
     });
