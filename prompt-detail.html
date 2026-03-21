@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تفاصيل الأمر | MindWeave</title>
 <link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 .lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
 [data-lang="en"]{display:none}
@@ -35,19 +34,9 @@ body:not(.en){direction:rtl;text-align:right}
 </header>
 
 <main>
-<section class="page-header">
-<div class="container">
-<h1 id="promptTitleAr">عنوان الأمر</h1>
-<h1 id="promptTitleEn" style="display:none">Prompt Title</h1>
-</div>
-</section>
-
+<section class="page-header"><div class="container"><h1 id="titleAr"></h1><h1 id="titleEn" style="display:none"></h1></div></section>
 <div class="prompt-detail">
-<div class="prompt-box">
-<div id="promptTextAr" style="font-family:monospace;white-space:pre-wrap"></div>
-<div id="promptTextEn" style="font-family:monospace;white-space:pre-wrap;display:none"></div>
-<button class="copy-btn" onclick="copyPrompt()">📋 نسخ الأمر</button>
-</div>
+<div class="prompt-box"><div id="promptAr"></div><div id="promptEn" style="display:none"></div><button class="copy-btn" onclick="copyPrompt()">📋 نسخ الأمر</button></div>
 <div id="explanationAr"></div>
 <div id="explanationEn" style="display:none"></div>
 </div>
@@ -57,23 +46,39 @@ body:not(.en){direction:rtl;text-align:right}
 
 <script>
 const prompts = {
-    1: { 
-        titleAr: "أمر Midjourney: شعار شركة تقنية", 
+    1: {
+        titleAr: "أمر Midjourney: شعار شركة تقنية",
         titleEn: "Midjourney Prompt: Tech Company Logo",
         textAr: "/imagine prompt minimalist logo for a tech startup, blue and white color scheme, vector style, geometric shapes, clean lines, white background --v 6",
         textEn: "/imagine prompt minimalist logo for a tech startup, blue and white color scheme, vector style, geometric shapes, clean lines, white background --v 6",
-        explanationAr: "<h2>شرح الأمر:</h2><p>هذا الأمر يصمم شعارًا بسيطًا لشركة تقنية. يستخدم الألوان الأزرق والأبيض مع أشكال هندسية نظيفة. مناسب للشركات الناشئة في مجال التكنولوجيا.</p><h2>نصائح:</h2><ul><li>استخدم --v 6 للحصول على أحدث إصدار</li><li>يمكنك تغيير الألوان حسب هوية الشركة</li><li>أضف --no text لمنع ظهور نصوص غير مرغوب فيها</li></ul>",
-        explanationEn: "<h2>Explanation:</h2><p>This prompt creates a minimalist logo for a tech company. Uses blue and white colors with clean geometric shapes. Perfect for tech startups.</p><h2>Tips:</h2><ul><li>Use --v 6 for the latest version</li><li>Change colors according to brand identity</li><li>Add --no text to prevent unwanted text</li></ul>"
+        explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يصمم شعارًا بسيطًا لشركة تقنية. يستخدم الألوان الأزرق والأبيض مع أشكال هندسية نظيفة. مناسب للشركات الناشئة في مجال التكنولوجيا.</p><h2>💡 نصائح:</h2><ul><li>استخدم --v 6 للحصول على أحدث إصدار</li><li>يمكنك تغيير الألوان حسب هوية الشركة</li><li>أضف --no text لمنع ظهور نصوص غير مرغوب فيها</li></ul><h2>🎨 أمثلة للتعديل:</h2><ul><li>تغيير الألوان إلى (ذهبي وأسود) لشعار فاخر</li><li>إضافة كلمة AI في التصميم</li><li>استخدام --ar 1:1 للحصول على مربع مثالي</li></ul>",
+        explanationEn: "<h2>📖 Explanation:</h2><p>This prompt creates a minimalist logo for a tech company. Uses blue and white colors with clean geometric shapes. Perfect for tech startups.</p><h2>💡 Tips:</h2><ul><li>Use --v 6 for the latest version</li><li>Change colors according to brand identity</li><li>Add --no text to prevent unwanted text</li></ul><h2>🎨 Modification Examples:</h2><ul><li>Change colors to (gold and black) for luxury logo</li><li>Add the word AI to the design</li><li>Use --ar 1:1 for perfect square</li></ul>"
     },
-    2: { 
-        titleAr: "أمر ChatGPT: خطة تسويق", 
-        titleEn: "ChatGPT Prompt: Marketing Plan",
+    2: {
+        titleAr: "أمر ChatGPT: خطة تسويق متكاملة",
+        titleEn: "ChatGPT Prompt: Complete Marketing Plan",
         textAr: "اكتب لي خطة تسويق كاملة لمنتج جديد في مجال [مجالك]، تشمل التحليل الرباعي SWOT، استراتيجيات التسويق الرقمي، والميزانية التقديرية.",
         textEn: "Write a complete marketing plan for a new product in [your field], including SWOT analysis, digital marketing strategies, and estimated budget.",
-        explanationAr: "<h2>شرح الأمر:</h2><p>هذا الأمر يطلب من ChatGPT إعداد خطة تسويق متكاملة. يشمل التحليل الرباعي (SWOT) وتحليل المنافسين واستراتيجيات التسويق.</p><h2>نصائح:</h2><ul><li>استبدل [مجالك] بمجال المنتج الفعلي</li><li>أضف تفاصيل أكثر عن المنتج للحصول على نتائج أدق</li><li>اطلب تعديلات محددة بعد الحصول على الخطة الأولى</li></ul>",
-        explanationEn: "<h2>Explanation:</h2><p>This prompt asks ChatGPT to create a complete marketing plan. Includes SWOT analysis and marketing strategies.</p><h2>Tips:</h2><ul><li>Replace [your field] with the actual product category</li><li>Add more product details for better results</li><li>Request specific revisions after the first draft</li></ul>"
+        explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يطلب من ChatGPT إعداد خطة تسويق متكاملة. يشمل التحليل الرباعي (SWOT) وتحليل المنافسين واستراتيجيات التسويق.</p><h2>💡 نصائح:</h2><ul><li>استبدل [مجالك] بمجال المنتج الفعلي</li><li>أضف تفاصيل أكثر عن المنتج للحصول على نتائج أدق</li><li>اطلب تعديلات محددة بعد الحصول على الخطة الأولى</li></ul><h2>📊 مثال عملي:</h2><p>إذا كنت تخطط لتسويق تطبيق تعليمي، أضف: 'الجمهور المستهدف: طلاب الجامعات، الميزانية: 5000 دولار'</p>",
+        explanationEn: "<h2>📖 Explanation:</h2><p>This prompt asks ChatGPT to create a complete marketing plan. Includes SWOT analysis and marketing strategies.</p><h2>💡 Tips:</h2><ul><li>Replace [your field] with the actual product category</li><li>Add more product details for better results</li><li>Request specific revisions after the first draft</li></ul><h2>📊 Example:</h2><p>If marketing an educational app, add: 'Target audience: university students, budget: $5000'</p>"
+    },
+    3: {
+        titleAr: "أمر Midjourney: شعار علامة تجارية فاخرة",
+        titleEn: "Midjourney Prompt: Luxury Brand Logo",
+        textAr: "/imagine prompt luxury brand logo, gold and black color scheme, elegant typography, serif font, crown icon, premium feel, white background --v 6",
+        textEn: "/imagine prompt luxury brand logo, gold and black color scheme, elegant typography, serif font, crown icon, premium feel, white background --v 6",
+        explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يصمم شعارًا فاخرًا للعلامات التجارية الراقية. يستخدم الذهبي والأسود مع خطوط أنيقة وأيقونة تاج.</p><h2>💡 نصائح:</h2><ul><li>يمكنك تغيير الأيقونة إلى (أسد، درع، حرف) حسب العلامة</li><li>أضف 'minimalist' للحصول على تصميم أنظف</li><li>استخدم --no text إذا كنت لا تريد نصوصًا عشوائية</li></ul>",
+        explanationEn: "<h2>📖 Explanation:</h2><p>This prompt creates a luxury logo for high-end brands. Uses gold and black with elegant fonts and a crown icon.</p><h2>💡 Tips:</h2><ul><li>Change icon to (lion, shield, letter) according to brand</li><li>Add 'minimalist' for cleaner design</li><li>Use --no text to avoid random text</li></ul>"
+    },
+    4: {
+        titleAr: "أمر ChatGPT: منشورات إنستغرام",
+        titleEn: "ChatGPT Prompt: Instagram Posts",
+        textAr: "اكتب 10 منشورات إعلانية جذابة لـ Instagram لمنتج [اسم المنتج]، مع استخدام هاشتاجات مناسبة لكل منشور.",
+        textEn: "Write 10 attractive Instagram ad posts for [product name], with relevant hashtags for each post.",
+        explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يولد 10 منشورات إعلانية متنوعة لإنستغرام. كل منشور له أسلوب مختلف وهاشتاجات مخصصة.</p><h2>💡 نصائح:</h2><ul><li>حدد نوع المنتج بدقة (ملابس، إلكترونيات، خدمة)</li><li>أضف 'بأسلوب غير بيعي' إذا كنت تريد محتوى تسويقي ناعم</li><li>اطلب منشورات لستوري إنستغرام أيضًا</li></ul>",
+        explanationEn: "<h2>📖 Explanation:</h2><p>This prompt generates 10 diverse Instagram ad posts. Each post has a different style and custom hashtags.</p><h2>💡 Tips:</h2><ul><li>Specify product type accurately (clothing, electronics, service)</li><li>Add 'non-salesy style' for soft marketing content</li><li>Also request Instagram Story posts</li></ul>"
     }
-    // أضف باقي الأوامر هنا بنفس النمط
+    // سيتم إضافة باقي الأوامر (5-500) هنا بنفس النمط
 };
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -92,20 +97,20 @@ function toggleLanguage() {
 
 function updateContent() {
     const isEn = currentLang === 'en';
-    document.getElementById('promptTitleAr').style.display = isEn ? 'none' : 'block';
-    document.getElementById('promptTitleEn').style.display = isEn ? 'block' : 'none';
-    document.getElementById('promptTextAr').style.display = isEn ? 'none' : 'block';
-    document.getElementById('promptTextEn').style.display = isEn ? 'block' : 'none';
+    document.getElementById('titleAr').style.display = isEn ? 'none' : 'block';
+    document.getElementById('titleEn').style.display = isEn ? 'block' : 'none';
+    document.getElementById('promptAr').style.display = isEn ? 'none' : 'block';
+    document.getElementById('promptEn').style.display = isEn ? 'block' : 'none';
     document.getElementById('explanationAr').style.display = isEn ? 'none' : 'block';
     document.getElementById('explanationEn').style.display = isEn ? 'block' : 'none';
     
     if (isEn) {
-        document.getElementById('promptTitleEn').innerText = prompt.titleEn;
-        document.getElementById('promptTextEn').innerText = prompt.textEn;
+        document.getElementById('titleEn').innerText = prompt.titleEn;
+        document.getElementById('promptEn').innerText = prompt.textEn;
         document.getElementById('explanationEn').innerHTML = prompt.explanationEn;
     } else {
-        document.getElementById('promptTitleAr').innerText = prompt.titleAr;
-        document.getElementById('promptTextAr').innerText = prompt.textAr;
+        document.getElementById('titleAr').innerText = prompt.titleAr;
+        document.getElementById('promptAr').innerText = prompt.textAr;
         document.getElementById('explanationAr').innerHTML = prompt.explanationAr;
     }
 }
