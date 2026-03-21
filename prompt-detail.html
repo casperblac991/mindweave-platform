@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تفاصيل الأمر | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.prompt-detail{max-width:800px;margin:auto;padding:2rem;background:#1A1A2E;border-radius:20px}
+.prompt-box{background:#0A0A0F;padding:1.5rem;border-radius:15px;margin:1rem 0;border:1px solid #6C5CE7}
+.copy-btn{background:#6C5CE7;color:white;border:none;padding:10px 20px;border-radius:30px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+</ul>
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 id="promptTitleAr">عنوان الأمر</h1>
+<h1 id="promptTitleEn" style="display:none">Prompt Title</h1>
+</div>
+</section>
+
+<div class="prompt-detail">
+<div class="prompt-box">
+<div id="promptTextAr" style="font-family:monospace;white-space:pre-wrap"></div>
+<div id="promptTextEn" style="font-family:monospace;white-space:pre-wrap;display:none"></div>
+<button class="copy-btn" onclick="copyPrompt()">📋 نسخ الأمر</button>
+</div>
+<div id="explanationAr"></div>
+<div id="explanationEn" style="display:none"></div>
+</div>
+</main>
+
+<footer><div class="container"><p>© 2026 MindWeave</p></div></footer>
+
+<script>
+const prompts = {
+    1: { 
+        titleAr: "أمر Midjourney: شعار شركة تقنية", 
+        titleEn: "Midjourney Prompt: Tech Company Logo",
+        textAr: "/imagine prompt minimalist logo for a tech startup, blue and white color scheme, vector style, geometric shapes, clean lines, white background --v 6",
+        textEn: "/imagine prompt minimalist logo for a tech startup, blue and white color scheme, vector style, geometric shapes, clean lines, white background --v 6",
+        explanationAr: "<h2>شرح الأمر:</h2><p>هذا الأمر يصمم شعارًا بسيطًا لشركة تقنية. يستخدم الألوان الأزرق والأبيض مع أشكال هندسية نظيفة. مناسب للشركات الناشئة في مجال التكنولوجيا.</p><h2>نصائح:</h2><ul><li>استخدم --v 6 للحصول على أحدث إصدار</li><li>يمكنك تغيير الألوان حسب هوية الشركة</li><li>أضف --no text لمنع ظهور نصوص غير مرغوب فيها</li></ul>",
+        explanationEn: "<h2>Explanation:</h2><p>This prompt creates a minimalist logo for a tech company. Uses blue and white colors with clean geometric shapes. Perfect for tech startups.</p><h2>Tips:</h2><ul><li>Use --v 6 for the latest version</li><li>Change colors according to brand identity</li><li>Add --no text to prevent unwanted text</li></ul>"
+    },
+    2: { 
+        titleAr: "أمر ChatGPT: خطة تسويق", 
+        titleEn: "ChatGPT Prompt: Marketing Plan",
+        textAr: "اكتب لي خطة تسويق كاملة لمنتج جديد في مجال [مجالك]، تشمل التحليل الرباعي SWOT، استراتيجيات التسويق الرقمي، والميزانية التقديرية.",
+        textEn: "Write a complete marketing plan for a new product in [your field], including SWOT analysis, digital marketing strategies, and estimated budget.",
+        explanationAr: "<h2>شرح الأمر:</h2><p>هذا الأمر يطلب من ChatGPT إعداد خطة تسويق متكاملة. يشمل التحليل الرباعي (SWOT) وتحليل المنافسين واستراتيجيات التسويق.</p><h2>نصائح:</h2><ul><li>استبدل [مجالك] بمجال المنتج الفعلي</li><li>أضف تفاصيل أكثر عن المنتج للحصول على نتائج أدق</li><li>اطلب تعديلات محددة بعد الحصول على الخطة الأولى</li></ul>",
+        explanationEn: "<h2>Explanation:</h2><p>This prompt asks ChatGPT to create a complete marketing plan. Includes SWOT analysis and marketing strategies.</p><h2>Tips:</h2><ul><li>Replace [your field] with the actual product category</li><li>Add more product details for better results</li><li>Request specific revisions after the first draft</li></ul>"
+    }
+    // أضف باقي الأوامر هنا بنفس النمط
+};
+
+const urlParams = new URLSearchParams(window.location.search);
+const promptId = urlParams.get('id');
+const prompt = prompts[promptId] || prompts[1];
+
+let currentLang = localStorage.getItem('lang') || 'ar';
+
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    updateContent();
+}
+
+function updateContent() {
+    const isEn = currentLang === 'en';
+    document.getElementById('promptTitleAr').style.display = isEn ? 'none' : 'block';
+    document.getElementById('promptTitleEn').style.display = isEn ? 'block' : 'none';
+    document.getElementById('promptTextAr').style.display = isEn ? 'none' : 'block';
+    document.getElementById('promptTextEn').style.display = isEn ? 'block' : 'none';
+    document.getElementById('explanationAr').style.display = isEn ? 'none' : 'block';
+    document.getElementById('explanationEn').style.display = isEn ? 'block' : 'none';
+    
+    if (isEn) {
+        document.getElementById('promptTitleEn').innerText = prompt.titleEn;
+        document.getElementById('promptTextEn').innerText = prompt.textEn;
+        document.getElementById('explanationEn').innerHTML = prompt.explanationEn;
+    } else {
+        document.getElementById('promptTitleAr').innerText = prompt.titleAr;
+        document.getElementById('promptTextAr').innerText = prompt.textAr;
+        document.getElementById('explanationAr').innerHTML = prompt.explanationAr;
+    }
+}
+
+function copyPrompt() {
+    const isEn = currentLang === 'en';
+    const text = isEn ? prompt.textEn : prompt.textAr;
+    navigator.clipboard.writeText(text);
+    alert(isEn ? '✅ Prompt copied!' : '✅ تم نسخ الأمر!');
+}
+
+updateContent();
+</script>
+</body>
+</html>
