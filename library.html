@@ -3,9 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="مكتبة الأوامر المجانية - أكثر من 500 أمر لـ ChatGPT و Midjourney">
+<meta name="keywords" content="أوامر ChatGPT, Midjourney prompts, مكتبة أوامر الذكاء الاصطناعي">
+<meta name="author" content="MindWeave">
+<meta name="google-site-verification" content="ATi9HKInahPK22qqb-sqp70-MIeFlgKp0n8azYVo_Mw" />
 <title>مكتبة الأوامر | MindWeave</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DZ4WQDX31M');
+</script>
 <link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
 .lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
@@ -15,7 +27,10 @@ body.en [data-lang="ar"]{display:none}
 body.en [data-lang="en"]{display:block}
 body.en{direction:ltr;text-align:left}
 body:not(.en){direction:rtl;text-align:right}
-.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
+.cart-icon{text-decoration:none;color:white}
+.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
+.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
 .filter-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem}
 .filter-btn{background:#1A1A2E;border:1px solid #6C5CE7;padding:8px 20px;border-radius:30px;cursor:pointer;color:white;transition:all 0.3s}
 .filter-btn.active,.filter-btn:hover{background:#6C5CE7}
@@ -24,29 +39,60 @@ body:not(.en){direction:rtl;text-align:right}
 .prompt-card:hover{transform:translateY(-3px);border-color:#6C5CE7}
 .prompt-category{display:inline-block;background:rgba(108,92,231,0.2);color:#6C5CE7;padding:4px 12px;border-radius:20px;font-size:0.8rem;margin-bottom:1rem}
 .btn-detail{background:#6C5CE7;color:white;border:none;padding:8px 20px;border-radius:25px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:1rem}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
 </style>
 </head>
 <body>
-<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
 <ul class="nav-menu">
 <li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
 <li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
 <li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
 <li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
-<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul>
-<div class="nav-icons"><button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></div></nav></header>
-<main><section class="page-header"><div class="container"><h1 data-lang="ar">مكتبة الأوامر المجانية</h1><h1 data-lang="en">Free Prompts Library</h1><p data-lang="ar">أكثر من 500 أمر لـ ChatGPT و Midjourney — محدثة شهرياً</p><p data-lang="en">500+ prompts for ChatGPT and Midjourney — updated monthly</p></div></section>
-<div class="container"><div class="filter-buttons" id="filterBtns"></div>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 data-lang="ar">مكتبة الأوامر المجانية</h1>
+<h1 data-lang="en">Free Prompts Library</h1>
+<p data-lang="ar">أكثر من 500 أمر لـ ChatGPT و Midjourney — محدثة شهرياً</p>
+<p data-lang="en">500+ prompts for ChatGPT and Midjourney — updated monthly</p>
+</div>
+</section>
+
+<div class="container">
+<div class="filter-buttons" id="filterBtns"></div>
 <div class="prompts-grid" id="promptsGrid"></div>
 <button id="loadMoreBtn" class="btn-primary" style="margin:2rem auto;display:block;width:200px" data-lang="ar">عرض المزيد</button>
-<button id="loadMoreBtn" class="btn-primary" style="margin:2rem auto;display:block;width:200px" data-lang="en">Load More</button></div></main>
-<footer><div class="container"><div class="footer-grid"><div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
-<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<button id="loadMoreBtn" class="btn-primary" style="margin:2rem auto;display:block;width:200px" data-lang="en">Load More</button>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
 <div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div></div>
-<div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
+
 <script>
 const allPrompts = [];
 for(let i=1;i<=500;i++){
