@@ -5,14 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>المدونة | MindWeave</title>
 <link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-[data-lang="en"]{display:none}
-body.en [data-lang="ar"]{display:none}
-body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}
-body:not(.en){direction:rtl;text-align:right}
 .page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
 .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:2rem;max-width:1200px;margin:auto;padding:2rem}
 .blog-card{background:#1A1A2E;border-radius:15px;padding:1.5rem;border:1px solid rgba(108,92,231,0.2);transition:transform 0.3s}
@@ -21,116 +14,45 @@ body:not(.en){direction:rtl;text-align:right}
 </style>
 </head>
 <body>
-
-<header>
-<nav>
-<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
-<ul class="nav-menu">
-<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
-<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
-<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
-<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
-<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
-<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
-</ul>
-<div class="nav-icons">
-<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
-</div>
-</nav>
-</header>
-
-<main>
-<section class="page-header">
-<div class="container">
-<h1 data-lang="ar">المدونة</h1>
-<h1 data-lang="en">Blog</h1>
-<p data-lang="ar">أحدث المقالات والأدلة التعليمية في عالم الذكاء الاصطناعي</p>
-<p data-lang="en">Latest articles and educational guides in the world of AI</p>
-</div>
-</section>
-
-<div class="blog-grid" id="blogGrid"></div>
-</main>
-
-<footer>
-<div class="container">
-<div class="footer-grid">
-<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
-<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
-</div>
-<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
-</div>
-</footer>
-
-<script>
-const posts = [
-    { titleAr: "كيف تكتب أوامر احترافية لـ ChatGPT: دليل المبتدئين", titleEn: "How to Write Professional ChatGPT Prompts: A Beginner's Guide", link: "كيف-تكتب-أوامر-احترافية-لـ-ChatGPT.html" },
-    { titleAr: "أفضل 50 أمر Midjourney لتصميم شعارات احترافية", titleEn: "Best 50 Midjourney Prompts for Professional Logo Design", link: "أفضل-50-أمر-Midjourney-لتصميم-شعارات.html" },
-    { titleAr: "دليل شامل لأدوات الذكاء الاصطناعي المجانية 2026", titleEn: "Complete Guide to Free AI Tools 2026", link: "دليل-شامل-لأدوات-الذكاء-الاصطناعي-المجانية.html" },
-    { titleAr: "كيف تبدأ مشروعك الجانبي باستخدام الذكاء الاصطناعي", titleEn: "How to Start Your Side Project Using AI", link: "كيف-تبدأ-مشروعك-الجانبي-باستخدام-الذكاء-الاصطناعي.html" },
-    { titleAr: "10 طرق لاستخدام الذكاء الاصطناعي في التسويق الرقمي", titleEn: "10 Ways to Use AI in Digital Marketing", link: "10-طرق-لاستخدام-الذكاء-الاصطناعي-في-التسويق.html" },
-    { titleAr: "كيف تكتب سيرة ذاتية احترافية بالذكاء الاصطناعي", titleEn: "How to Write a Professional Resume Using AI", link: "كيف-تكتب-سيرة-ذاتية-احترافية-بالذكاء-الاصطناعي.html" },
-    { titleAr: "أفضل 10 أدوات ذكاء اصطناعي لتوليد الصور", titleEn: "Top 10 AI Tools for Image Generation", link: "أفضل-10-أدوات-ذكاء-اصطناعي-لتوليد-الصور.html" },
-    { titleAr: "دليل كتابة الأوامر (Prompt Engineering) من الصفر", titleEn: "Prompt Engineering Guide from Zero", link: "دليل-كتابة-الأوامر-Prompt-Engineering-من-الصفر.html" },
-    { titleAr: "كيف تحمي خصوصيتك عند استخدام أدوات الذكاء الاصطناعي", titleEn: "How to Protect Your Privacy When Using AI Tools", link: "كيف-تحمي-خصوصيتك-عند-استخدام-أدوات-الذكاء-الاصطناعي.html" },
-    { titleAr: "ChatGPT vs Midjourney: أيهما تحتاج؟", titleEn: "ChatGPT vs Midjourney: Which One Do You Need?", link: "ChatGPT-vs-Midjourney-أيهما-تحتاج.html" },
-    { titleAr: "كيف تستخدم Notion مع الذكاء الاصطناعي لتنظيم عملك", titleEn: "How to Use Notion with AI to Organize Your Work", link: "كيف-تستخدم-Notion-مع-الذكاء-الاصطناعي.html" },
-    { titleAr: "أفضل 10 قوالب Notion مدعومة بالذكاء الاصطناعي", titleEn: "Top 10 AI-Powered Notion Templates", link: "أفضل-10-قوالب-Notion-مدعومة-بالذكاء-الاصطناعي.html" },
-    { titleAr: "كيف تولد صور منتجات احترافية باستخدام Midjourney", titleEn: "How to Generate Professional Product Images Using Midjourney", link: "كيف-تولد-صور-منتجات-احترافية-باستخدام-Midjourney.html" },
-    { titleAr: "دليل اختيار أفضل اشتراك Midjourney للمبتدئين", titleEn: "Guide to Choosing the Best Midjourney Subscription", link: "دليل-اختيار-أفضل-اشتراك-Midjourney.html" },
-    { titleAr: "كيف تستخدم ChatGPT في كتابة الأكواد البرمجية", titleEn: "How to Use ChatGPT for Coding", link: "كيف-تستخدم-ChatGPT-في-كتابة-الأكواد-البرمجية.html" },
-    { titleAr: "5 أخطاء شائعة في كتابة أوامر الذكاء الاصطناعي", titleEn: "5 Common Mistakes in Writing AI Prompts", link: "5-أخطاء-شائعة-في-كتابة-أوامر-الذكاء-الاصطناعي.html" },
-    { titleAr: "كيف تحول فكرتك إلى منتج رقمي باستخدام الذكاء الاصطناعي", titleEn: "How to Turn Your Idea into a Digital Product Using AI", link: "كيف-تحول-فكرتك-إلى-منتج-رقمي-باستخدام-الذكاء-الاصطناعي.html" },
-    { titleAr: "دليل الربح من بيع أوامر الذكاء الاصطناعي", titleEn: "Guide to Making Money by Selling AI Prompts", link: "دليل-الربح-من-بيع-أوامر-الذكاء-الاصطناعي.html" },
-    { titleAr: "كيف تكتب أوامر Midjourney لتصميم هوية بصرية متكاملة", titleEn: "How to Write Midjourney Prompts for Visual Identity", link: "كيف-تكتب-أوامر-Midjourney-لتصميم-هوية-بصرية.html" },
-    { titleAr: "أفضل 10 أدوات ذكاء اصطناعي للكتابة الإبداعية", titleEn: "Top 10 AI Tools for Creative Writing", link: "أفضل-10-أدوات-ذكاء-اصطناعي-للكتابة-الإبداعية.html" },
-    { titleAr: "كيف تستخدم الذكاء الاصطناعي لتحسين السيو (SEO)", titleEn: "How to Use AI to Improve SEO", link: "كيف-تستخدم-الذكاء-الاصطناعي-لتحسين-السيو.html" },
-    { titleAr: "دليل إنشاء قناة يوتيوب باستخدام الذكاء الاصطناعي", titleEn: "Guide to Creating a YouTube Channel Using AI", link: "دليل-إنشاء-قناة-يوتيوب-باستخدام-الذكاء-الاصطناعي.html" },
-    { titleAr: "كيف تصمم منشورات Instagram بالذكاء الاصطناعي", titleEn: "How to Design Instagram Posts with AI", link: "كيف-تصمم-منشورات-Instagram-بالذكاء-الاصطناعي.html" },
-    { titleAr: "10 أدوات ذكاء اصطناعي للطلاب والباحثين", titleEn: "10 AI Tools for Students and Researchers", link: "10-أدوات-ذكاء-اصطناعي-للطلاب-والباحثين.html" },
-    { titleAr: "كيف تستخدم الذكاء الاصطناعي في إنشاء العروض التقديمية", titleEn: "How to Use AI to Create Presentations", link: "كيف-تستخدم-الذكاء-الاصطناعي-في-إنشاء-العروض.html" },
-    { titleAr: "دليل الذكاء الاصطناعي لرواد الأعمال وأصحاب المشاريع", titleEn: "AI Guide for Entrepreneurs and Business Owners", link: "دليل-الذكاء-الاصطناعي-لرواد-الأعمال.html" },
-    { titleAr: "أفضل 5 كتب إلكترونية عن الذكاء الاصطناعي للمبتدئين", titleEn: "Top 5 E-books About AI for Beginners", link: "أفضل-5-كتب-إلكترونية-عن-الذكاء-الاصطناعي.html" },
-    { titleAr: "مستقبل الذكاء الاصطناعي: 10 توقعات للسنوات القادمة", titleEn: "The Future of AI: 10 Predictions", link: "مستقبل-الذكاء-الاصطناعي-10-توقعات.html" },
-    { titleAr: "كيف تتعلم الذكاء الاصطناعي من الصفر؟ خطة شاملة", titleEn: "How to Learn AI from Scratch", link: "كيف-تتعلم-الذكاء-الاصطناعي-من-الصفر.html" }
-];
-
-let currentLang = localStorage.getItem('lang') || 'ar';
-
-function toggleLanguage() {
-    currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    localStorage.setItem('lang', currentLang);
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
-    renderBlog();
-}
-
-function renderBlog() {
-    const isEn = currentLang === 'en';
-    const container = document.getElementById('blogGrid');
-    container.innerHTML = posts.map(p => `
-        <div class="blog-card">
-            <h3>${isEn ? p.titleEn : p.titleAr}</h3>
-            <a href="${p.link}" class="read-more">${isEn ? 'Read more →' : 'اقرأ المزيد →'}</a>
-        </div>
-    `).join('');
-}
-
-if (currentLang === 'en') document.body.classList.add('en');
-document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
-renderBlog();
-
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-function updateCartDisplay() {
-    const count = cart.reduce((s, i) => s + i.quantity, 0);
-    const cartSpan = document.querySelector('.cart-count');
-    if (cartSpan) cartSpan.textContent = count;
-}
-updateCartDisplay();
-</script>
+<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul><li><a href="index.html">الرئيسية</a></li>
+<li><a href="library.html">المكتبة</a></li>
+<li><a href="blog.html">المدونة</a></li>
+<li><a href="store.html">المتجر</a></li>
+<li><a href="about.html">من نحن</a></li>
+<li><a href="contact.html">اتصل بنا</a></li></ul></nav></header>
+<main><section class="page-header"><div class="container"><h1>المدونة</h1><p>أحدث المقالات والأدلة التعليمية في عالم الذكاء الاصطناعي</p></div></section>
+<div class="blog-grid">
+<div class="blog-card"><h3>كيف تكتب أوامر احترافية لـ ChatGPT: دليل المبتدئين</h3><a href="ChatGPT.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>أفضل 50 أمر Midjourney لتصميم شعارات احترافية</h3><a href="Midjourney-Logo.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>دليل شامل لأدوات الذكاء الاصطناعي المجانية 2026</h3><a href="AI-Tools-Guide.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تبدأ مشروعك الجانبي باستخدام الذكاء الاصطناعي</h3><a href="Side-Project.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>10 طرق لاستخدام الذكاء الاصطناعي في التسويق الرقمي</h3><a href="AI-Marketing.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تكتب سيرة ذاتية احترافية بالذكاء الاصطناعي</h3><a href="AI-Resume.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>أفضل 10 أدوات ذكاء اصطناعي لتوليد الصور</h3><a href="AI-Image-Tools.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>دليل كتابة الأوامر (Prompt Engineering) من الصفر</h3><a href="Prompt-Engineering.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تحمي خصوصيتك عند استخدام أدوات الذكاء الاصطناعي</h3><a href="AI-Privacy.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>ChatGPT vs Midjourney: أيهما تحتاج؟</h3><a href="ChatGPT-vs-Midjourney.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تستخدم Notion مع الذكاء الاصطناعي لتنظيم عملك</h3><a href="Notion-AI.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>أفضل 10 قوالب Notion مدعومة بالذكاء الاصطناعي</h3><a href="Notion-Templates.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تولد صور منتجات احترافية باستخدام Midjourney</h3><a href="Product-Images-Midjourney.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>دليل اختيار أفضل اشتراك Midjourney للمبتدئين</h3><a href="Midjourney-Subscription.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تستخدم ChatGPT في كتابة الأكواد البرمجية</h3><a href="ChatGPT-Coding.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>5 أخطاء شائعة في كتابة أوامر الذكاء الاصطناعي</h3><a href="Prompt-Mistakes.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تحول فكرتك إلى منتج رقمي باستخدام الذكاء الاصطناعي</h3><a href="Digital-Product-Idea.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>دليل الربح من بيع أوامر الذكاء الاصطناعي</h3><a href="Sell-Prompts.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تكتب أوامر Midjourney لتصميم هوية بصرية متكاملة</h3><a href="Midjourney-Visual-Identity.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>أفضل 10 أدوات ذكاء اصطناعي للكتابة الإبداعية</h3><a href="AI-Creative-Writing.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تستخدم الذكاء الاصطناعي لتحسين السيو (SEO)</h3><a href="AI-SEO.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>دليل إنشاء قناة يوتيوب باستخدام الذكاء الاصطناعي</h3><a href="YouTube-AI.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تصمم منشورات Instagram بالذكاء الاصطناعي</h3><a href="Instagram-AI.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>10 أدوات ذكاء اصطناعي للطلاب والباحثين</h3><a href="AI-Students.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تستخدم الذكاء الاصطناعي في إنشاء العروض التقديمية</h3><a href="AI-Presentations.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>دليل الذكاء الاصطناعي لرواد الأعمال وأصحاب المشاريع</h3><a href="AI-Entrepreneurs.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>أفضل 5 كتب إلكترونية عن الذكاء الاصطناعي للمبتدئين</h3><a href="AI-Ebooks.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>مستقبل الذكاء الاصطناعي: 10 توقعات للسنوات القادمة</h3><a href="AI-Future.html" class="read-more">اقرأ المزيد →</a></div>
+<div class="blog-card"><h3>كيف تتعلم الذكاء الاصطناعي من الصفر؟ خطة شاملة</h3><a href="Learn-AI.html" class="read-more">اقرأ المزيد →</a></div>
+</div></main>
+<footer><div class="container"><p>© 2026 MindWeave</p></div></footer>
 </body>
 </html>
