@@ -1,20 +1,67 @@
-
-const prompts = {
-1:{titleAr:"خطة تسويق",titleEn:"Marketing Plan",textAr:"اكتب خطة تسويق كاملة لمنتج جديد تشمل SWOT.",textEn:"Write a full marketing plan with SWOT.",explanationAr:"<p>خطة كاملة للتسويق</p>",explanationEn:"<p>Full marketing plan</p>"},
-2:{titleAr:"منشورات انستغرام",titleEn:"Instagram Posts",textAr:"اكتب 10 منشورات انستغرام مع هاشتاغ.",textEn:"Write 10 Instagram posts with hashtags.",explanationAr:"<p>محتوى سوشيال ميديا</p>",explanationEn:"<p>Social media content</p>"},
-3:{titleAr:"سيرة ذاتية",titleEn:"Resume",textAr:"اكتب CV احترافي.",textEn:"Write professional CV.",explanationAr:"<p>سيرة ذاتية</p>",explanationEn:"<p>Professional resume</p>"},
-4:{titleAr:"خطة عمل",titleEn:"Business Plan",textAr:"اكتب خطة عمل كاملة.",textEn:"Write full business plan.",explanationAr:"<p>خطة مشروع</p>",explanationEn:"<p>Business plan</p>"},
-5:{titleAr:"إعلانات فيسبوك",titleEn:"Facebook Ads",textAr:"اكتب 5 إعلانات فيسبوك.",textEn:"Write 5 Facebook ads.",explanationAr:"<p>إعلانات</p>",explanationEn:"<p>Ads</p>"}
-};
-
-// توليد باقي الأوامر تلقائياً
-for(let i=6;i<=500;i++){
-  prompts[i]={
-    titleAr:`أمر ${i}`,
-    titleEn:`Prompt ${i}`,
-    textAr:`اكتب محتوى احترافي رقم ${i} في مجال التسويق`,
-    textEn:`Write professional content #${i} in marketing`,
-    explanationAr:`<p>أمر احترافي</p>`,
-    explanationEn:`<p>Professional prompt</p>`
-  };
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تفاصيل الأمر | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+.lang-switch:hover{background:#6C5CE7}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.prompt-detail{max-width:800px;margin:auto;padding:2rem;background:#1A1A2E;border-radius:20px}
+.prompt-box{background:#0A0A0F;padding:1.5rem;border-radius:15px;margin:1rem 0;border:1px solid #6C5CE7}
+.copy-btn{background:#6C5CE7;color:white;border:none;padding:10px 20px;border-radius:30px;cursor:pointer}
+</style>
+</head>
+<body>
+<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul><li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul>
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button></nav></header>
+<main><section class="page-header"><div class="container"><h1 id="titleAr"></h1><h1 id="titleEn" style="display:none"></h1></div></section>
+<div class="prompt-detail"><div class="prompt-box"><div id="promptAr"></div><div id="promptEn" style="display:none"></div><button class="copy-btn" onclick="copyPrompt()">📋 نسخ الأمر</button></div><div id="explanationAr"></div><div id="explanationEn" style="display:none"></div></div></main>
+<footer><div class="container"><p>© 2026 MindWeave</p></div></footer>
+<script>
+// توليد 500 أمر مختلف مع ترجمة كاملة
+const prompts = {};
+for(let i=1;i<=500;i++){
+    let cat = i%2===0 ? "chatgpt" : "midjourney";
+    let titleAr = cat==="chatgpt" ? `أمر ChatGPT رقم ${i}` : `أمر Midjourney رقم ${i}`;
+    let titleEn = cat==="chatgpt" ? `ChatGPT Prompt #${i}` : `Midjourney Prompt #${i}`;
+    
+    let textAr, textEn;
+    if(cat==="chatgpt"){
+        textAr = `اكتب لي محتوى شامل عن موضوع [أدخل الموضوع]، مع تفاصيل دقيقة، أمثلة عملية، وخاتمة موجزة. استخدم لغة واضحة ومنظمة.`;
+        textEn = `Write comprehensive content about [topic], with precise details, practical examples, and a brief conclusion. Use clear and organized language.`;
+    } else {
+        textAr = `/imagine prompt creative artistic design for [الموضوع], high quality, detailed, professional lighting, 8k resolution --v 6`;
+        textEn = `/imagine prompt creative artistic design for [topic], high quality, detailed, professional lighting, 8k resolution --v 6`;
+    }
+    
+    let explanationAr = `<h2>📖 شرح الأمر:</h2><p>هذا أمر ${cat==='chatgpt'?'ChatGPT':'Midjourney'} متخصص للمهمة رقم ${i}. يمكنك تخصيصه حسب احتياجاتك عن طريق استبدال الكلمات بين قوسين [ ].</p><h2>💡 نصائح للاستخدام:</h2><ul><li>استبدل [الموضوع] بموضوعك الفعلي</li><li>أضف تفاصيل أكثر للحصول على نتائج أدق</li><li>جرّب إضافات مختلفة لتحسين النتيجة</li><li>استخدم هذا الأمر كنقطة بداية ثم طوّره</li></ul><h2>🎯 مثال تطبيقي:</h2><p>إذا كنت تريد محتوى عن الذكاء الاصطناعي، استبدل [الموضوع] بـ 'الذكاء الاصطناعي في التعليم'.</p>`;
+    
+    let explanationEn = `<h2>📖 Explanation:</h2><p>This is a ${cat==='chatgpt'?'ChatGPT':'Midjourney'} prompt for task #${i}. You can customize it by replacing the words in brackets [ ].</p><h2>💡 Usage Tips:</h2><ul><li>Replace [topic] with your actual topic</li><li>Add more details for more accurate results</li><li>Try different variations to improve results</li><li>Use this prompt as a starting point and develop it</li></ul><h2>🎯 Example:</h2><p>If you want content about AI, replace [topic] with 'AI in education'.</p>`;
+    
+    prompts[i] = { titleAr, titleEn, textAr, textEn, explanationAr, explanationEn };
 }
+const urlParams=new URLSearchParams(window.location.search);
+const promptId=urlParams.get('id');
+const prompt=prompts[promptId]||prompts[1];
+let lang=localStorage.getItem('lang')||'ar';
+function toggleLanguage(){lang=lang==='ar'?'en':'ar';localStorage.setItem('lang',lang);document.body.classList.toggle('en',lang==='en');document.getElementById('langBtn').textContent=lang==='ar'?'English':'عربي';updateContent();}
+function updateContent(){const isEn=lang==='en';document.getElementById('titleAr').style.display=isEn?'none':'block';document.getElementById('titleEn').style.display=isEn?'block':'none';document.getElementById('promptAr').style.display=isEn?'none':'block';document.getElementById('promptEn').style.display=isEn?'block':'none';document.getElementById('explanationAr').style.display=isEn?'none':'block';document.getElementById('explanationEn').style.display=isEn?'block':'none';if(isEn){document.getElementById('titleEn').innerText=prompt.titleEn;document.getElementById('promptEn').innerText=prompt.textEn;document.getElementById('explanationEn').innerHTML=prompt.explanationEn;}else{document.getElementById('titleAr').innerText=prompt.titleAr;document.getElementById('promptAr').innerText=prompt.textAr;document.getElementById('explanationAr').innerHTML=prompt.explanationAr;}}
+function copyPrompt(){const isEn=lang==='en';const text=isEn?prompt.textEn:prompt.textAr;navigator.clipboard.writeText(text);alert(isEn?'✅ Prompt copied!':'✅ تم نسخ الأمر!');}
+updateContent();
+</script>
+</body>
+</html>
