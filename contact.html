@@ -1,20 +1,37 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><title>اتصل بنا | MindWeave</title>
-<link rel="stylesheet" href="css/style.css"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اتصل بنا | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
 .lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-[data-lang="en"]{display:none}body.en [data-lang="ar"]{display:none}body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:right}
+.lang-switch:hover{background:#6C5CE7}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
 .page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
-.contact-form{max-width:500px;margin:auto;padding:2rem}
-.contact-form input,.contact-form textarea{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:none;background:#1A1A2E;color:white}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1000px;margin:auto;padding:2rem}
+.contact-form input,.contact-form textarea{width:100%;padding:12px;margin:10px 0;border-radius:10px;background:#1A1A2E;color:white;border:1px solid rgba(108,92,231,0.2)}
 .contact-form button{background:#6C5CE7;color:white;border:none;padding:12px;border-radius:30px;cursor:pointer;width:100%}
+.contact-info{background:#1A1A2E;border-radius:15px;padding:2rem;border:1px solid rgba(108,92,231,0.2)}
+.contact-info h3{color:#6C5CE7;margin-bottom:1rem}
+.contact-info p{margin:1rem 0;display:flex;align-items:center;gap:0.5rem}
+.bot-btn{background:#6C5CE7;color:white;border:none;padding:12px;border-radius:30px;cursor:pointer;width:100%;margin-top:1rem}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
 <ul class="nav-menu">
 <li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
@@ -24,15 +41,98 @@ body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:rig
 <li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
 <li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
 </ul>
-<div><button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button></div>
-</nav></header>
-<main><section class="page-header"><div class="container"><h1 data-lang="ar">اتصل بنا</h1><h1 data-lang="en">Contact Us</h1><p data-lang="ar">support@mindweave.store</p><p data-lang="en">support@mindweave.store</p></div></section>
-<div class="contact-form"><form id="contactForm"><input type="text" placeholder="Name" id="name"><input type="email" placeholder="Email" id="email"><textarea rows="4" placeholder="Message" id="msg"></textarea><button type="submit" data-lang="ar">إرسال</button><button type="submit" data-lang="en">Send</button></form></div></main>
-<footer><div class="container"><div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 data-lang="ar">اتصل بنا</h1>
+<h1 data-lang="en">Contact Us</h1>
+<p data-lang="ar">نرحب باستفساراتكم واقتراحاتكم — نرد خلال 24 ساعة</p>
+<p data-lang="en">We welcome your inquiries and suggestions — we reply within 24 hours</p>
+</div>
+</section>
+
+<div class="contact-grid">
+<div class="contact-form">
+<form id="contactForm">
+<input type="text" id="name" placeholder="الاسم" required>
+<input type="email" id="email" placeholder="البريد الإلكتروني" required>
+<input type="text" id="subject" placeholder="الموضوع">
+<textarea id="message" rows="5" placeholder="رسالتك..."></textarea>
+<button type="submit" data-lang="ar">إرسال الرسالة</button>
+<button type="submit" data-lang="en">Send Message</button>
+</form>
+</div>
+<div class="contact-info">
+<h3 data-lang="ar">معلومات التواصل</h3>
+<h3 data-lang="en">Contact Information</h3>
+<p><i class="fas fa-envelope"></i> support@mindweave.store</p>
+<p><i class="fas fa-headset"></i> <span data-lang="ar">دعم 24/7 عبر البوت</span><span data-lang="en">24/7 Support via Bot</span></p>
+<p><i class="fab fa-telegram"></i> @mindweave_bot</p>
+<p><i class="fab fa-twitter"></i> @mindweave</p>
+<p><i class="fab fa-instagram"></i> @mindweave</p>
+<h3 data-lang="ar">ساعات الدعم البشري</h3>
+<h3 data-lang="en">Human Support Hours</h3>
+<p><span data-lang="ar">الأحد - الخميس: 9 صباحاً - 9 مساءً</span><span data-lang="en">Sunday - Thursday: 9 AM - 9 PM</span></p>
+<button class="bot-btn" onclick="openChatbot()" data-lang="ar">💬 تحدث مع بوت AI</button>
+<button class="bot-btn" onclick="openChatbot()" data-lang="en">💬 Chat with AI Bot</button>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
+
 <script>
-function toggleLanguage(){document.body.classList.toggle('en');let lang=document.body.classList.contains('en')?'en':'ar';localStorage.setItem('lang',lang);document.getElementById('langBtn').textContent=lang=='ar'?'English':'عربي';}
-document.getElementById('contactForm').onsubmit=function(e){e.preventDefault();alert(localStorage.getItem('lang')=='en'?'✅ Message sent! We will reply within 24h.':'✅ تم إرسال الرسالة! سنرد خلال 24 ساعة.');this.reset();}
-if(localStorage.getItem('lang')=='en')document.body.classList.add('en');document.getElementById('langBtn').textContent=localStorage.getItem('lang')=='en'?'عربي':'English';
+let currentLang = localStorage.getItem('lang') || 'ar';
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+}
+function applyLanguage() {
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+}
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function updateCartDisplay() {
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
+}
+applyLanguage();
+updateCartDisplay();
+
+document.getElementById('contactForm').onsubmit = function(e) {
+    e.preventDefault();
+    alert(currentLang === 'ar' ? '✅ تم إرسال رسالتك. سنرد خلال 24 ساعة.' : '✅ Your message has been sent. We will reply within 24 hours.');
+    this.reset();
+};
+
+function openChatbot() {
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    if (chatbotWindow) {
+        chatbotWindow.style.display = 'block';
+    } else {
+        alert(currentLang === 'ar' ? '🤖 افتح البوت من الزر الموجود أسفل اليسار' : '🤖 Open the bot from the button at the bottom left');
+    }
+}
 </script>
 </body>
 </html>
