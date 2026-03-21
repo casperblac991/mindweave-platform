@@ -3,9 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="تفاصيل الأمر - أوامر احترافية لـ ChatGPT و Midjourney مع شرح ونصائح">
+<meta name="keywords" content="أمر ChatGPT, أمر Midjourney, تفاصيل الأمر, شرح الأمر">
+<meta name="author" content="MindWeave">
+<meta name="google-site-verification" content="ATi9HKInahPK22qqb-sqp70-MIeFlgKp0n8azYVo_Mw" />
 <title>تفاصيل الأمر | MindWeave</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DZ4WQDX31M');
+</script>
 <link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
 .lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
@@ -15,6 +27,10 @@ body.en [data-lang="ar"]{display:none}
 body.en [data-lang="en"]{display:block}
 body.en{direction:ltr;text-align:left}
 body:not(.en){direction:rtl;text-align:right}
+.cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
+.cart-icon{text-decoration:none;color:white}
+.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
+.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
 .page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
 .prompt-detail{max-width:800px;margin:auto;padding:2rem;background:#1A1A2E;border-radius:20px}
 .prompt-box{background:#0A0A0F;padding:1.5rem;border-radius:15px;margin:1rem 0;border:1px solid #6C5CE7}
@@ -22,22 +38,64 @@ body:not(.en){direction:rtl;text-align:right}
 </style>
 </head>
 <body>
-<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
-<ul><li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
 <li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
-<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul>
-<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button></nav></header>
-<main><section class="page-header"><div class="container"><h1 id="titleAr"></h1><h1 id="titleEn" style="display:none"></h1></div></section>
-<div class="prompt-detail"><div class="prompt-box"><div id="promptAr"></div><div id="promptEn" style="display:none"></div><button class="copy-btn" onclick="copyPrompt()">📋 نسخ الأمر</button></div><div id="explanationAr"></div><div id="explanationEn" style="display:none"></div></div></main>
-<footer><div class="container"><p>© 2026 MindWeave</p></div></footer>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 id="titleAr"></h1>
+<h1 id="titleEn" style="display:none"></h1>
+</div>
+</section>
+
+<div class="prompt-detail">
+<div class="prompt-box">
+<div id="promptAr"></div>
+<div id="promptEn" style="display:none"></div>
+<button class="copy-btn" onclick="copyPrompt()">📋 نسخ الأمر</button>
+</div>
+<div id="explanationAr"></div>
+<div id="explanationEn" style="display:none"></div>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
+
 <script>
 const prompts = {
 1: { titleAr: "📝 خطة تسويق متكاملة", titleEn: "📝 Complete Marketing Plan", 
    textAr: "اكتب لي خطة تسويق كاملة لمنتج جديد في مجال [مجالك]، تشمل التحليل الرباعي SWOT، استراتيجيات التسويق الرقمي، والميزانية التقديرية.", 
    textEn: "Write a complete marketing plan for a new product in [your field], including SWOT analysis, digital marketing strategies, and estimated budget.",
-   explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يطلب من ChatGPT إعداد خطة تسويق متكاملة. يشمل التحليل الرباعي (SWOT) وتحليل المنافسين واستراتيجيات التسويق.</p><h2>💡 نصائح:</h2><ul><li>استبدل [مجالك] بمجال المنتج الفعلي</li><li>أضف تفاصيل أكثر عن المنتج للحصول على نتائج أدق</li><li>اطلب تعديلات محددة بعد الحصول على الخطة الأولى</li></ul><h2>📊 مثال عملي:</h2><p>إذا كنت تخطط لتسويق تطبيق تعليمي، أضف: 'الجمهور المستهدف: طلاب الجامعات، الميزانية: 5000 دولار'</p>",
-   explanationEn: "<h2>📖 Explanation:</h2><p>This prompt asks ChatGPT to create a complete marketing plan. Includes SWOT analysis and marketing strategies.</p><h2>💡 Tips:</h2><ul><li>Replace [your field] with the actual product category</li><li>Add more product details for better results</li><li>Request specific revisions after the first draft</li></ul><h2>📊 Example:</h2><p>If marketing an educational app, add: 'Target audience: university students, budget: $5000'</p>" },
+   explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يطلب من ChatGPT إعداد خطة تسويق متكاملة. يشمل التحليل الرباعي (SWOT) وتحليل المنافسين واستراتيجيات التسويق.</p><h2>💡 نصائح:</h2><ul><li>استبدل [مجالك] بمجال المنتج الفعلي</li><li>أضف تفاصيل أكثر عن المنتج للحصول على نتائج أدق</li><li>اطلب تعديلات محددة بعد الحصول على الخطة الأولى</li></ul>",
+   explanationEn: "<h2>📖 Explanation:</h2><p>This prompt asks ChatGPT to create a complete marketing plan. Includes SWOT analysis and marketing strategies.</p><h2>💡 Tips:</h2><ul><li>Replace [your field] with the actual product category</li><li>Add more product details for better results</li><li>Request specific revisions after the first draft</li></ul>" },
 2: { titleAr: "📱 منشورات إنستغرام", titleEn: "📱 Instagram Posts", 
    textAr: "اكتب 10 منشورات إعلانية جذابة لـ Instagram لمنتج [اسم المنتج]، مع استخدام هاشتاجات مناسبة لكل منشور.", 
    textEn: "Write 10 attractive Instagram ad posts for [product name], with relevant hashtags for each post.",
@@ -66,18 +124,59 @@ for(let i=6;i<=500;i++){
         titleEn: cat==="chatgpt" ? `💬 ChatGPT Prompt #${i}` : `🎨 Midjourney Prompt #${i}`,
         textAr: cat==="chatgpt" ? `اكتب لي محتوى احترافي عن موضوع [الموضوع] مع تفاصيل دقيقة وأمثلة عملية.` : `/imagine prompt creative design for [الموضوع], high quality, detailed, professional lighting, 8k --v 6`,
         textEn: cat==="chatgpt" ? `Write professional content about [topic] with precise details and practical examples.` : `/imagine prompt creative design for [topic], high quality, detailed, professional lighting, 8k --v 6`,
-        explanationAr: `<h2>📖 شرح الأمر:</h2><p>هذا أمر ${cat==='chatgpt'?'ChatGPT':'Midjourney'} متخصص للمهمة رقم ${i}. يمكنك تخصيصه حسب احتياجاتك.</p><h2>💡 نصائح:</h2><ul><li>خصص الأمر حسب احتياجاتك</li><li>استخدم الكلمات المفتاحية المناسبة</li><li>جرّب إضافات مختلفة لتحسين النتيجة</li></ul><h2>🎯 مثال:</h2><p>استبدل [الموضوع] بموضوعك الفعلي مثل 'التسويق الرقمي' أو 'تصميم شعار'.</p>`,
-        explanationEn: `<h2>📖 Explanation:</h2><p>This is a ${cat==='chatgpt'?'ChatGPT':'Midjourney'} prompt for task #${i}. You can customize it to your needs.</p><h2>💡 Tips:</h2><ul><li>Customize the prompt to your needs</li><li>Use appropriate keywords</li><li>Try different variations to improve results</li></ul><h2>🎯 Example:</h2><p>Replace [topic] with your actual topic like 'digital marketing' or 'logo design'.</p>`
+        explanationAr: `<h2>📖 شرح الأمر:</h2><p>هذا أمر ${cat==='chatgpt'?'ChatGPT':'Midjourney'} متخصص للمهمة رقم ${i}. يمكنك تخصيصه حسب احتياجاتك.</p><h2>💡 نصائح:</h2><ul><li>خصص الأمر حسب احتياجاتك</li><li>استخدم الكلمات المفتاحية المناسبة</li><li>جرّب إضافات مختلفة لتحسين النتيجة</li></ul>`,
+        explanationEn: `<h2>📖 Explanation:</h2><p>This is a ${cat==='chatgpt'?'ChatGPT':'Midjourney'} prompt for task #${i}. You can customize it to your needs.</p><h2>💡 Tips:</h2><ul><li>Customize the prompt to your needs</li><li>Use appropriate keywords</li><li>Try different variations to improve results</li></ul>`
     };
 }
+
 const urlParams=new URLSearchParams(window.location.search);
 const promptId=urlParams.get('id');
 const prompt=prompts[promptId]||prompts[1];
 let lang=localStorage.getItem('lang')||'ar';
-function toggleLanguage(){lang=lang==='ar'?'en':'ar';localStorage.setItem('lang',lang);document.body.classList.toggle('en',lang==='en');document.getElementById('langBtn').textContent=lang==='ar'?'English':'عربي';updateContent();}
-function updateContent(){const isEn=lang==='en';document.getElementById('titleAr').style.display=isEn?'none':'block';document.getElementById('titleEn').style.display=isEn?'block':'none';document.getElementById('promptAr').style.display=isEn?'none':'block';document.getElementById('promptEn').style.display=isEn?'block':'none';document.getElementById('explanationAr').style.display=isEn?'none':'block';document.getElementById('explanationEn').style.display=isEn?'block':'none';if(isEn){document.getElementById('titleEn').innerText=prompt.titleEn;document.getElementById('promptEn').innerText=prompt.textEn;document.getElementById('explanationEn').innerHTML=prompt.explanationEn;}else{document.getElementById('titleAr').innerText=prompt.titleAr;document.getElementById('promptAr').innerText=prompt.textAr;document.getElementById('explanationAr').innerHTML=prompt.explanationAr;}}
-function copyPrompt(){const isEn=lang==='en';const text=isEn?prompt.textEn:prompt.textAr;navigator.clipboard.writeText(text);alert(isEn?'✅ Prompt copied!':'✅ تم نسخ الأمر!');}
+
+function toggleLanguage(){
+    lang=lang==='ar'?'en':'ar';
+    localStorage.setItem('lang',lang);
+    document.body.classList.toggle('en',lang==='en');
+    document.getElementById('langBtn').textContent=lang==='ar'?'English':'عربي';
+    updateContent();
+}
+function updateContent(){
+    const isEn=lang==='en';
+    document.getElementById('titleAr').style.display=isEn?'none':'block';
+    document.getElementById('titleEn').style.display=isEn?'block':'none';
+    document.getElementById('promptAr').style.display=isEn?'none':'block';
+    document.getElementById('promptEn').style.display=isEn?'block':'none';
+    document.getElementById('explanationAr').style.display=isEn?'none':'block';
+    document.getElementById('explanationEn').style.display=isEn?'block':'none';
+    if(isEn){
+        document.getElementById('titleEn').innerText=prompt.titleEn;
+        document.getElementById('promptEn').innerText=prompt.textEn;
+        document.getElementById('explanationEn').innerHTML=prompt.explanationEn;
+    }else{
+        document.getElementById('titleAr').innerText=prompt.titleAr;
+        document.getElementById('promptAr').innerText=prompt.textAr;
+        document.getElementById('explanationAr').innerHTML=prompt.explanationAr;
+    }
+}
+function copyPrompt(){
+    const isEn=lang==='en';
+    const text=isEn?prompt.textEn:prompt.textAr;
+    navigator.clipboard.writeText(text);
+    alert(isEn?'✅ Prompt copied!':'✅ تم نسخ الأمر!');
+}
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function updateCartDisplay() {
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
+}
+
+if(lang==='en') document.body.classList.add('en');
+document.getElementById('langBtn').textContent=lang==='ar'?'English':'عربي';
 updateContent();
+updateCartDisplay();
 </script>
 </body>
 </html>
