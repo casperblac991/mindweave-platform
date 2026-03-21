@@ -1,11 +1,134 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><title>الأسئلة الشائعة | MindWeave</title><link rel="stylesheet" href="css/style.css"><style>.page-header{padding:120px 0 40px;text-align:center}.faq-item{background:#1A1A2E;padding:1rem;margin:1rem 0;border-radius:15px}.faq-question{font-weight:bold;color:#6C5CE7;cursor:pointer}.faq-answer{display:none;margin-top:0.5rem;color:#A0A0B0}</style></head>
-<body><header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div><ul><li><a href="index.html">الرئيسية</a></li><li><a href="store.html">المتجر</a></li><li><a href="about.html">من نحن</a></li></ul></nav></header>
-<main><section class="page-header"><h1>الأسئلة الشائعة</h1></section>
-<div class="container"><div class="faq-item"><div class="faq-question">كيف يتم تسليم المنتج بعد الشراء؟</div><div class="faq-answer">بعد إتمام الدفع، ستتلقى رسالة بريد إلكتروني تحتوي على رابط تحميل المنتج فوراً.</div></div>
-<div class="faq-item"><div class="faq-question">هل يمكن استرجاع المنتج؟</div><div class="faq-answer">المنتجات الرقمية غير قابلة للاسترجاع، لكن نضمن جودة المنتج 100% ونقدم استبدالاً في حال وجود عطل فني.</div></div>
-<div class="faq-item"><div class="faq-question">كيف أحصل على الدعم؟</div><div class="faq-answer">يمكنك التواصل عبر البريد الإلكتروني support@mindweave.store أو استخدام بوت المساعد الذكي في الموقع.</div></div>
-<div class="faq-item"><div class="faq-question">هل أحتاج اشتراك لاستخدام المكتبة؟</div><div class="faq-answer">المكتبة مجانية بالكامل وتحتوي على أكثر من 500 أمر. خطط الاشتراك للمحتوى الحصري والتحميلات غير المحدودة.</div></div></div></main>
-<footer><div class="container"><p>© 2026 MindWeave</p></div></footer>
-<script>document.querySelectorAll('.faq-question').forEach(q=>{q.onclick=()=>{const ans=q.nextElementSibling;ans.style.display=ans.style.display==='block'?'none':'block';};});</script></body></html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الأسئلة الشائعة | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+.lang-switch:hover{background:#6C5CE7}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.faq-container{max-width:800px;margin:auto;padding:2rem}
+.faq-item{background:#1A1A2E;border-radius:15px;margin-bottom:1rem;border:1px solid rgba(108,92,231,0.2)}
+.faq-question{padding:1rem;cursor:pointer;font-weight:bold;color:#6C5CE7;display:flex;justify-content:space-between;align-items:center}
+.faq-question i{transition:transform 0.3s}
+.faq-answer{padding:0 1rem 1rem 1rem;display:none;color:#A0A0B0;line-height:1.6}
+.faq-item.active .faq-answer{display:block}
+.faq-item.active .faq-question i{transform:rotate(180deg)}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
+<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 data-lang="ar">الأسئلة الشائعة</h1>
+<h1 data-lang="en">Frequently Asked Questions</h1>
+<p data-lang="ar">كل ما تريد معرفته عن MindWeave في مكان واحد</p>
+<p data-lang="en">Everything you need to know about MindWeave in one place</p>
+</div>
+</section>
+
+<div class="faq-container">
+<div class="faq-item">
+<div class="faq-question"><span data-lang="ar">كيف يتم تسليم المنتج بعد الشراء؟</span><span data-lang="en">How is the product delivered after purchase?</span><i class="fas fa-chevron-down"></i></div>
+<div class="faq-answer"><p data-lang="ar">بعد إتمام الدفع عبر Gumroad، ستتلقى رسالة بريد إلكتروني فورية تحتوي على رابط تحميل المنتج. يمكنك تحميل الملفات مباشرة من الرابط، كما ستظهر في حسابك على Gumroad للوصول الدائم.</p><p data-lang="en">After payment via Gumroad, you will receive an immediate email with a download link. You can download the files directly, and they will also appear in your Gumroad account for permanent access.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question"><span data-lang="ar">هل يمكن استرجاع المنتج إذا لم يعجبني؟</span><span data-lang="en">Can I return a product if I don't like it?</span><i class="fas fa-chevron-down"></i></div>
+<div class="faq-answer"><p data-lang="ar">نظرًا لأن المنتجات رقمية ويتم تسليمها فورًا، لا نقدم استردادًا ماليًا بعد التحميل. لكن إذا واجهت مشكلة فنية في الملف، تواصل معنا خلال 7 أيام وسنقوم باستبداله مجانًا.</p><p data-lang="en">Since products are digital and delivered immediately, we don't offer refunds after download. However, if you encounter a technical issue with the file, contact us within 7 days and we'll replace it for free.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question"><span data-lang="ar">كيف أحصل على الدعم الفني؟</span><span data-lang="en">How do I get technical support?</span><i class="fas fa-chevron-down"></i></div>
+<div class="faq-answer"><p data-lang="ar">يمكنك التواصل معنا عبر البريد الإلكتروني support@mindweave.store، أو استخدام بوت المساعد الذكي المتاح 24/7 في الموقع. نرد خلال 24 ساعة في أيام العمل.</p><p data-lang="en">You can contact us via email at support@mindweave.store, or use the AI assistant bot available 24/7 on the site. We reply within 24 hours on business days.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question"><span data-lang="ar">هل أحتاج اشتراك لاستخدام مكتبة الأوامر؟</span><span data-lang="en">Do I need a subscription to use the prompts library?</span><i class="fas fa-chevron-down"></i></div>
+<div class="faq-answer"><p data-lang="ar">المكتبة الأساسية مجانية بالكامل وتحتوي على أكثر من 500 أمر. خطط الاشتراك (نَسَّاج أساسي، محترف، أعمال) تمنحك محتوى حصريًا، تحميلات غير محدودة، ومزايا إضافية.</p><p data-lang="en">The basic library is completely free with over 500 prompts. Subscription plans (Basic, Pro, Business Weaver) give you exclusive content, unlimited downloads, and additional features.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question"><span data-lang="ar">ما هي طرق الدفع المتاحة؟</span><span data-lang="en">What payment methods are available?</span><i class="fas fa-chevron-down"></i></div>
+<div class="faq-answer"><p data-lang="ar">نقبل الدفع عبر Gumroad الذي يدعم: بطاقات Visa/Mastercard، PayPal، Apple Pay، والعديد من الطرق الأخرى. جميع المعاملات مشفرة وآمنة 100%.</p><p data-lang="en">We accept payments via Gumroad which supports: Visa/Mastercard, PayPal, Apple Pay, and many other methods. All transactions are encrypted and 100% secure.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question"><span data-lang="ar">ماذا أفعل إذا لم تصلني رسالة التحميل؟</span><span data-lang="en">What if I don't receive the download email?</span><i class="fas fa-chevron-down"></i></div>
+<div class="faq-answer"><p data-lang="ar">تأكد من مراجعة مجلد البريد العشوائي (Spam). إذا لم تجد الرسالة، تواصل معنا على support@mindweave.store وسنقوم بإعادة إرسال رابط التحميل خلال ساعة.</p><p data-lang="en">Check your spam folder. If you don't find the email, contact us at support@mindweave.store and we will resend the download link within an hour.</p></div>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
+
+<script>
+let currentLang = localStorage.getItem('lang') || 'ar';
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+}
+function applyLanguage() {
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+}
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function updateCartDisplay() {
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
+}
+applyLanguage();
+updateCartDisplay();
+
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+        const item = q.closest('.faq-item');
+        item.classList.toggle('active');
+    });
+});
+</script>
+</body>
+  </html>
