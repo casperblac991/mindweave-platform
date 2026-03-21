@@ -1,8 +1,159 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><title>إتمام الطلب | MindWeave</title><link rel="stylesheet" href="css/style.css"><style>.page-header{padding:120px 0 40px;text-align:center}.checkout-form{max-width:500px;margin:auto;padding:2rem}input,textarea{width:100%;padding:12px;margin:10px 0;border-radius:10px;background:#1A1A2E;color:white;border:none}button{background:#6C5CE7;padding:12px;border-radius:30px;border:none;color:white;cursor:pointer;width:100%}</style></head>
-<body><header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div><ul><li><a href="index.html">الرئيسية</a></li><li><a href="library.html">المكتبة</a></li><li><a href="store.html">المتجر</a></li><li><a href="about.html">من نحن</a></li><li><a href="contact.html">اتصل بنا</a></li></ul></nav></header>
-<main><section class="page-header"><h1>إتمام الطلب</h1></section>
-<div class="checkout-form"><form id="checkoutForm"><input type="text" placeholder="الاسم الكامل" required><input type="email" placeholder="البريد الإلكتروني" required><textarea rows="4" placeholder="عنوان الشحن (للمنتجات الرقمية فقط للتواصل)"></textarea><button type="submit">إتمام الشراء</button></form></div></main>
-<footer><div class="container"><p>© 2026 MindWeave</p></div></footer>
-<script>document.getElementById('checkoutForm').onsubmit=function(e){e.preventDefault();alert('✅ تم استلام طلبك. سيتم إرسال رابط التحميل خلال دقائق.');localStorage.removeItem('cart');window.location.href='index.html';};</script></body></html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إتمام الطلب | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+.lang-switch:hover{background:#6C5CE7}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.checkout-container{max-width:600px;margin:auto;padding:2rem}
+.checkout-form{background:#1A1A2E;border-radius:15px;padding:2rem;border:1px solid rgba(108,92,231,0.2)}
+.checkout-form input,.checkout-form textarea{width:100%;padding:12px;margin:10px 0;border-radius:10px;background:#0A0A0F;color:white;border:1px solid rgba(108,92,231,0.2)}
+.checkout-form button{background:#6C5CE7;color:white;border:none;padding:12px;border-radius:30px;cursor:pointer;width:100%;margin-top:1rem}
+.order-summary{background:#1A1A2E;border-radius:15px;padding:1rem;margin-bottom:1rem}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
+<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 data-lang="ar">إتمام الطلب</h1>
+<h1 data-lang="en">Checkout</h1>
+<p data-lang="ar">أكمل بياناتك لتأكيد الطلب</p>
+<p data-lang="en">Complete your details to confirm order</p>
+</div>
+</section>
+
+<div class="checkout-container">
+<div class="order-summary" id="orderSummary"></div>
+<div class="checkout-form">
+<form id="checkoutForm">
+<input type="text" id="fullName" placeholder="الاسم الكامل" required>
+<input type="email" id="email" placeholder="البريد الإلكتروني" required>
+<textarea id="notes" rows="3" placeholder="ملاحظات إضافية (اختياري)"></textarea>
+<button type="submit" data-lang="ar">تأكيد الطلب</button>
+<button type="submit" data-lang="en">Confirm Order</button>
+</form>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
+
+<script>
+let currentLang = localStorage.getItem('lang') || 'ar';
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    renderOrderSummary();
+}
+function applyLanguage() {
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    renderOrderSummary();
+}
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function updateCartDisplay() {
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
+}
+
+function renderOrderSummary() {
+    const container = document.getElementById('orderSummary');
+    const isEn = currentLang === 'en';
+    
+    if (cart.length === 0) {
+        container.innerHTML = `<p style="text-align:center;color:#ff4757">${isEn ? 'Your cart is empty' : 'سلة التسوق فارغة'}</p><a href="store.html" class="btn-primary" style="display:block;text-align:center">${isEn ? 'Go to Store' : 'اذهب للمتجر'}</a>`;
+        return;
+    }
+    
+    let total = 0;
+    let itemsHtml = '';
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        itemsHtml += `<div style="display:flex;justify-content:space-between;margin:10px 0"><span>${item.name} x${item.quantity}</span><span>$${(item.price * item.quantity).toFixed(2)}</span></div>`;
+    });
+    
+    container.innerHTML = `
+        <h3>${isEn ? 'Order Summary' : 'ملخص الطلب'}</h3>
+        ${itemsHtml}
+        <hr style="border-color:#6C5CE7">
+        <div style="display:flex;justify-content:space-between;font-weight:bold;margin-top:10px">
+            <span>${isEn ? 'Total' : 'الإجمالي'}</span>
+            <span>$${total.toFixed(2)}</span>
+        </div>
+        <p style="margin-top:15px;font-size:0.8rem;color:#A0A0B0">${isEn ? 'Payment will be processed via Gumroad' : 'سيتم معالجة الدفع عبر Gumroad'}</p>
+    `;
+}
+
+document.getElementById('checkoutForm').onsubmit = function(e) {
+    e.preventDefault();
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    
+    if (!name || !email) {
+        alert(currentLang === 'ar' ? 'الرجاء إدخال الاسم والبريد الإلكتروني' : 'Please enter your name and email');
+        return;
+    }
+    
+    if (cart.length === 0) {
+        alert(currentLang === 'ar' ? 'سلة التسوق فارغة' : 'Your cart is empty');
+        window.location.href = 'store.html';
+        return;
+    }
+    
+    alert(currentLang === 'ar' ? '✅ تم استلام طلبك. سيتم إرسال رابط الدفع عبر البريد الإلكتروني خلال دقائق.' : '✅ Your order has been received. A payment link will be sent to your email within minutes.');
+    localStorage.removeItem('cart');
+    window.location.href = 'index.html';
+};
+
+applyLanguage();
+updateCartDisplay();
+</script>
+</body>
+</html>
