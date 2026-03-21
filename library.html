@@ -1,177 +1,62 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindWeave | المكتبة</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .lang-switch { background: #1A1A2E; border: 1px solid #6C5CE7; padding: 6px 12px; border-radius: 30px; cursor: pointer; color: white; margin-right: 1rem; }
-        .lang-switch:hover { background: #6C5CE7; }
-        [data-lang="en"] { display: none; }
-        body.en [data-lang="ar"] { display: none; }
-        body.en [data-lang="en"] { display: block; }
-        body.en { direction: ltr; text-align: left; }
-        body:not(.en) { direction: rtl; text-align: right; }
-        .page-header { padding: 120px 0 40px; text-align: center; background: linear-gradient(135deg, #0A0A0F, #1A1A2E); }
-        .prompt-card { background: #1A1A2E; border-radius: 15px; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid rgba(108,92,231,0.2); }
-        .prompt-category { font-size: 0.8rem; color: #6C5CE7; margin-bottom: 0.5rem; }
-        .prompt-text { font-size: 1rem; margin-bottom: 1rem; }
-        .btn-copy { background: #6C5CE7; color: white; border: none; padding: 8px 16px; border-radius: 25px; cursor: pointer; }
-        .filter-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
-        .filter-btn { background: #1A1A2E; border: 1px solid #6C5CE7; padding: 8px 20px; border-radius: 30px; cursor: pointer; color: white; }
-        .filter-btn.active { background: #6C5CE7; }
-        .newsletter-mini { margin-top: 3rem; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المكتبة | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+[data-lang="en"]{display:none}body.en [data-lang="ar"]{display:none}body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:right}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.prompt-card{background:#1A1A2E;border-radius:15px;padding:1.5rem;margin-bottom:1rem;border:1px solid rgba(108,92,231,0.2)}
+.prompt-category{color:#6C5CE7;font-size:0.8rem}
+.prompt-text{margin:1rem 0}
+.btn-copy{background:#6C5CE7;color:white;border:none;padding:8px 16px;border-radius:25px;cursor:pointer}
+.filter-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem}
+.filter-btn{background:#1A1A2E;border:1px solid #6C5CE7;padding:8px 20px;border-radius:30px;cursor:pointer;color:white}
+.filter-btn.active{background:#6C5CE7}
+</style>
 </head>
 <body>
-
-<header>
-    <nav>
-        <div class="logo"><a href="index.html"><span class="logo-icon">🧠</span><span class="logo-text">MindWeave</span></a></div>
-        <ul class="nav-menu">
-            <li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
-            <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
-            <li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
-            <li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-            <li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
-            <li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
-            <li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
-        </ul>
-        <div class="nav-icons">
-            <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-            <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
-        </div>
-    </nav>
-</header>
+<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
+<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
+</ul>
+<div><button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button></div>
+</nav></header>
 
 <main>
-    <section class="page-header">
-        <div class="container">
-            <h1 data-lang="ar">مكتبة الأوامر المجانية</h1>
-            <h1 data-lang="en">Free Prompts Library</h1>
-            <p data-lang="ar">أكثر من 500 أمر لـ ChatGPT و Midjourney — محدثة شهرياً</p>
-            <p data-lang="en">500+ prompts for ChatGPT and Midjourney — updated monthly</p>
-        </div>
-    </section>
-
-    <section class="library-filters">
-        <div class="container">
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all" data-lang="ar">كل الأوامر</button><button class="filter-btn active" data-filter="all" data-lang="en">All Prompts</button>
-                <button class="filter-btn" data-filter="chatgpt" data-lang="ar">ChatGPT</button><button class="filter-btn" data-filter="chatgpt" data-lang="en">ChatGPT</button>
-                <button class="filter-btn" data-filter="midjourney" data-lang="ar">Midjourney</button><button class="filter-btn" data-filter="midjourney" data-lang="en">Midjourney</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="prompts-list">
-        <div class="container">
-            <div class="prompts-grid" id="prompts-container"></div>
-            <button id="load-more-prompts" class="btn-primary" style="margin: 2rem auto; display: block;" data-lang="ar">عرض المزيد</button>
-            <button id="load-more-prompts" class="btn-primary" style="margin: 2rem auto; display: block;" data-lang="en">Load More</button>
-        </div>
-    </section>
-
-    <section class="newsletter-mini">
-        <div class="container">
-            <div class="newsletter-content">
-                <h3 data-lang="ar">📥 حمّل 100 أمر مجاني إضافي</h3>
-                <h3 data-lang="en">📥 Download 100 Extra Free Prompts</h3>
-                <p data-lang="ar">سجل بريدك الإلكتروني واحصل على حزمة أوامر حصرية</p>
-                <p data-lang="en">Sign up to get an exclusive prompts pack</p>
-                <form class="newsletter-form" id="library-newsletter">
-                    <input type="email" placeholder="Email" required>
-                    <button type="submit" data-lang="ar">حمّل مجاناً</button>
-                    <button type="submit" data-lang="en">Download Free</button>
-                </form>
-            </div>
-        </div>
-    </section>
+<section class="page-header"><div class="container"><h1 data-lang="ar">مكتبة الأوامر المجانية</h1><h1 data-lang="en">Free Prompts Library</h1><p data-lang="ar">أكثر من 500 أمر لـ ChatGPT و Midjourney</p><p data-lang="en">500+ prompts for ChatGPT and Midjourney</p></div></section>
+<section class="library-filters"><div class="container"><div class="filter-buttons" id="filterBtns"></div></div></section>
+<section class="prompts-list"><div class="container"><div id="promptsContainer"></div><button id="loadMore" class="btn-primary" style="margin:2rem auto;display:block">عرض المزيد</button></div></section>
 </main>
-
-<footer>
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-            <div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
-            <div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li><li><a href="faq.html" data-lang="ar">الأسئلة الشائعة</a><a href="faq.html" data-lang="en">FAQ</a></li></ul></div>
-            <div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li><li><a href="refund.html" data-lang="ar">سياسة الاسترجاع</a><a href="refund.html" data-lang="en">Refund</a></li></ul></div>
-        </div>
-        <div class="footer-bottom"><p>© 2026 MindWeave</p></div>
-    </div>
-</footer>
-
-<div class="chatbot-toggle" id="chatbot-toggle"><i class="fas fa-robot"></i><span data-lang="ar">مساعد AI</span><span data-lang="en">AI Assistant</span></div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
 
 <script>
-    function toggleLanguage() {
-        document.body.classList.toggle('en');
-        const btn = document.getElementById('langBtn');
-        if (document.body.classList.contains('en')) {
-            btn.textContent = 'عربي';
-            localStorage.setItem('lang', 'en');
-        } else {
-            btn.textContent = 'English';
-            localStorage.setItem('lang', 'ar');
-        }
-    }
-    const savedLang = localStorage.getItem('lang');
-    if (savedLang === 'en') {
-        document.body.classList.add('en');
-        document.getElementById('langBtn').textContent = 'عربي';
-    }
-    let cartCount = localStorage.getItem('cart') || 0;
-    document.querySelector('.cart-count').textContent = cartCount;
-    
-    const prompts = [
-        { text: "اكتب لي خطة تسويق لمنتج جديد باستخدام الذكاء الاصطناعي", textEn: "Write a marketing plan for a new product using AI", category: "chatgpt" },
-        { text: "/imagine prompt minimalist logo for tech startup, blue and white, vector style", textEn: "/imagine prompt minimalist logo for tech startup, blue and white, vector style", category: "midjourney" },
-        { text: "حلل هذا النص واستخرج الأفكار الرئيسية", textEn: "Analyze this text and extract key ideas", category: "chatgpt" },
-        { text: "/imagine prompt futuristic cityscape, cyberpunk, neon lights, 8k", textEn: "/imagine prompt futuristic cityscape, cyberpunk, neon lights, 8k", category: "midjourney" },
-    ];
-    let displayCount = 4;
-    let currentFilter = "all";
-    
-    function displayPrompts() {
-        let filtered = currentFilter === "all" ? prompts : prompts.filter(p => p.category === currentFilter);
-        let toShow = filtered.slice(0, displayCount);
-        const container = document.getElementById('prompts-container');
-        const isEn = document.body.classList.contains('en');
-        container.innerHTML = toShow.map(p => `
-            <div class="prompt-card">
-                <div class="prompt-category">${p.category === 'chatgpt' ? '💬 ChatGPT' : '🎨 Midjourney'}</div>
-                <p class="prompt-text">${isEn ? p.textEn : p.text}</p>
-                <button class="btn-copy" onclick="copyPrompt('${(isEn ? p.textEn : p.text).replace(/'/g, "\\'")}')">📋 Copy</button>
-            </div>
-        `).join('');
-        const loadBtn = document.getElementById('load-more-prompts');
-        if (loadBtn) loadBtn.style.display = displayCount >= filtered.length ? 'none' : 'block';
-    }
-    
-    window.copyPrompt = function(text) { navigator.clipboard.writeText(text); alert('Copied!'); };
-    document.getElementById('load-more-prompts')?.addEventListener('click', () => { displayCount += 4; displayPrompts(); });
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilter = btn.getAttribute('data-filter');
-            displayCount = 4;
-            displayPrompts();
-        });
-    });
-    displayPrompts();
-    
-    document.getElementById('library-newsletter')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('✅ Thank you! Check your email.');
-        this.reset();
-    });
-    document.getElementById('chatbot-toggle')?.addEventListener('click', () => {
-        alert('🤖 AI Assistant: Hello! How can I help?\n\nReply: support@mindweave.store');
-    });
+const allPrompts = [
+    {text:"اكتب لي خطة تسويق لمنتج جديد",textEn:"Write a marketing plan for a new product",cat:"chatgpt"},
+    {text:"/imagine prompt minimalist logo for tech startup, blue and white",textEn:"/imagine prompt minimalist logo for tech startup, blue and white",cat:"midjourney"},
+    {text:"حلل هذا النص واستخرج الأفكار الرئيسية",textEn:"Analyze this text and extract key ideas",cat:"chatgpt"},
+    {text:"/imagine prompt futuristic cityscape, cyberpunk, neon lights",textEn:"/imagine prompt futuristic cityscape, cyberpunk, neon lights",cat:"midjourney"}
+];
+let currentFilter="all", displayCount=4;
+function toggleLanguage(){document.body.classList.toggle('en');let lang=document.body.classList.contains('en')?'en':'ar';localStorage.setItem('lang',lang);document.getElementById('langBtn').textContent=lang=='ar'?'English':'عربي';renderPrompts();}
+function renderPrompts(){let filtered=currentFilter=="all"?allPrompts:allPrompts.filter(p=>p.cat==currentFilter);let toShow=filtered.slice(0,displayCount);let isEn=document.body.classList.contains('en');document.getElementById('promptsContainer').innerHTML=toShow.map(p=>`<div class="prompt-card"><div class="prompt-category">${p.cat=='chatgpt'?'💬 ChatGPT':'🎨 Midjourney'}</div><p class="prompt-text">${isEn?p.textEn:p.text}</p><button class="btn-copy" onclick="navigator.clipboard.writeText('${(isEn?p.textEn:p.text).replace(/'/g,"\\'")}');alert('Copied!')">📋 Copy</button></div>`).join('');document.getElementById('loadMore').style.display=displayCount>=filtered.length?'none':'block';}
+document.getElementById('loadMore').onclick=()=>{displayCount+=4;renderPrompts();};
+let cats=[{id:"all",ar:"كل الأوامر",en:"All Prompts"},{id:"chatgpt",ar:"ChatGPT",en:"ChatGPT"},{id:"midjourney",ar:"Midjourney",en:"Midjourney"}];
+document.getElementById('filterBtns').innerHTML=cats.map(c=>`<button class="filter-btn ${c.id==currentFilter?'active':''}" data-filter="${c.id}" data-lang="ar">${c.ar}</button><button class="filter-btn ${c.id==currentFilter?'active':''}" data-filter="${c.id}" data-lang="en">${c.en}</button>`).join('');
+document.querySelectorAll('.filter-btn').forEach(btn=>{btn.onclick=()=>{currentFilter=btn.dataset.filter;displayCount=4;renderPrompts();document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll(`.filter-btn[data-filter="${currentFilter}"]`).forEach(b=>b.classList.add('active'));}});
+if(localStorage.getItem('lang')=='en')document.body.classList.add('en');document.getElementById('langBtn').textContent=localStorage.getItem('lang')=='en'?'عربي':'English';
+renderPrompts();
 </script>
 </body>
 </html>
