@@ -1,24 +1,58 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    let lang = localStorage.getItem('lang') || 'ar';
-    const btn = document.querySelector('.lang-switch');
+    // Language Switch
+    let currentLang = localStorage.getItem('mindweave-lang') || 'ar';
+    const body = document.body;
+    const langSwitch = document.querySelector('.lang-switch');
     
-    if (btn) {
-        btn.textContent = lang === 'ar' ? 'English' : 'عربي';
-        btn.addEventListener('click', function() {
-            lang = lang === 'ar' ? 'en' : 'ar';
-            localStorage.setItem('lang', lang);
-            btn.textContent = lang === 'ar' ? 'English' : 'عربي';
-            alert(lang === 'ar' ? 'تم التغيير إلى العربية' : 'Switched to English');
+    function applyLanguage(lang) {
+        if (lang === 'en') {
+            body.classList.add('ltr');
+            body.classList.remove('rtl');
+            document.documentElement.dir = 'ltr';
+            if (langSwitch) langSwitch.textContent = 'عربي';
+        } else {
+            body.classList.remove('ltr');
+            body.classList.add('rtl');
+            document.documentElement.dir = 'rtl';
+            if (langSwitch) langSwitch.textContent = 'English';
+        }
+        localStorage.setItem('mindweave-lang', lang);
+    }
+    
+    function switchLanguage() {
+        currentLang = currentLang === 'ar' ? 'en' : 'ar';
+        applyLanguage(currentLang);
+        const currentPath = window.location.pathname;
+        const isEnglishPage = currentPath.includes('/en/');
+        if (currentLang === 'en' && !isEnglishPage) {
+            window.location.href = '/en' + (currentPath === '/' ? '/index.html' : currentPath);
+        } else if (currentLang === 'ar' && isEnglishPage) {
+            const newPath = currentPath.replace('/en/', '/');
+            window.location.href = newPath === '/index.html' ? '/' : newPath;
+        }
+    }
+    
+    if (langSwitch) langSwitch.addEventListener('click', switchLanguage);
+    applyLanguage(currentLang);
+    
+    // Mobile Menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => navMenu.classList.remove('active'));
         });
     }
     
-    const buttons = document.querySelectorAll('.product-card button');
-    buttons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            alert(lang === 'ar' ? 'تم إضافة المنتج إلى السلة' : 'Product added to cart');
-        });
-    });
+    // Cart Counter
+    let cartCount = localStorage.getItem('mindweave-cart') || 0;
+    const cartCountSpan = document.querySelector('.cart-count');
+    if (cartCountSpan) cartCountSpan.textContent = cartCount;
     
-    console.log('MindWeave ready');
-});
+    window.addToCart = function(productName, price) {
+        cartCount++;
+        localStorage.setItem('mindweave-cart', cartCount);
+        if (cartCountSpan) cartCountSpan.textContent = cartCount;
+        const msg = current
