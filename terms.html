@@ -3,9 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="شروط الاستخدام لموقع MindWeave - القواعد والسياسات التي تحكم استخدامك للموقع">
+<meta name="keywords" content="شروط الاستخدام, سياسة الموقع, MindWeave Terms">
+<meta name="author" content="MindWeave">
+<meta name="google-site-verification" content="ATi9HKInahPK22qqb-sqp70-MIeFlgKp0n8azYVo_Mw" />
 <title>شروط الاستخدام | MindWeave</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DZ4WQDX31M');
+</script>
 <link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
 .lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
@@ -15,6 +27,10 @@ body.en [data-lang="ar"]{display:none}
 body.en [data-lang="en"]{display:block}
 body.en{direction:ltr;text-align:left}
 body:not(.en){direction:rtl;text-align:right}
+.cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
+.cart-icon{text-decoration:none;color:white}
+.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
+.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
 .page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
 .legal-content{max-width:800px;margin:auto;padding:2rem;line-height:1.8}
 .legal-content h2{margin-top:1.5rem;color:#6C5CE7}
@@ -30,13 +46,13 @@ body:not(.en){direction:rtl;text-align:right}
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
 <li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
 <li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
 <li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
 <li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
 </ul>
 <div class="nav-icons">
 <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
 </div>
 </nav>
 </header>
@@ -67,6 +83,11 @@ body:not(.en){direction:rtl;text-align:right}
 <p data-lang="ar">نحن نبذل قصارى جهدنا لضمان جودة المنتجات، لكننا لا نتحمل مسؤولية أي أضرار ناتجة عن استخدام المنتجات بطرق غير مصرح بها أو خارج نطاق الاستخدام الشخصي.</p>
 <p data-lang="en">We strive to ensure product quality, but we are not liable for any damages resulting from using products in unauthorized ways or outside the scope of personal use.</p>
 
+<h2 data-lang="ar">تعديل الشروط</h2>
+<h2 data-lang="en">Modification of Terms</h2>
+<p data-lang="ar">نحتفظ بالحق في تعديل هذه الشروط في أي وقت. سيتم إخطار المستخدمين بالتغييرات الهامة عبر البريد الإلكتروني أو إشعار على الموقع.</p>
+<p data-lang="en">We reserve the right to modify these terms at any time. Users will be notified of significant changes via email or site notice.</p>
+
 <p data-lang="ar">آخر تحديث: مارس 2026</p>
 <p data-lang="en">Last updated: March 2026</p>
 </div>
@@ -75,7 +96,7 @@ body:not(.en){direction:rtl;text-align:right}
 <footer>
 <div class="container">
 <div class="footer-grid">
-<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
 <div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
 <div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
 <div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
@@ -86,22 +107,26 @@ body:not(.en){direction:rtl;text-align:right}
 
 <script>
 let currentLang = localStorage.getItem('lang') || 'ar';
+
 function toggleLanguage() {
     currentLang = currentLang === 'ar' ? 'en' : 'ar';
     localStorage.setItem('lang', currentLang);
     document.body.classList.toggle('en', currentLang === 'en');
     document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
 }
+
 function applyLanguage() {
     document.body.classList.toggle('en', currentLang === 'en');
     document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
 }
+
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 function updateCartDisplay() {
     const count = cart.reduce((s, i) => s + i.quantity, 0);
     const cartSpan = document.querySelector('.cart-count');
     if (cartSpan) cartSpan.textContent = count;
 }
+
 applyLanguage();
 updateCartDisplay();
 </script>
