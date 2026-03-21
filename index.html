@@ -3,42 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MindWeave - منصة عالمية حيث يلتقي العقل البشري بالذكاء الاصطناعي. حزم أوامر، قوالب، كتب، ومجتمع للإبداع المشترك.">
     <title>MindWeave | حيث يلتقي العقل بالذكاء الاصطناعي</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .lang-switch { background: #1A1A2E; border: 1px solid #6C5CE7; padding: 6px 12px; border-radius: 30px; cursor: pointer; color: white; margin-right: 1rem; }
+        .lang-switch:hover { background: #6C5CE7; }
+        [data-lang="en"] { display: none; }
+        body.en [data-lang="ar"] { display: none; }
+        body.en [data-lang="en"] { display: block; }
+        body.en { direction: ltr; text-align: left; }
+        body:not(.en) { direction: rtl; text-align: right; }
+    </style>
 </head>
 <body>
 
-<!-- Header -->
 <header>
     <nav>
-        <div class="logo">
-            <a href="index.html">
-                <span class="logo-icon">🧠</span>
-                <span class="logo-text">MindWeave</span>
-                <span class="logo-tagline">Where Mind Meets AI</span>
-            </a>
-        </div>
+        <div class="logo"><a href="index.html"><span class="logo-icon">🧠</span><span class="logo-text">MindWeave</span></a></div>
         <ul class="nav-menu">
-            <li><a href="index.html" class="active">الرئيسية</a></li>
-            <li><a href="library.html">المكتبة</a></li>
-            <li><a href="blog.html">المدونة</a></li>
-            <li><a href="store.html">المتجر</a></li>
-            <li><a href="community.html">المجتمع</a></li>
-            <li><a href="about.html">من نحن</a></li>
-            <li><a href="contact.html">اتصل بنا</a></li>
+            <li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+            <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+            <li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+            <li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+            <li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
+            <li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+            <li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
         </ul>
         <div class="nav-icons">
-            <a href="cart.html" class="cart-icon">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
-            </a>
-            <button class="lang-switch">English</button>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
+            <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+            <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
         </div>
     </nav>
 </header>
@@ -48,72 +43,43 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">✨ نَسَّاج العقول بالذكاء الاصطناعي</div>
-            <h1>MIND WEAVE</h1>
-            <p>حيث يلتقي العقل البشري بالذكاء الاصطناعي — منصة عالمية للنسج والإبداع المشترك</p>
+            <div class="hero-badge" data-lang="ar">✨ نَسَّاج العقول بالذكاء الاصطناعي</div>
+            <div class="hero-badge" data-lang="en">✨ Weaver of Minds with AI</div>
+            <h1 data-lang="ar">MIND WEAVE</h1>
+            <h1 data-lang="en">MIND WEAVE</h1>
+            <p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي — منصة عالمية للنسج والإبداع المشترك</p>
+            <p data-lang="en">Where human mind meets artificial intelligence — a global platform for weaving and shared creativity</p>
             <div class="hero-buttons">
-                <a href="store.html" class="btn-primary">استكشف المتجر</a>
-                <a href="library.html" class="btn-secondary">مكتبة مجانية</a>
+                <a href="store.html" class="btn-primary" data-lang="ar">استكشف المتجر</a>
+                <a href="store.html" class="btn-primary" data-lang="en">Explore Store</a>
+                <a href="library.html" class="btn-secondary" data-lang="ar">مكتبة مجانية</a>
+                <a href="library.html" class="btn-secondary" data-lang="en">Free Library</a>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
     <section class="stats">
-        <div class="stat-item">
-            <span class="stat-number">500+</span>
-            <span class="stat-label">أمر مجاني</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">50+</span>
-            <span class="stat-label">منتج رقمي</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">98%</span>
-            <span class="stat-label">رضا العملاء</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">24/7</span>
-            <span class="stat-label">دعم فوري</span>
-        </div>
+        <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label" data-lang="ar">أمر مجاني</span><span class="stat-label" data-lang="en">Free Prompts</span></div>
+        <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label" data-lang="ar">منتج رقمي</span><span class="stat-label" data-lang="en">Digital Products</span></div>
+        <div class="stat-item"><span class="stat-number">98%</span><span class="stat-label" data-lang="ar">رضا العملاء</span><span class="stat-label" data-lang="en">Satisfaction</span></div>
+        <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label" data-lang="ar">دعم فوري</span><span class="stat-label" data-lang="en">Support</span></div>
     </section>
 
     <!-- Categories Section -->
     <section class="categories">
         <div class="container">
-            <h2 class="section-title">الفئات</h2>
-            <p class="section-subtitle">اختر من أحدث فئات الأصول الرقمية للذكاء الاصطناعي</p>
+            <h2 class="section-title" data-lang="ar">الفئات</h2>
+            <h2 class="section-title" data-lang="en">Categories</h2>
+            <p class="section-subtitle" data-lang="ar">اختر من أحدث فئات الأصول الرقمية للذكاء الاصطناعي</p>
+            <p class="section-subtitle" data-lang="en">Choose from latest AI digital asset categories</p>
             <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon">📝</div>
-                    <h3>حزم الأوامر</h3>
-                    <p>25 منتج</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">📊</div>
-                    <h3>قوالب Notion</h3>
-                    <p>18 منتج</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">📚</div>
-                    <h3>كتب إلكترونية</h3>
-                    <p>12 منتج</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🎨</div>
-                    <h3>قوالب التصميم</h3>
-                    <p>15 منتج</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">💼</div>
-                    <h3>أدوات الإنتاجية</h3>
-                    <p>20 منتج</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🤝</div>
-                    <h3>خدمات AI مخصصة</h3>
-                    <p>8 منتج</p>
-                </div>
+                <div class="category-card"><div class="category-icon">📝</div><h3 data-lang="ar">حزم الأوامر</h3><h3 data-lang="en">Prompts Packs</h3><p>25</p></div>
+                <div class="category-card"><div class="category-icon">📊</div><h3 data-lang="ar">قوالب Notion</h3><h3 data-lang="en">Notion Templates</h3><p>18</p></div>
+                <div class="category-card"><div class="category-icon">📚</div><h3 data-lang="ar">كتب إلكترونية</h3><h3 data-lang="en">E-books</h3><p>12</p></div>
+                <div class="category-card"><div class="category-icon">🎨</div><h3 data-lang="ar">قوالب التصميم</h3><h3 data-lang="en">Design Templates</h3><p>15</p></div>
+                <div class="category-card"><div class="category-icon">💼</div><h3 data-lang="ar">أدوات الإنتاجية</h3><h3 data-lang="en">Productivity Tools</h3><p>20</p></div>
+                <div class="category-card"><div class="category-icon">🤝</div><h3 data-lang="ar">خدمات AI مخصصة</h3><h3 data-lang="en">AI Services</h3><p>8</p></div>
             </div>
         </div>
     </section>
@@ -121,219 +87,121 @@
     <!-- Featured Products Section -->
     <section class="featured-products">
         <div class="container">
-            <h2 class="section-title">المنتجات المميزة</h2>
-            <p class="section-subtitle">أحدث حزم الأوامر والقوالب بأفضل الأسعار</p>
+            <h2 class="section-title" data-lang="ar">المنتجات المميزة</h2>
+            <h2 class="section-title" data-lang="en">Featured Products</h2>
+            <p class="section-subtitle" data-lang="ar">أحدث حزم الأوامر والقوالب بأفضل الأسعار</p>
+            <p class="section-subtitle" data-lang="en">Latest prompts and templates at best prices</p>
             <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-badge">🔥 الأكثر مبيعاً -11%</div>
-                    <div class="product-icon">🎨</div>
-                    <h3>حزمة أوامر Midjourney</h3>
-                    <p>100 أمر احترافي لتوليد صور تجارية وشعارات</p>
-                    <div class="price">$9.99 <span class="old-price">$19.99</span></div>
-                    <button class="btn-buy" onclick="addToCart('حزمة Midjourney', 9.99)">اشتري الآن</button>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">⭐ مميز -14%</div>
-                    <div class="product-icon">📝</div>
-                    <h3>حزمة أوامر ChatGPT</h3>
-                    <p>50 أمر مخصص للتسويق والمبيعات وإعلانات</p>
-                    <div class="price">$7.99 <span class="old-price">$12.99</span></div>
-                    <button class="btn-buy" onclick="addToCart('حزمة ChatGPT', 7.99)">اشتري الآن</button>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">💎 حصري -11%</div>
-                    <div class="product-icon">📊</div>
-                    <h3>قالب Notion الذكي</h3>
-                    <p>إدارة المشاريع بالذكاء الاصطناعي مع أتمتة كاملة</p>
-                    <div class="price">$12.99 <span class="old-price">$19.99</span></div>
-                    <button class="btn-buy" onclick="addToCart('قالب Notion', 12.99)">اشتري الآن</button>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">🔥 الأكثر مبيعاً -13%</div>
-                    <div class="product-icon">📚</div>
-                    <h3>دليل أدوات الذكاء الاصطناعي</h3>
-                    <p>أكثر من 50 أداة مجانية مع شرح مفصل</p>
-                    <div class="price">$5.99 <span class="old-price">$9.99</span></div>
-                    <button class="btn-buy" onclick="addToCart('دليل أدوات AI', 5.99)">اشتري الآن</button>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">⭐ مميز -13%</div>
-                    <div class="product-icon">🎯</div>
-                    <h3>خدمة تصميم شعار بالذكاء الاصطناعي</h3>
-                    <p>تصميم احترافي خلال 24 ساعة مع 3 تعديلات</p>
-                    <div class="price">$19.99 <span class="old-price">$29.99</span></div>
-                    <button class="btn-buy" onclick="addToCart('خدمة تصميم شعار', 19.99)">اشتري الآن</button>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">💎 حصري -13%</div>
-                    <div class="product-icon">💻</div>
-                    <h3>حزمة أوامر البرمجة بالذكاء الاصطناعي</h3>
-                    <p>50 أمر لتوليد أكواد برمجية وحل المشاكل</p>
-                    <div class="price">$14.99 <span class="old-price">$24.99</span></div>
-                    <button class="btn-buy" onclick="addToCart('حزمة أوامر البرمجة', 14.99)">اشتري الآن</button>
-                </div>
+                <div class="product-card"><div class="product-badge">🔥 الأكثر مبيعاً -11%</div><div class="product-icon">🎨</div><h3>Midjourney Prompts Pack</h3><p data-lang="ar">100 أمر احترافي لتوليد صور تجارية وشعارات</p><p data-lang="en">100 professional prompts for commercial images and logos</p><div class="price">$9.99 <span class="old-price">$19.99</span></div><button class="btn-buy" onclick="addToCart('Midjourney Pack', 9.99)">اشتري الآن</button></div>
+                <div class="product-card"><div class="product-badge">⭐ مميز -14%</div><div class="product-icon">📝</div><h3>ChatGPT Prompts Pack</h3><p data-lang="ar">50 أمر مخصص للتسويق والمبيعات وإعلانات</p><p data-lang="en">50 prompts for marketing, sales, and ads</p><div class="price">$7.99 <span class="old-price">$12.99</span></div><button class="btn-buy" onclick="addToCart('ChatGPT Pack', 7.99)">اشتري الآن</button></div>
+                <div class="product-card"><div class="product-badge">💎 حصري -11%</div><div class="product-icon">📊</div><h3>Notion AI Template</h3><p data-lang="ar">إدارة المشاريع بالذكاء الاصطناعي مع أتمتة كاملة</p><p data-lang="en">Project management with AI and full automation</p><div class="price">$12.99 <span class="old-price">$19.99</span></div><button class="btn-buy" onclick="addToCart('Notion Template', 12.99)">اشتري الآن</button></div>
+                <div class="product-card"><div class="product-badge">🔥 الأكثر مبيعاً -13%</div><div class="product-icon">📚</div><h3>AI Tools Directory</h3><p data-lang="ar">أكثر من 50 أداة مجانية مع شرح مفصل</p><p data-lang="en">50+ free AI tools with detailed explanations</p><div class="price">$5.99 <span class="old-price">$9.99</span></div><button class="btn-buy" onclick="addToCart('AI Tools', 5.99)">اشتري الآن</button></div>
+                <div class="product-card"><div class="product-badge">⭐ مميز -13%</div><div class="product-icon">🎯</div><h3>AI Logo Design Service</h3><p data-lang="ar">تصميم احترافي خلال 24 ساعة مع 3 تعديلات</p><p data-lang="en">Professional design in 24h with 3 revisions</p><div class="price">$19.99 <span class="old-price">$29.99</span></div><button class="btn-buy" onclick="addToCart('Logo Design', 19.99)">اشتري الآن</button></div>
+                <div class="product-card"><div class="product-badge">💎 حصري -13%</div><div class="product-icon">💻</div><h3>Coding Prompts Pack</h3><p data-lang="ar">50 أمر لتوليد أكواد برمجية وحل المشاكل</p><p data-lang="en">50 prompts for code generation and debugging</p><div class="price">$14.99 <span class="old-price">$24.99</span></div><button class="btn-buy" onclick="addToCart('Coding Pack', 14.99)">اشتري الآن</button></div>
             </div>
         </div>
     </section>
 
-    <!-- Subscription Plans Section -->
+    <!-- Subscription Plans -->
     <section class="plans">
         <div class="container">
-            <h2 class="section-title">خطط النسيج</h2>
-            <p class="section-subtitle">اختر الباقة المناسبة لاحتياجاتك</p>
+            <h2 class="section-title" data-lang="ar">خطط النسيج</h2>
+            <h2 class="section-title" data-lang="en">Weaving Plans</h2>
+            <p class="section-subtitle" data-lang="ar">اختر الباقة المناسبة لاحتياجاتك</p>
+            <p class="section-subtitle" data-lang="en">Choose the plan that fits your needs</p>
             <div class="plans-grid">
-                <div class="plan-card">
-                    <h3>نَسَّاج أساسي</h3>
-                    <div class="plan-price">$4.99 <span>/شهر</span></div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> 5 تحميلات يومياً</li>
-                        <li><i class="fas fa-check"></i> تحديثات شهرية</li>
-                        <li><i class="fas fa-check"></i> دعم優先</li>
-                    </ul>
-                    <a href="subscription.html" class="btn-plan">اشترك الآن</a>
-                </div>
-                <div class="plan-card popular">
-                    <div class="plan-badge">⭐ الأكثر شعبية</div>
-                    <h3>نَسَّاج محترف</h3>
-                    <div class="plan-price">$9.99 <span>/شهر</span></div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> تحميلات غير محدودة</li>
-                        <li><i class="fas fa-check"></i> محتوى حصري</li>
-                        <li><i class="fas fa-check"></i> دعم 24/7</li>
-                        <li><i class="fas fa-check"></i> +50 أسلوب فني</li>
-                    </ul>
-                    <a href="subscription.html" class="btn-plan">اشترك الآن</a>
-                </div>
-                <div class="plan-card">
-                    <h3>نَسَّاج أعمال</h3>
-                    <div class="plan-price">$19.99 <span>/شهر</span></div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> كل مميزات المحترف</li>
-                        <li><i class="fas fa-check"></i> تقارير شهرية PDF</li>
-                        <li><i class="fas fa-check"></i> استشارة شهرية مجانية</li>
-                        <li><i class="fas fa-check"></i> توليد فيديو</li>
-                    </ul>
-                    <a href="subscription.html" class="btn-plan">اشترك الآن</a>
-                </div>
+                <div class="plan-card"><h3 data-lang="ar">نَسَّاج أساسي</h3><h3 data-lang="en">Basic Weaver</h3><div class="plan-price">$4.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">5 تحميلات يومياً</span><span data-lang="en">5 downloads per day</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">تحديثات شهرية</span><span data-lang="en">Monthly updates</span></li></ul><a href="subscription.html" class="btn-plan">اشترك الآن</a></div>
+                <div class="plan-card popular"><div class="plan-badge">⭐ الأكثر شعبية</div><h3 data-lang="ar">نَسَّاج محترف</h3><h3 data-lang="en">Pro Weaver</h3><div class="plan-price">$9.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">تحميلات غير محدودة</span><span data-lang="en">Unlimited downloads</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">محتوى حصري</span><span data-lang="en">Exclusive content</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">دعم 24/7</span><span data-lang="en">24/7 support</span></li></ul><a href="subscription.html" class="btn-plan">اشترك الآن</a></div>
+                <div class="plan-card"><h3 data-lang="ar">نَسَّاج أعمال</h3><h3 data-lang="en">Business Weaver</h3><div class="plan-price">$19.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">كل مميزات المحترف</span><span data-lang="en">All Pro features</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">تقارير شهرية PDF</span><span data-lang="en">Monthly PDF reports</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">استشارة شهرية مجانية</span><span data-lang="en">Free monthly consultation</span></li></ul><a href="subscription.html" class="btn-plan">اشترك الآن</a></div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features -->
     <section class="features">
         <div class="container">
-            <h2 class="section-title">لماذا MindWeave؟</h2>
-            <p class="section-subtitle">تجربة تسوق مستقبلية مدعومة بالذكاء الاصطناعي</p>
+            <h2 class="section-title" data-lang="ar">لماذا MindWeave؟</h2>
+            <h2 class="section-title" data-lang="en">Why MindWeave?</h2>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h3>تفسير عميق بالذكاء الاصطناعي</h3>
-                    <p>محتوى رقمي مصمم بدقة مع مراعاة احتياجات المستخدم العربي والعالمي.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>توليد محتوى بجودة 4K</h3>
-                    <p>جميع منتجاتنا مصممة بأعلى جودة للاستخدام الاحترافي والطباعة.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>محتوى ثقافي غني</h3>
-                    <p>مدونة تربط بين الذكاء الاصطناعي والتراث الإنساني والحضارات.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>بوت مساعد ذكي</h3>
-                    <p>بوت محادثة يفهم احتياجاتك ويقترح المنتجات المناسبة لك بدقة.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>تسليم فوري مضمون</h3>
-                    <p>بعد الدفع مباشرة، تستلم ملفاتك عبر الإيميل خلال دقائق.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>تحديثات مجانية مدى الحياة</h3>
-                    <p>جميع المنتجات الرقمية تحصل على تحديثات مستقبلية مجاناً.</p>
-                </div>
+                <div class="feature-card"><div class="feature-icon">🧠</div><h3 data-lang="ar">تفسير عميق بالذكاء الاصطناعي</h3><h3 data-lang="en">Deep AI Interpretation</h3><p data-lang="ar">محتوى رقمي مصمم بدقة مع مراعاة احتياجات المستخدم العربي والعالمي.</p><p data-lang="en">Digital content designed for Arabic and global users.</p></div>
+                <div class="feature-card"><div class="feature-icon">🎨</div><h3 data-lang="ar">توليد محتوى بجودة 4K</h3><h3 data-lang="en">4K Content Generation</h3><p data-lang="ar">جميع منتجاتنا مصممة بأعلى جودة للاستخدام الاحترافي والطباعة.</p><p data-lang="en">All products designed in highest quality for professional use.</p></div>
+                <div class="feature-card"><div class="feature-icon">📚</div><h3 data-lang="ar">محتوى ثقافي غني</h3><h3 data-lang="en">Rich Cultural Content</h3><p data-lang="ar">مدونة تربط بين الذكاء الاصطناعي والتراث الإنساني والحضارات.</p><p data-lang="en">Blog connecting AI with human heritage and civilizations.</p></div>
+                <div class="feature-card"><div class="feature-icon">🤖</div><h3 data-lang="ar">بوت مساعد ذكي</h3><h3 data-lang="en">AI Assistant Bot</h3><p data-lang="ar">بوت محادثة يفهم احتياجاتك ويقترح المنتجات المناسبة لك بدقة.</p><p data-lang="en">Chatbot that understands your needs and suggests products.</p></div>
+                <div class="feature-card"><div class="feature-icon">⚡</div><h3 data-lang="ar">تسليم فوري مضمون</h3><h3 data-lang="en">Instant Delivery</h3><p data-lang="ar">بعد الدفع مباشرة، تستلم ملفاتك عبر الإيميل خلال دقائق.</p><p data-lang="en">Get your files by email within minutes after payment.</p></div>
+                <div class="feature-card"><div class="feature-icon">🔄</div><h3 data-lang="ar">تحديثات مجانية مدى الحياة</h3><h3 data-lang="en">Lifetime Free Updates</h3><p data-lang="ar">جميع المنتجات الرقمية تحصل على تحديثات مستقبلية مجاناً.</p><p data-lang="en">All digital products receive free future updates.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
+    <!-- Newsletter -->
     <section class="newsletter">
         <div class="container">
             <div class="newsletter-content">
-                <h3>احصل على 100 أمر مجاني لـ ChatGPT</h3>
-                <p>اشترك في قائمة بريدنا لتصلك أحدث المنتجات والعروض الحصرية</p>
+                <h3 data-lang="ar">احصل على 100 أمر مجاني لـ ChatGPT</h3>
+                <h3 data-lang="en">Get 100 Free ChatGPT Prompts</h3>
+                <p data-lang="ar">اشترك في قائمة بريدنا لتصلك أحدث المنتجات والعروض الحصرية</p>
+                <p data-lang="en">Subscribe to get latest products and exclusive offers</p>
                 <form class="newsletter-form" id="newsletter-form">
-                    <input type="email" placeholder="بريدك الإلكتروني" required>
-                    <button type="submit">اشتراك مجاني</button>
+                    <input type="email" placeholder="Email" required>
+                    <button type="submit" data-lang="ar">اشتراك مجاني</button>
+                    <button type="submit" data-lang="en">Subscribe Free</button>
                 </form>
             </div>
         </div>
     </section>
-
 </main>
 
-<!-- Footer -->
 <footer>
     <div class="container">
         <div class="footer-grid">
-            <div class="footer-col">
-                <div class="footer-logo">🧠 MindWeave</div>
-                <p>حيث يلتقي العقل البشري بالذكاء الاصطناعي — منصة عالمية للنسج والإبداع المشترك.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>روابط سريعة</h4>
-                <ul>
-                    <li><a href="library.html">مكتبة الأوامر</a></li>
-                    <li><a href="blog.html">المدونة</a></li>
-                    <li><a href="store.html">المتجر</a></li>
-                    <li><a href="community.html">المجتمع</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>الدعم</h4>
-                <ul>
-                    <li><a href="about.html">من نحن</a></li>
-                    <li><a href="contact.html">اتصل بنا</a></li>
-                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>قانوني</h4>
-                <ul>
-                    <li><a href="privacy.html">سياسة الخصوصية</a></li>
-                    <li><a href="terms.html">شروط الاستخدام</a></li>
-                    <li><a href="refund.html">سياسة الاسترجاع</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>تواصل معنا</h4>
-                <ul class="contact-info">
-                    <li><i class="fas fa-envelope"></i> support@mindweave.store</li>
-                    <li><i class="fas fa-headset"></i> دعم 24/7</li>
-                </ul>
-            </div>
+            <div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
+            <div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+            <div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li><li><a href="faq.html" data-lang="ar">الأسئلة الشائعة</a><a href="faq.html" data-lang="en">FAQ</a></li></ul></div>
+            <div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li><li><a href="refund.html" data-lang="ar">سياسة الاسترجاع</a><a href="refund.html" data-lang="en">Refund</a></li></ul></div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 MindWeave - جميع الحقوق محفوظة | Where Mind Meets AI</p>
-        </div>
+        <div class="footer-bottom"><p>© 2026 MindWeave</p></div>
     </div>
 </footer>
 
-<!-- Chatbot -->
-<div class="chatbot-toggle" id="chatbot-toggle">
-    <i class="fas fa-robot"></i>
-    <span>مساعد AI</span>
-</div>
+<div class="chatbot-toggle" id="chatbot-toggle"><i class="fas fa-robot"></i><span data-lang="ar">مساعد AI</span><span data-lang="en">AI Assistant</span></div>
 
-<script src="js/main.js"></script>
+<script>
+    function toggleLanguage() {
+        document.body.classList.toggle('en');
+        const btn = document.getElementById('langBtn');
+        if (document.body.classList.contains('en')) {
+            btn.textContent = 'عربي';
+            localStorage.setItem('lang', 'en');
+        } else {
+            btn.textContent = 'English';
+            localStorage.setItem('lang', 'ar');
+        }
+    }
+    
+    const savedLang = localStorage.getItem('lang');
+    if (savedLang === 'en') {
+        document.body.classList.add('en');
+        document.getElementById('langBtn').textContent = 'عربي';
+    }
+    
+    let cartCount = localStorage.getItem('cart') || 0;
+    document.querySelector('.cart-count').textContent = cartCount;
+    window.addToCart = function(name, price) {
+        cartCount++;
+        localStorage.setItem('cart', cartCount);
+        document.querySelector('.cart-count').textContent = cartCount;
+        alert(`✅ ${name} added to cart`);
+    };
+    
+    document.getElementById('newsletter-form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('✅ Thank you! Check your email.');
+        this.reset();
+    });
+    
+    document.getElementById('chatbot-toggle')?.addEventListener('click', () => {
+        alert('🤖 AI Assistant: Hello! How can I help?\n\nReply: support@mindweave.store');
+    });
+</script>
 </body>
 </html>
