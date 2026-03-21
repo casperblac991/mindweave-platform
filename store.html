@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindWeave | المتجر</title>
+    <meta name="description" content="متجر MindWeave - حزم أوامر الذكاء الاصطناعي، قوالب Notion، كتب إلكترونية، وخدمات تصميم بالذكاء الاصطناعي.">
+    <meta name="keywords" content="متجر الذكاء الاصطناعي, حزم أوامر ChatGPT, Midjourney prompts, قوالب Notion">
+    <title>المتجر | MindWeave</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .lang-switch { background: #1A1A2E; border: 1px solid #6C5CE7; padding: 6px 12px; border-radius: 30px; cursor: pointer; color: white; margin-right: 1rem; }
+        .lang-switch { background: #1A1A2E; border: 1px solid #6C5CE7; padding: 6px 12px; border-radius: 30px; cursor: pointer; color: white; }
         .lang-switch:hover { background: #6C5CE7; }
         [data-lang="en"] { display: none; }
         body.en [data-lang="ar"] { display: none; }
@@ -16,103 +18,105 @@
         body.en { direction: ltr; text-align: left; }
         body:not(.en) { direction: rtl; text-align: right; }
         .page-header { padding: 120px 0 40px; text-align: center; background: linear-gradient(135deg, #0A0A0F, #1A1A2E); }
-        .products-section { padding: 60px 0; }
+        .cart-count { background: #6C5CE7; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; margin-left: 5px; }
+        .cart-icon { text-decoration: none; color: white; }
     </style>
 </head>
 <body>
 
 <header>
-    <nav>
-        <div class="logo"><a href="index.html"><span class="logo-icon">🧠</span><span class="logo-text">MindWeave</span></a></div>
-        <ul class="nav-menu">
-            <li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
-            <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
-            <li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
-            <li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-            <li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
-            <li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
-            <li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
-        </ul>
-        <div class="nav-icons">
-            <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-            <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
-        </div>
-    </nav>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
+<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
+</div>
+</nav>
 </header>
 
 <main>
-    <section class="page-header">
-        <div class="container">
-            <h1 data-lang="ar">المتجر</h1>
-            <h1 data-lang="en">Store</h1>
-            <p data-lang="ar">اختر منتجك الرقمي — تسليم فوري عبر الإيميل</p>
-            <p data-lang="en">Choose your digital product — instant email delivery</p>
-        </div>
-    </section>
+<section class="page-header"><div class="container"><h1 data-lang="ar">المتجر</h1><h1 data-lang="en">Store</h1><p data-lang="ar">اختر منتجك الرقمي — تسليم فوري عبر الإيميل</p><p data-lang="en">Choose your digital product — instant email delivery</p></div></section>
 
-    <section class="products-section">
-        <div class="container">
-            <div class="products-grid">
-                <!-- Product 1 -->
-                <div class="product-card"><div class="product-badge">🔥 الأكثر مبيعاً -11%</div><div class="product-icon">🎨</div><h3>Midjourney Prompts Pack</h3><p data-lang="ar">100 أمر احترافي لتوليد صور تجارية وشعارات</p><p data-lang="en">100 professional prompts for commercial images and logos</p><div class="price">$9.99 <span class="old-price">$19.99</span></div><button class="btn-buy" onclick="addToCart('Midjourney Pack', 9.99)">اشتري الآن</button></div>
-                <!-- Product 2 -->
-                <div class="product-card"><div class="product-badge">⭐ مميز -14%</div><div class="product-icon">📝</div><h3>ChatGPT Prompts Pack</h3><p data-lang="ar">50 أمر مخصص للتسويق والمبيعات وإعلانات</p><p data-lang="en">50 prompts for marketing, sales, and ads</p><div class="price">$7.99 <span class="old-price">$12.99</span></div><button class="btn-buy" onclick="addToCart('ChatGPT Pack', 7.99)">اشتري الآن</button></div>
-                <!-- Product 3 -->
-                <div class="product-card"><div class="product-badge">💎 حصري -11%</div><div class="product-icon">📊</div><h3>Notion AI Template</h3><p data-lang="ar">إدارة المشاريع بالذكاء الاصطناعي مع أتمتة كاملة</p><p data-lang="en">Project management with AI and full automation</p><div class="price">$12.99 <span class="old-price">$19.99</span></div><button class="btn-buy" onclick="addToCart('Notion Template', 12.99)">اشتري الآن</button></div>
-                <!-- Product 4 -->
-                <div class="product-card"><div class="product-badge">🔥 الأكثر مبيعاً -13%</div><div class="product-icon">📚</div><h3>AI Tools Directory</h3><p data-lang="ar">أكثر من 50 أداة مجانية مع شرح مفصل</p><p data-lang="en">50+ free AI tools with detailed explanations</p><div class="price">$5.99 <span class="old-price">$9.99</span></div><button class="btn-buy" onclick="addToCart('AI Tools', 5.99)">اشتري الآن</button></div>
-                <!-- Product 5 -->
-                <div class="product-card"><div class="product-badge">⭐ مميز -13%</div><div class="product-icon">🎯</div><h3>AI Logo Design Service</h3><p data-lang="ar">تصميم احترافي خلال 24 ساعة مع 3 تعديلات</p><p data-lang="en">Professional design in 24h with 3 revisions</p><div class="price">$19.99 <span class="old-price">$29.99</span></div><button class="btn-buy" onclick="addToCart('Logo Design', 19.99)">اشتري الآن</button></div>
-                <!-- Product 6 -->
-                <div class="product-card"><div class="product-badge">💎 حصري -13%</div><div class="product-icon">💻</div><h3>Coding Prompts Pack</h3><p data-lang="ar">50 أمر لتوليد أكواد برمجية وحل المشاكل</p><p data-lang="en">50 prompts for code generation and debugging</p><div class="price">$14.99 <span class="old-price">$24.99</span></div><button class="btn-buy" onclick="addToCart('Coding Pack', 14.99)">اشتري الآن</button></div>
-            </div>
-        </div>
-    </section>
+<section class="products-section"><div class="container"><div class="products-grid" id="productsGrid"></div></div></section>
 </main>
 
-<footer>
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-            <div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
-            <div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li><li><a href="faq.html" data-lang="ar">الأسئلة الشائعة</a><a href="faq.html" data-lang="en">FAQ</a></li></ul></div>
-            <div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li><li><a href="refund.html" data-lang="ar">سياسة الاسترجاع</a><a href="refund.html" data-lang="en">Refund</a></li></ul></div>
-        </div>
-        <div class="footer-bottom"><p>© 2026 MindWeave</p></div>
-    </div>
-</footer>
-
-<div class="chatbot-toggle" id="chatbot-toggle"><i class="fas fa-robot"></i><span data-lang="ar">مساعد AI</span><span data-lang="en">AI Assistant</span></div>
+<footer><div class="container"><div class="footer-grid"><div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div><div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div><div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
 
 <script>
-    function toggleLanguage() {
-        document.body.classList.toggle('en');
-        const btn = document.getElementById('langBtn');
-        if (document.body.classList.contains('en')) {
-            btn.textContent = 'عربي';
-            localStorage.setItem('lang', 'en');
-        } else {
-            btn.textContent = 'English';
-            localStorage.setItem('lang', 'ar');
-        }
+// Products Data
+const products = [
+    { id: 1, name: "Midjourney Prompts Pack", nameAr: "حزمة أوامر Midjourney", price: 9.99, oldPrice: 19.99, descAr: "100 أمر احترافي لتوليد صور تجارية وشعارات", descEn: "100 professional prompts for commercial images and logos", icon: "🎨", badge: "🔥 الأكثر مبيعاً -11%", badgeEn: "🔥 Best Seller -11%" },
+    { id: 2, name: "ChatGPT Prompts Pack", nameAr: "حزمة أوامر ChatGPT", price: 7.99, oldPrice: 12.99, descAr: "50 أمر مخصص للتسويق والمبيعات وإعلانات", descEn: "50 prompts for marketing, sales, and ads", icon: "📝", badge: "⭐ مميز -14%", badgeEn: "⭐ Featured -14%" },
+    { id: 3, name: "Notion AI Template", nameAr: "قالب Notion الذكي", price: 12.99, oldPrice: 19.99, descAr: "إدارة المشاريع بالذكاء الاصطناعي مع أتمتة كاملة", descEn: "Project management with AI and full automation", icon: "📊", badge: "💎 حصري -11%", badgeEn: "💎 Exclusive -11%" },
+    { id: 4, name: "AI Tools Directory", nameAr: "دليل أدوات الذكاء الاصطناعي", price: 5.99, oldPrice: 9.99, descAr: "أكثر من 50 أداة مجانية مع شرح مفصل", descEn: "50+ free AI tools with detailed explanations", icon: "📚", badge: "🔥 الأكثر مبيعاً -13%", badgeEn: "🔥 Best Seller -13%" },
+    { id: 5, name: "AI Logo Design Service", nameAr: "خدمة تصميم شعار بالذكاء الاصطناعي", price: 19.99, oldPrice: 29.99, descAr: "تصميم احترافي خلال 24 ساعة مع 3 تعديلات", descEn: "Professional design in 24h with 3 revisions", icon: "🎯", badge: "⭐ مميز -13%", badgeEn: "⭐ Featured -13%" },
+    { id: 6, name: "Coding Prompts Pack", nameAr: "حزمة أوامر البرمجة", price: 14.99, oldPrice: 24.99, descAr: "50 أمر لتوليد أكواد برمجية وحل المشاكل", descEn: "50 prompts for code generation and debugging", icon: "💻", badge: "💎 حصري -13%", badgeEn: "💎 Exclusive -13%" }
+];
+
+// Language
+let currentLang = localStorage.getItem('lang') || 'ar';
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    updateCartDisplay();
+    renderProducts();
+}
+function applyLanguage() {
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    renderProducts();
+}
+
+// Cart
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function updateCartDisplay() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cartCount').textContent = count;
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+function addToCart(productId, productName, price) {
+    const existing = cart.find(item => item.id === productId);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ id: productId, name: productName, price: price, quantity: 1 });
     }
-    const savedLang = localStorage.getItem('lang');
-    if (savedLang === 'en') {
-        document.body.classList.add('en');
-        document.getElementById('langBtn').textContent = 'عربي';
-    }
-    let cartCount = localStorage.getItem('cart') || 0;
-    const cartSpan = document.querySelector('.cart-count');
-    if (cartSpan) cartSpan.textContent = cartCount;
-    window.addToCart = function(name, price) {
-        cartCount++;
-        localStorage.setItem('cart', cartCount);
-        if (cartSpan) cartSpan.textContent = cartCount;
-        alert(`✅ ${name} added to cart`);
-    };
-    document.getElementById('chatbot-toggle')?.addEventListener('click', () => {
-        alert('🤖 AI Assistant: Hello! How can I help?\n\nReply: support@mindweave.store');
-    });
+    updateCartDisplay();
+    const msg = currentLang === 'ar' ? `✅ تم إضافة ${productName} إلى السلة` : `✅ ${productName} added to cart`;
+    alert(msg);
+}
+
+// Render products
+function renderProducts() {
+    const container = document.getElementById('productsGrid');
+    if (!container) return;
+    const isAr = currentLang === 'ar';
+    container.innerHTML = products.map(p => `
+        <div class="product-card">
+            <div class="product-badge">${isAr ? p.badge : p.badgeEn}</div>
+            <div class="product-icon">${p.icon}</div>
+            <h3>${isAr ? p.nameAr : p.name}</h3>
+            <p>${isAr ? p.descAr : p.descEn}</p>
+            <div class="price">$${p.price} <span class="old-price">$${p.oldPrice}</span></div>
+            <button class="btn-buy" onclick="addToCart(${p.id}, '${isAr ? p.nameAr : p.name}', ${p.price})" data-lang="ar">اشتري الآن</button>
+            <button class="btn-buy" onclick="addToCart(${p.id}, '${isAr ? p.nameAr : p.name}', ${p.price})" data-lang="en">Buy Now</button>
+        </div>
+    `).join('');
+}
+
+applyLanguage();
+updateCartDisplay();
 </script>
 </body>
 </html>
