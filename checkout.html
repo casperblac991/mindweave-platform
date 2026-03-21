@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8"><title>إتمام الطلب | MindWeave</title><link rel="stylesheet" href="css/style.css"><style>.page-header{padding:120px 0 40px;text-align:center}.checkout-form{max-width:500px;margin:auto;padding:2rem}input,textarea{width:100%;padding:12px;margin:10px 0;border-radius:10px;background:#1A1A2E;color:white;border:none}button{background:#6C5CE7;padding:12px;border-radius:30px;border:none;color:white;cursor:pointer;width:100%}</style></head>
+<body><header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div><ul><li><a href="index.html">الرئيسية</a></li><li><a href="library.html">المكتبة</a></li><li><a href="store.html">المتجر</a></li><li><a href="about.html">من نحن</a></li><li><a href="contact.html">اتصل بنا</a></li></ul></nav></header>
+<main><section class="page-header"><h1>إتمام الطلب</h1></section>
+<div class="checkout-form"><form id="checkoutForm"><input type="text" placeholder="الاسم الكامل" required><input type="email" placeholder="البريد الإلكتروني" required><textarea rows="4" placeholder="عنوان الشحن (للمنتجات الرقمية فقط للتواصل)"></textarea><button type="submit">إتمام الشراء</button></form></div></main>
+<footer><div class="container"><p>© 2026 MindWeave</p></div></footer>
+<script>document.getElementById('checkoutForm').onsubmit=function(e){e.preventDefault();alert('✅ تم استلام طلبك. سيتم إرسال رابط التحميل خلال دقائق.');localStorage.removeItem('cart');window.location.href='index.html';};</script></body></html>
