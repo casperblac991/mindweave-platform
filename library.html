@@ -81,16 +81,74 @@ body:not(.en){direction:rtl;text-align:right}
 
 <script>
 const allPrompts = [
-    { text: "اكتب لي خطة تسويق لمنتج جديد باستخدام الذكاء الاصطناعي", textEn: "Write a marketing plan for a new product using AI", cat: "chatgpt" },
-    { text: "/imagine prompt minimalist logo for tech startup, blue and white, vector style", textEn: "/imagine prompt minimalist logo for tech startup, blue and white, vector style", cat: "midjourney" },
-    { text: "حلل هذا النص واستخرج الأفكار الرئيسية مع ملخص", textEn: "Analyze this text and extract key ideas with summary", cat: "chatgpt" },
-    { text: "/imagine prompt futuristic cityscape, cyberpunk, neon lights, flying cars, 8k", textEn: "/imagine prompt futuristic cityscape, cyberpunk, neon lights, flying cars, 8k", cat: "midjourney" },
-    { text: "اكتب 10 أفكار لمنشورات على وسائل التواصل الاجتماعي", textEn: "Write 10 ideas for social media posts", cat: "chatgpt" },
-    { text: "/imagine prompt professional product photography, studio lighting, white background", textEn: "/imagine prompt professional product photography, studio lighting, white background", cat: "midjourney" }
+    // ChatGPT - التسويق والمبيعات
+    { text: "اكتب لي خطة تسويق كاملة لمنتج جديد في مجال [مجالك]، تشمل التحليل الرباعي SWOT، استراتيجيات التسويق الرقمي، والميزانية التقديرية.", textEn: "Write a complete marketing plan for a new product in [your field], including SWOT analysis, digital marketing strategies, and estimated budget.", cat: "chatgpt" },
+    { text: "اكتب 10 منشورات إعلانية جذابة لـ Instagram لمنتج [اسم المنتج]، مع استخدام هاشتاجات مناسبة.", textEn: "Write 10 attractive Instagram ad posts for [product name], with relevant hashtags.", cat: "chatgpt" },
+    { text: "أعد لي نص خطاب مبيعات بالبريد الإلكتروني لعميل محتمل، مع سطر موضوع جذاب.", textEn: "Prepare a sales email script for a potential client, with an attractive subject line.", cat: "chatgpt" },
+    { text: "حلل هذه البيانات وقدم لي رؤى تسويقية قابلة للتنفيذ: [أدخل البيانات]", textEn: "Analyze this data and provide actionable marketing insights: [insert data]", cat: "chatgpt" },
+    { text: "اكتب سلسلة من 5 رسائل بريد إلكتروني لمتابعة العملاء المحتملين (Email Sequence).", textEn: "Write a 5-email follow-up sequence for potential leads.", cat: "chatgpt" },
+    { text: "قدم لي 10 أفكار لحملة إعلانية على فيسبوك لمنتج [المنتج].", textEn: "Give me 10 ideas for a Facebook ad campaign for [product].", cat: "chatgpt" },
+    
+    // ChatGPT - كتابة المحتوى
+    { text: "اكتب لي مقدمة مقال جذابة عن [موضوع]، مع جذب القارئ من أول سطر.", textEn: "Write an engaging article introduction about [topic], hooking the reader from the first line.", cat: "chatgpt" },
+    { text: "أعد لي 10 أفكار لمنشورات مدونة في مجال [المجال]، مع عناوين مقترحة.", textEn: "Give me 10 blog post ideas in [field], with suggested titles.", cat: "chatgpt" },
+    { text: "أعد كتابة هذا النص بأسلوب أكثر احترافية: [النص]", textEn: "Rewrite this text in a more professional tone: [text]", cat: "chatgpt" },
+    { text: "اكتب وصفًا لمنتج [المنتج] بطريقة مقنعة وجذابة.", textEn: "Write a compelling product description for [product].", cat: "chatgpt" },
+    { text: "أعد لي نص فيديو قصير (30 ثانية) لـ TikTok أو Reels عن [الموضوع].", textEn: "Create a short 30-second video script for TikTok/Reels about [topic].", cat: "chatgpt" },
+    
+    // ChatGPT - الإنتاجية والتخطيط
+    { text: "أعد لي قائمة مهام يومية لشخص يعمل في [المهنة]، مع ترتيب حسب الأولوية.", textEn: "Create a daily to-do list for someone working in [profession], prioritized.", cat: "chatgpt" },
+    { text: "ساعدني في إعداد خطة عمل أسبوعية لتحقيق [الهدف]، مع جداول زمنية محددة.", textEn: "Help me create a weekly action plan to achieve [goal], with specific timelines.", cat: "chatgpt" },
+    { text: "قدم لي 5 طرق لتحسين إنتاجيتي في العمل باستخدام الذكاء الاصطناعي.", textEn: "Give me 5 ways to improve my productivity at work using AI.", cat: "chatgpt" },
+    { text: "أعد لي نموذج جدول زمني لمشروع [المشروع] مع المهام والمواعيد النهائية.", textEn: "Create a project timeline for [project] with tasks and deadlines.", cat: "chatgpt" },
+    
+    // ChatGPT - البرمجة والتقنية
+    { text: "اكتب لي كود HTML/CSS لصفحة هبوط (landing page) لمنتج [المنتج]، مع تصميم حديث.", textEn: "Write HTML/CSS code for a landing page for [product], with a modern design.", cat: "chatgpt" },
+    { text: "صحح لي هذا الكود واشرح المشكلة: [أدخل الكود]", textEn: "Fix this code and explain the problem: [insert code]", cat: "chatgpt" },
+    { text: "اكتب لي دالة بلغة Python تقوم بتحليل النصوص واستخراج الكلمات المفتاحية.", textEn: "Write a Python function that analyzes text and extracts keywords.", cat: "chatgpt" },
+    { text: "اكتب لي كود JavaScript لعرض بيانات من API وعرضها في صفحة HTML.", textEn: "Write JavaScript code to fetch data from an API and display it in an HTML page.", cat: "chatgpt" },
+    { text: "اشرح لي مفهوم [المفهوم التقني] بأسلوب بسيط مع مثال.", textEn: "Explain [technical concept] in simple terms with an example.", cat: "chatgpt" },
+    
+    // ChatGPT - التعليم والدراسة
+    { text: "قدم لي شرحًا مبسطًا لمفهوم [المفهوم] مع أمثلة تطبيقية.", textEn: "Give me a simplified explanation of [concept] with practical examples.", cat: "chatgpt" },
+    { text: "أعد لي خطة دراسة لتعلم [المهارة] خلال 30 يومًا، مع مصادر مقترحة.", textEn: "Create a 30-day study plan to learn [skill], with recommended resources.", cat: "chatgpt" },
+    { text: "ساعدني في كتابة بحث عن [الموضوع]، مع مقدمة وخاتمة ومراجع مقترحة.", textEn: "Help me write a research paper on [topic], with introduction, conclusion, and suggested references.", cat: "chatgpt" },
+    { text: "قدم لي 10 أسئلة امتحانية عن [الموضوع] مع الإجابات النموذجية.", textEn: "Give me 10 exam questions about [topic] with model answers.", cat: "chatgpt" },
+    
+    // Midjourney - الشعارات والهوية البصرية
+    { text: "/imagine prompt minimalist logo for a tech startup, blue and white color scheme, vector style, geometric shapes, clean lines, white background --v 6", textEn: "/imagine prompt minimalist logo for a tech startup, blue and white color scheme, vector style, geometric shapes, clean lines, white background --v 6", cat: "midjourney" },
+    { text: "/imagine prompt luxury brand logo, gold and black, elegant typography, serif font, with crown icon, premium feel --v 6", textEn: "/imagine prompt luxury brand logo, gold and black, elegant typography, serif font, with crown icon, premium feel --v 6", cat: "midjourney" },
+    { text: "/imagine prompt eco-friendly brand logo, green and earth tones, leaf motif, organic shapes, natural texture, hand-drawn style --v 6", textEn: "/imagine prompt eco-friendly brand logo, green and earth tones, leaf motif, organic shapes, natural texture, hand-drawn style --v 6", cat: "midjourney" },
+    { text: "/imagine prompt food brand logo, warm colors, fork and spoon icon, rustic style, handcrafted feel --v 6", textEn: "/imagine prompt food brand logo, warm colors, fork and spoon icon, rustic style, handcrafted feel --v 6", cat: "midjourney" },
+    { text: "/imagine prompt fashion brand logo, elegant, serif typography, minimal, black and white, high-end --v 6", textEn: "/imagine prompt fashion brand logo, elegant, serif typography, minimal, black and white, high-end --v 6", cat: "midjourney" },
+    
+    // Midjourney - المنتجات والتسويق
+    { text: "/imagine prompt professional product photography for a smartwatch, studio lighting, macro shot, depth of field, clean white background, 8k --v 6", textEn: "/imagine prompt professional product photography for a smartwatch, studio lighting, macro shot, depth of field, clean white background, 8k --v 6", cat: "midjourney" },
+    { text: "/imagine prompt sneaker design concept, futuristic, white with neon blue accents, 3d render, athletic shoes, on white background --v 6", textEn: "/imagine prompt sneaker design concept, futuristic, white with neon blue accents, 3d render, athletic shoes, on white background --v 6", cat: "midjourney" },
+    { text: "/imagine prompt luxury perfume bottle, glass material, golden cap, elegant lighting, studio photography, on marble background --v 6", textEn: "/imagine prompt luxury perfume bottle, glass material, golden cap, elegant lighting, studio photography, on marble background --v 6", cat: "midjourney" },
+    { text: "/imagine prompt coffee packaging design, kraft paper, minimalist, with coffee beans, rustic style --v 6", textEn: "/imagine prompt coffee packaging design, kraft paper, minimalist, with coffee beans, rustic style --v 6", cat: "midjourney" },
+    { text: "/imagine prompt smartphone mockup, 3d render, white background, studio lighting, front view --v 6", textEn: "/imagine prompt smartphone mockup, 3d render, white background, studio lighting, front view --v 6", cat: "midjourney" },
+    
+    // Midjourney - التصميم الداخلي والمعماري
+    { text: "/imagine prompt modern living room interior design, minimalist, white walls, large windows, natural light, plants, Scandinavian style --v 6", textEn: "/imagine prompt modern living room interior design, minimalist, white walls, large windows, natural light, plants, Scandinavian style --v 6", cat: "midjourney" },
+    { text: "/imagine prompt futuristic skyscraper architecture, glass facade, parametric design, cityscape background, sunset lighting --v 6", textEn: "/imagine prompt futuristic skyscraper architecture, glass facade, parametric design, cityscape background, sunset lighting --v 6", cat: "midjourney" },
+    { text: "/imagine prompt cozy bedroom design, warm lighting, wooden furniture, soft textures, bohemian style --v 6", textEn: "/imagine prompt cozy bedroom design, warm lighting, wooden furniture, soft textures, bohemian style --v 6", cat: "midjourney" },
+    { text: "/imagine prompt minimalist office space, white desk, ergonomic chair, plants, natural light, modern --v 6", textEn: "/imagine prompt minimalist office space, white desk, ergonomic chair, plants, natural light, modern --v 6", cat: "midjourney" },
+    
+    // Midjourney - الفنون والإبداع
+    { text: "/imagine prompt surrealist painting style of Salvador Dali, melting clocks, desert landscape, dreamlike atmosphere, oil painting --v 6", textEn: "/imagine prompt surrealist painting style of Salvador Dali, melting clocks, desert landscape, dreamlike atmosphere, oil painting --v 6", cat: "midjourney" },
+    { text: "/imagine prompt cyberpunk cityscape, neon lights, rain, reflections, futuristic buildings, flying cars, night scene --v 6", textEn: "/imagine prompt cyberpunk cityscape, neon lights, rain, reflections, futuristic buildings, flying cars, night scene --v 6", cat: "midjourney" },
+    { text: "/imagine prompt fantasy landscape, floating islands, waterfalls, magical creatures, vibrant colors, digital art --v 6", textEn: "/imagine prompt fantasy landscape, floating islands, waterfalls, magical creatures, vibrant colors, digital art --v 6", cat: "midjourney" },
+    { text: "/imagine prompt abstract art, colorful, geometric shapes, modern art, acrylic painting style --v 6", textEn: "/imagine prompt abstract art, colorful, geometric shapes, modern art, acrylic painting style --v 6", cat: "midjourney" },
+    
+    // Midjourney - شخصيات وأفاتار
+    { text: "/imagine prompt 3d avatar of a young woman, pixar style, cute, wearing hoodie, blue eyes, portrait, studio lighting --v 6", textEn: "/imagine prompt 3d avatar of a young woman, pixar style, cute, wearing hoodie, blue eyes, portrait, studio lighting --v 6", cat: "midjourney" },
+    { text: "/imagine prompt fantasy warrior character design, full armor, glowing sword, epic pose, dramatic lighting, concept art --v 6", textEn: "/imagine prompt fantasy warrior character design, full armor, glowing sword, epic pose, dramatic lighting, concept art --v 6", cat: "midjourney" },
+    { text: "/imagine prompt anime character portrait, detailed, colorful hair, expressive eyes, soft lighting --v 6", textEn: "/imagine prompt anime character portrait, detailed, colorful hair, expressive eyes, soft lighting --v 6", cat: "midjourney" }
 ];
 
 let currentFilter = "all";
-let displayCount = 4;
+let displayCount = 12;
 let currentLangLib = localStorage.getItem('lang') || 'ar';
 
 function toggleLanguage() {
@@ -125,11 +183,11 @@ function renderPrompts() {
 
 window.copyPrompt = function(text) {
     navigator.clipboard.writeText(text);
-    alert(currentLangLib === 'ar' ? 'تم نسخ الأمر!' : 'Copied!');
+    alert(currentLangLib === 'ar' ? '✅ تم نسخ الأمر!' : '✅ Copied!');
 };
 
 document.getElementById('loadMoreBtn')?.addEventListener('click', () => {
-    displayCount += 4;
+    displayCount += 12;
     renderPrompts();
 });
 
@@ -146,7 +204,7 @@ document.getElementById('filterBtns').innerHTML = cats.map(c => `
 
 function setFilter(filter) {
     currentFilter = filter;
-    displayCount = 4;
+    displayCount = 12;
     renderPrompts();
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll(`.filter-btn[data-filter="${filter}"]`).forEach(btn => btn.classList.add('active'));
