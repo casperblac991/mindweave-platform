@@ -3,9 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MindWeave - منصة عالمية لنسج العقول بالذكاء الاصطناعي. حزم أوامر، قوالب، ومجتمع للإبداع المشترك.">
+<meta name="keywords" content="الذكاء الاصطناعي, ChatGPT, Midjourney, prompts, أدوات AI, MindWeave">
+<meta name="author" content="MindWeave">
+<meta name="google-site-verification" content="ATi9HKInahPK22qqb-sqp70-MIeFlgKp0n8azYVo_Mw" />
+<meta property="og:title" content="MindWeave | حيث يلتقي العقل بالذكاء الاصطناعي">
+<meta property="og:description" content="منصة عالمية للنسج والإبداع المشترك بين الإنسان والذكاء الاصطناعي.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <title>MindWeave | حيث يلتقي العقل بالذكاء الاصطناعي</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DZ4WQDX31M');
+</script>
 <link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
 .lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
@@ -17,15 +33,19 @@ body.en{direction:ltr;text-align:left}
 body:not(.en){direction:rtl;text-align:right}
 .cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
 .cart-icon{text-decoration:none;color:white}
-.chatbot-window{position:fixed;bottom:80px;left:20px;width:300px;background:#1A1A2E;border-radius:15px;display:none;z-index:1001;border:1px solid #6C5CE7}
-.chatbot-header{background:#6C5CE7;padding:10px;border-radius:15px 15px 0 0;cursor:pointer}
-.chatbot-messages{padding:10px;height:300px;overflow-y:auto}
+.chatbot-window{position:fixed;bottom:80px;left:20px;width:350px;background:#1A1A2E;border-radius:15px;display:none;z-index:1001;border:1px solid #6C5CE7}
+.chatbot-header{background:#6C5CE7;padding:12px;border-radius:15px 15px 0 0;cursor:pointer;display:flex;justify-content:space-between}
+.chatbot-messages{padding:10px;height:350px;overflow-y:auto;background:#0A0A0F}
 .chatbot-input{display:flex;padding:10px;border-top:1px solid #333}
-.chatbot-input input{flex:1;padding:8px;border-radius:20px;border:none;background:#0A0A0F;color:white}
-.chatbot-input button{background:#6C5CE7;border:none;padding:8px 15px;border-radius:20px;cursor:pointer;color:white}
-.message{margin-bottom:10px;padding:8px 12px;border-radius:15px;max-width:80%}
+.chatbot-input input{flex:1;padding:10px;border-radius:25px;border:none;background:#0A0A0F;color:white}
+.chatbot-input button{background:#6C5CE7;border:none;padding:8px 15px;border-radius:25px;cursor:pointer;color:white}
+.message{margin-bottom:12px;padding:10px 14px;border-radius:18px;max-width:85%}
 .user{background:#6C5CE7;color:white;margin-left:auto;text-align:right}
-.bot{background:#0A0A0F;color:white}
+.bot{background:#1A1A2E;color:white;border:1px solid rgba(108,92,231,0.3)}
+.copy-btn{background:#6C5CE7;color:white;border:none;padding:4px 10px;border-radius:15px;font-size:12px;cursor:pointer;margin-top:8px}
+.loading{opacity:0.7;font-style:italic}
+.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
+.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
 </style>
 </head>
 <body>
@@ -38,56 +58,233 @@ body:not(.en){direction:rtl;text-align:right}
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
 <li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
 <li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
 <li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
 <li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
 </ul>
 <div class="nav-icons">
 <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
 <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
 </div>
 </nav>
 </header>
 
 <main>
-<section class="hero"><div class="hero-content"><div class="hero-badge" data-lang="ar">✨ نَسَّاج العقول بالذكاء الاصطناعي</div><div class="hero-badge" data-lang="en">✨ Weaver of Minds with AI</div><h1>MIND WEAVE</h1><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي — منصة عالمية للنسج والإبداع المشترك</p><p data-lang="en">Where human mind meets AI — a global platform for weaving and shared creativity</p><div class="hero-buttons"><a href="store.html" class="btn-primary" data-lang="ar">استكشف المتجر</a><a href="store.html" class="btn-primary" data-lang="en">Explore Store</a><a href="library.html" class="btn-secondary" data-lang="ar">مكتبة مجانية</a><a href="library.html" class="btn-secondary" data-lang="en">Free Library</a></div></div></section>
+<section class="hero">
+<div class="hero-content">
+<div class="hero-badge" data-lang="ar">✨ نَسَّاج العقول بالذكاء الاصطناعي</div>
+<div class="hero-badge" data-lang="en">✨ Weaver of Minds with AI</div>
+<h1>MIND WEAVE</h1>
+<p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي — منصة عالمية للنسج والإبداع المشترك</p>
+<p data-lang="en">Where human mind meets AI — a global platform for weaving and shared creativity</p>
+<div class="hero-buttons">
+<a href="store.html" class="btn-primary" data-lang="ar">استكشف المتجر</a><a href="store.html" class="btn-primary" data-lang="en">Explore Store</a>
+<a href="library.html" class="btn-secondary" data-lang="ar">مكتبة مجانية</a><a href="library.html" class="btn-secondary" data-lang="en">Free Library</a>
+</div>
+</div>
+</section>
 
-<section class="stats"><div class="stat-item"><span class="stat-number">500+</span><span class="stat-label" data-lang="ar">أمر مجاني</span><span class="stat-label" data-lang="en">Free Prompts</span></div><div class="stat-item"><span class="stat-number">50+</span><span class="stat-label" data-lang="ar">منتج رقمي</span><span class="stat-label" data-lang="en">Digital Products</span></div><div class="stat-item"><span class="stat-number">98%</span><span class="stat-label" data-lang="ar">رضا العملاء</span><span class="stat-label" data-lang="en">Satisfaction</span></div><div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label" data-lang="ar">دعم فوري</span><span class="stat-label" data-lang="en">Support</span></div></section>
+<section class="stats">
+<div class="stat-item"><span class="stat-number">500+</span><span class="stat-label" data-lang="ar">أمر مجاني</span><span class="stat-label" data-lang="en">Free Prompts</span></div>
+<div class="stat-item"><span class="stat-number">50+</span><span class="stat-label" data-lang="ar">منتج رقمي</span><span class="stat-label" data-lang="en">Digital Products</span></div>
+<div class="stat-item"><span class="stat-number">98%</span><span class="stat-label" data-lang="ar">رضا العملاء</span><span class="stat-label" data-lang="en">Satisfaction</span></div>
+<div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label" data-lang="ar">دعم فوري</span><span class="stat-label" data-lang="en">Support</span></div>
+</section>
 
 <section class="categories"><div class="container"><h2 class="section-title" data-lang="ar">الفئات</h2><h2 class="section-title" data-lang="en">Categories</h2><div class="categories-grid"><div class="category-card"><div class="category-icon">📝</div><h3 data-lang="ar">حزم الأوامر</h3><h3 data-lang="en">Prompts Packs</h3><p>25</p></div><div class="category-card"><div class="category-icon">📊</div><h3 data-lang="ar">قوالب Notion</h3><h3 data-lang="en">Notion Templates</h3><p>18</p></div><div class="category-card"><div class="category-icon">📚</div><h3 data-lang="ar">كتب إلكترونية</h3><h3 data-lang="en">E-books</h3><p>12</p></div><div class="category-card"><div class="category-icon">🎨</div><h3 data-lang="ar">قوالب التصميم</h3><h3 data-lang="en">Design Templates</h3><p>15</p></div><div class="category-card"><div class="category-icon">💼</div><h3 data-lang="ar">أدوات الإنتاجية</h3><h3 data-lang="en">Productivity Tools</h3><p>20</p></div><div class="category-card"><div class="category-icon">🤝</div><h3 data-lang="ar">خدمات AI مخصصة</h3><h3 data-lang="en">AI Services</h3><p>8</p></div></div></div></section>
 
 <section class="featured-products"><div class="container"><h2 class="section-title" data-lang="ar">المنتجات المميزة</h2><h2 class="section-title" data-lang="en">Featured Products</h2><div class="products-grid" id="productsGrid"></div></div></section>
 
-<section class="plans"><div class="container"><h2 class="section-title" data-lang="ar">خطط النسيج</h2><h2 class="section-title" data-lang="en">Weaving Plans</h2><div class="plans-grid"><div class="plan-card"><h3 data-lang="ar">نَسَّاج أساسي</h3><h3 data-lang="en">Basic Weaver</h3><div class="plan-price">$4.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">5 تحميلات يومياً</span><span data-lang="en">5 downloads/day</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">تحديثات شهرية</span><span data-lang="en">Monthly updates</span></li></ul><a href="subscription.html" class="btn-plan" data-lang="ar">اشترك الآن</a><a href="subscription.html" class="btn-plan" data-lang="en">Subscribe</a></div><div class="plan-card popular"><div class="plan-badge">⭐ الأكثر شعبية</div><h3 data-lang="ar">نَسَّاج محترف</h3><h3 data-lang="en">Pro Weaver</h3><div class="plan-price">$9.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">تحميلات غير محدودة</span><span data-lang="en">Unlimited downloads</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">محتوى حصري</span><span data-lang="en">Exclusive content</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">دعم 24/7</span><span data-lang="en">24/7 support</span></li></ul><a href="subscription.html" class="btn-plan" data-lang="ar">اشترك الآن</a><a href="subscription.html" class="btn-plan" data-lang="en">Subscribe</a></div><div class="plan-card"><h3 data-lang="ar">نَسَّاج أعمال</h3><h3 data-lang="en">Business Weaver</h3><div class="plan-price">$19.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">كل مميزات المحترف</span><span data-lang="en">All Pro features</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">تقارير شهرية PDF</span><span data-lang="en">Monthly PDF reports</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">استشارة شهرية مجانية</span><span data-lang="en">Free monthly consultation</span></li></ul><a href="subscription.html" class="btn-plan" data-lang="ar">اشترك الآن</a><a href="subscription.html" class="btn-plan" data-lang="en">Subscribe</a></div></div></div></section>
+<section class="plans"><div class="container"><h2 class="section-title" data-lang="ar">خطط النسيج</h2><h2 class="section-title" data-lang="en">Weaving Plans</h2><div class="plans-grid"><div class="plan-card"><h3 data-lang="ar">نَسَّاج أساسي</h3><h3 data-lang="en">Basic Weaver</h3><div class="plan-price">$4.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">5 تحميلات يومياً</span><span data-lang="en">5 downloads/day</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">تحديثات شهرية</span><span data-lang="en">Monthly updates</span></li></ul><a href="subscription.html" class="btn-plan" data-lang="ar">اشترك الآن</a><a href="subscription.html" class="btn-plan" data-lang="en">Subscribe</a></div>
+<div class="plan-card popular"><div class="plan-badge">⭐ الأكثر شعبية</div><h3 data-lang="ar">نَسَّاج محترف</h3><h3 data-lang="en">Pro Weaver</h3><div class="plan-price">$9.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">تحميلات غير محدودة</span><span data-lang="en">Unlimited downloads</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">محتوى حصري</span><span data-lang="en">Exclusive content</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">دعم 24/7</span><span data-lang="en">24/7 support</span></li></ul><a href="subscription.html" class="btn-plan" data-lang="ar">اشترك الآن</a><a href="subscription.html" class="btn-plan" data-lang="en">Subscribe</a></div>
+<div class="plan-card"><h3 data-lang="ar">نَسَّاج أعمال</h3><h3 data-lang="en">Business Weaver</h3><div class="plan-price">$19.99 <span>/month</span></div><ul class="plan-features"><li><i class="fas fa-check"></i> <span data-lang="ar">كل مميزات المحترف</span><span data-lang="en">All Pro features</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">تقارير شهرية PDF</span><span data-lang="en">Monthly PDF reports</span></li><li><i class="fas fa-check"></i> <span data-lang="ar">استشارة شهرية مجانية</span><span data-lang="en">Free monthly consultation</span></li></ul><a href="subscription.html" class="btn-plan" data-lang="ar">اشترك الآن</a><a href="subscription.html" class="btn-plan" data-lang="en">Subscribe</a></div></div></div></section>
 
-<section class="features"><div class="container"><h2 class="section-title" data-lang="ar">لماذا MindWeave؟</h2><h2 class="section-title" data-lang="en">Why MindWeave?</h2><div class="features-grid"><div class="feature-card"><div class="feature-icon">🧠</div><h3 data-lang="ar">تفسير عميق بالذكاء الاصطناعي</h3><h3 data-lang="en">Deep AI Interpretation</h3><p data-lang="ar">محتوى رقمي مصمم بدقة لاحتياجات المستخدم العربي والعالمي.</p><p data-lang="en">Digital content designed for Arabic and global users.</p></div><div class="feature-card"><div class="feature-icon">🎨</div><h3 data-lang="ar">توليد محتوى بجودة 4K</h3><h3 data-lang="en">4K Content Generation</h3><p data-lang="ar">منتجات مصممة بأعلى جودة للاستخدام الاحترافي.</p><p data-lang="en">Products in highest quality for professional use.</p></div><div class="feature-card"><div class="feature-icon">📚</div><h3 data-lang="ar">محتوى ثقافي غني</h3><h3 data-lang="en">Rich Cultural Content</h3><p data-lang="ar">مدونة تربط بين الذكاء الاصطناعي والتراث الإنساني.</p><p data-lang="en">Blog connecting AI with human heritage.</p></div><div class="feature-card"><div class="feature-icon">🤖</div><h3 data-lang="ar">بوت مساعد ذكي</h3><h3 data-lang="en">AI Assistant Bot</h3><p data-lang="ar">بوت محادثة يفهم احتياجاتك ويقترح المنتجات المناسبة.</p><p data-lang="en">Chatbot that understands your needs.</p></div><div class="feature-card"><div class="feature-icon">⚡</div><h3 data-lang="ar">تسليم فوري مضمون</h3><h3 data-lang="en">Instant Delivery</h3><p data-lang="ar">بعد الدفع مباشرة، تستلم ملفاتك عبر الإيميل خلال دقائق.</p><p data-lang="en">Get your files by email within minutes.</p></div><div class="feature-card"><div class="feature-icon">🔄</div><h3 data-lang="ar">تحديثات مجانية مدى الحياة</h3><h3 data-lang="en">Lifetime Free Updates</h3><p data-lang="ar">جميع المنتجات تحصل على تحديثات مستقبلية مجاناً.</p><p data-lang="en">All products receive free future updates.</p></div></div></div></section>
+<section class="features" id="features"><div class="container"><h2 class="section-title" data-lang="ar">لماذا MindWeave؟</h2><h2 class="section-title" data-lang="en">Why MindWeave?</h2><div class="features-grid"><div class="feature-card"><div class="feature-icon">🧠</div><h3 data-lang="ar">تفسير عميق بالذكاء الاصطناعي</h3><h3 data-lang="en">Deep AI Interpretation</h3><p data-lang="ar">محتوى رقمي مصمم بدقة لاحتياجات المستخدم العربي والعالمي.</p><p data-lang="en">Digital content designed for Arabic and global users.</p></div><div class="feature-card"><div class="feature-icon">🎨</div><h3 data-lang="ar">توليد محتوى بجودة 4K</h3><h3 data-lang="en">4K Content Generation</h3><p data-lang="ar">منتجات مصممة بأعلى جودة للاستخدام الاحترافي.</p><p data-lang="en">Products in highest quality for professional use.</p></div><div class="feature-card"><div class="feature-icon">📚</div><h3 data-lang="ar">محتوى ثقافي غني</h3><h3 data-lang="en">Rich Cultural Content</h3><p data-lang="ar">مدونة تربط بين الذكاء الاصطناعي والتراث الإنساني.</p><p data-lang="en">Blog connecting AI with human heritage.</p></div><div class="feature-card"><div class="feature-icon">🤖</div><h3 data-lang="ar">بوت مساعد ذكي</h3><h3 data-lang="en">AI Assistant Bot</h3><p data-lang="ar">بوت محادثة يفهم احتياجاتك ويقترح المنتجات المناسبة.</p><p data-lang="en">Chatbot that understands your needs and suggests products.</p></div><div class="feature-card"><div class="feature-icon">⚡</div><h3 data-lang="ar">تسليم فوري مضمون</h3><h3 data-lang="en">Instant Delivery</h3><p data-lang="ar">بعد الدفع مباشرة، تستلم ملفاتك عبر الإيميل خلال دقائق.</p><p data-lang="en">Get your files by email within minutes.</p></div><div class="feature-card"><div class="feature-icon">🔄</div><h3 data-lang="ar">تحديثات مجانية مدى الحياة</h3><h3 data-lang="en">Lifetime Free Updates</h3><p data-lang="ar">جميع المنتجات تحصل على تحديثات مستقبلية مجاناً.</p><p data-lang="en">All products receive free future updates.</p></div></div></div></section>
 
 <section class="newsletter"><div class="container"><div class="newsletter-content"><h3 data-lang="ar">احصل على 100 أمر مجاني لـ ChatGPT</h3><h3 data-lang="en">Get 100 Free ChatGPT Prompts</h3><form class="newsletter-form" id="newsletter-form"><input type="email" placeholder="Email" required><button type="submit" data-lang="ar">اشتراك مجاني</button><button type="submit" data-lang="en">Subscribe Free</button></form></div></div></section>
 </main>
 
-<footer><div class="container"><div class="footer-grid"><div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div><div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li><li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li><li><a href="subscription.html" data-lang="ar">خطط الاشتراك</a><a href="subscription.html" data-lang="en">Subscription</a></li></ul></div><div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li><li><a href="faq.html" data-lang="ar">الأسئلة الشائعة</a><a href="faq.html" data-lang="en">FAQ</a></li></ul></div><div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li><li><a href="refund.html" data-lang="ar">سياسة الاسترجاع</a><a href="refund.html" data-lang="en">Refund</a></li></ul></div><div class="footer-col"><h4 data-lang="ar">تواصل معنا</h4><h4 data-lang="en">Contact</h4><ul><li><i class="fas fa-envelope"></i> support@mindweave.store</li><li><i class="fas fa-headset"></i> <span data-lang="ar">دعم 24/7</span><span data-lang="en">24/7 Support</span></li></ul></div></div><div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
+<footer><div class="container"><div class="footer-grid"><div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div><div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li></ul></div><div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li><li><a href="faq.html" data-lang="ar">الأسئلة الشائعة</a><a href="faq.html" data-lang="en">FAQ</a></li></ul></div><div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
 
 <div class="chatbot-toggle" id="chatbotToggle"><i class="fas fa-robot"></i><span data-lang="ar">مساعد AI</span><span data-lang="en">AI Assistant</span></div>
-<div class="chatbot-window" id="chatbotWindow"><div class="chatbot-header" id="chatbotHeader">🤖 <span data-lang="ar">مساعد MindWeave</span><span data-lang="en">MindWeave Assistant</span></div><div class="chatbot-messages" id="chatbotMessages"><div class="message bot"><span data-lang="ar">مرحباً! كيف يمكنني مساعدتك اليوم؟</span><span data-lang="en">Hello! How can I help you today?</span></div></div><div class="chatbot-input"><input type="text" id="chatbotInput" placeholder="..."><button id="chatbotSend">📤</button></div></div>
+<div class="chatbot-window" id="chatbotWindow"><div class="chatbot-header"><span id="chatbotHeader">🤖 <span data-lang="ar">مساعد MindWeave</span><span data-lang="en">MindWeave Assistant</span></span><span id="closeChatbot" style="cursor:pointer">✕</span></div><div class="chatbot-messages" id="chatbotMessages"><div class="message bot"><span data-lang="ar">مرحباً! أنا مساعد MindWeave. يمكنني مساعدتك في العثور على أوامر الذكاء الاصطناعي. جرب أن تسألني: "أريد أمراً لتصميم شعار"</span><span data-lang="en">Hello! I'm MindWeave Assistant. I can help you find AI prompts. Try asking: "I need a logo design prompt"</span></div></div><div class="chatbot-input"><input type="text" id="chatbotInput" placeholder="..."><button id="chatbotSend">📤</button></div></div>
 
 <script>
-const products=[{id:1,name:"Midjourney Prompts Pack",nameAr:"حزمة أوامر Midjourney",price:9.99,oldPrice:19.99,descAr:"100 أمر احترافي لتوليد صور تجارية وشعارات",descEn:"100 professional prompts for commercial images and logos",icon:"🎨",badge:"🔥 الأكثر مبيعاً -11%",badgeEn:"🔥 Best Seller -11%"},{id:2,name:"ChatGPT Prompts Pack",nameAr:"حزمة أوامر ChatGPT",price:7.99,oldPrice:12.99,descAr:"50 أمر مخصص للتسويق والمبيعات وإعلانات",descEn:"50 prompts for marketing, sales, and ads",icon:"📝",badge:"⭐ مميز -14%",badgeEn:"⭐ Featured -14%"},{id:3,name:"Notion AI Template",nameAr:"قالب Notion الذكي",price:12.99,oldPrice:19.99,descAr:"إدارة المشاريع بالذكاء الاصطناعي مع أتمتة كاملة",descEn:"Project management with AI and full automation",icon:"📊",badge:"💎 حصري -11%",badgeEn:"💎 Exclusive -11%"},{id:4,name:"AI Tools Directory",nameAr:"دليل أدوات الذكاء الاصطناعي",price:5.99,oldPrice:9.99,descAr:"أكثر من 50 أداة مجانية مع شرح مفصل",descEn:"50+ free AI tools with detailed explanations",icon:"📚",badge:"🔥 الأكثر مبيعاً -13%",badgeEn:"🔥 Best Seller -13%"},{id:5,name:"AI Logo Design Service",nameAr:"خدمة تصميم شعار بالذكاء الاصطناعي",price:19.99,oldPrice:29.99,descAr:"تصميم احترافي خلال 24 ساعة مع 3 تعديلات",descEn:"Professional design in 24h with 3 revisions",icon:"🎯",badge:"⭐ مميز -13%",badgeEn:"⭐ Featured -13%"},{id:6,name:"Coding Prompts Pack",nameAr:"حزمة أوامر البرمجة",price:14.99,oldPrice:24.99,descAr:"50 أمر لتوليد أكواد برمجية وحل المشاكل",descEn:"50 prompts for code generation and debugging",icon:"💻",badge:"💎 حصري -13%",badgeEn:"💎 Exclusive -13%"}];
-let currentLang=localStorage.getItem('lang')||'ar';
-function toggleLanguage(){currentLang=currentLang==='ar'?'en':'ar';localStorage.setItem('lang',currentLang);document.body.classList.toggle('en',currentLang==='en');document.getElementById('langBtn').textContent=currentLang==='ar'?'English':'عربي';renderProducts();updateCartDisplay();updateChatbotLanguage();}
-function applyLanguage(){document.body.classList.toggle('en',currentLang==='en');document.getElementById('langBtn').textContent=currentLang==='ar'?'English':'عربي';renderProducts();updateChatbotLanguage();}
-let cart=JSON.parse(localStorage.getItem('cart'))||[];
-function updateCartDisplay(){const count=cart.reduce((s,i)=>s+i.quantity,0);document.getElementById('cartCount').textContent=count;localStorage.setItem('cart',JSON.stringify(cart));}
-function addToCart(productId,productName,price){const existing=cart.find(i=>i.id===productId);if(existing){existing.quantity+=1;}else{cart.push({id:productId,name:productName,price:price,quantity:1});}updateCartDisplay();alert(currentLang==='ar'?`✅ تم إضافة ${productName} إلى السلة`:`✅ ${productName} added to cart`);}
-function renderProducts(){const container=document.getElementById('productsGrid');if(!container)return;const isAr=currentLang==='ar';container.innerHTML=products.map(p=>`<div class="product-card"><div class="product-badge">${isAr?p.badge:p.badgeEn}</div><div class="product-icon">${p.icon}</div><h3>${isAr?p.nameAr:p.name}</h3><p>${isAr?p.descAr:p.descEn}</p><div class="price">$${p.price} <span class="old-price">$${p.oldPrice}</span></div><button class="btn-buy" onclick="addToCart(${p.id},'${isAr?p.nameAr:p.name}',${p.price})">${isAr?'اشتري الآن':'Buy Now'}</button></div>`).join('');}
-document.getElementById('newsletter-form')?.addEventListener('submit',function(e){e.preventDefault();alert(currentLang==='ar'?'✅ شكراً! تم إرسال 100 أمر مجاني إلى بريدك.':'✅ Thank you! 100 free prompts sent to your email.');this.reset();});
-const chatbotToggle=document.getElementById('chatbotToggle'),chatbotWindow=document.getElementById('chatbotWindow'),chatbotMessages=document.getElementById('chatbotMessages'),chatbotInput=document.getElementById('chatbotInput'),chatbotSend=document.getElementById('chatbotSend');
-function updateChatbotLanguage(){const header=document.querySelector('.chatbot-header');if(header){header.innerHTML=currentLang==='ar'?'🤖 مساعد MindWeave':'🤖 MindWeave Assistant';}const firstMsg=chatbotMessages?.querySelector('.message.bot');if(firstMsg){firstMsg.innerHTML=currentLang==='ar'?'مرحباً! كيف يمكنني مساعدتك اليوم؟':'Hello! How can I help you today?';}}
-function addBotMessage(text){const msgDiv=document.createElement('div');msgDiv.className='message bot';msgDiv.textContent=text;chatbotMessages.appendChild(msgDiv);chatbotMessages.scrollTop=chatbotMessages.scrollHeight;}
-function handleUserMessage(text){const userMsg=document.createElement('div');userMsg.className='message user';userMsg.textContent=text;chatbotMessages.appendChild(userMsg);setTimeout(()=>{let reply='';if(text.includes('منتج')||text.includes('product')){reply=currentLang==='ar'?'لدينا 6 منتجات مميزة: حزم Midjourney و ChatGPT، قالب Notion، دليل الأدوات، خدمة تصميم الشعارات، وحزمة البرمجة.':'We have 6 featured products: Midjourney & ChatGPT packs, Notion template, AI tools, logo design, coding pack.';}else if(text.includes('سعر')||text.includes('price')){reply=currentLang==='ar'?'أسعار المنتجات تبدأ من $5.99 حتى $19.99، مع خصومات تصل إلى 30%.':'Prices start at $5.99 up to $19.99, with discounts up to 30%.';}else if(text.includes('تسليم')||text.includes('delivery')){reply=currentLang==='ar'?'التسليم فوري عبر الإيميل بعد الدفع مباشرة.':'Instant delivery by email after payment.';}else{reply=currentLang==='ar'?'يمكنك سؤالي عن المنتجات، الأسعار، أو طريقة التسليم. كيف يمكنني مساعدتك؟':'You can ask me about products, prices, or delivery. How can I help?';}addBotMessage(reply);},500);}
-chatbotToggle?.addEventListener('click',()=>{chatbotWindow.style.display=chatbotWindow.style.display==='block'?'none':'block';});
-chatbotSend?.addEventListener('click',()=>{const text=chatbotInput.value.trim();if(text){handleUserMessage(text);chatbotInput.value='';}});
-chatbotInput?.addEventListener('keypress',(e)=>{if(e.key==='Enter'){const text=chatbotInput.value.trim();if(text){handleUserMessage(text);chatbotInput.value='';}}});
-applyLanguage();updateCartDisplay();
+// Products Data
+const products = [
+    { id: 1, name: "Midjourney Prompts Pack", nameAr: "حزمة أوامر Midjourney", price: 9.99, oldPrice: 19.99, descAr: "100 أمر احترافي لتوليد صور تجارية وشعارات", descEn: "100 professional prompts for commercial images and logos", icon: "🎨", badge: "🔥 الأكثر مبيعاً -11%", badgeEn: "🔥 Best Seller -11%" },
+    { id: 2, name: "ChatGPT Prompts Pack", nameAr: "حزمة أوامر ChatGPT", price: 7.99, oldPrice: 12.99, descAr: "50 أمر مخصص للتسويق والمبيعات وإعلانات", descEn: "50 prompts for marketing, sales, and ads", icon: "📝", badge: "⭐ مميز -14%", badgeEn: "⭐ Featured -14%" },
+    { id: 3, name: "Notion AI Template", nameAr: "قالب Notion الذكي", price: 12.99, oldPrice: 19.99, descAr: "إدارة المشاريع بالذكاء الاصطناعي مع أتمتة كاملة", descEn: "Project management with AI and full automation", icon: "📊", badge: "💎 حصري -11%", badgeEn: "💎 Exclusive -11%" },
+    { id: 4, name: "AI Tools Directory", nameAr: "دليل أدوات الذكاء الاصطناعي", price: 5.99, oldPrice: 9.99, descAr: "أكثر من 50 أداة مجانية مع شرح مفصل", descEn: "50+ free AI tools with detailed explanations", icon: "📚", badge: "🔥 الأكثر مبيعاً -13%", badgeEn: "🔥 Best Seller -13%" },
+    { id: 5, name: "AI Logo Design Service", nameAr: "خدمة تصميم شعار بالذكاء الاصطناعي", price: 19.99, oldPrice: 29.99, descAr: "تصميم احترافي خلال 24 ساعة مع 3 تعديلات", descEn: "Professional design in 24h with 3 revisions", icon: "🎯", badge: "⭐ مميز -13%", badgeEn: "⭐ Featured -13%" },
+    { id: 6, name: "Coding Prompts Pack", nameAr: "حزمة أوامر البرمجة", price: 14.99, oldPrice: 24.99, descAr: "50 أمر لتوليد أكواد برمجية وحل المشاكل", descEn: "50 prompts for code generation and debugging", icon: "💻", badge: "💎 حصري -13%", badgeEn: "💎 Exclusive -13%" }
+];
+
+// Gemini API Key
+const GEMINI_API_KEY = "AIzaSyBV1NCOqLbUrINUkTxbBvfMe6QQy72Ddms";
+
+// Language
+let currentLang = localStorage.getItem('lang') || 'ar';
+
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    renderProducts();
+    updateCartDisplay();
+    updateChatbotLanguage();
+}
+
+function applyLanguage() {
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    renderProducts();
+    updateChatbotLanguage();
+}
+
+// Cart
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function updateCartDisplay() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cartCount').textContent = count;
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function addToCart(productId, productName, price) {
+    const existing = cart.find(item => item.id === productId);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ id: productId, name: productName, price: price, quantity: 1 });
+    }
+    updateCartDisplay();
+    alert(currentLang === 'ar' ? `✅ تم إضافة ${productName} إلى السلة` : `✅ ${productName} added to cart`);
+}
+
+function renderProducts() {
+    const container = document.getElementById('productsGrid');
+    if (!container) return;
+    const isAr = currentLang === 'ar';
+    container.innerHTML = products.map(p => `
+        <div class="product-card">
+            <div class="product-badge">${isAr ? p.badge : p.badgeEn}</div>
+            <div class="product-icon">${p.icon}</div>
+            <h3>${isAr ? p.nameAr : p.name}</h3>
+            <p>${isAr ? p.descAr : p.descEn}</p>
+            <div class="price">$${p.price} <span class="old-price">$${p.oldPrice}</span></div>
+            <button class="btn-buy" onclick="addToCart(${p.id}, '${isAr ? p.nameAr : p.name}', ${p.price})">${isAr ? 'اشتري الآن' : 'Buy Now'}</button>
+        </div>
+    `).join('');
+}
+
+document.getElementById('newsletter-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert(currentLang === 'ar' ? '✅ شكراً! تم إرسال 100 أمر مجاني إلى بريدك.' : '✅ Thank you! 100 free prompts sent to your email.');
+    this.reset();
+});
+
+// ==================== CHATBOT ====================
+const chatbotToggle = document.getElementById('chatbotToggle');
+const chatbotWindow = document.getElementById('chatbotWindow');
+const chatbotMessages = document.getElementById('chatbotMessages');
+const chatbotInput = document.getElementById('chatbotInput');
+const chatbotSend = document.getElementById('chatbotSend');
+const closeChatbot = document.getElementById('closeChatbot');
+
+let isWaiting = false;
+
+function updateChatbotLanguage() {
+    const header = document.getElementById('chatbotHeader');
+    if (header) {
+        header.innerHTML = currentLang === 'ar' ? '🤖 مساعد MindWeave' : '🤖 MindWeave Assistant';
+    }
+}
+
+function addMessage(text, isUser = false) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+    msgDiv.textContent = text;
+    chatbotMessages.appendChild(msgDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    return msgDiv;
+}
+
+function addTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message bot loading';
+    typingDiv.textContent = currentLang === 'ar' ? '✍️ جاري التفكير...' : '✍️ Thinking...';
+    chatbotMessages.appendChild(typingDiv);
+    return typingDiv;
+}
+
+async function generatePromptWithGemini(query) {
+    const prompt = currentLang === 'ar' 
+        ? `أنت مساعد ذكي متخصص في أوامر الذكاء الاصطناعي. المستخدم يسأل عن: "${query}". أجب بتقديم أمر (prompt) احترافي مناسب مع شرح بسيط.`
+        : `You are an AI prompt expert. The user asks: "${query}". Provide a professional prompt with a brief explanation.`;
+    
+    try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: { temperature: 0.7, maxOutputTokens: 800 }
+            })
+        });
+        if (!response.ok) throw new Error('API error');
+        const data = await response.json();
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || null;
+    } catch (error) {
+        console.error('Gemini API error:', error);
+        return null;
+    }
+}
+
+async function handleUserMessage(message) {
+    if (isWaiting) return;
+    isWaiting = true;
+    addMessage(message, true);
+    chatbotInput.value = '';
+    const typing = addTypingIndicator();
+    const response = await generatePromptWithGemini(message);
+    typing.remove();
+    if (response) {
+        const msgDiv = addMessage(response, false);
+        const copyBtn = document.createElement('button');
+        copyBtn.textContent = currentLang === 'ar' ? '📋 نسخ الأمر' : '📋 Copy Prompt';
+        copyBtn.className = 'copy-btn';
+        copyBtn.onclick = () => {
+            navigator.clipboard.writeText(response);
+            alert(currentLang === 'ar' ? '✅ تم نسخ الأمر!' : '✅ Prompt copied!');
+        };
+        msgDiv.appendChild(copyBtn);
+    } else {
+        addMessage(currentLang === 'ar' ? 'عذرًا، حدث خطأ. حاول مرة أخرى.' : 'Sorry, an error occurred. Try again.', false);
+    }
+    isWaiting = false;
+}
+
+chatbotToggle?.addEventListener('click', () => {
+    chatbotWindow.style.display = chatbotWindow.style.display === 'block' ? 'none' : 'block';
+});
+closeChatbot?.addEventListener('click', () => {
+    chatbotWindow.style.display = 'none';
+});
+chatbotSend?.addEventListener('click', () => {
+    const message = chatbotInput.value.trim();
+    if (message && !isWaiting) handleUserMessage(message);
+});
+chatbotInput?.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        const message = chatbotInput.value.trim();
+        if (message && !isWaiting) handleUserMessage(message);
+    }
+});
+
+applyLanguage();
+updateCartDisplay();
 </script>
 </body>
 </html>
