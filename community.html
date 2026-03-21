@@ -1,19 +1,37 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><title>المجتمع | MindWeave</title>
-<link rel="stylesheet" href="css/style.css"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المجتمع | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
 .lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-[data-lang="en"]{display:none}body.en [data-lang="ar"]{display:none}body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:right}
+.lang-switch:hover{background:#6C5CE7}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
 .page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
-.bounty-box{background:#6C5CE7;padding:2rem;border-radius:20px;text-align:center;margin:2rem}
-.forum-post{background:#1A1A2E;padding:1rem;margin:1rem;border-radius:15px}
+.bounty-box{background:linear-gradient(135deg,#6C5CE7,#00D2FF);border-radius:20px;padding:2rem;text-align:center;margin:2rem auto;max-width:800px}
+.bounty-box h2{margin-bottom:1rem}
+.forum-section{max-width:800px;margin:2rem auto}
+.forum-post{background:#1A1A2E;border-radius:15px;padding:1.5rem;margin-bottom:1rem;border:1px solid rgba(108,92,231,0.2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.forum-post h3{margin-bottom:0.5rem}
+.forum-post p{color:#A0A0B0;font-size:0.9rem}
+.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:2rem auto;max-width:800px}
+.member-card{background:#1A1A2E;border-radius:15px;padding:1rem;text-align:center;border:1px solid rgba(108,92,231,0.2)}
 </style>
 </head>
 <body>
-<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
 <ul class="nav-menu">
 <li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
@@ -23,16 +41,91 @@ body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:rig
 <li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
 <li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
 </ul>
-<div><button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button></div>
-</nav></header>
-<main><section class="page-header"><div class="container"><h1 data-lang="ar">مجتمع MindWeave</h1><h1 data-lang="en">MindWeave Community</h1></div></section>
-<div class="bounty-box"><h3 data-lang="ar">🏆 تحدي الشهر</h3><h3 data-lang="en">🏆 Challenge of the Month</h3><p data-lang="ar">شارك بأفضل أمر ChatGPT واربح $50 + اشتراك مجاني</p><p data-lang="en">Share your best ChatGPT prompt and win $50 + free subscription</p><button class="btn-primary" onclick="alert('Coming soon!')" data-lang="ar">شارك الآن</button><button class="btn-primary" onclick="alert('Coming soon!')" data-lang="en">Join Now</button></div>
-<div class="forum-post"><h3>Ahmed_Ali</h3><p data-lang="ar">كيف تحسن جودة صور Midjourney؟</p><p data-lang="en">How to improve Midjourney image quality?</p></div>
-<div class="forum-post"><h3>Sara_K</h3><p data-lang="ar">أفضل 5 أوامر ChatGPT للبرمجة</p><p data-lang="en">Top 5 ChatGPT prompts for coding</p></div></main>
-<footer><div class="container"><div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 data-lang="ar">مجتمع MindWeave</h1>
+<h1 data-lang="en">MindWeave Community</h1>
+<p data-lang="ar">حيث يلتقي المبدعون لمشاركة الخبرات والأفكار</p>
+<p data-lang="en">Where creators meet to share experiences and ideas</p>
+</div>
+</section>
+
+<div class="bounty-box">
+<h2 data-lang="ar">🏆 تحدي الشهر</h2>
+<h2 data-lang="en">🏆 Challenge of the Month</h2>
+<p data-lang="ar">شارك بأفضل أمر ChatGPT أو Midjourney لديك، والفائز يحصل على $50 + اشتراك محترف مجاني لمدة 3 أشهر</p>
+<p data-lang="en">Share your best ChatGPT or Midjourney prompt, winner gets $50 + free Pro subscription for 3 months</p>
+<button class="btn-primary" onclick="alert('سيتم الإعلان قريباً')" data-lang="ar">شارك الآن</button>
+<button class="btn-primary" onclick="alert('Coming soon')" data-lang="en">Join Now</button>
+</div>
+
+<div class="forum-section">
+<h2 data-lang="ar">آخر المناقشات</h2>
+<h2 data-lang="en">Latest Discussions</h2>
+<div class="forum-post">
+<div><h3>كيف تحسن جودة صور Midjourney؟</h3><p>بواسطة Ahmed_Ali • 3 ردود • منذ ساعة</p></div>
+<button class="btn-secondary" onclick="alert('قريباً')">عرض</button>
+</div>
+<div class="forum-post">
+<div><h3>أفضل 5 أوامر ChatGPT للبرمجة</h3><p>بواسطة Sara_K • 7 ردود • منذ 3 ساعات</p></div>
+<button class="btn-secondary" onclick="alert('قريباً')">عرض</button>
+</div>
+<div class="forum-post">
+<div><h3>تجربتي مع قالب Notion الذكي</h3><p>بواسطة Omar_H • 2 ردود • منذ يوم</p></div>
+<button class="btn-secondary" onclick="alert('قريباً')">عرض</button>
+</div>
+</div>
+
+<h2 data-lang="ar" style="text-align:center">أعضاء مميزون</h2>
+<h2 data-lang="en" style="text-align:center">Featured Members</h2>
+<div class="members-grid">
+<div class="member-card">👤 Ahmed_Ali • 150 نقطة</div>
+<div class="member-card">👤 Sara_K • 120 نقطة</div>
+<div class="member-card">👤 Omar_H • 95 نقطة</div>
+<div class="member-card">👤 Nora_M • 80 نقطة</div>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
+
 <script>
-function toggleLanguage(){document.body.classList.toggle('en');let lang=document.body.classList.contains('en')?'en':'ar';localStorage.setItem('lang',lang);document.getElementById('langBtn').textContent=lang=='ar'?'English':'عربي';}
-if(localStorage.getItem('lang')=='en')document.body.classList.add('en');document.getElementById('langBtn').textContent=localStorage.getItem('lang')=='en'?'عربي':'English';
+let currentLang = localStorage.getItem('lang') || 'ar';
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+}
+function applyLanguage() {
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+}
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function updateCartDisplay() {
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
+}
+applyLanguage();
+updateCartDisplay();
 </script>
 </body>
 </html>
