@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المقال | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.article-content{max-width:800px;margin:auto;padding:2rem;line-height:1.8;background:#1A1A2E;border-radius:20px}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+</ul>
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 id="postTitleAr">عنوان المقال</h1>
+<h1 id="postTitleEn" style="display:none">Article Title</h1>
+</div>
+</section>
+<div class="article-content">
+<div id="postContentAr"></div>
+<div id="postContentEn" style="display:none"></div>
+</div>
+</main>
+
+<footer><div class="container"><p>© 2026 MindWeave</p></div></footer>
+
+<script>
+const posts = {
+    1: {
+        titleAr: "كيف تكتب أوامر احترافية لـ ChatGPT: دليل المبتدئين",
+        titleEn: "How to Write Professional ChatGPT Prompts: A Beginner's Guide",
+        contentAr: `<h2>📖 مقدمة</h2><p>كتابة الأوامر (Prompt Engineering) هي مهارة أساسية للاستفادة القصوى من ChatGPT. في هذا الدليل، سنتعلم كيفية صياغة أوامر تحصل من خلالها على نتائج دقيقة ومفيدة.</p>
+        <h2>1. كن محددًا</h2><p>كلما كانت التعليمات واضحة ومحددة، كانت النتائج أفضل. بدلاً من كتابة "اكتب عن التسويق"، اكتب "اكتب خطة تسويق لمنتج إلكتروني تشمل استراتيجيات وسائل التواصل الاجتماعي والبريد الإلكتروني".</p>
+        <h2>2. حدد الجمهور المستهدف</h2><p>أخبر ChatGPT لمن تكتب. مثلاً: "اكتب هذا المحتوى للمبتدئين في مجال الذكاء الاصطناعي" أو "اكتب هذا المحتوى للمسوقين المحترفين".</p>
+        <h2>3. استخدم أمثلة</h2><p>قدم أمثلة على ما تريده. يمكنك كتابة: "اكتب منشورًا على غرار هذا المثال: [المثال]".</p>
+        <h2>4. حدد الشكل والمخرج</h2><p>اطلب تنسيقًا محددًا: "على شكل قائمة نقطية"، "في جدول"، أو "مقسم إلى فقرات قصيرة".</p>
+        <h2>5. جرّب وأعد الصياغة</h2><p>إذا لم تحصل على النتيجة المرجوة، أعد صياغة الأمر بطريقة مختلفة أو أضف تفاصيل إضافية.</p>
+        <h2>🎯 خاتمة</h2><p>مع الممارسة، ستتقن فن كتابة الأوامر وتحصل على نتائج مذهلة من ChatGPT. ابدأ بتجربة الأوامر المذكورة في مكتبتنا المجانية.</p>`,
+        contentEn: `<h2>📖 Introduction</h2><p>Prompt Engineering is an essential skill for getting the most out of ChatGPT. In this guide, we'll learn how to craft prompts that yield accurate and useful results.</p>
+        <h2>1. Be Specific</h2><p>The clearer and more specific your instructions, the better the results. Instead of "write about marketing," write "write a marketing plan for a digital product including social media and email strategies."</p>
+        <h2>2. Define Your Audience</h2><p>Tell ChatGPT who you're writing for. For example: "Write this content for beginners in AI" or "Write this content for professional marketers."</p>
+        <h2>3. Use Examples</h2><p>Provide examples of what you want. You can write: "Write a post similar to this example: [example]."</p>
+        <h2>4. Specify Format and Output</h2><p>Request a specific format: "as a bulleted list," "in a table," or "divided into short paragraphs."</p>
+        <h2>5. Experiment and Refine</h2><p>If you don't get the desired result, rephrase your prompt or add more details.</p>
+        <h2>🎯 Conclusion</h2><p>With practice, you'll master the art of prompt writing and get amazing results from ChatGPT. Start by trying the prompts in our free library.</p>`
+    }
+};
+
+const urlParams = new URLSearchParams(window.location.search);
+const postId = urlParams.get('id');
+const post = posts[postId] || posts[1];
+
+let currentLang = localStorage.getItem('lang') || 'ar';
+
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+    updateContent();
+}
+
+function updateContent() {
+    const isEn = currentLang === 'en';
+    document.getElementById('postTitleAr').style.display = isEn ? 'none' : 'block';
+    document.getElementById('postTitleEn').style.display = isEn ? 'block' : 'none';
+    document.getElementById('post
