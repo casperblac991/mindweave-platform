@@ -3,16 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="مقالات MindWeave - دليل شامل في عالم الذكاء الاصطناعي">
+<meta name="keywords" content="مقالات الذكاء الاصطناعي, دليل AI, تعلم الذكاء الاصطناعي">
+<meta name="author" content="MindWeave">
+<meta name="google-site-verification" content="ATi9HKInahPK22qqb-sqp70-MIeFlgKp0n8azYVo_Mw" />
 <title>المقال | MindWeave</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DZ4WQDX31M');
+</script>
 <link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
 .lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+.lang-switch:hover{background:#6C5CE7}
 [data-lang="en"]{display:none}
 body.en [data-lang="ar"]{display:none}
 body.en [data-lang="en"]{display:block}
 body.en{direction:ltr;text-align:left}
 body:not(.en){direction:rtl;text-align:right}
+.cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
+.cart-icon{text-decoration:none;color:white}
+.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
+.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
 .page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
 .article-content{max-width:800px;margin:auto;padding:2rem;line-height:1.8;background:#1A1A2E;border-radius:20px}
 </style>
@@ -27,16 +45,22 @@ body:not(.en){direction:rtl;text-align:right}
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
 <li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
 <li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
 </ul>
+<div class="nav-icons">
 <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
+</div>
 </nav>
 </header>
 
 <main>
 <section class="page-header">
 <div class="container">
-<h1 id="postTitleAr">عنوان المقال</h1>
-<h1 id="postTitleEn" style="display:none">Article Title</h1>
+<h1 id="postTitleAr"></h1>
+<h1 id="postTitleEn" style="display:none"></h1>
 </div>
 </section>
 <div class="article-content">
@@ -45,7 +69,17 @@ body:not(.en){direction:rtl;text-align:right}
 </div>
 </main>
 
-<footer><div class="container"><p>© 2026 MindWeave</p></div></footer>
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
 
 <script>
 const posts = {
@@ -53,38 +87,82 @@ const posts = {
         titleAr: "كيف تكتب أوامر احترافية لـ ChatGPT: دليل المبتدئين",
         titleEn: "How to Write Professional ChatGPT Prompts: A Beginner's Guide",
         contentAr: `<h2>📖 مقدمة</h2><p>كتابة الأوامر (Prompt Engineering) هي مهارة أساسية للاستفادة القصوى من ChatGPT. في هذا الدليل، سنتعلم كيفية صياغة أوامر تحصل من خلالها على نتائج دقيقة ومفيدة.</p>
-        <h2>1. كن محددًا</h2><p>كلما كانت التعليمات واضحة ومحددة، كانت النتائج أفضل. بدلاً من كتابة "اكتب عن التسويق"، اكتب "اكتب خطة تسويق لمنتج إلكتروني تشمل استراتيجيات وسائل التواصل الاجتماعي والبريد الإلكتروني".</p>
+        <h2>1. كن محددًا وواضحًا</h2><p>كلما كانت التعليمات أكثر وضوحًا وتحديدًا، كانت النتائج أفضل. بدلاً من كتابة "اكتب عن التسويق"، اكتب "اكتب خطة تسويق شاملة لمنتج إلكتروني جديد، تشمل استراتيجيات وسائل التواصل الاجتماعي، التسويق عبر البريد الإلكتروني، وتحليل المنافسين".</p>
         <h2>2. حدد الجمهور المستهدف</h2><p>أخبر ChatGPT لمن تكتب. مثلاً: "اكتب هذا المحتوى للمبتدئين في مجال الذكاء الاصطناعي" أو "اكتب هذا المحتوى للمسوقين المحترفين".</p>
-        <h2>3. استخدم أمثلة</h2><p>قدم أمثلة على ما تريده. يمكنك كتابة: "اكتب منشورًا على غرار هذا المثال: [المثال]".</p>
-        <h2>4. حدد الشكل والمخرج</h2><p>اطلب تنسيقًا محددًا: "على شكل قائمة نقطية"، "في جدول"، أو "مقسم إلى فقرات قصيرة".</p>
+        <h2>3. استخدم أمثلة توضيحية</h2><p>قدم أمثلة على ما تريده. يمكنك كتابة: "اكتب منشورًا على غرار هذا المثال: [المثال]" أو "استخدم هذا الأسلوب: [النص]".</p>
+        <h2>4. حدد الشكل والمخرج النهائي</h2><p>اطلب تنسيقًا محددًا: "على شكل قائمة نقطية من 5 نقاط"، "في جدول يحتوي على 3 أعمدة"، أو "مقسم إلى فقرات قصيرة مع عناوين فرعية".</p>
         <h2>5. جرّب وأعد الصياغة</h2><p>إذا لم تحصل على النتيجة المرجوة، أعد صياغة الأمر بطريقة مختلفة أو أضف تفاصيل إضافية.</p>
-        <h2>🎯 خاتمة</h2><p>مع الممارسة، ستتقن فن كتابة الأوامر وتحصل على نتائج مذهلة من ChatGPT. ابدأ بتجربة الأوامر المذكورة في مكتبتنا المجانية.</p>`,
+        <h2>🎯 خاتمة</h2><p>مع الممارسة المستمرة، ستتقن فن كتابة الأوامر وتحصل على نتائج مذهلة من ChatGPT. ابدأ بتجربة الأوامر المذكورة في مكتبتنا المجانية.</p>`,
         contentEn: `<h2>📖 Introduction</h2><p>Prompt Engineering is an essential skill for getting the most out of ChatGPT. In this guide, we'll learn how to craft prompts that yield accurate and useful results.</p>
-        <h2>1. Be Specific</h2><p>The clearer and more specific your instructions, the better the results. Instead of "write about marketing," write "write a marketing plan for a digital product including social media and email strategies."</p>
-        <h2>2. Define Your Audience</h2><p>Tell ChatGPT who you're writing for. For example: "Write this content for beginners in AI" or "Write this content for professional marketers."</p>
-        <h2>3. Use Examples</h2><p>Provide examples of what you want. You can write: "Write a post similar to this example: [example]."</p>
-        <h2>4. Specify Format and Output</h2><p>Request a specific format: "as a bulleted list," "in a table," or "divided into short paragraphs."</p>
+        <h2>1. Be Specific and Clear</h2><p>The clearer and more specific your instructions, the better the results. Instead of "write about marketing," write "write a comprehensive marketing plan for a new digital product, including social media strategies, email marketing, and competitor analysis."</p>
+        <h2>2. Define Your Target Audience</h2><p>Tell ChatGPT who you're writing for. For example: "Write this content for beginners in AI" or "Write this content for professional marketers."</p>
+        <h2>3. Use Examples</h2><p>Provide examples of what you want. You can write: "Write a post similar to this example: [example]" or "Use this style: [text]."</p>
+        <h2>4. Specify Format and Output</h2><p>Request a specific format: "as a bulleted list of 5 points," "in a table with 3 columns," or "divided into short paragraphs with subheadings."</p>
         <h2>5. Experiment and Refine</h2><p>If you don't get the desired result, rephrase your prompt or add more details.</p>
-        <h2>🎯 Conclusion</h2><p>With practice, you'll master the art of prompt writing and get amazing results from ChatGPT. Start by trying the prompts in our free library.</p>`
+        <h2>🎯 Conclusion</h2><p>With consistent practice, you'll master the art of prompt writing and get amazing results from ChatGPT. Start by trying the prompts in our free library.</p>`
+    },
+    2: {
+        titleAr: "أفضل 50 أمر Midjourney لتصميم شعارات احترافية",
+        titleEn: "Best 50 Midjourney Prompts for Professional Logo Design",
+        contentAr: `<h2>📖 مقدمة</h2><p>تصميم شعار احترافي لم يعد يحتاج إلى مصمم جرافيك محترف. مع Midjourney، يمكنك توليد شعارات مميزة في دقائق. إليك أفضل الأوامر لتصميم شعارات لجميع أنواع الشركات.</p>
+        <h2>🎨 أوامر لشعارات الشركات التقنية</h2>
+        <p><code>/imagine prompt minimalist logo for a tech startup, blue and white, vector style, geometric shapes, clean lines --v 6</code></p>
+        <p><code>/imagine prompt futuristic logo for AI company, neon blue, circuit board pattern, modern --v 6</code></p>
+        <h2>👑 أوامر لشعارات العلامات الفاخرة</h2>
+        <p><code>/imagine prompt luxury brand logo, gold and black, elegant typography, serif font, crown icon --v 6</code></p>
+        <h2>💡 نصائح للحصول على أفضل النتائج</h2>
+        <ul><li>استخدم --v 6 للحصول على أحدث إصدار</li><li>أضف --no text لمنع ظهور نصوص غير مرغوب فيها</li><li>جرّب نسب أبعاد مختلفة باستخدام --ar 1:1 أو --ar 3:2</li></ul>`,
+        contentEn: `<h2>📖 Introduction</h2><p>Professional logo design no longer requires a professional graphic designer. With Midjourney, you can generate unique logos in minutes. Here are the best prompts for designing logos for all types of businesses.</p>
+        <h2>🎨 Tech Company Logos</h2>
+        <p><code>/imagine prompt minimalist logo for a tech startup, blue and white, vector style, geometric shapes, clean lines --v 6</code></p>
+        <h2>👑 Luxury Brand Logos</h2>
+        <p><code>/imagine prompt luxury brand logo, gold and black, elegant typography, serif font, crown icon --v 6</code></p>
+        <h2>💡 Tips for Best Results</h2>
+        <ul><li>Use --v 6 for the latest version</li><li>Add --no text to prevent unwanted text</li><li>Try different aspect ratios with --ar 1:1 or --ar 3:2</li></ul>`
     }
 };
-
-const urlParams = new URLSearchParams(window.location.search);
-const postId = urlParams.get('id');
-const post = posts[postId] || posts[1];
-
-let currentLang = localStorage.getItem('lang') || 'ar';
-
-function toggleLanguage() {
-    currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    localStorage.setItem('lang', currentLang);
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
-    updateContent();
+for(let i=3;i<=30;i++){
+    posts[i] = posts[1];
 }
 
-function updateContent() {
-    const isEn = currentLang === 'en';
-    document.getElementById('postTitleAr').style.display = isEn ? 'none' : 'block';
-    document.getElementById('postTitleEn').style.display = isEn ? 'block' : 'none';
-    document.getElementById('post
+const urlParams=new URLSearchParams(window.location.search);
+const postId=urlParams.get('id');
+const post=posts[postId]||posts[1];
+let lang=localStorage.getItem('lang')||'ar';
+
+function toggleLanguage(){
+    lang=lang==='ar'?'en':'ar';
+    localStorage.setItem('lang',lang);
+    document.body.classList.toggle('en',lang==='en');
+    document.getElementById('langBtn').textContent=lang==='ar'?'English':'عربي';
+    updateContent();
+}
+function updateContent(){
+    const isEn=lang==='en';
+    document.getElementById('postTitleAr').style.display=isEn?'none':'block';
+    document.getElementById('postTitleEn').style.display=isEn?'block':'none';
+    document.getElementById('postContentAr').style.display=isEn?'none':'block';
+    document.getElementById('postContentEn').style.display=isEn?'block':'none';
+    if(isEn){
+        document.getElementById('postTitleEn').innerText=post.titleEn;
+        document.getElementById('postContentEn').innerHTML=post.contentEn;
+    }else{
+        document.getElementById('postTitleAr').innerText=post.titleAr;
+        document.getElementById('postContentAr').innerHTML=post.contentAr;
+    }
+}
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function updateCartDisplay() {
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
+}
+
+if(lang==='en') document.body.classList.add('en');
+document.getElementById('langBtn').textContent=lang==='ar'?'English':'عربي';
+updateContent();
+updateCartDisplay();
+</script>
+</body>
+</html>
