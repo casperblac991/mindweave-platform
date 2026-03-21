@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><title>من نحن | MindWeave</title>
-<link rel="stylesheet" href="css/style.css"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-[data-lang="en"]{display:none}body.en [data-lang="ar"]{display:none}body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:right}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>من نحن | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+.lang-switch:hover{background:#6C5CE7}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
 .page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
-.about-content{max-width:800px;margin:auto;padding:2rem;text-align:center}
+.about-content{max-width:1000px;margin:auto;padding:2rem}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:3rem}
+.about-text h2{color:#6C5CE7;margin:1.5rem 0 0.5rem}
+.about-text p{line-height:1.8;color:#A0A0B0}
+.stats-box{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.stat-box{background:#1A1A2E;border-radius:15px;padding:1.5rem;text-align:center;border:1px solid rgba(108,92,231,0.2)}
+.stat-box .number{font-size:2rem;font-weight:700;color:#6C5CE7}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+.value-card{background:#1A1A2E;border-radius:15px;padding:1.5rem;text-align:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}.values-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
 <ul class="nav-menu">
 <li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
@@ -21,14 +42,91 @@ body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:rig
 <li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
 <li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
 </ul>
-<div><button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button></div>
-</nav></header>
-<main><section class="page-header"><div class="container"><h1 data-lang="ar">من نحن</h1><h1 data-lang="en">About Us</h1></div></section>
-<div class="about-content"><p data-lang="ar">MindWeave منصة عالمية تأسست عام 2026 لنسج العقول بالذكاء الاصطناعي. نؤمن بأن AI أداة لتوسيع القدرات الإبداعية للإنسان.</p><p data-lang="en">MindWeave is a global platform founded in 2026 to weave minds with AI. We believe AI is a tool to expand human creativity.</p></div></main>
-<footer><div class="container"><div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 data-lang="ar">من نحن</h1>
+<h1 data-lang="en">About Us</h1>
+<p data-lang="ar">قصة MindWeave ورؤيتنا لمستقبل الذكاء الاصطناعي</p>
+<p data-lang="en">The story of MindWeave and our vision for the future of AI</p>
+</div>
+</section>
+
+<div class="about-content">
+<div class="about-grid">
+<div class="about-text">
+<h2 data-lang="ar">✨ نَسَّاج العقول بالذكاء الاصطناعي</h2>
+<h2 data-lang="en">✨ Weaver of Minds with AI</h2>
+<p data-lang="ar">MindWeave هي منصة عالمية تأسست عام 2026 بهدف تمكين الأفراد والشركات من استخدام الذكاء الاصطناعي بفعالية وإبداع. نؤمن بأن الذكاء الاصطناعي ليس بديلاً للعقل البشري، بل هو أداة لنسج أفكار جديدة وتوسيع قدراتنا الإبداعية.</p>
+<p data-lang="en">MindWeave is a global platform founded in 2026 with the goal of empowering individuals and businesses to use AI effectively and creatively. We believe that AI is not a replacement for the human mind, but a tool to weave new ideas and expand our creative capabilities.</p>
+
+<h2 data-lang="ar">رؤيتنا</h2>
+<h2 data-lang="en">Our Vision</h2>
+<p data-lang="ar">نسج مستقبل حيث يتعاون الإنسان والذكاء الاصطناعي لتحقيق إبداعات غير مسبوقة.</p>
+<p data-lang="en">Weaving a future where humans and AI collaborate to achieve unprecedented creativity.</p>
+
+<h2 data-lang="ar">رسالتنا</h2>
+<h2 data-lang="en">Our Mission</h2>
+<p data-lang="ar">تقديم محتوى عربي متميز وأدوات عملية تسهل على الجميع استخدام الذكاء الاصطناعي في حياتهم اليومية وأعمالهم.</p>
+<p data-lang="en">Providing exceptional Arabic content and practical tools that make it easy for everyone to use AI in their daily lives and work.</p>
+</div>
+<div class="stats-box">
+<div class="stat-box"><div class="number">500+</div><span data-lang="ar">أمر مجاني</span><span data-lang="en">Free Prompts</span></div>
+<div class="stat-box"><div class="number">50+</div><span data-lang="ar">منتج رقمي</span><span data-lang="en">Digital Products</span></div>
+<div class="stat-box"><div class="number">98%</div><span data-lang="ar">رضا العملاء</span><span data-lang="en">Satisfaction</span></div>
+<div class="stat-box"><div class="number">15+</div><span data-lang="ar">دولة</span><span data-lang="en">Countries</span></div>
+</div>
+</div>
+
+<h2 data-lang="ar" style="text-align:center;color:#6C5CE7">قيمنا</h2>
+<h2 data-lang="en" style="text-align:center;color:#6C5CE7">Our Values</h2>
+<div class="values-grid">
+<div class="value-card"><i class="fas fa-brain" style="font-size:2rem;color:#6C5CE7"></i><h3 data-lang="ar">الإبداع</h3><h3 data-lang="en">Creativity</h3><p data-lang="ar">نشجع الإبداع والتفكير خارج الصندوق</p><p data-lang="en">We encourage creativity and thinking outside the box</p></div>
+<div class="value-card"><i class="fas fa-handshake" style="font-size:2rem;color:#6C5CE7"></i><h3 data-lang="ar">الثقة</h3><h3 data-lang="en">Trust</h3><p data-lang="ar">نبني علاقات قائمة على الشفافية والصدق</p><p data-lang="en">We build relationships based on transparency and honesty</p></div>
+<div class="value-card"><i class="fas fa-chart-line" style="font-size:2rem;color:#6C5CE7"></i><h3 data-lang="ar">التميز</h3><h3 data-lang="en">Excellence</h3><p data-lang="ar">نسعى دائمًا لتقديم أفضل ما لدينا</p><p data-lang="en">We always strive to deliver our best</p></div>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
+
 <script>
-function toggleLanguage(){document.body.classList.toggle('en');let lang=document.body.classList.contains('en')?'en':'ar';localStorage.setItem('lang',lang);document.getElementById('langBtn').textContent=lang=='ar'?'English':'عربي';}
-if(localStorage.getItem('lang')=='en')document.body.classList.add('en');document.getElementById('langBtn').textContent=localStorage.getItem('lang')=='en'?'عربي':'English';
+let currentLang = localStorage.getItem('lang') || 'ar';
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+}
+function applyLanguage() {
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+}
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function updateCartDisplay() {
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
+}
+applyLanguage();
+updateCartDisplay();
 </script>
 </body>
 </html>
