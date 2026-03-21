@@ -1,0 +1,24 @@
+const posts = {
+1:{
+titleAr:"كيف تبدأ في AI",
+titleEn:"Start AI",
+contentAr:"<p>ابدأ بتعلم الأساسيات...</p>",
+contentEn:"<p>Start with basics...</p>"
+},
+2:{
+titleAr:"الربح من AI",
+titleEn:"Make Money with AI",
+contentAr:"<p>يمكنك الربح عبر الخدمات...</p>",
+contentEn:"<p>You can earn via services...</p>"
+}
+};
+
+// توليد 30 مقال
+for(let i=3;i<=30;i++){
+  posts[i]={
+    titleAr:`مقال ${i}`,
+    titleEn:`Article ${i}`,
+    contentAr:`<p>هذا مقال رقم ${i} عن الذكاء الاصطناعي والتسويق.</p>`,
+    contentEn:`<p>This is article ${i} about AI and marketing.</p>`
+  };
+}
