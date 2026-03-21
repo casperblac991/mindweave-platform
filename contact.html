@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><title>اتصل بنا | MindWeave</title>
+<link rel="stylesheet" href="css/style.css"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+[data-lang="en"]{display:none}body.en [data-lang="ar"]{display:none}body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}body:not(.en){direction:rtl;text-align:right}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.contact-form{max-width:500px;margin:auto;padding:2rem}
+.contact-form input,.contact-form textarea{width:100%;padding:12px;margin:10px 0;border-radius:10px;border:none;background:#1A1A2E;color:white}
+.contact-form button{background:#6C5CE7;color:white;border:none;padding:12px;border-radius:30px;cursor:pointer;width:100%}
+</style>
+</head>
+<body>
+<header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
+<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
+</ul>
+<div><button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button></div>
+</nav></header>
+<main><section class="page-header"><div class="container"><h1 data-lang="ar">اتصل بنا</h1><h1 data-lang="en">Contact Us</h1><p data-lang="ar">support@mindweave.store</p><p data-lang="en">support@mindweave.store</p></div></section>
+<div class="contact-form"><form id="contactForm"><input type="text" placeholder="Name" id="name"><input type="email" placeholder="Email" id="email"><textarea rows="4" placeholder="Message" id="msg"></textarea><button type="submit" data-lang="ar">إرسال</button><button type="submit" data-lang="en">Send</button></form></div></main>
+<footer><div class="container"><div class="footer-bottom"><p>© 2026 MindWeave</p></div></div></footer>
+<script>
+function toggleLanguage(){document.body.classList.toggle('en');let lang=document.body.classList.contains('en')?'en':'ar';localStorage.setItem('lang',lang);document.getElementById('langBtn').textContent=lang=='ar'?'English':'عربي';}
+document.getElementById('contactForm').onsubmit=function(e){e.preventDefault();alert(localStorage.getItem('lang')=='en'?'✅ Message sent! We will reply within 24h.':'✅ تم إرسال الرسالة! سنرد خلال 24 ساعة.');this.reset();}
+if(localStorage.getItem('lang')=='en')document.body.classList.add('en');document.getElementById('langBtn').textContent=localStorage.getItem('lang')=='en'?'عربي':'English';
+</script>
+</body>
+</html>
