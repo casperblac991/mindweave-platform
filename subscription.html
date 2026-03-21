@@ -1,9 +1,146 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><title>خطط الاشتراك | MindWeave</title><link rel="stylesheet" href="css/style.css"><style>.page-header{padding:120px 0 40px;text-align:center}.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;padding:2rem}.plan-card{background:#1A1A2E;padding:1.5rem;border-radius:20px;text-align:center;border:1px solid rgba(108,92,231,0.2)}.plan-card.popular{border-color:#6C5CE7}.plan-price{font-size:2rem;color:#6C5CE7;margin:1rem 0}.plan-features{list-style:none;margin:1.5rem 0}.plan-features li{margin:0.5rem 0;color:#A0A0B0}.btn-plan{background:#6C5CE7;color:white;padding:10px 20px;border-radius:50px;text-decoration:none;display:inline-block;width:100%}</style></head>
-<body><header><nav><div class="logo"><a href="index.html">🧠 MindWeave</a></div><ul><li><a href="index.html">الرئيسية</a></li><li><a href="library.html">المكتبة</a></li><li><a href="store.html">المتجر</a></li><li><a href="about.html">من نحن</a></li><li><a href="contact.html">اتصل بنا</a></li></ul></nav></header>
-<main><section class="page-header"><h1>خطط النسيج</h1><p>اختر الباقة المناسبة لاحتياجاتك</p></section>
-<div class="plans-grid"><div class="plan-card"><h3>نَسَّاج أساسي</h3><div class="plan-price">$4.99 <span style="font-size:1rem">/شهر</span></div><ul class="plan-features"><li>✅ 5 تحميلات يومياً</li><li>✅ تحديثات شهرية</li></ul><a href="#" class="btn-plan">اشترك الآن</a></div>
-<div class="plan-card popular"><h3>نَسَّاج محترف</h3><div class="plan-price">$9.99 <span style="font-size:1rem">/شهر</span></div><ul class="plan-features"><li>✅ تحميلات غير محدودة</li><li>✅ محتوى حصري</li><li>✅ دعم 24/7</li></ul><a href="#" class="btn-plan">اشترك الآن</a></div>
-<div class="plan-card"><h3>نَسَّاج أعمال</h3><div class="plan-price">$19.99 <span style="font-size:1rem">/شهر</span></div><ul class="plan-features"><li>✅ كل مميزات المحترف</li><li>✅ تقارير شهرية PDF</li><li>✅ استشارة شهرية مجانية</li></ul><a href="#" class="btn-plan">اشترك الآن</a></div></div></main>
-<footer><div class="container"><p>© 2026 MindWeave</p></div></footer></body></html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خطط الاشتراك | MindWeave</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
+.lang-switch:hover{background:#6C5CE7}
+[data-lang="en"]{display:none}
+body.en [data-lang="ar"]{display:none}
+body.en [data-lang="en"]{display:block}
+body.en{direction:ltr;text-align:left}
+body:not(.en){direction:rtl;text-align:right}
+.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+.plans-section{padding:60px 0}
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1200px;margin:auto}
+.plan-card{background:#1A1A2E;border-radius:20px;padding:2rem;text-align:center;border:1px solid rgba(108,92,231,0.2);transition:transform 0.3s}
+.plan-card:hover{transform:translateY(-5px);border-color:#6C5CE7}
+.plan-card.popular{border-color:#6C5CE7;transform:scale(1.02)}
+.plan-badge{background:#6C5CE7;color:white;display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.8rem;margin-bottom:1rem}
+.plan-price{font-size:2.5rem;font-weight:700;color:#6C5CE7;margin:1rem 0}
+.plan-price span{font-size:1rem;color:#A0A0B0}
+.plan-features{list-style:none;margin:1.5rem 0}
+.plan-features li{margin:0.75rem 0;color:#A0A0B0}
+.plan-features li i{color:#6C5CE7;margin-left:0.5rem}
+.btn-plan{background:#6C5CE7;color:white;padding:12px 25px;border-radius:50px;text-decoration:none;display:inline-block;width:100%;transition:transform 0.3s}
+.btn-plan:hover{transform:scale(1.02)}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
+<ul class="nav-menu">
+<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
+<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
+<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
+<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
+<li><a href="community.html" data-lang="ar">المجتمع</a><a href="community.html" data-lang="en">Community</a></li>
+<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
+<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
+</ul>
+<div class="nav-icons">
+<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
+<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="page-header">
+<div class="container">
+<h1 data-lang="ar">خطط النسيج</h1>
+<h1 data-lang="en">Weaving Plans</h1>
+<p data-lang="ar">اختر الباقة المناسبة لاحتياجاتك وابدأ رحلة الإبداع</p>
+<p data-lang="en">Choose the plan that fits your needs and start your creative journey</p>
+</div>
+</section>
+
+<section class="plans-section">
+<div class="container">
+<div class="plans-grid">
+<div class="plan-card">
+<h3 data-lang="ar">نَسَّاج أساسي</h3>
+<h3 data-lang="en">Basic Weaver</h3>
+<div class="plan-price">$4.99 <span>/month</span></div>
+<ul class="plan-features">
+<li><i class="fas fa-check"></i> <span data-lang="ar">5 تحميلات يومياً</span><span data-lang="en">5 downloads per day</span></li>
+<li><i class="fas fa-check"></i> <span data-lang="ar">تحديثات شهرية</span><span data-lang="en">Monthly updates</span></li>
+<li><i class="fas fa-check"></i> <span data-lang="ar">دعم優先</span><span data-lang="en">Priority support</span></li>
+</ul>
+<a href="#" class="btn-plan" data-lang="ar">اشترك الآن</a><a href="#" class="btn-plan" data-lang="en">Subscribe Now</a>
+</div>
+
+<div class="plan-card popular">
+<div class="plan-badge" data-lang="ar">⭐ الأكثر شعبية</div>
+<div class="plan-badge" data-lang="en">⭐ Most Popular</div>
+<h3 data-lang="ar">نَسَّاج محترف</h3>
+<h3 data-lang="en">Pro Weaver</h3>
+<div class="plan-price">$9.99 <span>/month</span></div>
+<ul class="plan-features">
+<li><i class="fas fa-check"></i> <span data-lang="ar">تحميلات غير محدودة</span><span data-lang="en">Unlimited downloads</span></li>
+<li><i class="fas fa-check"></i> <span data-lang="ar">محتوى حصري</span><span data-lang="en">Exclusive content</span></li>
+<li><i class="fas fa-check"></i> <span data-lang="ar">دعم 24/7</span><span data-lang="en">24/7 support</span></li>
+<li><i class="fas fa-check"></i> <span data-lang="ar">+50 أسلوب فني</span><span data-lang="en">+50 artistic styles</span></li>
+</ul>
+<a href="#" class="btn-plan" data-lang="ar">اشترك الآن</a><a href="#" class="btn-plan" data-lang="en">Subscribe Now</a>
+</div>
+
+<div class="plan-card">
+<h3 data-lang="ar">نَسَّاج أعمال</h3>
+<h3 data-lang="en">Business Weaver</h3>
+<div class="plan-price">$19.99 <span>/month</span></div>
+<ul class="plan-features">
+<li><i class="fas fa-check"></i> <span data-lang="ar">كل مميزات المحترف</span><span data-lang="en">All Pro features</span></li>
+<li><i class="fas fa-check"></i> <span data-lang="ar">تقارير شهرية PDF</span><span data-lang="en">Monthly PDF reports</span></li>
+<li><i class="fas fa-check"></i> <span data-lang="ar">استشارة شهرية مجانية</span><span data-lang="en">Free monthly consultation</span></li>
+<li><i class="fas fa-check"></i> <span data-lang="ar">توليد فيديو</span><span data-lang="en">Video generation</span></li>
+</ul>
+<a href="#" class="btn-plan" data-lang="ar">اشترك الآن</a><a href="#" class="btn-plan" data-lang="en">Subscribe Now</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p></div>
+<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
+<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
+</div>
+<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
+</div>
+</footer>
+
+<script>
+let currentLang = localStorage.getItem('lang') || 'ar';
+function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('lang', currentLang);
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+}
+function applyLanguage() {
+    document.body.classList.toggle('en', currentLang === 'en');
+    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+}
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+function updateCartDisplay() {
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
+}
+applyLanguage();
+updateCartDisplay();
+</script>
+</body>
+</html>
