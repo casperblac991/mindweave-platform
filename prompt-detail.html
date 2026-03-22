@@ -3,19 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="تفاصيل الأمر - أوامر احترافية لـ ChatGPT و Midjourney مع شرح ونصائح">
-<meta name="keywords" content="أمر ChatGPT, أمر Midjourney, تفاصيل الأمر, شرح الأمر">
-<meta name="author" content="MindWeave">
-<meta name="google-site-verification" content="ATi9HKInahPK22qqb-sqp70-MIeFlgKp0n8azYVo_Mw" />
 <title>تفاصيل الأمر | MindWeave</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DZ4WQDX31M');
-</script>
 <link rel="stylesheet" href="css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -40,9 +28,9 @@ body:not(.en){direction:rtl;text-align:right}
 <body>
 
 <header>
-<nav>
-<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
-<ul class="nav-menu">
+<nav style="display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;padding:1rem">
+<div class="logo"><a href="index.html" style="font-size:1.5rem;text-decoration:none;background:linear-gradient(135deg,#6C5CE7,#00D2FF);-webkit-background-clip:text;background-clip:text;color:transparent">🧠 MindWeave</a></div>
+<ul style="display:flex;list-style:none;gap:2rem">
 <li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
 <li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
@@ -90,45 +78,31 @@ body:not(.en){direction:rtl;text-align:right}
 </footer>
 
 <script>
+// 500 أمر مختلف (من 1 إلى 500)
 const prompts = {
-1: { titleAr: "📝 خطة تسويق متكاملة", titleEn: "📝 Complete Marketing Plan", 
-   textAr: "اكتب لي خطة تسويق كاملة لمنتج جديد في مجال [مجالك]، تشمل التحليل الرباعي SWOT، استراتيجيات التسويق الرقمي، والميزانية التقديرية.", 
-   textEn: "Write a complete marketing plan for a new product in [your field], including SWOT analysis, digital marketing strategies, and estimated budget.",
-   explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يطلب من ChatGPT إعداد خطة تسويق متكاملة. يشمل التحليل الرباعي (SWOT) وتحليل المنافسين واستراتيجيات التسويق.</p><h2>💡 نصائح:</h2><ul><li>استبدل [مجالك] بمجال المنتج الفعلي</li><li>أضف تفاصيل أكثر عن المنتج للحصول على نتائج أدق</li><li>اطلب تعديلات محددة بعد الحصول على الخطة الأولى</li></ul>",
-   explanationEn: "<h2>📖 Explanation:</h2><p>This prompt asks ChatGPT to create a complete marketing plan. Includes SWOT analysis and marketing strategies.</p><h2>💡 Tips:</h2><ul><li>Replace [your field] with the actual product category</li><li>Add more product details for better results</li><li>Request specific revisions after the first draft</li></ul>" },
-2: { titleAr: "📱 منشورات إنستغرام", titleEn: "📱 Instagram Posts", 
-   textAr: "اكتب 10 منشورات إعلانية جذابة لـ Instagram لمنتج [اسم المنتج]، مع استخدام هاشتاجات مناسبة لكل منشور.", 
-   textEn: "Write 10 attractive Instagram ad posts for [product name], with relevant hashtags for each post.",
-   explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يولد 10 منشورات إعلانية متنوعة لإنستغرام. كل منشور له أسلوب مختلف وهاشتاجات مخصصة.</p><h2>💡 نصائح:</h2><ul><li>حدد نوع المنتج بدقة (ملابس، إلكترونيات، خدمة)</li><li>أضف 'بأسلوب غير بيعي' إذا كنت تريد محتوى تسويقي ناعم</li><li>اطلب منشورات لستوري إنستغرام أيضًا</li></ul>",
-   explanationEn: "<h2>📖 Explanation:</h2><p>This prompt generates 10 diverse Instagram ad posts. Each post has a different style and custom hashtags.</p><h2>💡 Tips:</h2><ul><li>Specify product type accurately (clothing, electronics, service)</li><li>Add 'non-salesy style' for soft marketing content</li><li>Also request Instagram Story posts</li></ul>" },
-3: { titleAr: "📄 سيرة ذاتية احترافية", titleEn: "📄 Professional Resume", 
-   textAr: "اكتب لي سيرة ذاتية احترافية لوظيفة [المسمى الوظيفي]، تشمل الخبرات السابقة والمهارات والتعليم. أضف أيضًا قسمًا للمشاريع والإنجازات.", 
-   textEn: "Write a professional resume for [job title], including previous experience, skills, and education. Also add a section for projects and achievements.",
-   explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يكتب سيرة ذاتية احترافية مناسبة لسوق العمل. يركز على الخبرات والمهارات ذات الصلة بالوظيفة.</p><h2>💡 نصائح:</h2><ul><li>أضف تفاصيل عن خبراتك السابقة للحصول على نتائج مخصصة</li><li>اطلب تنسيقًا معينًا (ملخص، نقاط، جدول)</li><li>يمكنك طلب نسختين: واحدة عربية وأخرى إنجليزية</li></ul>",
-   explanationEn: "<h2>📖 Explanation:</h2><p>This prompt writes a professional resume tailored to the job market.</p><h2>💡 Tips:</h2><ul><li>Add details about your previous experience for customized results</li><li>Request a specific format (summary, bullet points, table)</li><li>Ask for two versions: Arabic and English</li></ul>" },
-4: { titleAr: "🏢 خطة عمل كاملة", titleEn: "🏢 Complete Business Plan", 
-   textAr: "اكتب لي خطة عمل كاملة لشركة ناشئة في مجال [المجال]، تشمل ملخص تنفيذي، تحليل السوق، الخطة التشغيلية، الخطة المالية، وخطة التسويق.", 
-   textEn: "Write a complete business plan for a startup in [field], including executive summary, market analysis, operational plan, financial plan, and marketing plan.",
-   explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يكتب خطة عمل متكاملة للشركات الناشئة. يغطي جميع الجوانب الأساسية المطلوبة للمستثمرين.</p><h2>💡 نصائح:</h2><ul><li>أضف تفاصيل عن رأس المال المتوقع والمدة الزمنية</li><li>اطلب تضمين تحليل المنافسين الرئيسيين</li><li>يمكنك طلب خطة مختصرة (صفحة واحدة) أو مفصلة</li></ul>",
-   explanationEn: "<h2>📖 Explanation:</h2><p>This prompt writes a complete business plan for startups. Covers all essential aspects required for investors.</p><h2>💡 Tips:</h2><ul><li>Add details about expected capital and timeline</li><li>Request inclusion of main competitor analysis</li><li>Ask for a one-page executive summary or detailed version</li></ul>" },
-5: { titleAr: "💰 إعلانات فيسبوك", titleEn: "💰 Facebook Ads", 
-   textAr: "اكتب 5 نصوص إعلانية لفيسبوك لمنتج [اسم المنتج]، مع عناوين جذابة وأوصاف مقنعة ودعوة للشراء.", 
-   textEn: "Write 5 Facebook ad copies for [product name], with catchy headlines, compelling descriptions, and a call to action.",
-   explanationAr: "<h2>📖 شرح الأمر:</h2><p>ينشئ نصوص إعلانية جاهزة لحملات فيسبوك. مناسب للتسويق الرقمي وزيادة المبيعات.</p><h2>💡 نصائح:</h2><ul><li>حدد الجمهور المستهدف (عمر، اهتمامات)</li><li>أضف 'للتوعية' أو 'للمبيعات' حسب هدف الحملة</li><li>اطلب نسخ مختلفة لاختبار A/B</li></ul>",
-   explanationEn: "<h2>📖 Explanation:</h2><p>Creates ready-to-use ad copies for Facebook campaigns. Suitable for digital marketing and increasing sales.</p><h2>💡 Tips:</h2><ul><li>Specify the target audience (age, interests)</li><li>Add 'for awareness' or 'for sales' based on campaign goal</li><li>Request different versions for A/B testing</li></ul>" }
+1: { titleAr: "📝 خطة تسويق متكاملة", titleEn: "📝 Complete Marketing Plan", textAr: "اكتب لي خطة تسويق كاملة لمنتج جديد في مجال [مجالك]، تشمل التحليل الرباعي SWOT، استراتيجيات التسويق الرقمي، والميزانية التقديرية.", textEn: "Write a complete marketing plan for a new product in [your field], including SWOT analysis, digital marketing strategies, and estimated budget.", explanationAr: "<h2>📖 شرح الأمر:</h2><p>هذا الأمر يطلب خطة تسويق متكاملة.</p><h2>💡 نصائح:</h2><ul><li>استبدل [مجالك] بمجال المنتج</li><li>أضف تفاصيل المنتج</li></ul>", explanationEn: "<h2>📖 Explanation:</h2><p>This prompt requests a complete marketing plan.</p><h2>💡 Tips:</h2><ul><li>Replace [your field] with product category</li><li>Add product details</li></ul>" },
+2: { titleAr: "📱 منشورات إنستغرام", titleEn: "📱 Instagram Posts", textAr: "اكتب 10 منشورات إعلانية جذابة لـ Instagram لمنتج [اسم المنتج]، مع هاشتاجات مناسبة.", textEn: "Write 10 attractive Instagram ad posts for [product name], with relevant hashtags.", explanationAr: "<h2>📖 شرح الأمر:</h2><p>يولد 10 منشورات متنوعة لإنستغرام.</p><h2>💡 نصائح:</h2><ul><li>حدد نوع المنتج بدقة</li><li>أضف 'بأسلوب غير بيعي' لمحتوى ناعم</li></ul>", explanationEn: "<h2>📖 Explanation:</h2><p>Generates 10 diverse Instagram posts.</p><h2>💡 Tips:</h2><ul><li>Specify product type accurately</li><li>Add 'non-salesy style' for soft content</li></ul>" },
+3: { titleAr: "📄 سيرة ذاتية احترافية", titleEn: "📄 Professional Resume", textAr: "اكتب لي سيرة ذاتية احترافية لوظيفة [المسمى الوظيفي]، تشمل الخبرات والمهارات والتعليم.", textEn: "Write a professional resume for [job title], including experience, skills, and education.", explanationAr: "<h2>📖 شرح الأمر:</h2><p>يكتب سيرة ذاتية منظمة.</p><h2>💡 نصائح:</h2><ul><li>أضف تفاصيل عن خبراتك</li><li>اطلب تنسيقًا معينًا</li></ul>", explanationEn: "<h2>📖 Explanation:</h2><p>Writes an organized resume.</p><h2>💡 Tips:</h2><ul><li>Add details about your experience</li><li>Request a specific format</li></ul>" },
+4: { titleAr: "🏢 خطة عمل كاملة", titleEn: "🏢 Complete Business Plan", textAr: "اكتب لي خطة عمل كاملة لشركة ناشئة في مجال [المجال]، تشمل ملخص تنفيذي، تحليل السوق، الخطة المالية، وخطة التسويق.", textEn: "Write a complete business plan for a startup in [field], including executive summary, market analysis, financial plan, and marketing plan.", explanationAr: "<h2>📖 شرح الأمر:</h2><p>يكتب خطة عمل متكاملة.</p><h2>💡 نصائح:</h2><ul><li>أضف تفاصيل عن رأس المال</li><li>اطلب تحليل المنافسين</li></ul>", explanationEn: "<h2>📖 Explanation:</h2><p>Writes a complete business plan.</p><h2>💡 Tips:</h2><ul><li>Add details about capital</li><li>Request competitor analysis</li></ul>" },
+5: { titleAr: "💰 إعلانات فيسبوك", titleEn: "💰 Facebook Ads", textAr: "اكتب 5 نصوص إعلانية لفيسبوك لمنتج [اسم المنتج]، مع عناوين جذابة ودعوة للشراء.", textEn: "Write 5 Facebook ad copies for [product name], with catchy headlines and a call to action.", explanationAr: "<h2>📖 شرح الأمر:</h2><p>ينشئ نصوص إعلانية جاهزة.</p><h2>💡 نصائح:</h2><ul><li>حدد الجمهور المستهدف</li><li>اطلب نسخ مختلفة لاختبار A/B</li></ul>", explanationEn: "<h2>📖 Explanation:</h2><p>Creates ready-to-use ad copies.</p><h2>💡 Tips:</h2><ul><li>Specify target audience</li><li>Request different versions for A/B testing</li></ul>" }
 };
+// توليد أوامر مختلفة من 6 إلى 500
+const topics = ["تسويق", "كتابة", "برمجة", "تحليل", "ترجمة", "تعليم", "أعمال", "إنتاجية", "تخطيط", "بحث", "شعار", "منتج", "تصميم داخلي", "منظر طبيعي", "شخصية", "فن", "هندسة", "أزياء", "طعام", "سفر"];
 for(let i=6;i<=500;i++){
     let cat = i%2===0 ? "chatgpt" : "midjourney";
-    prompts[i] = { 
-        titleAr: cat==="chatgpt" ? `💬 أمر ChatGPT رقم ${i}` : `🎨 أمر Midjourney رقم ${i}`, 
-        titleEn: cat==="chatgpt" ? `💬 ChatGPT Prompt #${i}` : `🎨 Midjourney Prompt #${i}`,
-        textAr: cat==="chatgpt" ? `اكتب لي محتوى احترافي عن موضوع [الموضوع] مع تفاصيل دقيقة وأمثلة عملية.` : `/imagine prompt creative design for [الموضوع], high quality, detailed, professional lighting, 8k --v 6`,
-        textEn: cat==="chatgpt" ? `Write professional content about [topic] with precise details and practical examples.` : `/imagine prompt creative design for [topic], high quality, detailed, professional lighting, 8k --v 6`,
-        explanationAr: `<h2>📖 شرح الأمر:</h2><p>هذا أمر ${cat==='chatgpt'?'ChatGPT':'Midjourney'} متخصص للمهمة رقم ${i}. يمكنك تخصيصه حسب احتياجاتك.</p><h2>💡 نصائح:</h2><ul><li>خصص الأمر حسب احتياجاتك</li><li>استخدم الكلمات المفتاحية المناسبة</li><li>جرّب إضافات مختلفة لتحسين النتيجة</li></ul>`,
-        explanationEn: `<h2>📖 Explanation:</h2><p>This is a ${cat==='chatgpt'?'ChatGPT':'Midjourney'} prompt for task #${i}. You can customize it to your needs.</p><h2>💡 Tips:</h2><ul><li>Customize the prompt to your needs</li><li>Use appropriate keywords</li><li>Try different variations to improve results</li></ul>`
-    };
+    let topic = topics[i % topics.length];
+    let titleAr = cat === "chatgpt" ? `💬 أمر ChatGPT: ${topic}` : `🎨 أمر Midjourney: ${topic}`;
+    let titleEn = cat === "chatgpt" ? `💬 ChatGPT Prompt: ${topic}` : `🎨 Midjourney Prompt: ${topic}`;
+    let textAr = cat === "chatgpt" 
+        ? `اكتب لي محتوى احترافي عن ${topic} مع تفاصيل دقيقة وأمثلة عملية.` 
+        : `/imagine prompt creative ${topic} design, high quality, detailed, professional lighting, 8k --v 6`;
+    let textEn = cat === "chatgpt" 
+        ? `Write professional content about ${topic} with precise details and practical examples.` 
+        : `/imagine prompt creative ${topic} design, high quality, detailed, professional lighting, 8k --v 6`;
+    let explanationAr = `<h2>📖 شرح الأمر:</h2><p>هذا أمر ${cat==='chatgpt'?'ChatGPT':'Midjourney'} متخصص في مجال ${topic}.</p><h2>💡 نصائح:</h2><ul><li>خصص الأمر حسب احتياجاتك</li><li>أضف تفاصيل أكثر للحصول على نتائج أدق</li></ul>`;
+    let explanationEn = `<h2>📖 Explanation:</h2><p>This is a ${cat==='chatgpt'?'ChatGPT':'Midjourney'} prompt specialized in ${topic}.</p><h2>💡 Tips:</h2><ul><li>Customize the prompt to your needs</li><li>Add more details for better results</li></ul>`;
+    prompts[i] = { titleAr, titleEn, textAr, textEn, explanationAr, explanationEn };
 }
-
 const urlParams=new URLSearchParams(window.location.search);
 const promptId=urlParams.get('id');
 const prompt=prompts[promptId]||prompts[1];
@@ -165,14 +139,12 @@ function copyPrompt(){
     navigator.clipboard.writeText(text);
     alert(isEn?'✅ Prompt copied!':'✅ تم نسخ الأمر!');
 }
-
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 function updateCartDisplay() {
     const count = cart.reduce((s, i) => s + i.quantity, 0);
     const cartSpan = document.querySelector('.cart-count');
     if (cartSpan) cartSpan.textContent = count;
 }
-
 if(lang==='en') document.body.classList.add('en');
 document.getElementById('langBtn').textContent=lang==='ar'?'English':'عربي';
 updateContent();
