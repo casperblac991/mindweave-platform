@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://casperblac991.github.io/mindweave-platform/sitemap.xml
