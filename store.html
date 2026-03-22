@@ -3,19 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="متجر MindWeave - حزم أوامر الذكاء الاصطناعي، قوالب Notion، كتب إلكترونية، وخدمات تصميم بالذكاء الاصطناعي">
-<meta name="keywords" content="متجر الذكاء الاصطناعي, حزم أوامر ChatGPT, Midjourney prompts, قوالب Notion">
-<meta name="author" content="MindWeave">
-<meta name="google-site-verification" content="ATi9HKInahPK22qqb-sqp70-MIeFlgKp0n8azYVo_Mw" />
 <title>المتجر | MindWeave</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DZ4WQDX31M');
-</script>
 <link rel="stylesheet" href="css/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -33,14 +21,20 @@ body:not(.en){direction:rtl;text-align:right}
 .btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
 .page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
 .products-section{padding:60px 0}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+.product-card{background:#1A1A2E;border-radius:20px;padding:1.5rem;border:1px solid rgba(108,92,231,0.2)}
+.product-badge{background:linear-gradient(135deg,#6C5CE7,#00D2FF);display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem}
+.price{font-size:1.3rem;color:#6C5CE7;margin:1rem 0}
+.old-price{text-decoration:line-through;color:#A0A0B0;font-size:0.9rem}
+.btn-buy{background:#6C5CE7;color:white;border:none;padding:10px 20px;border-radius:30px;cursor:pointer;text-decoration:none;display:inline-block}
 </style>
 </head>
 <body>
 
 <header>
-<nav>
-<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
-<ul class="nav-menu">
+<nav style="display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;padding:1rem">
+<div class="logo"><a href="index.html" style="font-size:1.5rem;text-decoration:none;background:linear-gradient(135deg,#6C5CE7,#00D2FF);-webkit-background-clip:text;background-clip:text;color:transparent">🧠 MindWeave</a></div>
+<ul style="display:flex;list-style:none;gap:2rem">
 <li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
 <li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
 <li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
@@ -68,7 +62,14 @@ body:not(.en){direction:rtl;text-align:right}
 
 <section class="products-section">
 <div class="container">
-<div class="products-grid" id="productsGrid"></div>
+<div class="products-grid">
+<div class="product-card"><div class="product-badge">🔥 الأكثر مبيعاً -11%</div><div class="product-icon">🎨</div><h3>Midjourney Prompts Pack</h3><p data-lang="ar">100 أمر احترافي لتوليد صور تجارية وشعارات</p><p data-lang="en">100 professional prompts for commercial images and logos</p><div class="price">$9.99 <span class="old-price">$19.99</span></div><a href="https://schaik8.gumroad.com/l/zwpry" target="_blank" class="btn-buy">اشتري الآن</a></div>
+<div class="product-card"><div class="product-badge">⭐ مميز -14%</div><div class="product-icon">📝</div><h3>ChatGPT Prompts Pack</h3><p data-lang="ar">50 أمر مخصص للتسويق والمبيعات وإعلانات</p><p data-lang="en">50 prompts for marketing, sales, and ads</p><div class="price">$7.99 <span class="old-price">$12.99</span></div><a href="https://schaik8.gumroad.com/l/xabopy" target="_blank" class="btn-buy">اشتري الآن</a></div>
+<div class="product-card"><div class="product-badge">💎 حصري -11%</div><div class="product-icon">📊</div><h3>Notion AI Template</h3><p data-lang="ar">إدارة المشاريع بالذكاء الاصطناعي مع أتمتة كاملة</p><p data-lang="en">Project management with AI and full automation</p><div class="price">$12.99 <span class="old-price">$19.99</span></div><a href="https://schaik8.gumroad.com/l/ohghoo" target="_blank" class="btn-buy">اشتري الآن</a></div>
+<div class="product-card"><div class="product-badge">🔥 الأكثر مبيعاً -13%</div><div class="product-icon">📚</div><h3>AI Tools Directory</h3><p data-lang="ar">أكثر من 50 أداة مجانية مع شرح مفصل</p><p data-lang="en">50+ free AI tools with detailed explanations</p><div class="price">$5.99 <span class="old-price">$9.99</span></div><a href="https://schaik8.gumroad.com/l/ukbii" target="_blank" class="btn-buy">اشتري الآن</a></div>
+<div class="product-card"><div class="product-badge">⭐ مميز -13%</div><div class="product-icon">🎯</div><h3>AI Logo Design Service</h3><p data-lang="ar">تصميم احترافي خلال 24 ساعة مع 3 تعديلات</p><p data-lang="en">Professional design in 24h with 3 revisions</p><div class="price">$19.99 <span class="old-price">$29.99</span></div><a href="https://schaik8.gumroad.com/l/pitiee" target="_blank" class="btn-buy">اشتري الآن</a></div>
+<div class="product-card"><div class="product-badge">💎 حصري -13%</div><div class="product-icon">💻</div><h3>Coding Prompts Pack</h3><p data-lang="ar">50 أمر لتوليد أكواد برمجية وحل المشاكل</p><p data-lang="en">50 prompts for code generation and debugging</p><div class="price">$14.99 <span class="old-price">$24.99</span></div><a href="https://schaik8.gumroad.com/l/tdvouw" target="_blank" class="btn-buy">اشتري الآن</a></div>
+</div>
 </div>
 </section>
 </main>
@@ -86,69 +87,23 @@ body:not(.en){direction:rtl;text-align:right}
 </footer>
 
 <script>
-// Products Data
-const products = [
-    { id: 1, name: "Midjourney Prompts Pack", nameAr: "حزمة أوامر Midjourney", price: 9.99, oldPrice: 19.99, descAr: "100 أمر احترافي لتوليد صور تجارية وشعارات", descEn: "100 professional prompts for commercial images and logos", icon: "🎨", badge: "🔥 الأكثر مبيعاً -11%", badgeEn: "🔥 Best Seller -11%" },
-    { id: 2, name: "ChatGPT Prompts Pack", nameAr: "حزمة أوامر ChatGPT", price: 7.99, oldPrice: 12.99, descAr: "50 أمر مخصص للتسويق والمبيعات وإعلانات", descEn: "50 prompts for marketing, sales, and ads", icon: "📝", badge: "⭐ مميز -14%", badgeEn: "⭐ Featured -14%" },
-    { id: 3, name: "Notion AI Template", nameAr: "قالب Notion الذكي", price: 12.99, oldPrice: 19.99, descAr: "إدارة المشاريع بالذكاء الاصطناعي مع أتمتة كاملة", descEn: "Project management with AI and full automation", icon: "📊", badge: "💎 حصري -11%", badgeEn: "💎 Exclusive -11%" },
-    { id: 4, name: "AI Tools Directory", nameAr: "دليل أدوات الذكاء الاصطناعي", price: 5.99, oldPrice: 9.99, descAr: "أكثر من 50 أداة مجانية مع شرح مفصل", descEn: "50+ free AI tools with detailed explanations", icon: "📚", badge: "🔥 الأكثر مبيعاً -13%", badgeEn: "🔥 Best Seller -13%" },
-    { id: 5, name: "AI Logo Design Service", nameAr: "خدمة تصميم شعار بالذكاء الاصطناعي", price: 19.99, oldPrice: 29.99, descAr: "تصميم احترافي خلال 24 ساعة مع 3 تعديلات", descEn: "Professional design in 24h with 3 revisions", icon: "🎯", badge: "⭐ مميز -13%", badgeEn: "⭐ Featured -13%" },
-    { id: 6, name: "Coding Prompts Pack", nameAr: "حزمة أوامر البرمجة", price: 14.99, oldPrice: 24.99, descAr: "50 أمر لتوليد أكواد برمجية وحل المشاكل", descEn: "50 prompts for code generation and debugging", icon: "💻", badge: "💎 حصري -13%", badgeEn: "💎 Exclusive -13%" }
-];
-
 let currentLang = localStorage.getItem('lang') || 'ar';
-
 function toggleLanguage() {
     currentLang = currentLang === 'ar' ? 'en' : 'ar';
     localStorage.setItem('lang', currentLang);
     document.body.classList.toggle('en', currentLang === 'en');
     document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
-    renderProducts();
-    updateCartDisplay();
 }
-
 function applyLanguage() {
     document.body.classList.toggle('en', currentLang === 'en');
     document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
-    renderProducts();
-    updateCartDisplay();
 }
-
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
 function updateCartDisplay() {
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById('cartCount').textContent = count;
-    localStorage.setItem('cart', JSON.stringify(cart));
+    const count = cart.reduce((s, i) => s + i.quantity, 0);
+    const cartSpan = document.querySelector('.cart-count');
+    if (cartSpan) cartSpan.textContent = count;
 }
-
-function addToCart(productId, productName, price) {
-    const existing = cart.find(item => item.id === productId);
-    if (existing) {
-        existing.quantity += 1;
-    } else {
-        cart.push({ id: productId, name: productName, price: price, quantity: 1 });
-    }
-    updateCartDisplay();
-    alert(currentLang === 'ar' ? `✅ تم إضافة ${productName} إلى السلة` : `✅ ${productName} added to cart`);
-}
-
-function renderProducts() {
-    const container = document.getElementById('productsGrid');
-    if (!container) return;
-    const isAr = currentLang === 'ar';
-    container.innerHTML = products.map(p => `
-        <div class="product-card">
-            <div class="product-badge">${isAr ? p.badge : p.badgeEn}</div>
-            <div class="product-icon">${p.icon}</div>
-            <h3>${isAr ? p.nameAr : p.name}</h3>
-            <p>${isAr ? p.descAr : p.descEn}</p>
-            <div class="price">$${p.price} <span class="old-price">$${p.oldPrice}</span></div>
-            <button class="btn-buy" onclick="addToCart(${p.id}, '${isAr ? p.nameAr : p.name}', ${p.price})">${isAr ? 'اشتري الآن' : 'Buy Now'}</button>
-        </div>
-    `).join('');
-}
-
 applyLanguage();
 updateCartDisplay();
 </script>
