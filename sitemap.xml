@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- الصفحات الرئيسية -->
+    <url><loc>https://casperblac991.github.io/mindweave-platform/</loc><priority>1.0</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/library.html</loc><priority>0.9</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog.html</loc><priority>0.9</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/store.html</loc><priority>0.9</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/about.html</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/contact.html</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/subscription.html</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/faq.html</loc><priority>0.7</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/privacy.html</loc><priority>0.7</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/terms.html</loc><priority>0.7</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/refund.html</loc><priority>0.7</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/cart.html</loc><priority>0.7</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/checkout.html</loc><priority>0.7</priority></url>
+    
+    <!-- أوامر المكتبة (500 أمر) - نماذج -->
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=1</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=2</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=3</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=4</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=5</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=10</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=20</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=50</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=100</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=200</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=300</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=400</loc><priority>0.6</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/prompt-detail.html?id=500</loc><priority>0.6</priority></url>
+    
+    <!-- مقالات المدونة (30 مقالة) -->
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=1</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=2</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=3</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=4</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=5</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=6</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=7</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=8</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=9</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=10</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=11</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=12</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=13</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=14</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=15</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=16</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=17</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=18</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=19</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=20</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=21</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=22</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=23</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=24</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=25</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=26</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=27</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=28</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=29</loc><priority>0.8</priority></url>
+    <url><loc>https://casperblac991.github.io/mindweave-platform/blog-post.html?id=30</loc><priority>0.8</priority></url>
+</urlset>
