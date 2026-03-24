@@ -1,13 +1,18 @@
 import express from "express";
-import fetch from "node-fetch";
 
 const app = express();
 app.use(express.json());
 
+// مهم: اسم المتغير في Render لازم يكون نفسه
 const API_KEY = process.env.MINDWEAVE_KEY;
 
+// API توليد البرومبت
 app.post("/api/generate", async (req, res) => {
   const { input } = req.body;
+
+  if (!input) {
+    return res.json({ result: "اكتب طلب أولاً" });
+  }
 
   try {
     const response = await fetch(
@@ -20,7 +25,11 @@ app.post("/api/generate", async (req, res) => {
         body: JSON.stringify({
           contents: [
             {
-              parts: [{ text: `حوّل هذا إلى برومبت احترافي:\n${input}` }]
+              parts: [
+                {
+                  text: `حوّل هذا الطلب إلى برومبت احترافي منظم:\n${input}`
+                }
+              ]
             }
           ]
         })
@@ -29,13 +38,20 @@ app.post("/api/generate", async (req, res) => {
 
     const data = await response.json();
 
-    res.json({
-      result: data.candidates?.[0]?.content?.parts?.[0]?.text || "ما فيه نتيجة"
-    });
+    const result =
+      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+      "ما تم توليد نتيجة";
 
-  } catch (err) {
+    res.json({ result });
+
+  } catch (error) {
+    console.error(error);
     res.json({ result: "خطأ في السيرفر" });
   }
 });
 
-app.listen(process.env.PORT || 10000);
+// تشغيل السيرفر
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
