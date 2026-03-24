@@ -1,21 +1,32 @@
-<!DOCTYPE html>
-<html>
-<body>
-<textarea id="input" rows="4" cols="50" placeholder="أدخل وصف الأمر..."></textarea><br>
-<button onclick="test()">توليد</button>
-<pre id="output"></pre>
+async function generatePrompt() {
+  const input = document.getElementById('labInput').value.trim();
+  if (!input) {
+    alert('الرجاء كتابة وصف');
+    return;
+  }
 
-<script>
-async function test() {
-  const input = document.getElementById('input').value;
-  const res = await fetch('/api/claude', {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({messages:[{role:'user',content:input}]})
-  });
-  const text = await res.text();
-  document.getElementById('output').textContent = text;
+  const btn = document.getElementById('labGenerateBtn');
+  const output = document.getElementById('labOutput');
+  
+  btn.disabled = true;
+  btn.textContent = '⏳ جاري التوليد...';
+  output.textContent = '';
+
+  try {
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ input: input })
+    });
+    
+    const data = await response.json();
+    output.textContent = data.result || 'حدث خطأ';
+    document.getElementById('outputActions').style.display = 'block';
+
+  } catch (error) {
+    output.textContent = '❌ خطأ: ' + error.message;
+  }
+  
+  btn.disabled = false;
+  btn.textContent = '⚡ توليد أمر احترافي';
 }
-</script>
-</body>
-</html>
