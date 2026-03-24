@@ -1,135 +1,20 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MindWeave | منصة الذكاء الاصطناعي</title>
-<style>
-:root {
-  --primary: #00D4FF;
-  --bg: #050A0F;
-  --bg2: #0A1628;
-  --border: rgba(0,212,255,0.15);
-  --text: #E8F4FD;
-  --muted: #7A9BB5;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Cairo', sans-serif;
-  direction: rtl;
-}
-.prompt-lab { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
-.lab-container {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-}
-.lab-header {
-  padding: 1.5rem 2rem;
-  border-bottom: 1px solid var(--border);
-}
-.lab-body {
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-@media (max-width: 768px) { .lab-body { grid-template-columns: 1fr; } }
-.lab-textarea {
-  width: 100%;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 1rem;
-  border-radius: 10px;
-  min-height: 120px;
-}
-.lab-generate-btn {
-  width: 100%;
-  margin-top: 1rem;
-  background: linear-gradient(135deg, var(--primary), #7C3AED);
-  color: white;
-  border: none;
-  padding: 0.9rem;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.lab-output {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1rem;
-  min-height: 120px;
-}
-</style>
-</head>
+<html>
 <body>
-
-<section class="prompt-lab">
-  <div class="lab-container">
-    <div class="lab-header">
-      <h2>⚗️ Prompt Lab</h2>
-      <p>جرّب أوامر Claude AI مجاناً</p>
-    </div>
-    <div class="lab-body">
-      <div>
-        <textarea class="lab-textarea" id="labInput" placeholder="مثال: أنشئ لي أمراً لكتابة منشورات انستغرام تسويقية لمتجر عطور"></textarea>
-        <button class="lab-generate-btn" id="labGenerateBtn" onclick="generatePrompt()">⚡ توليد أمر احترافي</button>
-      </div>
-      <div>
-        <div class="lab-output" id="labOutput">سيظهر الأمر المُولَّد هنا...</div>
-        <div id="outputActions" style="margin-top:10px; display:none;">
-          <button onclick="copyPrompt()">📋 نسخ</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<textarea id="input" rows="4" cols="50" placeholder="أدخل وصف الأمر..."></textarea><br>
+<button onclick="test()">توليد</button>
+<pre id="output"></pre>
 
 <script>
-async function generatePrompt() {
-  const input = document.getElementById('labInput').value.trim();
-  if (!input) {
-    alert('الرجاء كتابة وصف');
-    return;
-  }
-
-  const btn = document.getElementById('labGenerateBtn');
-  const output = document.getElementById('labOutput');
-  
-  btn.disabled = true;
-  btn.textContent = '⏳ جاري التوليد...';
-  output.textContent = '';
-
-  try {
-    const response = await fetch('/api/claude', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        messages: [{ role: 'user', content: input }]
-      })
-    });
-    
-    const data = await response.json();
-    const text = data.content?.[0]?.text || data.error || 'حدث خطأ';
-    output.textContent = text;
-    document.getElementById('outputActions').style.display = 'block';
-  } catch (error) {
-    output.textContent = '❌ خطأ: ' + error.message;
-  }
-  
-  btn.disabled = false;
-  btn.textContent = '⚡ توليد أمر احترافي';
-}
-
-function copyPrompt() {
-  const text = document.getElementById('labOutput').textContent;
-  navigator.clipboard.writeText(text);
-  alert('تم النسخ!');
+async function test() {
+  const input = document.getElementById('input').value;
+  const res = await fetch('/api/claude', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({messages:[{role:'user',content:input}]})
+  });
+  const text = await res.text();
+  document.getElementById('output').textContent = text;
 }
 </script>
 </body>
