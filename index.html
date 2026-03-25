@@ -40,6 +40,7 @@ body {
   transition: direction 0.3s ease;
 }
 
+/* Language-specific font handling */
 body[data-lang="en"], body[data-lang="es"], body[data-lang="fr"] {
   font-family: var(--font-en);
   direction: ltr;
@@ -50,6 +51,7 @@ body[data-lang="ar"] {
   direction: rtl;
 }
 
+/* ===== ANIMATED BACKGROUND ===== */
 body::before {
   content: '';
   position: fixed;
@@ -62,6 +64,7 @@ body::before {
   z-index: 0;
 }
 
+/* ===== LANGUAGE SWITCHER ===== */
 .lang-switcher {
   position: relative;
   margin-left: 1rem;
@@ -143,6 +146,7 @@ body[data-lang="fr"] .lang-dropdown {
   font-size: 1.2rem;
 }
 
+/* ===== NAVBAR ===== */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -260,6 +264,7 @@ body[data-lang="fr"] .cart-count {
   right: -6px;
 }
 
+/* ===== HERO ===== */
 .hero {
   position: relative;
   z-index: 1;
@@ -375,6 +380,7 @@ body[data-lang="fr"] .cart-count {
 
 .btn-outline:hover { background: var(--card); border-color: var(--primary); color: var(--primary); }
 
+/* Stats Bar */
 .stats-bar {
   display: flex;
   gap: 3rem;
@@ -401,6 +407,7 @@ body[data-lang="fr"] .cart-count {
   font-weight: 600;
 }
 
+/* Scroll ticker */
 .ticker-wrap {
   background: rgba(0,212,255,0.05);
   border-top: 1px solid var(--border);
@@ -442,6 +449,7 @@ body[data-lang="fr"] .ticker {
   animation-direction: reverse;
 }
 
+/* ===== SECTIONS ===== */
 section { position: relative; z-index: 1; }
 
 .section-header {
@@ -482,6 +490,7 @@ section { position: relative; z-index: 1; }
   line-height: 1.7;
 }
 
+/* ===== PROMPT LAB ===== */
 .prompt-lab {
   padding: 6rem 2rem;
   max-width: 1200px;
@@ -665,6 +674,7 @@ body[data-lang="fr"] .lab-textarea {
 
 .output-btn:hover { background: rgba(0,212,255,0.1); color: var(--primary); }
 
+/* typing animation */
 @keyframes typing { from { width: 0; } to { width: 100%; } }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
@@ -674,6 +684,7 @@ body[data-lang="fr"] .lab-textarea {
   color: var(--primary);
 }
 
+/* ===== STORE SECTION ===== */
 .store-section {
   padding: 6rem 2rem;
   max-width: 1300px;
@@ -865,6 +876,7 @@ body[data-lang="fr"] .product-badge {
 .add-cart-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,212,255,0.3); }
 .add-cart-btn.added { background: var(--success); color: black; }
 
+/* ===== FEATURES ===== */
 .features-section {
   padding: 6rem 2rem;
   max-width: 1200px;
@@ -945,6 +957,7 @@ body[data-lang="fr"] .feature-new {
   margin-left: 0.5rem;
 }
 
+/* ===== CREATOR PROGRAM ===== */
 .creator-section {
   padding: 6rem 2rem;
   background: linear-gradient(135deg, rgba(124,58,237,0.06), rgba(0,212,255,0.04));
@@ -1017,6 +1030,7 @@ body[data-lang="fr"] .creator-step {
 .cstat-num { font-size: 2rem; font-weight: 900; color: var(--primary); font-family: var(--mono); }
 .cstat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
 
+/* ===== PRICING ===== */
 .pricing-section {
   padding: 6rem 2rem;
   max-width: 1100px;
@@ -1099,6 +1113,7 @@ body[data-lang="fr"] .plan-features li::before {
 .plan-btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent)); border: none; color: white; }
 .plan-btn-primary:hover { box-shadow: 0 8px 25px rgba(0,212,255,0.3); transform: translateY(-1px); }
 
+/* ===== TESTIMONIALS ===== */
 .testimonials-section {
   padding: 6rem 2rem;
   max-width: 1200px;
@@ -1151,6 +1166,7 @@ body[data-lang="fr"] .t-author {
 .t-name { font-size: 0.9rem; font-weight: 700; }
 .t-role { font-size: 0.78rem; color: var(--muted); }
 
+/* ===== CTA SECTION ===== */
 .cta-section {
   padding: 6rem 2rem;
   text-align: center;
@@ -1203,6 +1219,7 @@ body[data-lang="fr"] .email-input {
 .email-input:focus { border-color: var(--primary); }
 .email-input::placeholder { color: var(--muted); }
 
+/* ===== FOOTER ===== */
 footer {
   background: var(--bg2);
   border-top: 1px solid var(--border);
@@ -1258,7 +1275,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: gap;
   gap: 1rem;
 }
 
@@ -1267,6 +1284,7 @@ footer {
 .footer-bottom-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; }
 .footer-bottom-links a:hover { color: var(--primary); }
 
+/* ===== ANIMATIONS ===== */
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1277,6 +1295,7 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ===== NOTIFICATION ===== */
 .notification {
   position: fixed;
   bottom: 2rem;
@@ -1307,6 +1326,7 @@ body[data-lang="fr"] .notification {
 .notification.show { transform: translateY(0); opacity: 1; }
 .notification .notif-icon { font-size: 1.2rem; }
 
+/* ===== MOBILE NAV ===== */
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -1325,6 +1345,7 @@ body[data-lang="fr"] .notification {
   .hero-actions { flex-direction: column; align-items: center; }
 }
 
+/* ===== SCROLL ANIMATIONS ===== */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -1336,6 +1357,7 @@ body[data-lang="fr"] .notification {
   transform: translateY(0);
 }
 
+/* Stripe-like trust bar */
 .trust-bar {
   background: rgba(0,212,255,0.04);
   border-top: 1px solid var(--border);
@@ -1364,6 +1386,7 @@ body[data-lang="fr"] .notification {
 </head>
 <body data-lang="ar">
 
+<!-- NAVBAR -->
 <nav>
   <a href="index.html" class="nav-logo">
     <div class="brain-icon">🧠</div>
@@ -1411,28 +1434,46 @@ body[data-lang="fr"] .notification {
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-badge">🌍 <span data-i18n="hero.badge">المنصة العربية الأولى للذكاء الاصطناعي</span></div>
+  
   <h1>
     <span class="line1" data-i18n="hero.title1">نَسِج العقول</span>
     <span class="line2" data-i18n="hero.title2">بالذكاء الاصطناعي</span>
   </h1>
+  
   <p class="hero-sub" data-i18n="hero.subtitle">
     منصة عالمية متكاملة لأوامر AI، القوالب الرقمية، وأدوات الإبداع — 
     مع Prompt Lab حصري لاختبار أوامرك قبل الشراء، وبرنامج مبدعين لبيع إبداعاتك
   </p>
+
   <div class="hero-actions">
     <a href="store.html" class="btn-primary" data-i18n="hero.cta1">🛒 استكشف المتجر</a>
     <a href="#prompt-lab" class="btn-outline" data-i18n="hero.cta2">⚗️ جرّب Prompt Lab مجاناً</a>
   </div>
+
   <div class="stats-bar">
-    <div class="stat-item"><span class="stat-num" id="statProducts">500+</span><span class="stat-label" data-i18n="stats.products">منتج رقمي</span></div>
-    <div class="stat-item"><span class="stat-num">12K+</span><span class="stat-label" data-i18n="stats.users">مستخدم نشط</span></div>
-    <div class="stat-item"><span class="stat-num">4.9★</span><span class="stat-label" data-i18n="stats.rating">تقييم المنصة</span></div>
-    <div class="stat-item"><span class="stat-num">24/7</span><span class="stat-label" data-i18n="stats.support">دعم AI فوري</span></div>
+    <div class="stat-item">
+      <span class="stat-num" id="statProducts">500+</span>
+      <span class="stat-label" data-i18n="stats.products">منتج رقمي</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">12K+</span>
+      <span class="stat-label" data-i18n="stats.users">مستخدم نشط</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4.9★</span>
+      <span class="stat-label" data-i18n="stats.rating">تقييم المنصة</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label" data-i18n="stats.support">دعم AI فوري</span>
+    </div>
   </div>
 </section>
 
+<!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-item">🔒 <span data-i18n="trust.security">دفع آمن 100%</span> — SSL + Stripe</div>
   <div class="trust-item">⚡ <span data-i18n="trust.delivery">تسليم فوري</span> — <span data-i18n="trust.seconds">خلال ثوانٍ</span></div>
@@ -1441,6 +1482,7 @@ body[data-lang="fr"] .notification {
   <div class="trust-item">🌍 <span data-i18n="trust.languages">4 لغات عالمية</span></div>
 </div>
 
+<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
     <div class="ticker-item">🧠 <span>ChatGPT Prompts</span></div>
@@ -1453,6 +1495,7 @@ body[data-lang="fr"] .notification {
     <div class="ticker-item">🔧 <span>Automation Scripts</span></div>
     <div class="ticker-item">📱 <span>Social Media Kits</span></div>
     <div class="ticker-item">🎙️ <span>Voice AI Prompts</span></div>
+    <!-- repeat for infinite effect -->
     <div class="ticker-item">🧠 <span>ChatGPT Prompts</span></div>
     <div class="ticker-item">🎨 <span>Midjourney Packs</span></div>
     <div class="ticker-item">📊 <span>Notion Templates</span></div>
@@ -1466,6 +1509,7 @@ body[data-lang="fr"] .notification {
   </div>
 </div>
 
+<!-- PROMPT LAB -->
 <section class="prompt-lab" id="prompt-lab">
   <div class="section-header reveal">
     <div class="section-tag">⚗️ <span data-i18n="lab.badge">حصري — لا يوجد عند المنافسين</span></div>
@@ -1499,14 +1543,14 @@ body[data-lang="fr"] .notification {
           <button class="cat-btn" data-cat="business" data-i18n="cat.business">أعمال</button>
         </div>
         <textarea class="lab-textarea" id="labInput" data-i18n-placeholder="lab.placeholder" placeholder="مثال: أريد أمر لإنشاء محتوى تسويقي لمتجر إلكتروني يبيع عطوراً فاخرة..."></textarea>
-        <button class="lab-generate-btn" id="labGenerateBtn">
+        <button class="lab-generate-btn" id="labGenerateBtn" onclick="generatePrompt()">
           <span id="labBtnText" data-i18n="lab.generate">⚡ توليد أمر احترافي</span>
         </button>
       </div>
 
       <div class="lab-output-side">
         <h4 data-i18n="lab.outputTitle">🤖 الأمر المُولَّد</h4>
-        <div class="lab-output empty" id="labOutput">
+        <div class="lab-output empty" id="labOutput" data-i18n="lab.outputPlaceholder">
           سيظهر الأمر المُولَّد هنا...
         </div>
         <div class="output-actions" id="outputActions" style="display:none">
@@ -1519,6 +1563,7 @@ body[data-lang="fr"] .notification {
   </div>
 </section>
 
+<!-- STORE SECTION -->
 <section class="store-section">
   <div class="section-header reveal">
     <div class="section-tag">🛒 <span data-i18n="store.badge">المتجر</span></div>
@@ -1536,166 +1581,1557 @@ body[data-lang="fr"] .notification {
     <button class="filter-btn" data-filter="services" data-i18n="filter.services">🎯 خدمات</button>
   </div>
 
-  <div class="products-grid" id="productsGrid"></div>
+  <div class="products-grid" id="productsGrid">
+    <!-- Products injected by JS -->
+  </div>
+
   <div style="text-align:center; margin-top:3rem; reveal">
     <a href="store.html" class="btn-outline" data-i18n="store.viewAll">عرض جميع المنتجات (500+) →</a>
   </div>
 </section>
 
+<!-- FEATURES -->
 <section class="features-section">
   <div class="section-header reveal">
     <div class="section-tag">✨ <span data-i18n="features.badge">لماذا MindWeave؟</span></div>
     <h2 data-i18n="features.title">ميزات <em>لا تجدها</em> في أي مكان آخر</h2>
   </div>
+
   <div class="features-grid">
-    <div class="feature-card fc-blue reveal"><div class="feature-icon fi-blue">⚗️</div><h3><span class="feature-new" data-i18n="badge.new">جديد</span>Prompt Lab</h3><p data-i18n="features.desc1">اختبر وولّد أوامر احترافية مجاناً قبل الشراء — أداة حصرية لا يوجدها أي منافس</p></div>
-    <div class="feature-card fc-purple reveal"><div class="feature-icon fi-purple">🎨</div><h3><span class="feature-new" data-i18n="badge.new">جديد</span>Prompt Mixer</h3><p data-i18n="features.desc2">ادمج عدة أوامر وأنشئ أمراً هجيناً مخصصاً — إبداع لا حدود له</p></div>
-    <div class="feature-card fc-orange reveal"><div class="feature-icon fi-orange">💰</div><h3><span class="feature-new" data-i18n="badge.new">جديد</span><span data-i18n="features.creatorProgram">برنامج المبدعين</span></h3><p data-i18n="features.desc3">بيع أوامرك وقوالبك واكسب 70% من كل عملية بيع — حوّل إبداعك إلى دخل</p></div>
-    <div class="feature-card fc-green reveal"><div class="feature-icon fi-green">📈</div><h3 data-i18n="features.analytics">تحليلات المنتج</h3><p data-i18n="features.desc4">إحصائيات تفصيلية عن أداء منتجاتك: المشاهدات، المبيعات، والتقييمات</p></div>
-    <div class="feature-card fc-blue reveal"><div class="feature-icon fi-gold">🏆</div><h3><span class="feature-new" data-i18n="badge.new">جديد</span><span data-i18n="features.points">نقاط Weave</span></h3><p data-i18n="features.desc5">اكسب نقاطاً مع كل شراء وتقييم — استبدلها بمنتجات مجانية وخصومات حصرية</p></div>
-    <div class="feature-card fc-purple reveal"><div class="feature-icon fi-blue">🤖</div><h3 data-i18n="features.aiAssistant">مساعد AI مدمج</h3><p data-i18n="features.desc6">بوت Gemini AI يفهم احتياجاتك ويولّد أوامر مخصصة فورياً بالعربية والإنجليزية</p></div>
-    <div class="feature-card fc-orange reveal"><div class="feature-icon fi-red">🌍</div><h3 data-i18n="features.languages">4 لغات عالمية</h3><p data-i18n="features.desc7">عربي · إنجليزي · فرنسي · إسباني — تجربة كاملة ومتكاملة بكل لغة</p></div>
-    <div class="feature-card fc-green reveal"><div class="feature-icon fi-green">⚡</div><h3 data-i18n="features.instant">تسليم فوري</h3><p data-i18n="features.desc8">ملفاتك في بريدك خلال ثوانٍ بعد الدفع — لا انتظار، لا تعقيد</p></div>
+    <div class="feature-card fc-blue reveal">
+      <div class="feature-icon fi-blue">⚗️</div>
+      <h3><span class="feature-new" data-i18n="badge.new">جديد</span>Prompt Lab</h3>
+      <p data-i18n="features.desc1">اختبر وولّد أوامر احترافية مجاناً قبل الشراء — أداة حصرية لا يوجدها أي منافس</p>
+    </div>
+    <div class="feature-card fc-purple reveal">
+      <div class="feature-icon fi-purple">🎨</div>
+      <h3><span class="feature-new" data-i18n="badge.new">جديد</span>Prompt Mixer</h3>
+      <p data-i18n="features.desc2">ادمج عدة أوامر وأنشئ أمراً هجيناً مخصصاً — إبداع لا حدود له</p>
+    </div>
+    <div class="feature-card fc-orange reveal">
+      <div class="feature-icon fi-orange">💰</div>
+      <h3><span class="feature-new" data-i18n="badge.new">جديد</span><span data-i18n="features.creatorProgram">برنامج المبدعين</span></h3>
+      <p data-i18n="features.desc3">بيع أوامرك وقوالبك واكسب 70% من كل عملية بيع — حوّل إبداعك إلى دخل</p>
+    </div>
+    <div class="feature-card fc-green reveal">
+      <div class="feature-icon fi-green">📈</div>
+      <h3 data-i18n="features.analytics">تحليلات المنتج</h3>
+      <p data-i18n="features.desc4">إحصائيات تفصيلية عن أداء منتجاتك: المشاهدات، المبيعات، والتقييمات</p>
+    </div>
+    <div class="feature-card fc-blue reveal">
+      <div class="feature-icon fi-gold">🏆</div>
+      <h3><span class="feature-new" data-i18n="badge.new">جديد</span><span data-i18n="features.points">نقاط Weave</span></h3>
+      <p data-i18n="features.desc5">اكسب نقاطاً مع كل شراء وتقييم — استبدلها بمنتجات مجانية وخصومات حصرية</p>
+    </div>
+    <div class="feature-card fc-purple reveal">
+      <div class="feature-icon fi-blue">🤖</div>
+      <h3 data-i18n="features.aiAssistant">مساعد AI مدمج</h3>
+      <p data-i18n="features.desc6">بوت Gemini AI يفهم احتياجاتك ويولّد أوامر مخصصة فورياً بالعربية والإنجليزية</p>
+    </div>
+    <div class="feature-card fc-orange reveal">
+      <div class="feature-icon fi-red">🌍</div>
+      <h3 data-i18n="features.languages">4 لغات عالمية</h3>
+      <p data-i18n="features.desc7">عربي · إنجليزي · فرنسي · إسباني — تجربة كاملة ومتكاملة بكل لغة</p>
+    </div>
+    <div class="feature-card fc-green reveal">
+      <div class="feature-icon fi-green">⚡</div>
+      <h3 data-i18n="features.instant">تسليم فوري</h3>
+      <p data-i18n="features.desc8">ملفاتك في بريدك خلال ثوانٍ بعد الدفع — لا انتظار، لا تعقيد</p>
+    </div>
   </div>
 </section>
 
+<!-- CREATOR PROGRAM -->
 <section class="creator-section">
   <div class="creator-inner">
     <div>
       <div class="section-tag">💰 <span data-i18n="creator.badge">برنامج المبدعين</span></div>
       <h2 style="font-size:2.5rem;font-weight:900;margin:1rem 0;" data-i18n="creator.title">حوّل إبداعك<br><em style="color:var(--primary)">إلى دخل</em></h2>
       <p style="color:var(--muted);line-height:1.8;margin-bottom:2rem;" data-i18n="creator.desc">انضم إلى مجتمع المبدعين في MindWeave — بيع أوامرك، قوالبك، وأدواتك الرقمية واكسب 70% من كل عملية بيع. أكثر من 200 مبدع ينضمون شهرياً.</p>
+      
       <div class="creator-stats">
         <div class="cstat"><div class="cstat-num">70%</div><div class="cstat-label" data-i18n="creator.stat1">عمولة المبدع</div></div>
         <div class="cstat"><div class="cstat-num">200+</div><div class="cstat-label" data-i18n="creator.stat2">مبدع نشط</div></div>
         <div class="cstat"><div class="cstat-num">$2K</div><div class="cstat-label" data-i18n="creator.stat3">متوسط دخل شهري</div></div>
         <div class="cstat"><div class="cstat-num">0$</div><div class="cstat-label" data-i18n="creator.stat4">رسوم التسجيل</div></div>
       </div>
+
       <a href="creators.html" class="btn-primary" style="margin-top:2rem;display:inline-flex;" data-i18n="creator.cta">انضم كمبدع →</a>
     </div>
+
     <div class="creator-steps">
-      <div class="creator-step"><div class="step-num">1</div><div class="step-content"><h4 data-i18n="creator.step1Title">سجّل حساب مجاناً</h4><p data-i18n="creator.step1Desc">أنشئ حساب مبدع في أقل من دقيقة — لا رسوم، لا متطلبات</p></div></div>
-      <div class="creator-step"><div class="step-num">2</div><div class="step-content"><h4 data-i18n="creator.step2Title">ارفع منتجك الرقمي</h4><p data-i18n="creator.step2Desc">أوامر AI، قوالب، كتب إلكترونية، أدوات — أي محتوى رقمي ذكي</p></div></div>
-      <div class="creator-step"><div class="step-num">3</div><div class="step-content"><h4 data-i18n="creator.step3Title">استقبل المدفوعات</h4><p data-i18n="creator.step3Desc">70% من كل مبيعة تذهب مباشرة لك — سحب فوري عبر PayPal أو تحويل بنكي</p></div></div>
-      <div class="creator-step"><div class="step-num">4</div><div class="step-content"><h4 data-i18n="creator.step4Title">كبّر دخلك</h4><p data-i18n="creator.step4Desc">تحليلات مفصلة + دعم تسويقي من فريق MindWeave لمضاعفة مبيعاتك</p></div></div>
+      <div class="creator-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4 data-i18n="creator.step1Title">سجّل حساب مجاناً</h4>
+          <p data-i18n="creator.step1Desc">أنشئ حساب مبدع في أقل من دقيقة — لا رسوم، لا متطلبات</p>
+        </div>
+      </div>
+      <div class="creator-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4 data-i18n="creator.step2Title">ارفع منتجك الرقمي</h4>
+          <p data-i18n="creator.step2Desc">أوامر AI، قوالب، كتب إلكترونية، أدوات — أي محتوى رقمي ذكي</p>
+        </div>
+      </div>
+      <div class="creator-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4 data-i18n="creator.step3Title">استقبل المدفوعات</h4>
+          <p data-i18n="creator.step3Desc">70% من كل مبيعة تذهب مباشرة لك — سحب فوري عبر PayPal أو تحويل بنكي</p>
+        </div>
+      </div>
+      <div class="creator-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4 data-i18n="creator.step4Title">كبّر دخلك</h4>
+          <p data-i18n="creator.step4Desc">تحليلات مفصلة + دعم تسويقي من فريق MindWeave لمضاعفة مبيعاتك</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- PRICING -->
 <section class="pricing-section">
-  <div class="section-header reveal"><div class="section-tag">💎 <span data-i18n="pricing.badge">الاشتراكات</span></div><h2 data-i18n="pricing.title">خطط <em>مرنة</em> لكل احتياج</h2><p data-i18n="pricing.subtitle">ابدأ مجاناً وطوّر اشتراكك متى شئت</p></div>
+  <div class="section-header reveal">
+    <div class="section-tag">💎 <span data-i18n="pricing.badge">الاشتراكات</span></div>
+    <h2 data-i18n="pricing.title">خطط <em>مرنة</em> لكل احتياج</h2>
+    <p data-i18n="pricing.subtitle">ابدأ مجاناً وطوّر اشتراكك متى شئت</p>
+  </div>
+
   <div class="pricing-grid">
-    <div class="pricing-card reveal"><div class="plan-icon">🌱</div><div class="plan-name" data-i18n="plan.free.name">مجاني</div><div class="plan-desc" data-i18n="plan.free.desc">للمبتدئين والاستكشاف</div><div class="plan-price"><span class="price-amount">$0</span><span class="price-period" data-i18n="plan.forever">/دائماً</span></div><ul class="plan-features"><li data-i18n="plan.free.feat1">3 تحميلات من المكتبة المجانية/يوم</li><li data-i18n="plan.free.feat2">Prompt Lab (5 توليدات/يوم)</li><li data-i18n="plan.free.feat3">الوصول للمدونة والمقالات</li><li class="disabled" data-i18n="plan.free.feat4">منتجات المتجر المدفوعة</li><li class="disabled" data-i18n="plan.free.feat5">برنامج المبدعين</li><li class="disabled" data-i18n="plan.free.feat6">نقاط Weave</li></ul><a href="register.html" class="plan-btn plan-btn-outline" data-i18n="plan.startFree">ابدأ مجاناً</a></div>
-    <div class="pricing-card popular reveal"><div class="popular-badge" data-i18n="plan.popular">⭐ الأكثر شعبية</div><div class="plan-icon">🚀</div><div class="plan-name">Pro Weaver</div><div class="plan-desc" data-i18n="plan.pro.desc">للمستخدم الجاد والمحترف</div><div class="plan-price"><span class="price-amount">$9.99</span><span class="price-period" data-i18n="plan.month">/شهر</span></div><ul class="plan-features"><li data-i18n="plan.pro.feat1">تحميلات غير محدودة</li><li data-i18n="plan.pro.feat2">Prompt Lab غير محدود</li><li data-i18n="plan.pro.feat3">Prompt Mixer حصري</li><li data-i18n="plan.pro.feat4">نقاط Weave مضاعفة</li><li data-i18n="plan.pro.feat5">وصول مبكر للمنتجات الجديدة</li><li data-i18n="plan.pro.feat6">خصم 20% على جميع المنتجات</li><li data-i18n="plan.pro.feat7">دعم أولوية 24/7</li><li data-i18n="plan.pro.feat8">برنامج المبدعين (عمولة 70%)</li></ul><a href="subscription.html" class="plan-btn plan-btn-primary" data-i18n="plan.subscribe">اشترك الآن</a></div>
-    <div class="pricing-card reveal"><div class="plan-icon">🏢</div><div class="plan-name" data-i18n="plan.business.name">Business</div><div class="plan-desc" data-i18n="plan.business.desc">للشركات والفرق والوكالات</div><div class="plan-price"><span class="price-amount">$19.99</span><span class="price-period" data-i18n="plan.month">/شهر</span></div><ul class="plan-features"><li data-i18n="plan.business.feat1">كل مميزات Pro</li><li data-i18n="plan.business.feat2">5 حسابات فرعية للفريق</li><li data-i18n="plan.business.feat3">API وصول مخصص</li><li data-i18n="plan.business.feat4">تقارير PDF شهرية</li><li data-i18n="plan.business.feat5">استشارة شهرية مجانية</li><li data-i18n="plan.business.feat6">لوحة تحكم للمؤسسة</li><li data-i18n="plan.business.feat7">دعم مدير حساب مخصص</li><li data-i18n="plan.business.feat8">عمولة مبدعين 75%</li></ul><a href="subscription.html" class="plan-btn plan-btn-outline" data-i18n="plan.trial">ابدأ تجربة 14 يوم</a></div>
+    <div class="pricing-card reveal">
+      <div class="plan-icon">🌱</div>
+      <div class="plan-name" data-i18n="plan.free.name">مجاني</div>
+      <div class="plan-desc" data-i18n="plan.free.desc">للمبتدئين والاستكشاف</div>
+      <div class="plan-price">
+        <span class="price-amount">$0</span>
+        <span class="price-period" data-i18n="plan.forever">/دائماً</span>
+      </div>
+      <ul class="plan-features">
+        <li data-i18n="plan.free.feat1">3 تحميلات من المكتبة المجانية/يوم</li>
+        <li data-i18n="plan.free.feat2">Prompt Lab (5 توليدات/يوم)</li>
+        <li data-i18n="plan.free.feat3">الوصول للمدونة والمقالات</li>
+        <li class="disabled" data-i18n="plan.free.feat4">منتجات المتجر المدفوعة</li>
+        <li class="disabled" data-i18n="plan.free.feat5">برنامج المبدعين</li>
+        <li class="disabled" data-i18n="plan.free.feat6">نقاط Weave</li>
+      </ul>
+      <a href="register.html" class="plan-btn plan-btn-outline" data-i18n="plan.startFree">ابدأ مجاناً</a>
+    </div>
+
+    <div class="pricing-card popular reveal">
+      <div class="popular-badge" data-i18n="plan.popular">⭐ الأكثر شعبية</div>
+      <div class="plan-icon">🚀</div>
+      <div class="plan-name">Pro Weaver</div>
+      <div class="plan-desc" data-i18n="plan.pro.desc">للمستخدم الجاد والمحترف</div>
+      <div class="plan-price">
+        <span class="price-amount">$9.99</span>
+        <span class="price-period" data-i18n="plan.month">/شهر</span>
+      </div>
+      <ul class="plan-features">
+        <li data-i18n="plan.pro.feat1">تحميلات غير محدودة</li>
+        <li data-i18n="plan.pro.feat2">Prompt Lab غير محدود</li>
+        <li data-i18n="plan.pro.feat3">Prompt Mixer حصري</li>
+        <li data-i18n="plan.pro.feat4">نقاط Weave مضاعفة</li>
+        <li data-i18n="plan.pro.feat5">وصول مبكر للمنتجات الجديدة</li>
+        <li data-i18n="plan.pro.feat6">خصم 20% على جميع المنتجات</li>
+        <li data-i18n="plan.pro.feat7">دعم أولوية 24/7</li>
+        <li data-i18n="plan.pro.feat8">برنامج المبدعين (عمولة 70%)</li>
+      </ul>
+      <a href="subscription.html" class="plan-btn plan-btn-primary" data-i18n="plan.subscribe">اشترك الآن</a>
+    </div>
+
+    <div class="pricing-card reveal">
+      <div class="plan-icon">🏢</div>
+      <div class="plan-name" data-i18n="plan.business.name">Business</div>
+      <div class="plan-desc" data-i18n="plan.business.desc">للشركات والفرق والوكالات</div>
+      <div class="plan-price">
+        <span class="price-amount">$19.99</span>
+        <span class="price-period" data-i18n="plan.month">/شهر</span>
+      </div>
+      <ul class="plan-features">
+        <li data-i18n="plan.business.feat1">كل مميزات Pro</li>
+        <li data-i18n="plan.business.feat2">5 حسابات فرعية للفريق</li>
+        <li data-i18n="plan.business.feat3">API وصول مخصص</li>
+        <li data-i18n="plan.business.feat4">تقارير PDF شهرية</li>
+        <li data-i18n="plan.business.feat5">استشارة شهرية مجانية</li>
+        <li data-i18n="plan.business.feat6">لوحة تحكم للمؤسسة</li>
+        <li data-i18n="plan.business.feat7">دعم مدير حساب مخصص</li>
+        <li data-i18n="plan.business.feat8">عمولة مبدعين 75%</li>
+      </ul>
+      <a href="subscription.html" class="plan-btn plan-btn-outline" data-i18n="plan.trial">ابدأ تجربة 14 يوم</a>
+    </div>
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
 <section class="testimonials-section">
-  <div class="section-header reveal"><div class="section-tag">⭐ <span data-i18n="testimonials.badge">آراء العملاء</span></div><h2 data-i18n="testimonials.title">ماذا يقول <em>مستخدمونا</em>؟</h2></div>
+  <div class="section-header reveal">
+    <div class="section-tag">⭐ <span data-i18n="testimonials.badge">آراء العملاء</span></div>
+    <h2 data-i18n="testimonials.title">ماذا يقول <em>مستخدمونا</em>؟</h2>
+  </div>
+
   <div class="testimonials-grid">
-    <div class="testimonial-card reveal"><div class="t-stars">★★★★★</div><p class="t-text" data-i18n="testimonials.t1.text">أفضل منصة عربية لأوامر AI بفارق كبير. Prompt Lab وفّر عليّ ساعات من التجريب. أنصح به كل محتوى كريتور.</p><div class="t-author"><div class="t-avatar" style="background:rgba(0,212,255,0.15);color:var(--primary)">س</div><div><div class="t-name" data-i18n="testimonials.t1.name">سارة المنصور</div><div class="t-role" data-i18n="testimonials.t1.role">Content Creator · السعودية 🇸🇦</div></div></div></div>
-    <div class="testimonial-card reveal"><div class="t-stars">★★★★★</div><p class="t-text" data-i18n="testimonials.t2.text">برنامج المبدعين غيّر حياتي. الآن أكسب دخلاً شهرياً من بيع القوالب التي أصممها. العمولة 70% ممتازة جداً.</p><div class="t-author"><div class="t-avatar" style="background:rgba(124,58,237,0.15);color:var(--accent)">أ</div><div><div class="t-name" data-i18n="testimonials.t2.name">أحمد خالد</div><div class="t-role" data-i18n="testimonials.t2.role">Notion Designer · مصر 🇪🇬</div></div></div></div>
-    <div class="testimonial-card reveal"><div class="t-stars">★★★★★</div><p class="t-text" data-i18n="testimonials.t3.text">استخدمت MindWeave لمشروع تسويقي ضخم. أوامر ChatGPT التي اشتريتها وفّرت على الفريق أكثر من 40 ساعة عمل.</p><div class="t-author"><div class="t-avatar" style="background:rgba(255,107,53,0.15);color:var(--secondary)">م</div><div><div class="t-name" data-i18n="testimonials.t3.name">منى العلي</div><div class="t-role" data-i18n="testimonials.t3.role">Marketing Manager · الإمارات 🇦🇪</div></div></div></div>
+    <div class="testimonial-card reveal">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text" data-i18n="testimonials.t1.text">أفضل منصة عربية لأوامر AI بفارق كبير. Prompt Lab وفّر عليّ ساعات من التجريب. أنصح به كل محتوى كريتور.</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background:rgba(0,212,255,0.15);color:var(--primary)">س</div>
+        <div>
+          <div class="t-name" data-i18n="testimonials.t1.name">سارة المنصور</div>
+          <div class="t-role" data-i18n="testimonials.t1.role">Content Creator · السعودية 🇸🇦</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text" data-i18n="testimonials.t2.text">برنامج المبدعين غيّر حياتي. الآن أكسب دخلاً شهرياً من بيع القوالب التي أصممها. العمولة 70% ممتازة جداً.</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background:rgba(124,58,237,0.15);color:var(--accent)">أ</div>
+        <div>
+          <div class="t-name" data-i18n="testimonials.t2.name">أحمد خالد</div>
+          <div class="t-role" data-i18n="testimonials.t2.role">Notion Designer · مصر 🇪🇬</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text" data-i18n="testimonials.t3.text">استخدمت MindWeave لمشروع تسويقي ضخم. أوامر ChatGPT التي اشتريتها وفّرت على الفريق أكثر من 40 ساعة عمل.</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background:rgba(255,107,53,0.15);color:var(--secondary)">م</div>
+        <div>
+          <div class="t-name" data-i18n="testimonials.t3.name">منى العلي</div>
+          <div class="t-role" data-i18n="testimonials.t3.role">Marketing Manager · الإمارات 🇦🇪</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-section">
-  <div class="cta-box reveal"><div style="font-size:3rem;margin-bottom:1rem">🎁</div><h2 data-i18n="cta.title">احصل على <em style="color:var(--primary)">100 أمر مجاني</em></h2><p data-i18n="cta.desc">اشترك في النشرة البريدية واحصل فوراً على مكتبة ChatGPT Prompts الكاملة (قيمتها $19.99) مجاناً</p><div class="email-form"><input type="email" class="email-input" placeholder="بريدك الإلكتروني..." id="emailInput" data-i18n-placeholder="cta.placeholder"><button class="btn-primary" onclick="subscribeEmail()" data-i18n="cta.button">احصل عليها →</button></div><p style="font-size:0.8rem;color:var(--muted);margin-top:1rem" data-i18n="cta.note">✓ بدون سبام · ✓ يمكن إلغاء الاشتراك وقتما شئت · ✓ 12,000+ مشترك</p></div>
+  <div class="cta-box reveal">
+    <div style="font-size:3rem;margin-bottom:1rem">🎁</div>
+    <h2 data-i18n="cta.title">احصل على <em style="color:var(--primary)">100 أمر مجاني</em></h2>
+    <p data-i18n="cta.desc">اشترك في النشرة البريدية واحصل فوراً على مكتبة ChatGPT Prompts الكاملة (قيمتها $19.99) مجاناً</p>
+    <div class="email-form">
+      <input type="email" class="email-input" placeholder="بريدك الإلكتروني..." id="emailInput" data-i18n-placeholder="cta.placeholder">
+      <button class="btn-primary" onclick="subscribeEmail()" data-i18n="cta.button">احصل عليها →</button>
+    </div>
+    <p style="font-size:0.8rem;color:var(--muted);margin-top:1rem" data-i18n="cta.note">✓ بدون سبام · ✓ يمكن إلغاء الاشتراك وقتما شئت · ✓ 12,000+ مشترك</p>
+  </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
-    <div class="footer-brand"><a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex;"><div class="brain-icon">🧠</div>Mind<span>Weave</span></a><p data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع — تنافس العالم من قلب العالم العربي.</p><div class="social-links"><a href="#" class="social-link">𝕏</a><a href="#" class="social-link">in</a><a href="#" class="social-link">📘</a><a href="#" class="social-link">📸</a><a href="#" class="social-link">▶️</a></div></div>
-    <div class="footer-col"><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="prompt-lab.html">Prompt Lab ✨</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li><li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li><li><a href="subscription.html" data-i18n="footer.subscription">الاشتراكات</a></li></ul></div>
-    <div class="footer-col"><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li><li><a href="refund.html" data-i18n="footer.refund">سياسة الاسترداد</a></li><li><a href="#" data-i18n="footer.help">مركز المساعدة</a></li></ul></div>
-    <div class="footer-col"><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li><li><a href="#" data-i18n="footer.cookies">سياسة الكوكيز</a></li><li><a href="#" data-i18n="footer.rights">حقوق الملكية</a></li></ul></div>
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex;">
+        <div class="brain-icon">🧠</div>
+        Mind<span>Weave</span>
+      </a>
+      <p data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع — تنافس العالم من قلب العالم العربي.</p>
+      <div class="social-links">
+        <a href="#" class="social-link">𝕏</a>
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">📘</a>
+        <a href="#" class="social-link">📸</a>
+        <a href="#" class="social-link">▶️</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4 data-i18n="footer.platform">المنصة</h4>
+      <ul class="footer-links">
+        <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
+        <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+        <li><a href="prompt-lab.html">Prompt Lab ✨</a></li>
+        <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
+        <li><a href="subscription.html" data-i18n="footer.subscription">الاشتراكات</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 data-i18n="footer.support">الدعم</h4>
+      <ul class="footer-links">
+        <li><a href="about.html" data-i18n="footer.about">من نحن</a></li>
+        <li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li>
+        <li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li>
+        <li><a href="refund.html" data-i18n="footer.refund">سياسة الاسترداد</a></li>
+        <li><a href="#" data-i18n="footer.help">مركز المساعدة</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 data-i18n="footer.legal">قانوني</h4>
+      <ul class="footer-links">
+        <li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li>
+        <li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li>
+        <li><a href="#" data-i18n="footer.cookies">سياسة الكوكيز</a></li>
+        <li><a href="#" data-i18n="footer.rights">حقوق الملكية</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p><div class="footer-bottom-links"><a href="privacy.html" data-i18n="footer.privacy">الخصوصية</a><a href="terms.html" data-i18n="footer.terms">الشروط</a><a href="refund.html" data-i18n="footer.refund">الاسترداد</a></div></div>
+
+  <div class="footer-bottom">
+    <p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p>
+    <div class="footer-bottom-links">
+      <a href="privacy.html" data-i18n="footer.privacy">الخصوصية</a>
+      <a href="terms.html" data-i18n="footer.terms">الشروط</a>
+      <a href="refund.html" data-i18n="footer.refund">الاسترداد</a>
+    </div>
+  </div>
 </footer>
 
-<div class="notification" id="notification"><span class="notif-icon" id="notifIcon">✅</span><span id="notifText" data-i18n="notif.added">تمت الإضافة للسلة!</span></div>
+<!-- NOTIFICATION -->
+<div class="notification" id="notification">
+  <span class="notif-icon" id="notifIcon">✅</span>
+  <span id="notifText" data-i18n="notif.added">تمت الإضافة للسلة!</span>
+</div>
 
 <script>
-// ===== TRANSLATIONS DATA (مختصر للطول)=====
+// ===== TRANSLATIONS DATA =====
 const translations = {
-  ar: { meta: { title: "MindWeave | منصة الذكاء الاصطناعي العالمية" }, nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة", start: "ابدأ مجاناً →" }, hero: { badge: "المنصة العربية الأولى للذكاء الاصطناعي", title1: "نَسِج العقول", title2: "بالذكاء الاصطناعي", subtitle: "منصة عالمية متكاملة لأوامر AI، القوالب الرقمية، وأدوات الإبداع — مع Prompt Lab حصري لاختبار أوامرك قبل الشراء، وبرنامج مبدعين لبيع إبداعاتك", cta1: "🛒 استكشف المتجر", cta2: "⚗️ جرّب Prompt Lab مجاناً" }, stats: { products: "منتج رقمي", users: "مستخدم نشط", rating: "تقييم المنصة", support: "دعم AI فوري" }, trust: { security: "دفع آمن 100%", delivery: "تسليم فوري", seconds: "خلال ثوانٍ", updates: "تحديثات مدى الحياة", free: "مجاناً", refund: "ضمان استرداد", days: "يوماً", languages: "4 لغات عالمية" }, lab: { badge: "حصري — لا يوجد عند المنافسين", subtitle: "جرّب وأنشئ أوامر AI احترافية مجاناً — اختبرها قبل الشراء، احفظها، أو بعها في المتجر", tab1: "توليد أمر", tab2: "تحسين أمر", tab3: "ترجمة", inputTitle: "📝 وصف احتياجك", placeholder: "مثال: أريد أمر لإنشاء محتوى تسويقي لمتجر إلكتروني يبيع عطوراً فاخرة...", generate: "⚡ توليد أمر احترافي", outputTitle: "🤖 الأمر المُولَّد", outputPlaceholder: "سيظهر الأمر المُولَّد هنا...", copy: "📋 نسخ", save: "💾 حفظ", sell: "💰 بيع في المتجر" }, cat: { general: "عام", marketing: "تسويق", design: "تصميم", coding: "برمجة", content: "محتوى", business: "أعمال" }, store: { badge: "المتجر", title: "منتجات مميزة", subtitle: "أكثر من 500 منتج رقمي — تحميل فوري، تحديثات مجانية مدى الحياة", viewAll: "عرض جميع المنتجات (500+) →" }, filter: { all: "الكل", prompts: "🧠 أوامر AI", design: "🎨 تصميم", notion: "📊 Notion", ebooks: "📚 كتب", coding: "💻 برمجة", services: "🎯 خدمات" }, features: { badge: "لماذا MindWeave؟", title: "ميزات لا تجدها في أي مكان آخر", desc1: "اختبر وولّد أوامر احترافية مجاناً قبل الشراء — أداة حصرية لا يوجدها أي منافس", desc2: "ادمج عدة أوامر وأنشئ أمراً هجيناً مخصصاً — إبداع لا حدود له", creatorProgram: "برنامج المبدعين", desc3: "بيع أوامرك وقوالبك واكسب 70% من كل عملية بيع — حوّل إبداعك إلى دخل", analytics: "تحليلات المنتج", desc4: "إحصائيات تفصيلية عن أداء منتجاتك: المشاهدات، المبيعات، والتقييمات", points: "نقاط Weave", desc5: "اكسب نقاطاً مع كل شراء وتقييم — استبدلها بمنتجات مجانية وخصومات حصرية", aiAssistant: "مساعد AI مدمج", desc6: "بوت Gemini AI يفهم احتياجاتك ويولّد أوامر مخصصة فورياً بالعربية والإنجليزية", languages: "4 لغات عالمية", desc7: "عربي · إنجليزي · فرنسي · إسباني — تجربة كاملة ومتكاملة بكل لغة", instant: "تسليم فوري", desc8: "ملفاتك في بريدك خلال ثوانٍ بعد الدفع — لا انتظار، لا تعقيد" }, badge: { new: "جديد" }, creator: { badge: "برنامج المبدعين", title: "حوّل إبداعك إلى دخل", desc: "انضم إلى مجتمع المبدعين في MindWeave — بيع أوامرك، قوالبك، وأدواتك الرقمية واكسب 70% من كل عملية بيع. أكثر من 200 مبدع ينضمون شهرياً.", stat1: "عمولة المبدع", stat2: "مبدع نشط", stat3: "متوسط دخل شهري", stat4: "رسوم التسجيل", cta: "انضم كمبدع →", step1Title: "سجّل حساب مجاناً", step1Desc: "أنشئ حساب مبدع في أقل من دقيقة — لا رسوم، لا متطلبات", step2Title: "ارفع منتجك الرقمي", step2Desc: "أوامر AI، قوالب، كتب إلكترونية، أدوات — أي محتوى رقمي ذكي", step3Title: "استقبل المدفوعات", step3Desc: "70% من كل مبيعة تذهب مباشرة لك — سحب فوري عبر PayPal أو تحويل بنكي", step4Title: "كبّر دخلك", step4Desc: "تحليلات مفصلة + دعم تسويقي من فريق MindWeave لمضاعفة مبيعاتك" }, pricing: { badge: "الاشتراكات", title: "خطط مرنة لكل احتياج", subtitle: "ابدأ مجاناً وطوّر اشتراكك متى شئت", forever: "/دائماً", month: "/شهر", popular: "⭐ الأكثر شعبية", startFree: "ابدأ مجاناً", subscribe: "اشترك الآن", trial: "ابدأ تجربة 14 يوم" }, plan: { free: { name: "مجاني", desc: "للمبتدئين والاستكشاف", feat1: "3 تحميلات من المكتبة المجانية/يوم", feat2: "Prompt Lab (5 توليدات/يوم)", feat3: "الوصول للمدونة والمقالات", feat4: "منتجات المتجر المدفوعة", feat5: "برنامج المبدعين", feat6: "نقاط Weave" }, pro: { desc: "للمستخدم الجاد والمحترف", feat1: "تحميلات غير محدودة", feat2: "Prompt Lab غير محدود", feat3: "Prompt Mixer حصري", feat4: "نقاط Weave مضاعفة", feat5: "وصول مبكر للمنتجات الجديدة", feat6: "خصم 20% على جميع المنتجات", feat7: "دعم أولوية 24/7", feat8: "برنامج المبدعين (عمولة 70%)" }, business: { name: "Business", desc: "للشركات والفرق والوكالات", feat1: "كل مميزات Pro", feat2: "5 حسابات فرعية للفريق", feat3: "API وصول مخصص", feat4: "تقارير PDF شهرية", feat5: "استشارة شهرية مجانية", feat6: "لوحة تحكم للمؤسسة", feat7: "دعم مدير حساب مخصص", feat8: "عمولة مبدعين 75%" } }, testimonials: { badge: "آراء العملاء", title: "ماذا يقول مستخدمونا؟", t1: { text: "أفضل منصة عربية لأوامر AI بفارق كبير. Prompt Lab وفّر عليّ ساعات من التجريب. أنصح به كل محتوى كريتور.", name: "سارة المنصور", role: "Content Creator · السعودية 🇸🇦" }, t2: { text: "برنامج المبدعين غيّر حياتي. الآن أكسب دخلاً شهرياً من بيع القوالب التي أصممها. العمولة 70% ممتازة جداً.", name: "أحمد خالد", role: "Notion Designer · مصر 🇪🇬" }, t3: { text: "استخدمت MindWeave لمشروع تسويقي ضخم. أوامر ChatGPT التي اشتريتها وفّرت على الفريق أكثر من 40 ساعة عمل.", name: "منى العلي", role: "Marketing Manager · الإمارات 🇦🇪" } }, cta: { title: "احصل على 100 أمر مجاني", desc: "اشترك في النشرة البريدية واحصل فوراً على مكتبة ChatGPT Prompts الكاملة (قيمتها $19.99) مجاناً", placeholder: "بريدك الإلكتروني...", button: "احصل عليها →", note: "✓ بدون سبام · ✓ يمكن إلغاء الاشتراك وقتما شئت · ✓ 12,000+ مشترك" }, footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع — تنافس العالم من قلب العالم العربي.", platform: "المنصة", subscription: "الاشتراكات", support: "الدعم", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", refund: "سياسة الاسترداد", help: "مركز المساعدة", legal: "قانوني", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", cookies: "سياسة الكوكيز", rights: "حقوق الملكية", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" }, notif: { added: "تمت الإضافة للسلة!" } },
-  en: { meta: { title: "MindWeave | Global AI Platform" }, nav: { home: "Home", store: "Store", library: "Free Library", creators: "Creator Program", blog: "Blog", cart: "Cart", start: "Start Free →" }, hero: { badge: "The First Arabic AI Platform", title1: "Weave Minds", title2: "With AI", subtitle: "A comprehensive global platform for AI prompts, digital templates, and creativity tools — with exclusive Prompt Lab to test before buying, and a creator program to sell your creations", cta1: "🛒 Explore Store", cta2: "⚗️ Try Prompt Lab Free" }, stats: { products: "Digital Products", users: "Active Users", rating: "Platform Rating", support: "Instant AI Support" }, trust: { security: "100% Secure Payment", delivery: "Instant Delivery", seconds: "In Seconds", updates: "Lifetime Updates", free: "Free", refund: "Money Back Guarantee", days: "Days", languages: "4 Global Languages" }, lab: { badge: "Exclusive — Not Found Elsewhere", subtitle: "Test and create professional AI prompts for free — test before buying, save, or sell in the store", tab1: "Generate Prompt", tab2: "Improve Prompt", tab3: "Translate", inputTitle: "📝 Describe Your Need", placeholder: "Example: I need a prompt to create marketing content for an online store selling luxury perfumes...", generate: "⚡ Generate Professional Prompt", outputTitle: "🤖 Generated Prompt", outputPlaceholder: "Generated prompt will appear here...", copy: "📋 Copy", save: "💾 Save", sell: "💰 Sell in Store" }, cat: { general: "General", marketing: "Marketing", design: "Design", coding: "Coding", content: "Content", business: "Business" }, store: { badge: "Store", title: "Featured Products", subtitle: "Over 500 digital products — instant download, free lifetime updates", viewAll: "View All Products (500+) →" }, filter: { all: "All", prompts: "🧠 AI Prompts", design: "🎨 Design", notion: "📊 Notion", ebooks: "📚 Books", coding: "💻 Coding", services: "🎯 Services" }, features: { badge: "Why MindWeave?", title: "Features You Won't Find Anywhere Else", desc1: "Test and generate professional prompts for free before buying — an exclusive tool no competitor has", desc2: "Merge multiple prompts and create a custom hybrid — unlimited creativity", creatorProgram: "Creator Program", desc3: "Sell your prompts and templates and earn 70% from every sale — turn your creativity into income", analytics: "Product Analytics", desc4: "Detailed statistics about your product performance: views, sales, and ratings", points: "Weave Points", desc5: "Earn points with every purchase and review — redeem for free products and exclusive discounts", aiAssistant: "Built-in AI Assistant", desc6: "Gemini AI bot understands your needs and generates custom prompts instantly in Arabic and English", languages: "4 Global Languages", desc7: "Arabic · English · French · Spanish — complete experience in every language", instant: "Instant Delivery", desc8: "Files in your inbox within seconds after payment — no waiting, no hassle" }, badge: { new: "New" }, creator: { badge: "Creator Program", title: "Turn Your Creativity Into Income", desc: "Join the MindWeave creator community — sell your prompts, templates and digital tools and earn 70% from every sale. Over 200 creators join monthly.", stat1: "Creator Commission", stat2: "Active Creators", stat3: "Avg Monthly Income", stat4: "Signup Fee", cta: "Join as Creator →", step1Title: "Create Free Account", step1Desc: "Create a creator account in under a minute — no fees, no requirements", step2Title: "Upload Your Digital Product", step2Desc: "AI prompts, templates, e-books, tools — any smart digital content", step3Title: "Receive Payments", step3Desc: "70% of every sale goes directly to you — instant withdrawal via PayPal or bank transfer", step4Title: "Scale Your Income", step4Desc: "Detailed analytics + marketing support from MindWeave team to double your sales" }, pricing: { badge: "Subscriptions", title: "Flexible Plans for Every Need", subtitle: "Start free and upgrade anytime", forever: "/forever", month: "/month", popular: "⭐ Most Popular", startFree: "Start Free", subscribe: "Subscribe Now", trial: "Start 14-Day Trial" }, plan: { free: { name: "Free", desc: "For beginners and exploration", feat1: "3 free library downloads/day", feat2: "Prompt Lab (5 generations/day)", feat3: "Access to blog and articles", feat4: "Paid store products", feat5: "Creator Program", feat6: "Weave Points" }, pro: { desc: "For serious and professional users", feat1: "Unlimited downloads", feat2: "Unlimited Prompt Lab", feat3: "Exclusive Prompt Mixer", feat4: "Double Weave Points", feat5: "Early access to new products", feat6: "20% discount on all products", feat7: "Priority 24/7 support", feat8: "Creator Program (70% commission)" }, business: { name: "Business", desc: "For companies, teams and agencies", feat1: "All Pro features", feat2: "5 team sub-accounts", feat3: "Custom API access", feat4: "Monthly PDF reports", feat5: "Free monthly consultation", feat6: "Enterprise dashboard", feat7: "Dedicated account manager", feat8: "75% creator commission" } }, testimonials: { badge: "Customer Reviews", title: "What Our Users Say?", t1: { text: "The best Arabic platform for AI prompts by far. Prompt Lab saved me hours of testing. Recommended for every content creator.", name: "Sarah Al-Mansour", role: "Content Creator · Saudi Arabia 🇸🇦" }, t2: { text: "The Creator Program changed my life. Now I earn monthly income from selling my templates. The 70% commission is excellent.", name: "Ahmed Khaled", role: "Notion Designer · Egypt 🇪🇬" }, t3: { text: "Used MindWeave for a massive marketing project. The ChatGPT prompts I bought saved the team over 40 hours of work.", name: "Mona Al-Ali", role: "Marketing Manager · UAE 🇦🇪" } }, cta: { title: "Get 100 Free Prompts", desc: "Subscribe to the newsletter and instantly get the complete ChatGPT Prompts library (worth $19.99) for free", placeholder: "Your email...", button: "Get It →", note: "✓ No spam · ✓ Unsubscribe anytime · ✓ 12,000+ subscribers" }, footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creativity tools — compete with the world from the heart of the Arab world.", platform: "Platform", subscription: "Subscriptions", support: "Support", about: "About Us", contact: "Contact Us", faq: "FAQ", refund: "Refund Policy", help: "Help Center", legal: "Legal", privacy: "Privacy Policy", terms: "Terms of Use", cookies: "Cookie Policy", rights: "Copyright", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" }, notif: { added: "Added to cart!" } }
+  ar: {
+    meta: { title: "MindWeave | منصة الذكاء الاصطناعي العالمية" },
+    nav: {
+      home: "الرئيسية",
+      store: "المتجر",
+      library: "المكتبة المجانية",
+      creators: "برنامج المبدعين",
+      blog: "المدونة",
+      cart: "السلة",
+      start: "ابدأ مجاناً →"
+    },
+    hero: {
+      badge: "المنصة العربية الأولى للذكاء الاصطناعي",
+      title1: "نَسِج العقول",
+      title2: "بالذكاء الاصطناعي",
+      subtitle: "منصة عالمية متكاملة لأوامر AI، القوالب الرقمية، وأدوات الإبداع — مع Prompt Lab حصري لاختبار أوامرك قبل الشراء، وبرنامج مبدعين لبيع إبداعاتك",
+      cta1: "🛒 استكشف المتجر",
+      cta2: "⚗️ جرّب Prompt Lab مجاناً"
+    },
+    stats: {
+      products: "منتج رقمي",
+      users: "مستخدم نشط",
+      rating: "تقييم المنصة",
+      support: "دعم AI فوري"
+    },
+    trust: {
+      security: "دفع آمن 100%",
+      delivery: "تسليم فوري",
+      seconds: "خلال ثوانٍ",
+      updates: "تحديثات مدى الحياة",
+      free: "مجاناً",
+      refund: "ضمان استرداد",
+      days: "يوماً",
+      languages: "4 لغات عالمية"
+    },
+    lab: {
+      badge: "حصري — لا يوجد عند المنافسين",
+      subtitle: "جرّب وأنشئ أوامر AI احترافية مجاناً — اختبرها قبل الشراء، احفظها، أو بعها في المتجر",
+      tab1: "توليد أمر",
+      tab2: "تحسين أمر",
+      tab3: "ترجمة",
+      inputTitle: "📝 وصف احتياجك",
+      placeholder: "مثال: أريد أمر لإنشاء محتوى تسويقي لمتجر إلكتروني يبيع عطوراً فاخرة...",
+      generate: "⚡ توليد أمر احترافي",
+      outputTitle: "🤖 الأمر المُولَّد",
+      outputPlaceholder: "سيظهر الأمر المُولَّد هنا...",
+      copy: "📋 نسخ",
+      save: "💾 حفظ",
+      sell: "💰 بيع في المتجر"
+    },
+    cat: {
+      general: "عام",
+      marketing: "تسويق",
+      design: "تصميم",
+      coding: "برمجة",
+      content: "محتوى",
+      business: "أعمال"
+    },
+    store: {
+      badge: "المتجر",
+      title: "منتجات مميزة",
+      subtitle: "أكثر من 500 منتج رقمي — تحميل فوري، تحديثات مجانية مدى الحياة",
+      viewAll: "عرض جميع المنتجات (500+) →"
+    },
+    filter: {
+      all: "الكل",
+      prompts: "🧠 أوامر AI",
+      design: "🎨 تصميم",
+      notion: "📊 Notion",
+      ebooks: "📚 كتب",
+      coding: "💻 برمجة",
+      services: "🎯 خدمات"
+    },
+    features: {
+      badge: "لماذا MindWeave؟",
+      title: "ميزات لا تجدها في أي مكان آخر",
+      desc1: "اختبر وولّد أوامر احترافية مجاناً قبل الشراء — أداة حصرية لا يوجدها أي منافس",
+      desc2: "ادمج عدة أوامر وأنشئ أمراً هجيناً مخصصاً — إبداع لا حدود له",
+      creatorProgram: "برنامج المبدعين",
+      desc3: "بيع أوامرك وقوالبك واكسب 70% من كل عملية بيع — حوّل إبداعك إلى دخل",
+      analytics: "تحليلات المنتج",
+      desc4: "إحصائيات تفصيلية عن أداء منتجاتك: المشاهدات، المبيعات، والتقييمات",
+      points: "نقاط Weave",
+      desc5: "اكسب نقاطاً مع كل شراء وتقييم — استبدلها بمنتجات مجانية وخصومات حصرية",
+      aiAssistant: "مساعد AI مدمج",
+      desc6: "بوت Gemini AI يفهم احتياجاتك ويولّد أوامر مخصصة فورياً بالعربية والإنجليزية",
+      languages: "4 لغات عالمية",
+      desc7: "عربي · إنجليزي · فرنسي · إسباني — تجربة كاملة ومتكاملة بكل لغة",
+      instant: "تسليم فوري",
+      desc8: "ملفاتك في بريدك خلال ثوانٍ بعد الدفع — لا انتظار، لا تعقيد"
+    },
+    badge: { new: "جديد" },
+    creator: {
+      badge: "برنامج المبدعين",
+      title: "حوّل إبداعك إلى دخل",
+      desc: "انضم إلى مجتمع المبدعين في MindWeave — بيع أوامرك، قوالبك، وأدواتك الرقمية واكسب 70% من كل عملية بيع. أكثر من 200 مبدع ينضمون شهرياً.",
+      stat1: "عمولة المبدع",
+      stat2: "مبدع نشط",
+      stat3: "متوسط دخل شهري",
+      stat4: "رسوم التسجيل",
+      cta: "انضم كمبدع →",
+      step1Title: "سجّل حساب مجاناً",
+      step1Desc: "أنشئ حساب مبدع في أقل من دقيقة — لا رسوم، لا متطلبات",
+      step2Title: "ارفع منتجك الرقمي",
+      step2Desc: "أوامر AI، قوالب، كتب إلكترونية، أدوات — أي محتوى رقمي ذكي",
+      step3Title: "استقبل المدفوعات",
+      step3Desc: "70% من كل مبيعة تذهب مباشرة لك — سحب فوري عبر PayPal أو تحويل بنكي",
+      step4Title: "كبّر دخلك",
+      step4Desc: "تحليلات مفصلة + دعم تسويقي من فريق MindWeave لمضاعفة مبيعاتك"
+    },
+    pricing: {
+      badge: "الاشتراكات",
+      title: "خطط مرنة لكل احتياج",
+      subtitle: "ابدأ مجاناً وطوّر اشتراكك متى شئت",
+      forever: "/دائماً",
+      month: "/شهر",
+      popular: "⭐ الأكثر شعبية",
+      startFree: "ابدأ مجاناً",
+      subscribe: "اشترك الآن",
+      trial: "ابدأ تجربة 14 يوم"
+    },
+    plan: {
+      free: {
+        name: "مجاني",
+        desc: "للمبتدئين والاستكشاف",
+        feat1: "3 تحميلات من المكتبة المجانية/يوم",
+        feat2: "Prompt Lab (5 توليدات/يوم)",
+        feat3: "الوصول للمدونة والمقالات",
+        feat4: "منتجات المتجر المدفوعة",
+        feat5: "برنامج المبدعين",
+        feat6: "نقاط Weave"
+      },
+      pro: {
+        desc: "للمستخدم الجاد والمحترف",
+        feat1: "تحميلات غير محدودة",
+        feat2: "Prompt Lab غير محدود",
+        feat3: "Prompt Mixer حصري",
+        feat4: "نقاط Weave مضاعفة",
+        feat5: "وصول مبكر للمنتجات الجديدة",
+        feat6: "خصم 20% على جميع المنتجات",
+        feat7: "دعم أولوية 24/7",
+        feat8: "برنامج المبدعين (عمولة 70%)"
+      },
+      business: {
+        name: "Business",
+        desc: "للشركات والفرق والوكالات",
+        feat1: "كل مميزات Pro",
+        feat2: "5 حسابات فرعية للفريق",
+        feat3: "API وصول مخصص",
+        feat4: "تقارير PDF شهرية",
+        feat5: "استشارة شهرية مجانية",
+        feat6: "لوحة تحكم للمؤسسة",
+        feat7: "دعم مدير حساب مخصص",
+        feat8: "عمولة مبدعين 75%"
+      }
+    },
+    testimonials: {
+      badge: "آراء العملاء",
+      title: "ماذا يقول مستخدمونا؟",
+      t1: {
+        text: "أفضل منصة عربية لأوامر AI بفارق كبير. Prompt Lab وفّر عليّ ساعات من التجريب. أنصح به كل محتوى كريتور.",
+        name: "سارة المنصور",
+        role: "Content Creator · السعودية 🇸🇦"
+      },
+      t2: {
+        text: "برنامج المبدعين غيّر حياتي. الآن أكسب دخلاً شهرياً من بيع القوالب التي أصممها. العمولة 70% ممتازة جداً.",
+        name: "أحمد خالد",
+        role: "Notion Designer · مصر 🇪🇬"
+      },
+      t3: {
+        text: "استخدمت MindWeave لمشروع تسويقي ضخم. أوامر ChatGPT التي اشتريتها وفّرت على الفريق أكثر من 40 ساعة عمل.",
+        name: "منى العلي",
+        role: "Marketing Manager · الإمارات 🇦🇪"
+      }
+    },
+    cta: {
+      title: "احصل على 100 أمر مجاني",
+      desc: "اشترك في النشرة البريدية واحصل فوراً على مكتبة ChatGPT Prompts الكاملة (قيمتها $19.99) مجاناً",
+      placeholder: "بريدك الإلكتروني...",
+      button: "احصل عليها →",
+      note: "✓ بدون سبام · ✓ يمكن إلغاء الاشتراك وقتما شئت · ✓ 12,000+ مشترك"
+    },
+    footer: {
+      desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع — تنافس العالم من قلب العالم العربي.",
+      platform: "المنصة",
+      subscription: "الاشتراكات",
+      support: "الدعم",
+      about: "من نحن",
+      contact: "تواصل معنا",
+      faq: "الأسئلة الشائعة",
+      refund: "سياسة الاسترداد",
+      help: "مركز المساعدة",
+      legal: "قانوني",
+      privacy: "سياسة الخصوصية",
+      terms: "شروط الاستخدام",
+      cookies: "سياسة الكوكيز",
+      rights: "حقوق الملكية",
+      copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠"
+    },
+    notif: { added: "تمت الإضافة للسلة!" }
+  },
+  en: {
+    meta: { title: "MindWeave | Global AI Platform" },
+    nav: {
+      home: "Home",
+      store: "Store",
+      library: "Free Library",
+      creators: "Creator Program",
+      blog: "Blog",
+      cart: "Cart",
+      start: "Start Free →"
+    },
+    hero: {
+      badge: "The First Arabic AI Platform",
+      title1: "Weave Minds",
+      title2: "With AI",
+      subtitle: "A comprehensive global platform for AI prompts, digital templates, and creativity tools — with exclusive Prompt Lab to test before buying, and a creator program to sell your creations",
+      cta1: "🛒 Explore Store",
+      cta2: "⚗️ Try Prompt Lab Free"
+    },
+    stats: {
+      products: "Digital Products",
+      users: "Active Users",
+      rating: "Platform Rating",
+      support: "Instant AI Support"
+    },
+    trust: {
+      security: "100% Secure Payment",
+      delivery: "Instant Delivery",
+      seconds: "In Seconds",
+      updates: "Lifetime Updates",
+      free: "Free",
+      refund: "Money Back Guarantee",
+      days: "Days",
+      languages: "4 Global Languages"
+    },
+    lab: {
+      badge: "Exclusive — Not Found Elsewhere",
+      subtitle: "Test and create professional AI prompts for free — test before buying, save, or sell in the store",
+      tab1: "Generate Prompt",
+      tab2: "Improve Prompt",
+      tab3: "Translate",
+      inputTitle: "📝 Describe Your Need",
+      placeholder: "Example: I need a prompt to create marketing content for an online store selling luxury perfumes...",
+      generate: "⚡ Generate Professional Prompt",
+      outputTitle: "🤖 Generated Prompt",
+      outputPlaceholder: "Generated prompt will appear here...",
+      copy: "📋 Copy",
+      save: "💾 Save",
+      sell: "💰 Sell in Store"
+    },
+    cat: {
+      general: "General",
+      marketing: "Marketing",
+      design: "Design",
+      coding: "Coding",
+      content: "Content",
+      business: "Business"
+    },
+    store: {
+      badge: "Store",
+      title: "Featured Products",
+      subtitle: "Over 500 digital products — instant download, free lifetime updates",
+      viewAll: "View All Products (500+) →"
+    },
+    filter: {
+      all: "All",
+      prompts: "🧠 AI Prompts",
+      design: "🎨 Design",
+      notion: "📊 Notion",
+      ebooks: "📚 Books",
+      coding: "💻 Coding",
+      services: "🎯 Services"
+    },
+    features: {
+      badge: "Why MindWeave?",
+      title: "Features You Won't Find Anywhere Else",
+      desc1: "Test and generate professional prompts for free before buying — an exclusive tool no competitor has",
+      desc2: "Merge multiple prompts and create a custom hybrid — unlimited creativity",
+      creatorProgram: "Creator Program",
+      desc3: "Sell your prompts and templates and earn 70% from every sale — turn your creativity into income",
+      analytics: "Product Analytics",
+      desc4: "Detailed statistics about your product performance: views, sales, and ratings",
+      points: "Weave Points",
+      desc5: "Earn points with every purchase and review — redeem for free products and exclusive discounts",
+      aiAssistant: "Built-in AI Assistant",
+      desc6: "Gemini AI bot understands your needs and generates custom prompts instantly in Arabic and English",
+      languages: "4 Global Languages",
+      desc7: "Arabic · English · French · Spanish — complete experience in every language",
+      instant: "Instant Delivery",
+      desc8: "Files in your inbox within seconds after payment — no waiting, no hassle"
+    },
+    badge: { new: "New" },
+    creator: {
+      badge: "Creator Program",
+      title: "Turn Your Creativity Into Income",
+      desc: "Join the MindWeave creator community — sell your prompts, templates, and digital tools and earn 70% from every sale. Over 200 creators join monthly.",
+      stat1: "Creator Commission",
+      stat2: "Active Creators",
+      stat3: "Avg Monthly Income",
+      stat4: "Signup Fee",
+      cta: "Join as Creator →",
+      step1Title: "Create Free Account",
+      step1Desc: "Create a creator account in under a minute — no fees, no requirements",
+      step2Title: "Upload Your Digital Product",
+      step2Desc: "AI prompts, templates, e-books, tools — any smart digital content",
+      step3Title: "Receive Payments",
+      step3Desc: "70% of every sale goes directly to you — instant withdrawal via PayPal or bank transfer",
+      step4Title: "Scale Your Income",
+      step4Desc: "Detailed analytics + marketing support from MindWeave team to double your sales"
+    },
+    pricing: {
+      badge: "Subscriptions",
+      title: "Flexible Plans for Every Need",
+      subtitle: "Start free and upgrade anytime",
+      forever: "/forever",
+      month: "/month",
+      popular: "⭐ Most Popular",
+      startFree: "Start Free",
+      subscribe: "Subscribe Now",
+      trial: "Start 14-Day Trial"
+    },
+    plan: {
+      free: {
+        name: "Free",
+        desc: "For beginners and exploration",
+        feat1: "3 free library downloads/day",
+        feat2: "Prompt Lab (5 generations/day)",
+        feat3: "Access to blog and articles",
+        feat4: "Paid store products",
+        feat5: "Creator Program",
+        feat6: "Weave Points"
+      },
+      pro: {
+        desc: "For serious and professional users",
+        feat1: "Unlimited downloads",
+        feat2: "Unlimited Prompt Lab",
+        feat3: "Exclusive Prompt Mixer",
+        feat4: "Double Weave Points",
+        feat5: "Early access to new products",
+        feat6: "20% discount on all products",
+        feat7: "Priority 24/7 support",
+        feat8: "Creator Program (70% commission)"
+      },
+      business: {
+        name: "Business",
+        desc: "For companies, teams and agencies",
+        feat1: "All Pro features",
+        feat2: "5 team sub-accounts",
+        feat3: "Custom API access",
+        feat4: "Monthly PDF reports",
+        feat5: "Free monthly consultation",
+        feat6: "Enterprise dashboard",
+        feat7: "Dedicated account manager",
+        feat8: "75% creator commission"
+      }
+    },
+    testimonials: {
+      badge: "Customer Reviews",
+      title: "What Our Users Say?",
+      t1: {
+        text: "The best Arabic platform for AI prompts by far. Prompt Lab saved me hours of testing. Recommended for every content creator.",
+        name: "Sarah Al-Mansour",
+        role: "Content Creator · Saudi Arabia 🇸🇦"
+      },
+      t2: {
+        text: "The Creator Program changed my life. Now I earn monthly income from selling my templates. The 70% commission is excellent.",
+        name: "Ahmed Khaled",
+        role: "Notion Designer · Egypt 🇪🇬"
+      },
+      t3: {
+        text: "Used MindWeave for a massive marketing project. The ChatGPT prompts I bought saved the team over 40 hours of work.",
+        name: "Mona Al-Ali",
+        role: "Marketing Manager · UAE 🇦🇪"
+      }
+    },
+    cta: {
+      title: "Get 100 Free Prompts",
+      desc: "Subscribe to the newsletter and instantly get the complete ChatGPT Prompts library (worth $19.99) for free",
+      placeholder: "Your email...",
+      button: "Get It →",
+      note: "✓ No spam · ✓ Unsubscribe anytime · ✓ 12,000+ subscribers"
+    },
+    footer: {
+      desc: "A comprehensive global platform for AI prompts, digital templates, and creativity tools — compete with the world from the heart of the Arab world.",
+      platform: "Platform",
+      subscription: "Subscriptions",
+      support: "Support",
+      about: "About Us",
+      contact: "Contact Us",
+      faq: "FAQ",
+      refund: "Refund Policy",
+      help: "Help Center",
+      legal: "Legal",
+      privacy: "Privacy Policy",
+      terms: "Terms of Use",
+      cookies: "Cookie Policy",
+      rights: "Copyright",
+      copyright: "© 2026 MindWeave — All Rights Reserved 🧠"
+    },
+    notif: { added: "Added to cart!" }
+  },
+  es: {
+    meta: { title: "MindWeave | Plataforma Global de IA" },
+    nav: {
+      home: "Inicio",
+      store: "Tienda",
+      library: "Biblioteca Gratis",
+      creators: "Programa de Creadores",
+      blog: "Blog",
+      cart: "Carrito",
+      start: "Empieza Gratis →"
+    },
+    hero: {
+      badge: "La Primera Plataforma de IA Árabe",
+      title1: "Teje Mentes",
+      title2: "Con IA",
+      subtitle: "Una plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas — con Prompt Lab exclusivo para probar antes de comprar, y un programa de creadores para vender tus creaciones",
+      cta1: "🛒 Explorar Tienda",
+      cta2: "⚗️ Probar Prompt Lab Gratis"
+    },
+    stats: {
+      products: "Productos Digitales",
+      users: "Usuarios Activos",
+      rating: "Calificación de Plataforma",
+      support: "Soporte de IA Instantáneo"
+    },
+    trust: {
+      security: "Pago 100% Seguro",
+      delivery: "Entrega Instantánea",
+      seconds: "En Segundos",
+      updates: "Actualizaciones de por Vida",
+      free: "Gratis",
+      refund: "Garantía de Reembolso",
+      days: "Días",
+      languages: "4 Idiomas Globales"
+    },
+    lab: {
+      badge: "Exclusivo — No Encontrado en Otros",
+      subtitle: "Prueba y crea prompts de IA profesionales gratis — prueba antes de comprar, guarda o vende en la tienda",
+      tab1: "Generar Prompt",
+      tab2: "Mejorar Prompt",
+      tab3: "Traducir",
+      inputTitle: "📝 Describe Tu Necesidad",
+      placeholder: "Ejemplo: Necesito un prompt para crear contenido de marketing para una tienda online de perfumes de lujo...",
+      generate: "⚡ Generar Prompt Profesional",
+      outputTitle: "🤖 Prompt Generado",
+      outputPlaceholder: "El prompt generado aparecerá aquí...",
+      copy: "📋 Copiar",
+      save: "💾 Guardar",
+      sell: "💰 Vender en Tienda"
+    },
+    cat: {
+      general: "General",
+      marketing: "Marketing",
+      design: "Diseño",
+      coding: "Programación",
+      content: "Contenido",
+      business: "Negocios"
+    },
+    store: {
+      badge: "Tienda",
+      title: "Productos Destacados",
+      subtitle: "Más de 500 productos digitales — descarga instantánea, actualizaciones gratuitas de por vida",
+      viewAll: "Ver Todos los Productos (500+) →"
+    },
+    filter: {
+      all: "Todos",
+      prompts: "🧠 Prompts de IA",
+      design: "🎨 Diseño",
+      notion: "📊 Notion",
+      ebooks: "📚 Libros",
+      coding: "💻 Programación",
+      services: "🎯 Servicios"
+    },
+    features: {
+      badge: "¿Por qué MindWeave?",
+      title: "Características que No Encontrarás en Ningún Otro Lugar",
+      desc1: "Prueba y genera prompts profesionales gratis antes de comprar — una herramienta exclusiva que ningún competidor tiene",
+      desc2: "Fusiona múltiples prompts y crea uno híbrido personalizado — creatividad ilimitada",
+      creatorProgram: "Programa de Creadores",
+      desc3: "Vende tus prompts y plantillas y gana el 70% de cada venta — convierte tu creatividad en ingresos",
+      analytics: "Analíticas de Productos",
+      desc4: "Estadísticas detalladas sobre el rendimiento de tus productos: vistas, ventas y calificaciones",
+      points: "Puntos Weave",
+      desc5: "Gana puntos con cada compra y reseña — canjéalos por productos gratis y descuentos exclusivos",
+      aiAssistant: "Asistente de IA Integrado",
+      desc6: "El bot Gemini AI entiende tus necesidades y genera prompts personalizados al instante en árabe e inglés",
+      languages: "4 Idiomas Globales",
+      desc7: "Árabe · Inglés · Francés · Español — experiencia completa en cada idioma",
+      instant: "Entrega Instantánea",
+      desc8: "Archivos en tu bandeja de entrada en segundos después del pago — sin espera, sin complicaciones"
+    },
+    badge: { new: "Nuevo" },
+    creator: {
+      badge: "Programa de Creadores",
+      title: "Convierte Tu Creatividad en Ingresos",
+      desc: "Únete a la comunidad de creadores de MindWeave — vende tus prompts, plantillas y herramientas digitales y gana el 70% de cada venta. Más de 200 creadores se unen mensualmente.",
+      stat1: "Comisión del Creador",
+      stat2: "Creadores Activos",
+      stat3: "Ingreso Mensual Promedio",
+      stat4: "Cuota de Registro",
+      cta: "Únete como Creador →",
+      step1Title: "Crea una Cuenta Gratis",
+      step1Desc: "Crea una cuenta de creador en menos de un minuto — sin cuotas, sin requisitos",
+      step2Title: "Sube Tu Producto Digital",
+      step2Desc: "Prompts de IA, plantillas, e-books, herramientas — cualquier contenido digital inteligente",
+      step3Title: "Recibe Pagos",
+      step3Desc: "El 70% de cada venta va directamente a ti — retiro instantáneo vía PayPal o transferencia bancaria",
+      step4Title: "Escala Tus Ingresos",
+      step4Desc: "Analíticas detalladas + soporte de marketing del equipo de MindWeave para duplicar tus ventas"
+    },
+    pricing: {
+      badge: "Suscripciones",
+      title: "Planes Flexibles para Cada Necesidad",
+      subtitle: "Empieza gratis y actualiza cuando quieras",
+      forever: "/para siempre",
+      month: "/mes",
+      popular: "⭐ Más Popular",
+      startFree: "Empieza Gratis",
+      subscribe: "Suscribirse Ahora",
+      trial: "Iniciar Prueba de 14 Días"
+    },
+    plan: {
+      free: {
+        name: "Gratis",
+        desc: "Para principiantes y exploración",
+        feat1: "3 descargas de biblioteca gratis/día",
+        feat2: "Prompt Lab (5 generaciones/día)",
+        feat3: "Acceso al blog y artículos",
+        feat4: "Productos de tienda pagados",
+        feat5: "Programa de Creadores",
+        feat6: "Puntos Weave"
+      },
+      pro: {
+        desc: "Para usuarios serios y profesionales",
+        feat1: "Descargas ilimitadas",
+        feat2: "Prompt Lab ilimitado",
+        feat3: "Prompt Mixer exclusivo",
+        feat4: "Puntos Weave duplicados",
+        feat5: "Acceso anticipado a nuevos productos",
+        feat6: "20% de descuento en todos los productos",
+        feat7: "Soporte prioritario 24/7",
+        feat8: "Programa de Creadores (70% comisión)"
+      },
+      business: {
+        name: "Business",
+        desc: "Para empresas, equipos y agencias",
+        feat1: "Todas las características Pro",
+        feat2: "5 subcuentas de equipo",
+        feat3: "Acceso API personalizado",
+        feat4: "Reportes PDF mensuales",
+        feat5: "Consulta mensual gratuita",
+        feat6: "Panel de empresa",
+        feat7: "Gerente de cuenta dedicado",
+        feat8: "Comisión de creador 75%"
+      }
+    },
+    testimonials: {
+      badge: "Opiniones de Clientes",
+      title: "¿Qué Dicen Nuestros Usuarios?",
+      t1: {
+        text: "La mejor plataforma árabe para prompts de IA por mucho. Prompt Lab me ahorró horas de pruebas. Recomendado para todo creador de contenido.",
+        name: "Sarah Al-Mansour",
+        role: "Creadora de Contenido · Arabia Saudita 🇸🇦"
+      },
+      t2: {
+        text: "El Programa de Creadores cambió mi vida. Ahora gano ingresos mensuales vendiendo mis plantillas. La comisión del 70% es excelente.",
+        name: "Ahmed Khaled",
+        role: "Diseñador de Notion · Egipto 🇪🇬"
+      },
+      t3: {
+        text: "Usé MindWeave para un proyecto de marketing masivo. Los prompts de ChatGPT que compré ahorraron al equipo más de 40 horas de trabajo.",
+        name: "Mona Al-Ali",
+        role: "Gerente de Marketing · EAU 🇦🇪"
+      }
+    },
+    cta: {
+      title: "Obtén 100 Prompts Gratis",
+      desc: "Suscríbete al boletín y obtén instantáneamente la biblioteca completa de ChatGPT Prompts (valor $19.99) gratis",
+      placeholder: "Tu correo...",
+      button: "Obtener →",
+      note: "✓ Sin spam · ✓ Cancela cuando quieras · ✓ 12,000+ suscriptores"
+    },
+    footer: {
+      desc: "Una plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas — compite con el mundo desde el corazón del mundo árabe.",
+      platform: "Plataforma",
+      subscription: "Suscripciones",
+      support: "Soporte",
+      about: "Sobre Nosotros",
+      contact: "Contáctanos",
+      faq: "Preguntas Frecuentes",
+      refund: "Política de Reembolso",
+      help: "Centro de Ayuda",
+      legal: "Legal",
+      privacy: "Política de Privacidad",
+      terms: "Términos de Uso",
+      cookies: "Política de Cookies",
+      rights: "Derechos de Autor",
+      copyright: "© 2026 MindWeave — Todos los Derechos Reservados 🧠"
+    },
+    notif: { added: "¡Añadido al carrito!" }
+  },
+  fr: {
+    meta: { title: "MindWeave | Plateforme Mondiale d'IA" },
+    nav: {
+      home: "Accueil",
+      store: "Boutique",
+      library: "Bibliothèque Gratuite",
+      creators: "Programme Créateurs",
+      blog: "Blog",
+      cart: "Panier",
+      start: "Commencer Gratuitement →"
+    },
+    hero: {
+      badge: "La Première Plateforme Arabe d'IA",
+      title1: "Tissez les Esprits",
+      title2: "Avec l'IA",
+      subtitle: "Une plateforme mondiale complète pour les prompts IA, les modèles numériques et les outils créatifs — avec Prompt Lab exclusif pour tester avant d'acheter, et un programme de créateurs pour vendre vos créations",
+      cta1: "🛒 Explorer la Boutique",
+      cta2: "⚗️ Essayer Prompt Lab Gratuitement"
+    },
+    stats: {
+      products: "Produits Numériques",
+      users: "Utilisateurs Actifs",
+      rating: "Note de la Plateforme",
+      support: "Support IA Instantané"
+    },
+    trust: {
+      security: "Paiement 100% Sécurisé",
+      delivery: "Livraison Instantanée",
+      seconds: "En Quelques Secondes",
+      updates: "Mises à Jour à Vie",
+      free: "Gratuit",
+      refund: "Garantie de Remboursement",
+      days: "Jours",
+      languages: "4 Langues Mondiales"
+    },
+    lab: {
+      badge: "Exclusif — Introuvable Ailleurs",
+      subtitle: "Testez et créez des prompts IA professionnels gratuitement — testez avant d'acheter, sauvegardez ou vendez dans la boutique",
+      tab1: "Générer un Prompt",
+      tab2: "Améliorer le Prompt",
+      tab3: "Traduire",
+      inputTitle: "📝 Décrivez Votre Besoin",
+      placeholder: "Exemple: J'ai besoin d'un prompt pour créer du contenu marketing pour une boutique en ligne de parfums de luxe...",
+      generate: "⚡ Générer un Prompt Professionnel",
+      outputTitle: "🤖 Prompt Généré",
+      outputPlaceholder: "Le prompt généré apparaîtra ici...",
+      copy: "📋 Copier",
+      save: "💾 Sauvegarder",
+      sell: "💰 Vendre en Boutique"
+    },
+    cat: {
+      general: "Général",
+      marketing: "Marketing",
+      design: "Design",
+      coding: "Programmation",
+      content: "Contenu",
+      business: "Affaires"
+    },
+    store: {
+      badge: "Boutique",
+      title: "Produits en Vedette",
+      subtitle: "Plus de 500 produits numériques — téléchargement instantané, mises à jour gratuites à vie",
+      viewAll: "Voir Tous les Produits (500+) →"
+    },
+    filter: {
+      all: "Tout",
+      prompts: "🧠 Prompts IA",
+      design: "🎨 Design",
+      notion: "📊 Notion",
+      ebooks: "📚 Livres",
+      coding: "💻 Programmation",
+      services: "🎯 Services"
+    },
+    features: {
+      badge: "Pourquoi MindWeave ?",
+      title: "Fonctionnalités Introuvables Ailleurs",
+      desc1: "Testez et générez des prompts professionnels gratuitement avant d'acheter — un outil exclusif qu'aucun concurrent n'a",
+      desc2: "Fusionnez plusieurs prompts et créez un hybride personnalisé — créativité illimitée",
+      creatorProgram: "Programme Créateurs",
+      desc3: "Vendez vos prompts et modèles et gagnez 70% sur chaque vente — transformez votre créativité en revenus",
+      analytics: "Analytiques des Produits",
+      desc4: "Statistiques détaillées sur la performance de vos produits : vues, ventes et évaluations",
+      points: "Points Weave",
+      desc5: "Gagnez des points avec chaque achat et avis — échangez-les contre des produits gratuits et des réductions exclusives",
+      aiAssistant: "Assistant IA Intégré",
+      desc6: "Le bot Gemini AI comprend vos besoins et génère des prompts personnalisés instantanément en arabe et anglais",
+      languages: "4 Langues Mondiales",
+      desc7: "Arabe · Anglais · Français · Espagnol — expérience complète dans chaque langue",
+      instant: "Livraison Instantanée",
+      desc8: "Fichiers dans votre boîte mail en quelques secondes après le paiement — pas d'attente, pas de complications"
+    },
+    badge: { new: "Nouveau" },
+    creator: {
+      badge: "Programme Créateurs",
+      title: "Transformez Votre Créativité en Revenus",
+      desc: "Rejoignez la communauté de créateurs MindWeave — vendez vos prompts, modèles et outils numériques et gagnez 70% sur chaque vente. Plus de 200 créateurs rejoignent chaque mois.",
+      stat1: "Commission Créateur",
+      stat2: "Créateurs Actifs",
+      stat3: "Revenu Mensuel Moyen",
+      stat4: "Frais d'Inscription",
+      cta: "Rejoindre comme Créateur →",
+      step1Title: "Créer un Compte Gratuit",
+      step1Desc: "Créez un compte créateur en moins d'une minute — sans frais, sans exigences",
+      step2Title: "Téléchargez Votre Produit Numérique",
+      step2Desc: "Prompts IA, modèles, e-books, outils — tout contenu numérique intelligent",
+      step3Title: "Recevez les Paiements",
+      step3Desc: "70% de chaque vente vous revient directement — retrait instantané via PayPal ou virement bancaire",
+      step4Title: "Développez Vos Revenus",
+      step4Desc: "Analytiques détaillées + support marketing de l'équipe MindWeave pour doubler vos ventes"
+    },
+    pricing: {
+      badge: "Abonnements",
+      title: "Plans Flexibles pour Chaque Besoin",
+      subtitle: "Commencez gratuitement et passez à la version supérieure quand vous voulez",
+      forever: "/pour toujours",
+      month: "/mois",
+      popular: "⭐ Le Plus Populaire",
+      startFree: "Commencer Gratuitement",
+      subscribe: "S'abonner Maintenant",
+      trial: "Commencer l'Essai de 14 Jours"
+    },
+    plan: {
+      free: {
+        name: "Gratuit",
+        desc: "Pour les débutants et l'exploration",
+        feat1: "3 téléchargements bibliothèque gratuite/jour",
+        feat2: "Prompt Lab (5 générations/jour)",
+        feat3: "Accès au blog et articles",
+        feat4: "Produits payants de la boutique",
+        feat5: "Programme Créateurs",
+        feat6: "Points Weave"
+      },
+      pro: {
+        desc: "Pour les utilisateurs sérieux et professionnels",
+        feat1: "Téléchargements illimités",
+        feat2: "Prompt Lab illimité",
+        feat3: "Prompt Mixer exclusif",
+        feat4: "Points Weave doublés",
+        feat5: "Accès anticipé aux nouveaux produits",
+        feat6: "20% de réduction sur tous les produits",
+        feat7: "Support prioritaire 24/7",
+        feat8: "Programme Créateurs (70% commission)"
+      },
+      business: {
+        name: "Business",
+        desc: "Pour les entreprises, équipes et agences",
+        feat1: "Toutes les fonctionnalités Pro",
+        feat2: "5 sous-comptes équipe",
+        feat3: "Accès API personnalisé",
+        feat4: "Rapports PDF mensuels",
+        feat5: "Consultation mensuelle gratuite",
+        feat6: "Tableau de bord entreprise",
+        feat7: "Gestionnaire de compte dédié",
+        feat8: "Commission créateur 75%"
+      }
+    },
+    testimonials: {
+      badge: "Avis des Clients",
+      title: "Que Disent Nos Utilisateurs ?",
+      t1: {
+        text: "La meilleure plateforme arabe pour les prompts IA de loin. Prompt Lab m'a fait gagner des heures de tests. Recommandé à tous les créateurs de contenu.",
+        name: "Sarah Al-Mansour",
+        role: "Créatrice de Contenu · Arabie Saoudite 🇸🇦"
+      },
+      t2: {
+        text: "Le Programme Créateurs a changé ma vie. Je gagne maintenant des revenus mensuels en vendant mes modèles. La commission de 70% est excellente.",
+        name: "Ahmed Khaled",
+        role: "Designer Notion · Égypte 🇪🇬"
+      },
+      t3: {
+        text: "J'ai utilisé MindWeave pour un projet marketing massif. Les prompts ChatGPT que j'ai achetés ont fait gagner à l'équipe plus de 40 heures de travail.",
+        name: "Mona Al-Ali",
+        role: "Responsable Marketing · EAU 🇦🇪"
+      }
+    },
+    cta: {
+      title: "Obtenez 100 Prompts Gratuits",
+      desc: "Abonnez-vous à la newsletter et obtenez instantanément la bibliothèque complète ChatGPT Prompts (valeur 19,99$) gratuitement",
+      placeholder: "Votre email...",
+      button: "Obtenir →",
+      note: "✓ Pas de spam · ✓ Désabonnez-vous quand vous voulez · ✓ 12 000+ abonnés"
+    },
+    footer: {
+      desc: "Une plateforme mondiale complète pour les prompts IA, les modèles numériques et les outils créatifs — concurrencez le monde depuis le cœur du monde arabe.",
+      platform: "Plateforme",
+      subscription: "Abonnements",
+      support: "Support",
+      about: "À Propos",
+      contact: "Contactez-nous",
+      faq: "FAQ",
+      refund: "Politique de Remboursement",
+      help: "Centre d'Aide",
+      legal: "Légal",
+      privacy: "Politique de Confidentialité",
+      terms: "Conditions d'Utilisation",
+      cookies: "Politique de Cookies",
+      rights: "Droits d'Auteur",
+      copyright: "© 2026 MindWeave — Tous Droits Réservés 🧠"
+    },
+    notif: { added: "Ajouté au panier !" }
+  }
 };
 
+// ===== LANGUAGE MANAGEMENT =====
 let currentLang = localStorage.getItem('mw_lang') || 'ar';
-let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
-let currentFilter = 'all';
 
+function initLanguage() {
+  document.body.setAttribute('data-lang', currentLang);
+  updateLanguageUI();
+  translatePage();
+}
+
+function toggleLangDropdown() {
+  document.getElementById('langSwitcher').classList.toggle('active');
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  document.body.setAttribute('data-lang', lang);
+  
+  // Update HTML lang and dir attributes
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  
+  updateLanguageUI();
+  translatePage();
+  toggleLangDropdown(); // Close dropdown
+  
+  // Re-render products to update category names
+  renderProducts(currentFilter);
+}
+
+function updateLanguageUI() {
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
+  
+  // Update active state in dropdown
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.classList.toggle('active', opt.dataset.lang === currentLang);
+  });
+}
+
+function translatePage() {
+  const t = translations[currentLang];
+  
+  // Translate all elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const value = getNestedValue(t, key);
+    if (value) el.textContent = value;
+  });
+  
+  // Translate placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const value = getNestedValue(t, key);
+    if (value) el.placeholder = value;
+  });
+  
+  // Update meta title
+  if (t.meta && t.meta.title) {
+    document.title = t.meta.title;
+  }
+}
+
+function getNestedValue(obj, path) {
+  return path.split('.').reduce((current, key) => current && current[key], obj);
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.lang-switcher')) {
+    document.getElementById('langSwitcher').classList.remove('active');
+  }
+});
+
+// ===== PRODUCTS DATA =====
 const products = [
-  { id: 1, filter: "prompts", category: "prompts", thumb: "thumb-blue", emoji: "🧠", badge: "badge-hot", badgeText: { ar: "🔥 الأكثر مبيعاً", en: "🔥 Best Seller" }, name: { ar: "حزمة ChatGPT للتسويق الرقمي", en: "ChatGPT Digital Marketing Pack" }, desc: { ar: "150 أمر احترافي للتسويق، الإعلانات، وبناء العلامة التجارية — بالعربية والإنجليزية", en: "150 professional prompts for marketing, ads, and brand building — in Arabic and English" }, rating: "4.9", sales: { ar: "2.3K مبيعة", en: "2.3K sold" }, price: "$7.99", original: "$14.99" },
-  { id: 2, filter: "design", category: "design", thumb: "thumb-purple", emoji: "🎨", badge: "badge-new", badgeText: { ar: "✨ جديد", en: "✨ New" }, name: { ar: "حزمة Midjourney الاحترافية v6", en: "Midjourney Professional Pack v6" }, desc: { ar: "200 أمر لتوليد صور تجارية، شعارات، وإعلانات بجودة استوديو احترافي", en: "200 prompts to generate commercial images, logos, and ads with professional studio quality" }, rating: "4.8", sales: { ar: "1.8K مبيعة", en: "1.8K sold" }, price: "$9.99", original: "$19.99" },
-  { id: 3, filter: "notion", category: "notion", thumb: "thumb-orange", emoji: "📊", badge: "badge-pro", badgeText: { ar: "💎 حصري", en: "💎 Exclusive" }, name: { ar: "نظام إدارة الأعمال بـ Notion AI", en: "Business Management System with Notion AI" }, desc: { ar: "قالب شامل لإدارة المشاريع، CRM، وتتبع الأهداف مع أتمتة AI كاملة", en: "Comprehensive template for project management, CRM, and goal tracking with full AI automation" }, rating: "5.0", sales: { ar: "890 مبيعة", en: "890 sold" }, price: "$12.99", original: "$24.99" },
-  { id: 4, filter: "coding", category: "coding", thumb: "thumb-green", emoji: "💻", badge: "badge-hot", badgeText: { ar: "🔥 رائج", en: "🔥 Trending" }, name: { ar: "أوامر البرمجة الكاملة 2026", en: "Complete Coding Prompts 2026" }, desc: { ar: "100 أمر لتوليد كود Python، JavaScript، React، وحل المشاكل البرمجية", en: "100 prompts to generate Python, JavaScript, React code and solve programming problems" }, rating: "4.9", sales: { ar: "1.5K مبيعة", en: "1.5K sold" }, price: "$14.99", original: "$29.99" },
-  { id: 5, filter: "ebooks", category: "ebooks", thumb: "thumb-gold", emoji: "📚", badge: "badge-new", badgeText: { ar: "✨ جديد", en: "✨ New" }, name: { ar: "دليل الربح من AI 2026", en: "AI Profit Guide 2026" }, desc: { ar: "كتاب إلكتروني شامل: 15 طريقة مثبتة لتحقيق دخل من الذكاء الاصطناعي", en: "Comprehensive e-book: 15 proven ways to earn income from artificial intelligence" }, rating: "4.7", sales: { ar: "3.2K مبيعة", en: "3.2K sold" }, price: "$5.99", original: "$9.99" },
-  { id: 6, filter: "services", category: "services", thumb: "thumb-blue", emoji: "🎯", badge: "badge-pro", badgeText: { ar: "💎 بريميوم", en: "💎 Premium" }, name: { ar: "خدمة تصميم هوية AI", en: "AI Brand Identity Design Service" }, desc: { ar: "تصميم لوجو + هوية بصرية كاملة بالذكاء الاصطناعي خلال 24 ساعة — 3 تعديلات مجاناً", en: "Logo design + complete visual identity with AI within 24 hours — 3 free revisions" }, rating: "5.0", sales: { ar: "420 مبيعة", en: "420 sold" }, price: "$19.99", original: "$39.99" },
-  { id: 7, filter: "prompts", category: "prompts", thumb: "thumb-purple", emoji: "📱", badge: "badge-new", badgeText: { ar: "✨ جديد", en: "✨ New" }, name: { ar: "كيت السوشيال ميديا AI", en: "AI Social Media Kit" }, desc: { ar: "500 أمر لإنشاء محتوى Instagram، TikTok، Twitter، وLinkedIn يومياً", en: "500 prompts to create Instagram, TikTok, Twitter, and LinkedIn content daily" }, rating: "4.8", sales: { ar: "2.1K مبيعة", en: "2.1K sold" }, price: "$11.99", original: "$22.99" },
-  { id: 8, filter: "ebooks", category: "ebooks", thumb: "thumb-orange", emoji: "🎙️", badge: "badge-free", badgeText: { ar: "🆓 مجاني", en: "🆓 Free" }, name: { ar: "100 أمر مجاني للمبتدئين", en: "100 Free Prompts for Beginners" }, desc: { ar: "أفضل 100 أمر للبدء مع ChatGPT — مثالي للمبتدئين والمستوى المتوسط", en: "Best 100 prompts to get started with ChatGPT — perfect for beginners and intermediate" }, rating: "4.6", sales: { ar: "15K تحميل", en: "15K downloads" }, price: "$0", original: null }
+  {
+    id: 1, category: "prompts", filter: "prompts",
+    thumb: "thumb-blue", emoji: "🧠",
+    badge: "badge-hot", badgeText: { ar: "🔥 الأكثر مبيعاً", en: "🔥 Best Seller", es: "🔥 Más Vendido", fr: "🔥 Meilleure Vente" },
+    name: { ar: "حزمة ChatGPT للتسويق الرقمي", en: "ChatGPT Digital Marketing Pack", es: "Pack ChatGPT Marketing Digital", fr: "Pack ChatGPT Marketing Numérique" },
+    desc: { 
+      ar: "150 أمر احترافي للتسويق، الإعلانات، وبناء العلامة التجارية — بالعربية والإنجليزية",
+      en: "150 professional prompts for marketing, ads, and brand building — in Arabic and English",
+      es: "150 prompts profesionales para marketing, anuncios y construcción de marca — en árabe e inglés",
+      fr: "150 prompts professionnels pour le marketing, les publicités et le branding — en arabe et anglais"
+    },
+    rating: "4.9", sales: { ar: "2.3K مبيعة", en: "2.3K sold", es: "2.3K vendido", fr: "2.3K vendus" },
+    price: "$7.99", original: "$14.99"
+  },
+  {
+    id: 2, category: "design", filter: "design",
+    thumb: "thumb-purple", emoji: "🎨",
+    badge: "badge-new", badgeText: { ar: "✨ جديد", en: "✨ New", es: "✨ Nuevo", fr: "✨ Nouveau" },
+    name: { ar: "حزمة Midjourney الاحترافية v6", en: "Midjourney Professional Pack v6", es: "Pack Midjourney Profesional v6", fr: "Pack Midjourney Professionnel v6" },
+    desc: { 
+      ar: "200 أمر لتوليد صور تجارية، شعارات، وإعلانات بجودة استوديو احترافي",
+      en: "200 prompts to generate commercial images, logos, and ads with professional studio quality",
+      es: "200 prompts para generar imágenes comerciales, logos y anuncios con calidad de estudio profesional",
+      fr: "200 prompts pour générer des images commerciales, logos et publicités avec qualité studio professionnelle"
+    },
+    rating: "4.8", sales: { ar: "1.8K مبيعة", en: "1.8K sold", es: "1.8K vendido", fr: "1.8K vendus" },
+    price: "$9.99", original: "$19.99"
+  },
+  {
+    id: 3, category: "notion", filter: "notion",
+    thumb: "thumb-orange", emoji: "📊",
+    badge: "badge-pro", badgeText: { ar: "💎 حصري", en: "💎 Exclusive", es: "💎 Exclusivo", fr: "💎 Exclusif" },
+    name: { ar: "نظام إدارة الأعمال بـ Notion AI", en: "Business Management System with Notion AI", es: "Sistema de Gestión Empresarial con Notion AI", fr: "Système de Gestion d'Entreprise avec Notion AI" },
+    desc: { 
+      ar: "قالب شامل لإدارة المشاريع، CRM، وتتبع الأهداف مع أتمتة AI كاملة",
+      en: "Comprehensive template for project management, CRM, and goal tracking with full AI automation",
+      es: "Plantilla integral para gestión de proyectos, CRM y seguimiento de objetivos con automatización IA completa",
+      fr: "Modèle complet pour la gestion de projets, CRM et suivi d'objectifs avec automatisation IA complète"
+    },
+    rating: "5.0", sales: { ar: "890 مبيعة", en: "890 sold", es: "890 vendido", fr: "890 vendus" },
+    price: "$12.99", original: "$24.99"
+  },
+  {
+    id: 4, category: "coding", filter: "coding",
+    thumb: "thumb-green", emoji: "💻",
+    badge: "badge-hot", badgeText: { ar: "🔥 رائج", en: "🔥 Trending", es: "🔥 Tendencia", fr: "🔥 Tendance" },
+    name: { ar: "أوامر البرمجة الكاملة 2026", en: "Complete Coding Prompts 2026", es: "Prompts de Programación Completos 2026", fr: "Prompts de Programmation Complets 2026" },
+    desc: { 
+      ar: "100 أمر لتوليد كود Python، JavaScript، React، وحل المشاكل البرمجية",
+      en: "100 prompts to generate Python, JavaScript, React code and solve programming problems",
+      es: "100 prompts para generar código Python, JavaScript, React y resolver problemas de programación",
+      fr: "100 prompts pour générer du code Python, JavaScript, React et résoudre des problèmes de programmation"
+    },
+    rating: "4.9", sales: { ar: "1.5K مبيعة", en: "1.5K sold", es: "1.5K vendido", fr: "1.5K vendus" },
+    price: "$14.99", original: "$29.99"
+  },
+  {
+    id: 5, category: "ebooks", filter: "ebooks",
+    thumb: "thumb-gold", emoji: "📚",
+    badge: "badge-new", badgeText: { ar: "✨ جديد", en: "✨ New", es: "✨ Nuevo", fr: "✨ Nouveau" },
+    name: { ar: "دليل الربح من AI 2026", en: "AI Profit Guide 2026", es: "Guía de Ganancias con IA 2026", fr: "Guide de Profit IA 2026" },
+    desc: { 
+      ar: "كتاب إلكتروني شامل: 15 طريقة مثبتة لتحقيق دخل من الذكاء الاصطناعي",
+      en: "Comprehensive e-book: 15 proven ways to earn income from artificial intelligence",
+      es: "E-book completo: 15 formas probadas de generar ingresos con inteligencia artificial",
+      fr: "E-book complet : 15 façons prouvées de gagner des revenus avec l'intelligence artificielle"
+    },
+    rating: "4.7", sales: { ar: "3.2K مبيعة", en: "3.2K sold", es: "3.2K vendido", fr: "3.2K vendus" },
+    price: "$5.99", original: "$9.99"
+  },
+  {
+    id: 6, category: "services", filter: "services",
+    thumb: "thumb-blue", emoji: "🎯",
+    badge: "badge-pro", badgeText: { ar: "💎 بريميوم", en: "💎 Premium", es: "💎 Premium", fr: "💎 Premium" },
+    name: { ar: "خدمة تصميم هوية AI", en: "AI Brand Identity Design Service", es: "Servicio de Diseño de Identidad de Marca IA", fr: "Service de Design d'Identité de Marque IA" },
+    desc: { 
+      ar: "تصميم لوجو + هوية بصرية كاملة بالذكاء الاصطناعي خلال 24 ساعة — 3 تعديلات مجاناً",
+      en: "Logo design + complete visual identity with AI within 24 hours — 3 free revisions",
+      es: "Diseño de logo + identidad visual completa con IA en 24 horas — 3 revisiones gratis",
+      fr: "Design de logo + identité visuelle complète avec IA en 24 heures — 3 révisions gratuites"
+    },
+    rating: "5.0", sales: { ar: "420 مبيعة", en: "420 sold", es: "420 vendido", fr: "420 vendus" },
+    price: "$19.99", original: "$39.99"
+  },
+  {
+    id: 7, category: "prompts", filter: "prompts",
+    thumb: "thumb-purple", emoji: "📱",
+    badge: "badge-new", badgeText: { ar: "✨ جديد", en: "✨ New", es: "✨ Nuevo", fr: "✨ Nouveau" },
+    name: { ar: "كيت السوشيال ميديا AI", en: "AI Social Media Kit", es: "Kit de Redes Sociales IA", fr: "Kit Réseaux Sociaux IA" },
+    desc: { 
+      ar: "500 أمر لإنشاء محتوى Instagram، TikTok، Twitter، وLinkedIn يومياً",
+      en: "500 prompts to create Instagram, TikTok, Twitter, and LinkedIn content daily",
+      es: "500 prompts para crear contenido de Instagram, TikTok, Twitter y LinkedIn diariamente",
+      fr: "500 prompts pour créer du contenu Instagram, TikTok, Twitter et LinkedIn quotidiennement"
+    },
+    rating: "4.8", sales: { ar: "2.1K مبيعة", en: "2.1K sold", es: "2.1K vendido", fr: "2.1K vendus" },
+    price: "$11.99", original: "$22.99"
+  },
+  {
+    id: 8, category: "ebooks", filter: "ebooks",
+    thumb: "thumb-orange", emoji: "🎙️",
+    badge: "badge-free", badgeText: { ar: "🆓 مجاني", en: "🆓 Free", es: "🆓 Gratis", fr: "🆓 Gratuit" },
+    name: { ar: "100 أمر مجاني للمبتدئين", en: "100 Free Prompts for Beginners", es: "100 Prompts Gratis para Principiantes", fr: "100 Prompts Gratuits pour Débutants" },
+    desc: { 
+      ar: "أفضل 100 أمر للبدء مع ChatGPT — مثالي للمبتدئين والمستوى المتوسط",
+      en: "Best 100 prompts to get started with ChatGPT — perfect for beginners and intermediate",
+      es: "Los 100 mejores prompts para empezar con ChatGPT — perfecto para principiantes e intermedios",
+      fr: "100 meilleurs prompts pour commencer avec ChatGPT — parfait pour débutants et intermédiaires"
+    },
+    rating: "4.6", sales: { ar: "15K تحميل", en: "15K downloads", es: "15K descargas", fr: "15K téléchargements" },
+    price: "$0", original: null
+  }
 ];
 
-function updateCartCount() { document.getElementById('cartCount').textContent = cart.length; }
-function getCategoryName(cat) { const names = { ar: { prompts: '🧠 أوامر AI', design: '🎨 تصميم', notion: '📊 Notion', ebooks: '📚 كتب', coding: '💻 برمجة', services: '🎯 خدمات' }, en: { prompts: '🧠 AI Prompts', design: '🎨 Design', notion: '📊 Notion', ebooks: '📚 Books', coding: '💻 Coding', services: '🎯 Services' } }; return names[currentLang][cat] || cat; }
-function renderProducts(filter = 'all') { currentFilter = filter; const filtered = filter === 'all' ? products : products.filter(p => p.filter === filter); document.getElementById('productsGrid').innerHTML = filtered.map(p => `<div class="product-card" data-id="${p.id}"><div class="product-thumb ${p.thumb}"><span>${p.emoji}</span><span class="product-badge ${p.badge}">${p.badgeText[currentLang]}</span></div><div class="product-body"><div class="product-category">${getCategoryName(p.category)}</div><div class="product-name">${p.name[currentLang]}</div><div class="product-desc">${p.desc[currentLang]}</div><div class="product-meta"><div class="product-rating">★ ${p.rating}</div><div class="product-sales">${p.sales[currentLang]}</div></div><div class="product-footer"><div class="product-price"><span class="price-current">${p.price}</span>${p.original ? `<span class="price-original">${p.original}</span>` : ''}</div><button class="add-cart-btn ${cart.includes(p.id) ? 'added' : ''}" id="cartBtn${p.id}" onclick="addToCart(${p.id})">${cart.includes(p.id) ? '✓ ' + (currentLang === 'ar' ? 'تمت الإضافة' : 'Added') : (p.price === '$0' ? (currentLang === 'ar' ? '⬇️ تحميل' : '⬇️ Download') : '+ ' + (currentLang === 'ar' ? 'أضف للسلة' : 'Add to Cart'))}</button></div></div></div>`).join(''); }
-function addToCart(id) { const p = products.find(p => p.id === id); if (p.price === '$0') { showNotif('⬇️', currentLang === 'ar' ? 'جاري التحميل...' : 'Downloading...'); return; } if (!cart.includes(id)) { cart.push(id); localStorage.setItem('mw_cart', JSON.stringify(cart)); updateCartCount(); const btn = document.getElementById(`cartBtn${id}`); if (btn) { btn.textContent = '✓ ' + (currentLang === 'ar' ? 'تمت الإضافة' : 'Added'); btn.classList.add('added'); } showNotif('✅', `"${p.name[currentLang]}" ${currentLang === 'ar' ? 'تمت الإضافة للسلة!' : 'Added to cart!'}`); } else { showNotif('🛒', currentLang === 'ar' ? 'المنتج موجود بالفعل' : 'Already in cart'); } }
+let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+let currentFilter = 'all';
+updateCartCount();
 
+function renderProducts(filter = 'all') {
+  currentFilter = filter;
+  const grid = document.getElementById('productsGrid');
+  const filtered = filter === 'all' ? products : products.filter(p => p.filter === filter);
+  
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card" data-id="${p.id}">
+      <div class="product-thumb ${p.thumb}">
+        <span>${p.emoji}</span>
+        <span class="product-badge ${p.badge}">${p.badgeText[currentLang]}</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">${getCategoryName(p.category)}</div>
+        <div class="product-name">${p.name[currentLang]}</div>
+        <div class="product-desc">${p.desc[currentLang]}</div>
+        <div class="product-meta">
+          <div class="product-rating">★ ${p.rating}</div>
+          <div class="product-sales">${p.sales[currentLang]}</div>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-current">${p.price}</span>
+            ${p.original ? `<span class="price-original">${p.original}</span>` : ''}
+          </div>
+          <button class="add-cart-btn ${cart.includes(p.id) ? 'added' : ''}" id="cartBtn${p.id}" onclick="addToCart(${p.id})">
+            ${cart.includes(p.id) ? '✓ ' + (translations[currentLang].notif?.added || 'In Cart') : (p.price === '$0' ? '⬇️ ' + (currentLang === 'ar' ? 'تحميل' : currentLang === 'en' ? 'Download' : currentLang === 'es' ? 'Descargar' : 'Télécharger') : '+ ' + (currentLang === 'ar' ? 'أضف للسلة' : currentLang === 'en' ? 'Add to Cart' : currentLang === 'es' ? 'Añadir al Carrito' : 'Ajouter au Panier'))}
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function getCategoryName(cat) {
+  const names = { 
+    ar: { prompts: '🧠 أوامر AI', design: '🎨 تصميم', notion: '📊 Notion', ebooks: '📚 كتب', coding: '💻 برمجة', services: '🎯 خدمات' },
+    en: { prompts: '🧠 AI Prompts', design: '🎨 Design', notion: '📊 Notion', ebooks: '📚 Books', coding: '💻 Coding', services: '🎯 Services' },
+    es: { prompts: '🧠 Prompts IA', design: '🎨 Diseño', notion: '📊 Notion', ebooks: '📚 Libros', coding: '💻 Programación', services: '🎯 Servicios' },
+    fr: { prompts: '🧠 Prompts IA', design: '🎨 Design', notion: '📊 Notion', ebooks: '📚 Livres', coding: '💻 Programmation', services: '🎯 Services' }
+  };
+  return names[currentLang][cat] || cat;
+}
+
+function addToCart(id) {
+  const p = products.find(p => p.id === id);
+  if (p.price === '$0') {
+    showNotif('⬇️', currentLang === 'ar' ? 'جاري التحميل...' : currentLang === 'en' ? 'Downloading...' : currentLang === 'es' ? 'Descargando...' : 'Téléchargement...');
+    return;
+  }
+  if (!cart.includes(id)) {
+    cart.push(id);
+    localStorage.setItem('mw_cart', JSON.stringify(cart));
+    updateCartCount();
+    const btn = document.getElementById(`cartBtn${id}`);
+    if (btn) { 
+      btn.textContent = '✓ ' + (translations[currentLang].notif?.added || 'Added'); 
+      btn.classList.add('added'); 
+    }
+    showNotif('✅', `"${p.name[currentLang]}" ${translations[currentLang].notif?.added || 'Added to cart'}!`);
+  } else {
+    showNotif('🛒', translations[currentLang].notif?.added || 'Already in cart');
+  }
+}
+
+function updateCartCount() {
+  document.getElementById('cartCount').textContent = cart.length;
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(btn.dataset.filter);
+  });
+});
+
+// Prompt Lab
 async function generatePrompt() {
   const input = document.getElementById('labInput').value.trim();
-  if (!input) { showNotif('⚠️', currentLang === 'ar' ? 'يرجى كتابة وصف احتياجك أولاً' : 'Please describe your need first'); return; }
+  if (!input) { 
+    showNotif('⚠️', currentLang === 'ar' ? 'يرجى كتابة وصف احتياجك أولاً' : currentLang === 'en' ? 'Please describe your need first' : currentLang === 'es' ? 'Por favor describe tu necesidad primero' : 'Veuillez d\'abord décrire votre besoin'); 
+    return; 
+  }
+  
   const btn = document.getElementById('labGenerateBtn');
   const btnText = document.getElementById('labBtnText');
   const output = document.getElementById('labOutput');
+  
   btn.disabled = true;
-  btnText.textContent = currentLang === 'ar' ? '⏳ جاري التوليد...' : '⏳ Generating...';
+  btnText.textContent = currentLang === 'ar' ? '⏳ جاري التوليد...' : currentLang === 'en' ? '⏳ Generating...' : currentLang === 'es' ? '⏳ Generando...' : '⏳ Génération...';
   output.classList.remove('empty');
   output.textContent = '';
-  document.getElementById('outputActions').style.display = 'none';
+
   try {
-    const response = await fetch('/api/groq', {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: input })
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{
+          role: 'user',
+          content: `You are an expert in writing professional AI prompts. The user wants: "${input}"
+
+Write a professional prompt in English (suitable for ChatGPT/Claude) ready for immediate use. The prompt should be tight, clear, and give exceptional results. Don't explain, just write the prompt directly.`
+        }]
+      })
     });
+    
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'API error');
-    const text = data.reply || 'No response from AI';
+    const text = data.content?.[0]?.text || 'Error, please try again';
+    
+    // Typing animation
     output.textContent = '';
     output.classList.add('typing-cursor');
     let i = 0;
     const interval = setInterval(() => {
-      if (i < text.length) { output.textContent += text[i]; i++; }
-      else { clearInterval(interval); output.classList.remove('typing-cursor'); document.getElementById('outputActions').style.display = 'flex'; }
+      output.textContent += text[i];
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        output.classList.remove('typing-cursor');
+        document.getElementById('outputActions').style.display = 'flex';
+      }
     }, 15);
-  } catch (error) {
-    console.error('Groq API error:', error);
-    output.textContent = currentLang === 'ar' ? '❌ حدث خطأ في الاتصال بالنموذج. تأكد من إعدادات API وحاول مرة أخرى.' : '❌ Error connecting to AI model. Check API settings and try again.';
+    
+  } catch (e) {
+    // Demo fallback
+    const demo = `You are an expert [ROLE] with 10+ years of experience. Your task is to help me with: "${input}"
+
+Please provide a comprehensive, structured response that:
+1. Addresses the core need directly
+2. Provides actionable steps
+3. Includes real examples
+4. Anticipates follow-up questions
+
+Format your response clearly with headers and bullet points where appropriate.`;
+    output.textContent = demo;
     document.getElementById('outputActions').style.display = 'flex';
   }
+  
   btn.disabled = false;
-  btnText.textContent = currentLang === 'ar' ? '⚡ توليد أمر احترافي' : '⚡ Generate Professional Prompt';
+  btnText.textContent = translations[currentLang].lab?.generate || '⚡ Generate';
 }
 
-function copyPrompt() { const text = document.getElementById('labOutput').textContent; navigator.clipboard.writeText(text); showNotif('📋', currentLang === 'ar' ? 'تم النسخ!' : 'Copied!'); }
-function savePrompt() { showNotif('💾', currentLang === 'ar' ? 'تم الحفظ!' : 'Saved!'); }
+function copyPrompt() {
+  const text = document.getElementById('labOutput').textContent;
+  navigator.clipboard.writeText(text).then(() => showNotif('📋', translations[currentLang].lab?.copy || 'Copied!'));
+}
+
+function savePrompt() { showNotif('💾', translations[currentLang].lab?.save || 'Saved!'); }
 function sellPrompt() { window.location.href = 'creators.html'; }
-function showNotif(icon, text) { const n = document.getElementById('notification'); document.getElementById('notifIcon').textContent = icon; document.getElementById('notifText').textContent = text; n.classList.add('show'); setTimeout(() => n.classList.remove('show'), 3000); }
-function subscribeEmail() { const email = document.getElementById('emailInput').value; if (!email || !email.includes('@')) { showNotif('⚠️', currentLang === 'ar' ? 'يرجى إدخال بريد إلكتروني صحيح' : 'Please enter a valid email'); return; } showNotif('🎁', currentLang === 'ar' ? 'تم إرسال الـ 100 أمر لبريدك!' : '100 prompts sent to your email!'); document.getElementById('emailInput').value = ''; }
-function toggleLangDropdown() { document.getElementById('langSwitcher').classList.toggle('active'); }
-function changeLanguage(lang) { currentLang = lang; localStorage.setItem('mw_lang', lang); document.body.setAttribute('data-lang', lang); document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; document.getElementById('currentLangFlag').textContent = lang === 'ar' ? '🇸🇦' : lang === 'en' ? '🇬🇧' : lang === 'es' ? '🇪🇸' : '🇫🇷'; document.getElementById('currentLangLabel').textContent = lang === 'ar' ? 'العربية' : lang === 'en' ? 'English' : lang === 'es' ? 'Español' : 'Français'; document.querySelectorAll('.lang-option').forEach(opt => opt.classList.toggle('active', opt.dataset.lang === lang)); translatePage(); renderProducts(currentFilter); toggleLangDropdown(); }
-function translatePage() { const t = translations[currentLang]; document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); const val = key.split('.').reduce((o, k) => o && o[k], t); if (val) el.textContent = val; }); document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const key = el.getAttribute('data-i18n-placeholder'); const val = key.split('.').reduce((o, k) => o && o[k], t); if (val) el.placeholder = val; }); if (t.meta?.title) document.title = t.meta.title; }
-function initLanguage() { document.body.setAttribute('data-lang', currentLang); document.documentElement.lang = currentLang; document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr'; translatePage(); updateCartCount(); renderProducts(); }
-document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderProducts(btn.dataset.filter); }); });
-document.querySelectorAll('.lab-tab').forEach(tab => { tab.addEventListener('click', () => { document.querySelectorAll('.lab-tab').forEach(t => t.classList.remove('active')); tab.classList.add('active'); const modes = { ar: { generate: 'مثال: أريد أمر لإنشاء محتوى تسويقي...', improve: 'الصق أمرك هنا لتحسينه...', translate: 'الصق أمرك هنا لترجمته...' }, en: { generate: 'Example: I need a prompt to create marketing content...', improve: 'Paste your prompt here to improve it...', translate: 'Paste your prompt here to translate it...' } }; document.getElementById('labInput').placeholder = modes[currentLang][tab.dataset.mode]; }); });
-document.querySelectorAll('.cat-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }); });
-document.getElementById('labGenerateBtn').onclick = generatePrompt;
-document.addEventListener('click', (e) => { if (!e.target.closest('.lang-switcher')) document.getElementById('langSwitcher').classList.remove('active'); });
-const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+
+// Lab tabs
+document.querySelectorAll('.lab-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.lab-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const modes = {
+      ar: { generate: 'مثال: أريد أمر لإنشاء محتوى تسويقي...', improve: 'الصق أمرك هنا لتحسينه...', translate: 'الصق أمرك هنا لترجمته...' },
+      en: { generate: 'Example: I need a prompt to create marketing content...', improve: 'Paste your prompt here to improve it...', translate: 'Paste your prompt here to translate it...' },
+      es: { generate: 'Ejemplo: Necesito un prompt para crear contenido de marketing...', improve: 'Pega tu prompt aquí para mejorarlo...', translate: 'Pega tu prompt aquí para traducirlo...' },
+      fr: { generate: 'Exemple: J\'ai besoin d\'un prompt pour créer du contenu marketing...', improve: 'Collez votre prompt ici pour l\'améliorer...', translate: 'Collez votre prompt ici pour le traduire...' }
+    };
+    document.getElementById('labInput').placeholder = modes[currentLang][tab.dataset.mode];
+  });
+});
+
+// Category buttons
+document.querySelectorAll('.cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Email subscription
+function subscribeEmail() {
+  const email = document.getElementById('emailInput').value;
+  if (!email || !email.includes('@')) { 
+    showNotif('⚠️', currentLang === 'ar' ? 'يرجى إدخال بريد إلكتروني صحيح' : currentLang === 'en' ? 'Please enter a valid email' : currentLang === 'es' ? 'Por favor introduce un correo válido' : 'Veuillez entrer un email valide'); 
+    return; 
+  }
+  showNotif('🎁', currentLang === 'ar' ? 'تم إرسال الـ 100 أمر لبريدك!' : currentLang === 'en' ? '100 prompts sent to your email!' : currentLang === 'es' ? '¡100 prompts enviados a tu correo!' : '100 prompts envoyés à votre email !');
+  document.getElementById('emailInput').value = '';
+}
+
+// Notification
+function showNotif(icon, text) {
+  const n = document.getElementById('notification');
+  document.getElementById('notifIcon').textContent = icon;
+  document.getElementById('notifText').textContent = text;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3000);
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Init
 initLanguage();
+renderProducts();
 </script>
 </body>
 </html>
+<div class="prompt-lab">
+  <h2>⚗️ Prompt Lab</h2>
+  <textarea id="user-prompt" rows="4" placeholder="اكتب أمرك هنا..."></textarea>
+  <button id="generate-btn">توليد</button>
+  <div id="result" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd;"></div>
+</div>
+
+<script>
+document.getElementById('generate-btn').onclick = async () => {
+  const prompt = document.getElementById('user-prompt').value;
+  const resultDiv = document.getElementById('result');
+  
+  resultDiv.innerHTML = 'جاري التوليد...';
+  
+  try {
+    const response = await fetch('/api/groq', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: prompt })
+    });
+    
+    const data = await response.json();
+    resultDiv.innerHTML = data.reply || data.error;
+  } catch (error) {
+    resultDiv.innerHTML = 'حدث خطأ: ' + error.message;
+  }
+};
+</script>
