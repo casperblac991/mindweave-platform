@@ -3107,3 +3107,31 @@ renderProducts();
 </script>
 </body>
 </html>
+<div class="prompt-lab">
+  <h2>⚗️ Prompt Lab</h2>
+  <textarea id="user-prompt" rows="4" placeholder="اكتب أمرك هنا..."></textarea>
+  <button id="generate-btn">توليد</button>
+  <div id="result" style="margin-top: 20px; padding: 10px; border: 1px solid #ddd;"></div>
+</div>
+
+<script>
+document.getElementById('generate-btn').onclick = async () => {
+  const prompt = document.getElementById('user-prompt').value;
+  const resultDiv = document.getElementById('result');
+  
+  resultDiv.innerHTML = 'جاري التوليد...';
+  
+  try {
+    const response = await fetch('/api/groq', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: prompt })
+    });
+    
+    const data = await response.json();
+    resultDiv.innerHTML = data.reply || data.error;
+  } catch (error) {
+    resultDiv.innerHTML = 'حدث خطأ: ' + error.message;
+  }
+};
+</script>
