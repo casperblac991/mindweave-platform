@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: mindweave
+    runtime: node
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
