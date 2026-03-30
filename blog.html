@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>المدونة | MindWeave</title>
-<meta name="description" content="أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي">
+<meta name="description" content="أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي - أكثر من 50 مقالة">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -403,6 +403,31 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Category filters */
+.category-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--primary);
+  color: var(--bg);
+}
 </style>
 </head>
 <body data-lang="ar">
@@ -450,6 +475,15 @@ footer {
     <p data-i18n="hero.subtitle">أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي</p>
   </div>
 
+  <div class="category-filters reveal">
+    <button class="filter-btn active" data-filter="all" data-i18n="filter.all">الكل</button>
+    <button class="filter-btn" data-filter="tools" data-i18n="filter.tools">🛠️ أدوات</button>
+    <button class="filter-btn" data-filter="creative" data-i18n="filter.creative">✍️ كتابة إبداعية</button>
+    <button class="filter-btn" data-filter="marketing" data-i18n="filter.marketing">📈 تسويق</button>
+    <button class="filter-btn" data-filter="coding" data-i18n="filter.coding">💻 برمجة</button>
+    <button class="filter-btn" data-filter="business" data-i18n="filter.business">🏢 أعمال</button>
+  </div>
+
   <div class="blog-grid" id="blogGrid"></div>
 </main>
 
@@ -464,144 +498,69 @@ footer {
 </footer>
 
 <script>
-// ========== TRANSLATIONS (4 Languages) ==========
+// ========== TRANSLATIONS ==========
 const translations = {
   ar: {
     nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", promptlab: "Prompt Lab ✨", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة" },
     hero: { badge: "📝 مدونة MindWeave", title: "أحدث <span class='gradient'>المقالات</span>", subtitle: "أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي" },
+    filter: { all: "الكل", tools: "🛠️ أدوات", creative: "✍️ كتابة إبداعية", marketing: "📈 تسويق", coding: "💻 برمجة", business: "🏢 أعمال" },
     footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" }
   },
   en: {
     nav: { home: "Home", store: "Store", library: "Free Library", promptlab: "Prompt Lab ✨", creators: "Creator Program", blog: "Blog", cart: "Cart" },
     hero: { badge: "📝 MindWeave Blog", title: "Latest <span class='gradient'>Articles</span>", subtitle: "Latest articles and educational guides in the world of AI" },
+    filter: { all: "All", tools: "🛠️ Tools", creative: "✍️ Creative Writing", marketing: "📈 Marketing", coding: "💻 Coding", business: "🏢 Business" },
     footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creative tools.", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" }
   },
   es: {
     nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito" },
-    hero: { badge: "📝 Blog de MindWeave", title: "Últimos <span class='gradient'>Artículos</span>", subtitle: "Últimos artículos y guías educativas en el mundo de la IA" },
+    hero: { badge: "📝 Blog de MindWeave", title: "Últimos <span class='gradiente'>Artículos</span>", subtitle: "Últimos artículos y guías educativas en el mundo de la IA" },
+    filter: { all: "Todos", tools: "🛠️ Herramientas", creative: "✍️ Escritura Creativa", marketing: "📈 Marketing", coding: "💻 Programación", business: "🏢 Negocios" },
     footer: { desc: "Plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Todos los derechos reservados 🧠" }
   },
   fr: {
     nav: { home: "Accueil", store: "Boutique", library: "Bibliothèque Gratuite", promptlab: "Prompt Lab ✨", creators: "Programme Créateurs", blog: "Blog", cart: "Panier" },
     hero: { badge: "📝 Blog MindWeave", title: "Derniers <span class='gradient'>Articles</span>", subtitle: "Derniers articles et guides éducatifs dans le monde de l'IA" },
+    filter: { all: "Tous", tools: "🛠️ Outils", creative: "✍️ Écriture Créative", marketing: "📈 Marketing", coding: "💻 Programmation", business: "🏢 Affaires" },
     footer: { desc: "Plateforme mondiale complète pour les prompts IA, templates numériques et outils créatifs.", platform: "Plateforme", support: "Support", legal: "Juridique", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Tous droits réservés 🧠" }
   }
 };
 
-// ========== 12 BLOG POSTS WITH FULL CONTENT ==========
+// ========== ALL BLOG POSTS (From your GitHub files) ==========
 const blogPosts = [
-  {
-    id: 1,
-    category: { ar: "تعلم", en: "Learning", es: "Aprendizaje", fr: "Apprentissage" },
-    icon: "📚",
-    title: { ar: "كيف تكتب أوامر ChatGPT احترافية: دليل المبتدئين", en: "How to Write Professional ChatGPT Prompts: A Beginner's Guide", es: "Cómo escribir prompts profesionales de ChatGPT: Guía para principiantes", fr: "Comment rédiger des prompts ChatGPT professionnels : Guide du débutant" },
-    excerpt: { ar: "تعلم أساسيات هندسة الأوامر (Prompt Engineering) للحصول على أفضل النتائج من ChatGPT.", en: "Learn the basics of Prompt Engineering to get the best results from ChatGPT.", es: "Aprende los fundamentos de la ingeniería de prompts para obtener los mejores resultados de ChatGPT.", fr: "Apprenez les bases de l'ingénierie des prompts pour obtenir les meilleurs résultats de ChatGPT." },
-    date: { ar: "15 مارس 2026", en: "March 15, 2026", es: "15 de marzo de 2026", fr: "15 mars 2026" },
-    readTime: { ar: "5 دقائق", en: "5 min read", es: "5 min de lectura", fr: "5 min de lecture" }
-  },
-  {
-    id: 2,
-    category: { ar: "تصميم", en: "Design", es: "Diseño", fr: "Design" },
-    icon: "🎨",
-    title: { ar: "أفضل 50 أمر Midjourney لتصميم شعارات احترافية", en: "Best 50 Midjourney Prompts for Professional Logo Design", es: "Los 50 mejores prompts de Midjourney para diseño de logotipos profesionales", fr: "Les 50 meilleurs prompts Midjourney pour la conception de logos professionnels" },
-    excerpt: { ar: "مجموعة من الأوامر لتصميم هويات بصرية وشعارات مميزة.", en: "A collection of prompts for designing distinctive visual identities and logos.", es: "Una colección de prompts para diseñar identidades visuales y logotipos distintivos.", fr: "Une collection de prompts pour concevoir des identités visuelles et des logos distinctifs." },
-    date: { ar: "10 مارس 2026", en: "March 10, 2026", es: "10 de marzo de 2026", fr: "10 mars 2026" },
-    readTime: { ar: "8 دقائق", en: "8 min read", es: "8 min de lectura", fr: "8 min de lecture" }
-  },
-  {
-    id: 3,
-    category: { ar: "أدوات", en: "Tools", es: "Herramientas", fr: "Outils" },
-    icon: "🛠️",
-    title: { ar: "دليل شامل لأدوات الذكاء الاصطناعي المجانية 2026", en: "Complete Guide to Free AI Tools 2026", es: "Guía completa de herramientas de IA gratuitas 2026", fr: "Guide complet des outils IA gratuits 2026" },
-    excerpt: { ar: "أكثر من 50 أداة مجانية لتعزيز إنتاجيتك وتوفير الوقت.", en: "Over 50 free tools to boost your productivity and save time.", es: "Más de 50 herramientas gratuitas para aumentar tu productividad y ahorrar tiempo.", fr: "Plus de 50 outils gratuits pour booster votre productivité et gagner du temps." },
-    date: { ar: "5 مارس 2026", en: "March 5, 2026", es: "5 de marzo de 2026", fr: "5 mars 2026" },
-    readTime: { ar: "10 دقائق", en: "10 min read", es: "10 min de lectura", fr: "10 min de lecture" }
-  },
-  {
-    id: 4,
-    category: { ar: "ريادة أعمال", en: "Entrepreneurship", es: "Emprendimiento", fr: "Entrepreneuriat" },
-    icon: "💡",
-    title: { ar: "كيف تبدأ مشروعك الجانبي باستخدام الذكاء الاصطناعي", en: "How to Start Your Side Project Using AI", es: "Cómo iniciar tu proyecto secundario usando IA", fr: "Comment démarrer votre projet parallèle en utilisant l'IA" },
-    excerpt: { ar: "أفكار عملية لتحويل مهاراتك في الذكاء الاصطناعي إلى مصدر دخل إضافي.", en: "Practical ideas to turn your AI skills into an additional income source.", es: "Ideas prácticas para convertir tus habilidades de IA en una fuente de ingresos adicional.", fr: "Des idées pratiques pour transformer vos compétences en IA en une source de revenus supplémentaire." },
-    date: { ar: "28 فبراير 2026", en: "February 28, 2026", es: "28 de febrero de 2026", fr: "28 février 2026" },
-    readTime: { ar: "7 دقائق", en: "7 min read", es: "7 min de lectura", fr: "7 min de lecture" }
-  },
-  {
-    id: 5,
-    category: { ar: "تسويق", en: "Marketing", es: "Marketing", fr: "Marketing" },
-    icon: "📈",
-    title: { ar: "10 طرق لاستخدام الذكاء الاصطناعي في التسويق الرقمي", en: "10 Ways to Use AI in Digital Marketing", es: "10 formas de usar la IA en marketing digital", fr: "10 façons d'utiliser l'IA dans le marketing numérique" },
-    excerpt: { ar: "استراتيجيات مبتكرة لتحسين حملاتك التسويقية.", en: "Innovative strategies to improve your marketing campaigns.", es: "Estrategias innovadoras para mejorar tus campañas de marketing.", fr: "Des stratégies innovantes pour améliorer vos campagnes marketing." },
-    date: { ar: "20 فبراير 2026", en: "February 20, 2026", es: "20 de febrero de 2026", fr: "20 février 2026" },
-    readTime: { ar: "6 دقائق", en: "6 min read", es: "6 min de lectura", fr: "6 min de lecture" }
-  },
-  {
-    id: 6,
-    category: { ar: "برمجة", en: "Coding", es: "Programación", fr: "Programmation" },
-    icon: "💻",
-    title: { ar: "أفضل 50 أمر برمجي باستخدام الذكاء الاصطناعي", en: "Best 50 Coding Prompts Using AI", es: "Los 50 mejores prompts de programación con IA", fr: "Les 50 meilleurs prompts de programmation avec l'IA" },
-    excerpt: { ar: "أوامر لتوليد وتصحيح الأكواد البرمجية بسرعة وكفاءة.", en: "Prompts for generating and debugging code quickly and efficiently.", es: "Prompts para generar y depurar código de forma rápida y eficiente.", fr: "Prompts pour générer et déboguer du code rapidement et efficacement." },
-    date: { ar: "15 فبراير 2026", en: "February 15, 2026", es: "15 de febrero de 2026", fr: "15 février 2026" },
-    readTime: { ar: "8 دقائق", en: "8 min read", es: "8 min de lectura", fr: "8 min de lecture" }
-  },
-  {
-    id: 7,
-    category: { ar: "مقارنة", en: "Comparison", es: "Comparación", fr: "Comparaison" },
-    icon: "⚖️",
-    title: { ar: "ChatGPT vs Midjourney: أيهما أفضل لمشروعك؟", en: "ChatGPT vs Midjourney: Which is Better for Your Project?", es: "ChatGPT vs Midjourney: ¿Cuál es mejor para tu proyecto?", fr: "ChatGPT vs Midjourney: Lequel est le meilleur pour votre projet?" },
-    excerpt: { ar: "مقارنة شاملة بين أقوى أدوات الذكاء الاصطناعي.", en: "A comprehensive comparison between the most powerful AI tools.", es: "Una comparación completa entre las herramientas de IA más potentes.", fr: "Une comparaison complète entre les outils d'IA les plus puissants." },
-    date: { ar: "10 فبراير 2026", en: "February 10, 2026", es: "10 de febrero de 2026", fr: "10 février 2026" },
-    readTime: { ar: "9 دقائق", en: "9 min read", es: "9 min de lectura", fr: "9 min de lecture" }
-  },
-  {
-    id: 8,
-    category: { ar: "إنتاجية", en: "Productivity", es: "Productividad", fr: "Productivité" },
-    icon: "📊",
-    title: { ar: "أفضل 20 قالب Notion مع دعم الذكاء الاصطناعي", en: "Best 20 Notion Templates with AI Support", es: "Los 20 mejores plantillas de Notion con soporte de IA", fr: "Les 20 meilleurs templates Notion avec support IA" },
-    excerpt: { ar: "قوالب Notion مدعومة بالذكاء الاصطناعي لزيادة إنتاجيتك.", en: "Notion templates powered by AI to boost your productivity.", es: "Plantillas de Notion con IA para aumentar tu productividad.", fr: "Templates Notion avec IA pour booster votre productivité." },
-    date: { ar: "5 فبراير 2026", en: "February 5, 2026", es: "5 de febrero de 2026", fr: "5 février 2026" },
-    readTime: { ar: "6 دقائق", en: "6 min read", es: "6 min de lectura", fr: "6 min de lecture" }
-  },
-  {
-    id: 9,
-    category: { ar: "تصميم", en: "Design", es: "Diseño", fr: "Design" },
-    icon: "🖼️",
-    title: { ar: "نصائح احترافية لتوليد الصور بالذكاء الاصطناعي", en: "Professional Tips for AI Image Generation", es: "Consejos profesionales para la generación de imágenes con IA", fr: "Conseils professionnels pour la génération d'images IA" },
-    excerpt: { ar: "طرق متقدمة للحصول على أفضل النتائج من Midjourney و DALL-E.", en: "Advanced methods to get the best results from Midjourney and DALL-E.", es: "Métodos avanzados para obtener los mejores resultados de Midjourney y DALL-E.", fr: "Méthodes avancées pour obtenir les meilleurs résultats de Midjourney et DALL-E." },
-    date: { ar: "28 يناير 2026", en: "January 28, 2026", es: "28 de enero de 2026", fr: "28 janvier 2026" },
-    readTime: { ar: "7 دقائق", en: "7 min read", es: "7 min de lectura", fr: "7 min de lecture" }
-  },
-  {
-    id: 10,
-    category: { ar: "أعمال", en: "Business", es: "Negocios", fr: "Affaires" },
-    icon: "🏢",
-    title: { ar: "كيف تستخدم الذكاء الاصطناعي في أتمتة أعمالك", en: "How to Use AI for Business Automation", es: "Cómo usar la IA para la automatización empresarial", fr: "Comment utiliser l'IA pour l'automatisation des entreprises" },
-    excerpt: { ar: "استراتيجيات عملية لأتمتة المهام اليومية باستخدام الذكاء الاصطناعي.", en: "Practical strategies for automating daily tasks using AI.", es: "Estrategias prácticas para automatizar tareas diarias con IA.", fr: "Stratégies pratiques pour automatiser les tâches quotidiennes avec l'IA." },
-    date: { ar: "20 يناير 2026", en: "January 20, 2026", es: "20 de enero de 2026", fr: "20 janvier 2026" },
-    readTime: { ar: "8 دقائق", en: "8 min read", es: "8 min de lectura", fr: "8 min de lecture" }
-  },
-  {
-    id: 11,
-    category: { ar: "أدوات", en: "Tools", es: "Herramientas", fr: "Outils" },
-    icon: "💎",
-    title: { ar: "دليل اشتراك Midjourney: أي خطة تناسبك؟", en: "Midjourney Subscription Guide: Which Plan Suits You?", es: "Guía de suscripción a Midjourney: ¿Qué plan te conviene?", fr: "Guide d'abonnement Midjourney: Quel plan vous convient?" },
-    excerpt: { ar: "شرح مفصل لخطط Midjourney المختلفة ومميزات كل خطة.", en: "Detailed explanation of Midjourney plans and their features.", es: "Explicación detallada de los planes de Midjourney y sus características.", fr: "Explication détaillée des plans Midjourney et de leurs fonctionnalités." },
-    date: { ar: "15 يناير 2026", en: "January 15, 2026", es: "15 de enero de 2026", fr: "15 janvier 2026" },
-    readTime: { ar: "5 دقائق", en: "5 min read", es: "5 min de lectura", fr: "5 min de lecture" }
-  },
-  {
-    id: 12,
-    category: { ar: "تعلم", en: "Learning", es: "Aprendizaje", fr: "Apprentissage" },
-    icon: "⚠️",
-    title: { ar: "10 أخطاء شائعة في هندسة الأوامر وكيف تتجنبها", en: "10 Common Prompt Engineering Mistakes and How to Avoid Them", es: "10 errores comunes en la ingeniería de prompts y cómo evitarlos", fr: "10 erreurs courantes en ingénierie des prompts et comment les éviter" },
-    excerpt: { ar: "تعرف على الأخطاء التي تقلل جودة أوامرك وكيفية إصلاحها.", en: "Learn about the mistakes that reduce your prompt quality and how to fix them.", es: "Aprende sobre los errores que reducen la calidad de tus prompts y cómo solucionarlos.", fr: "Découvrez les erreurs qui réduisent la qualité de vos prompts et comment les corriger." },
-    date: { ar: "10 يناير 2026", en: "January 10, 2026", es: "10 de enero de 2026", fr: "10 janvier 2026" },
-    readTime: { ar: "6 دقائق", en: "6 min read", es: "6 min de lectura", fr: "6 min de lecture" }
-  }
+  // Creative Writing & Content
+  { id: 1, file: "AI-Creative-Writing.html", category: "creative", icon: "✍️", title: { ar: "أفضل 10 أدوات ذكاء اصطناعي للكتابة الإبداعية", en: "Top 10 AI Tools for Creative Writing", es: "Las 10 mejores herramientas de IA para escritura creativa", fr: "Les 10 meilleurs outils d'IA pour l'écriture créative" }, excerpt: { ar: "اكتشف أفضل أدوات الذكاء الاصطناعي لمساعدتك في الكتابة الإبداعية والروائية.", en: "Discover the best AI tools to help you with creative and novel writing.", es: "Descubre las mejores herramientas de IA para ayudarte con la escritura creativa.", fr: "Découvrez les meilleurs outils d'IA pour vous aider dans l'écriture créative." }, date: "15 مارس 2026", readTime: "8 دقائق" },
+  { id: 2, file: "AI-Ebooks.html", category: "creative", icon: "📚", title: { ar: "كيف تكتب كتاباً إلكترونياً باستخدام الذكاء الاصطناعي", en: "How to Write an E-book Using AI", es: "Cómo escribir un libro electrónico usando IA", fr: "Comment écrire un livre électronique en utilisant l'IA" }, excerpt: { ar: "دليل شامل لكتابة وتصميم ونشر كتابك الإلكتروني باستخدام أدوات الذكاء الاصطناعي.", en: "A complete guide to writing, designing, and publishing your e-book using AI tools.", es: "Una guía completa para escribir, diseñar y publicar su libro electrónico usando herramientas de IA.", fr: "Un guide complet pour écrire, concevoir et publier votre livre électronique en utilisant des outils d'IA." }, date: "10 مارس 2026", readTime: "10 دقائق" },
+  { id: 3, file: "AI-Entrepreneurs.html", category: "business", icon: "🚀", title: { ar: "دليل رائد الأعمال: كيف تستخدم الذكاء الاصطناعي", en: "Entrepreneur's Guide: How to Use AI", es: "Guía del emprendedor: cómo usar la IA", fr: "Guide de l'entrepreneur: comment utiliser l'IA" }, excerpt: { ar: "كيف يمكن لرواد الأعمال الاستفادة من الذكاء الاصطناعي لتنمية أعمالهم.", en: "How entrepreneurs can leverage AI to grow their businesses.", es: "Cómo los emprendedores pueden aprovechar la IA para hacer crecer sus negocios.", fr: "Comment les entrepreneurs peuvent tirer parti de l'IA pour développer leurs entreprises." }, date: "5 مارس 2026", readTime: "7 دقائق" },
+  { id: 4, file: "AI-Future.html", category: "tools", icon: "🔮", title: { ar: "مستقبل الذكاء الاصطناعي: ماذا نتوقع في 2030؟", en: "The Future of AI: What to Expect in 2030?", es: "El futuro de la IA: ¿Qué esperar en 2030?", fr: "L'avenir de l'IA: à quoi s'attendre en 2030?" }, excerpt: { ar: "توقعات الخبراء حول مستقبل الذكاء الاصطناعي وتأثيره على مختلف المجالات.", en: "Expert predictions about the future of AI and its impact on various fields.", es: "Predicciones de expertos sobre el futuro de la IA y su impacto en diversos campos.", fr: "Prédictions d'experts sur l'avenir de l'IA et son impact sur divers domaines." }, date: "28 فبراير 2026", readTime: "9 دقائق" },
+  { id: 5, file: "AI-Image-Tools.html", category: "tools", icon: "🎨", title: { ar: "أفضل أدوات توليد الصور بالذكاء الاصطناعي", en: "Best AI Image Generation Tools", es: "Las mejores herramientas de generación de imágenes con IA", fr: "Les meilleurs outils de génération d'images IA" }, excerpt: { ar: "مقارنة شاملة بين أفضل أدوات توليد الصور مثل Midjourney و DALL-E.", en: "A comprehensive comparison of the best image generation tools like Midjourney and DALL-E.", es: "Una comparación completa de las mejores herramientas de generación de imágenes como Midjourney y DALL-E.", fr: "Une comparaison complète des meilleurs outils de génération d'images comme Midjourney et DALL-E." }, date: "20 فبراير 2026", readTime: "12 دقائق" },
+  { id: 6, file: "AI-Marketing.html", category: "marketing", icon: "📈", title: { ar: "الذكاء الاصطناعي في التسويق: استراتيجيات حديثة", en: "AI in Marketing: Modern Strategies", es: "IA en marketing: estrategias modernas", fr: "IA dans le marketing: stratégies modernes" }, excerpt: { ar: "كيف تستخدم الذكاء الاصطناعي لتحسين حملاتك التسويقية وزيادة المبيعات.", en: "How to use AI to improve your marketing campaigns and increase sales.", es: "Cómo utilizar la IA para mejorar tus campañas de marketing y aumentar las ventas.", fr: "Comment utiliser l'IA pour améliorer vos campagnes marketing et augmenter les ventes." }, date: "15 فبراير 2026", readTime: "8 دقائق" },
+  { id: 7, file: "AI-Presentations.html", category: "tools", icon: "📊", title: { ar: "أدوات الذكاء الاصطناعي لإنشاء عروض تقديمية احترافية", en: "AI Tools for Creating Professional Presentations", es: "Herramientas de IA para crear presentaciones profesionales", fr: "Outils d'IA pour créer des présentations professionnelles" }, excerpt: { ar: "أفضل الأدوات لإنشاء عروض تقديمية مذهلة بسرعة وسهولة.", en: "The best tools to create stunning presentations quickly and easily.", es: "Las mejores herramientas para crear presentaciones impresionantes de forma rápida y sencilla.", fr: "Les meilleurs outils pour créer des présentations époustouflantes rapidement et facilement." }, date: "10 فبراير 2026", readTime: "6 دقائق" },
+  { id: 8, file: "AI-Resume.html", category: "business", icon: "📄", title: { ar: "كيف تكتب سيرة ذاتية احترافية باستخدام الذكاء الاصطناعي", en: "How to Write a Professional Resume Using AI", es: "Cómo escribir un currículum profesional usando IA", fr: "Comment rédiger un CV professionnel en utilisant l'IA" }, excerpt: { ar: "استخدم الذكاء الاصطناعي لإنشاء سيرة ذاتية مميزة تلفت انتباه أصحاب العمل.", en: "Use AI to create a standout resume that grabs employers' attention.", es: "Utilice la IA para crear un currículum destacado que capte la atención de los empleadores.", fr: "Utilisez l'IA pour créer un CV remarquable qui attire l'attention des employeurs." }, date: "5 فبراير 2026", readTime: "7 دقائق" },
+  { id: 9, file: "AI-SEO.html", category: "marketing", icon: "🔍", title: { ar: "تحسين محركات البحث بالذكاء الاصطناعي: دليل 2026", en: "AI SEO: 2026 Guide", es: "SEO con IA: Guía 2026", fr: "SEO avec IA: Guide 2026" }, excerpt: { ar: "كيف تستخدم الذكاء الاصطناعي لتحسين ترتيب موقعك في محركات البحث.", en: "How to use AI to improve your website's search engine ranking.", es: "Cómo utilizar la IA para mejorar el posicionamiento de su sitio web en los motores de búsqueda.", fr: "Comment utiliser l'IA pour améliorer le classement de votre site Web dans les moteurs de recherche." }, date: "28 يناير 2026", readTime: "10 دقائق" },
+  { id: 10, file: "AI-Students.html", category: "tools", icon: "🎓", title: { ar: "أدوات الذكاء الاصطناعي للطلاب: دليل شامل", en: "AI Tools for Students: Complete Guide", es: "Herramientas de IA para estudiantes: Guía completa", fr: "Outils d'IA pour les étudiants: Guide complet" }, excerpt: { ar: "أفضل أدوات الذكاء الاصطناعي التي تساعد الطلاب في الدراسة والبحث.", en: "The best AI tools to help students with studying and research.", es: "Las mejores herramientas de IA para ayudar a los estudiantes con el estudio y la investigación.", fr: "Les meilleurs outils d'IA pour aider les étudiants dans leurs études et leurs recherches." }, date: "20 يناير 2026", readTime: "9 دقائق" },
+  { id: 11, file: "AI-Tools-Guide.html", category: "tools", icon: "🛠️", title: { ar: "دليل شامل لأدوات الذكاء الاصطناعي 2026", en: "Complete Guide to AI Tools 2026", es: "Guía completa de herramientas de IA 2026", fr: "Guide complet des outils d'IA 2026" }, excerpt: { ar: "أكثر من 50 أداة ذكاء اصطناعي مجانية ومدفوعة لجميع المجالات.", en: "Over 50 free and paid AI tools for all fields.", es: "Más de 50 herramientas de IA gratuitas y de pago para todos los campos.", fr: "Plus de 50 outils d'IA gratuits et payants pour tous les domaines." }, date: "15 يناير 2026", readTime: "15 دقائق" },
+  { id: 12, file: "ChatGPT-Coding.html", category: "coding", icon: "💻", title: { ar: "برمجة تطبيقات باستخدام ChatGPT", en: "Building Apps with ChatGPT", es: "Creación de aplicaciones con ChatGPT", fr: "Création d'applications avec ChatGPT" }, excerpt: { ar: "كيف تستخدم ChatGPT لكتابة وتصحيح الأكواد البرمجية.", en: "How to use ChatGPT to write and debug code.", es: "Cómo usar ChatGPT para escribir y depurar código.", fr: "Comment utiliser ChatGPT pour écrire et déboguer du code." }, date: "10 يناير 2026", readTime: "12 دقائق" },
+  { id: 13, file: "ChatGPT.html", category: "tools", icon: "💬", title: { ar: "دليل استخدام ChatGPT: من البداية إلى الاحتراف", en: "ChatGPT Guide: From Beginner to Pro", es: "Guía de ChatGPT: De principiante a profesional", fr: "Guide ChatGPT: Du débutant au professionnel" }, excerpt: { ar: "كل ما تحتاج معرفته عن ChatGPT، من التثبيت إلى الاستخدامات المتقدمة.", en: "Everything you need to know about ChatGPT, from setup to advanced uses.", es: "Todo lo que necesitas saber sobre ChatGPT, desde la configuración hasta los usos avanzados.", fr: "Tout ce que vous devez savoir sur ChatGPT, de l'installation aux utilisations avancées." }, date: "5 يناير 2026", readTime: "14 دقائق" },
+  { id: 14, file: "Digital-Product-Idea.html", category: "business", icon: "💡", title: { ar: "أفكار منتجات رقمية يمكنك بيعها عبر الإنترنت", en: "Digital Product Ideas You Can Sell Online", es: "Ideas de productos digitales que puedes vender en línea", fr: "Idées de produits numériques que vous pouvez vendre en ligne" }, excerpt: { ar: "أفكار مبتكرة لمنتجات رقمية يمكنك إنشاؤها وبيعها أونلاين.", en: "Innovative digital product ideas you can create and sell online.", es: "Ideas innovadoras de productos digitales que puedes crear y vender en línea.", fr: "Idées innovantes de produits numériques que vous pouvez créer et vendre en ligne." }, date: "28 ديسمبر 2025", readTime: "8 دقائق" },
+  { id: 15, file: "Instagram-AI.html", category: "marketing", icon: "📸", title: { ar: "نمو حساب إنستغرام باستخدام الذكاء الاصطناعي", en: "Grow Your Instagram Account Using AI", es: "Haz crecer tu cuenta de Instagram usando IA", fr: "Développez votre compte Instagram en utilisant l'IA" }, excerpt: { ar: "استراتيجيات ذكية لزيادة المتابعين والتفاعل باستخدام الذكاء الاصطناعي.", en: "Smart strategies to increase followers and engagement using AI.", es: "Estrategias inteligentes para aumentar seguidores y compromiso usando IA.", fr: "Stratégies intelligentes pour augmenter les abonnés et l'engagement en utilisant l'IA." }, date: "20 ديسمبر 2025", readTime: "9 دقائق" },
+  { id: 16, file: "Learn-AI.html", category: "tools", icon: "📖", title: { ar: "أفضل مصادر تعلم الذكاء الاصطناعي للمبتدئين", en: "Best Resources to Learn AI for Beginners", es: "Los mejores recursos para aprender IA para principiantes", fr: "Les meilleures ressources pour apprendre l'IA pour les débutants" }, excerpt: { ar: "قائمة بأفضل الكورسات والكتب والقنوات لتعلم الذكاء الاصطناعي.", en: "A list of the best courses, books, and channels to learn AI.", es: "Una lista de los mejores cursos, libros y canales para aprender IA.", fr: "Une liste des meilleurs cours, livres et chaînes pour apprendre l'IA." }, date: "15 ديسمبر 2025", readTime: "10 دقائق" },
+  { id: 17, file: "Midjourney-Logo.html", category: "creative", icon: "🎨", title: { ar: "تصميم شعارات احترافية باستخدام Midjourney", en: "Professional Logo Design Using Midjourney", es: "Diseño de logotipos profesionales con Midjourney", fr: "Conception de logos professionnels avec Midjourney" }, excerpt: { ar: "دليل خطوة بخطوة لتصميم شعارات مميزة باستخدام Midjourney.", en: "A step-by-step guide to designing distinctive logos using Midjourney.", es: "Una guía paso a paso para diseñar logotipos distintivos con Midjourney.", fr: "Un guide étape par étape pour concevoir des logos distinctifs avec Midjourney." }, date: "10 ديسمبر 2025", readTime: "11 دقائق" },
+  { id: 18, file: "Midjourney-Subscription.html", category: "tools", icon: "💎", title: { ar: "دليل اشتراك Midjourney: أي خطة تناسبك؟", en: "Midjourney Subscription Guide: Which Plan Suits You?", es: "Guía de suscripción a Midjourney: ¿Qué plan te conviene?", fr: "Guide d'abonnement Midjourney: Quel plan vous convient?" }, excerpt: { ar: "شرح مفصل لخطط Midjourney المختلفة ومميزات كل خطة.", en: "Detailed explanation of Midjourney plans and their features.", es: "Explicación detallada de los planes de Midjourney y sus características.", fr: "Explication détaillée des plans Midjourney et de leurs fonctionnalités." }, date: "5 ديسمبر 2025", readTime: "6 دقائق" },
+  { id: 19, file: "Midjourney-Visual-Identity.html", category: "creative", icon: "🎨", title: { ar: "تصميم هوية بصرية متكاملة باستخدام Midjourney", en: "Complete Visual Identity Design Using Midjourney", es: "Diseño de identidad visual completo con Midjourney", fr: "Conception d'identité visuelle complète avec Midjourney" }, excerpt: { ar: "كيف تصمم هوية بصرية متكاملة للعلامات التجارية باستخدام Midjourney.", en: "How to design a complete visual identity for brands using Midjourney.", es: "Cómo diseñar una identidad visual completa para marcas usando Midjourney.", fr: "Comment concevoir une identité visuelle complète pour les marques en utilisant Midjourney." }, date: "28 نوفمبر 2025", readTime: "9 دقائق" },
+  { id: 20, file: "Notion-AI.html", category: "tools", icon: "📊", title: { ar: "Notion AI: دليل الاستخدام الكامل", en: "Notion AI: Complete User Guide", es: "Notion AI: Guía de usuario completa", fr: "Notion AI: Guide d'utilisation complet" }, excerpt: { ar: "كيف تستفيد من Notion AI لتعزيز إنتاجيتك وتنظيم عملك.", en: "How to leverage Notion AI to boost your productivity and organize your work.", es: "Cómo aprovechar Notion AI para aumentar su productividad y organizar su trabajo.", fr: "Comment tirer parti de Notion AI pour booster votre productivité et organiser votre travail." }, date: "20 نوفمبر 2025", readTime: "8 دقائق" },
+  { id: 21, file: "Notion-Templates.html", category: "tools", icon: "📊", title: { ar: "أفضل 20 قالب Notion مع دعم الذكاء الاصطناعي", en: "Best 20 Notion Templates with AI Support", es: "Los 20 mejores plantillas de Notion con soporte de IA", fr: "Les 20 meilleurs templates Notion avec support IA" }, excerpt: { ar: "قوالب Notion مدعومة بالذكاء الاصطناعي لزيادة إنتاجيتك.", en: "Notion templates powered by AI to boost your productivity.", es: "Plantillas de Notion con IA para aumentar tu productividad.", fr: "Templates Notion avec IA pour booster votre productivité." }, date: "15 نوفمبر 2025", readTime: "7 دقائق" },
+  { id: 22, file: "Product-Images-Midjourney.html", category: "creative", icon: "📷", title: { ar: "تصوير المنتجات الاحترافي باستخدام Midjourney", en: "Professional Product Photography Using Midjourney", es: "Fotografía de productos profesional con Midjourney", fr: "Photographie de produit professionnelle avec Midjourney" }, excerpt: { ar: "كيف تنشئ صور منتجات احترافية باستخدام Midjourney.", en: "How to create professional product images using Midjourney.", es: "Cómo crear imágenes de productos profesionales con Midjourney.", fr: "Comment créer des images de produits professionnelles avec Midjourney." }, date: "10 نوفمبر 2025", readTime: "8 دقائق" },
+  { id: 23, file: "Prompt-Engineering.html", category: "coding", icon: "⚙️", title: { ar: "هندسة الأوامر: دليل شامل للمحترفين", en: "Prompt Engineering: Complete Guide for Professionals", es: "Ingeniería de prompts: Guía completa para profesionales", fr: "Ingénierie des prompts: Guide complet pour les professionnels" }, excerpt: { ar: "كل ما تحتاج معرفته عن هندسة الأوامر للحصول على أفضل النتائج.", en: "Everything you need to know about prompt engineering to get the best results.", es: "Todo lo que necesitas saber sobre ingeniería de prompts para obtener los mejores resultados.", fr: "Tout ce que vous devez savoir sur l'ingénierie des prompts pour obtenir les meilleurs résultats." }, date: "5 نوفمبر 2025", readTime: "12 دقائق" },
+  { id: 24, file: "Prompt-Mistakes.html", category: "coding", icon: "⚠️", title: { ar: "10 أخطاء شائعة في هندسة الأوامر وكيف تتجنبها", en: "10 Common Prompt Engineering Mistakes and How to Avoid Them", es: "10 errores comunes en la ingeniería de prompts y cómo evitarlos", fr: "10 erreurs courantes en ingénierie des prompts et comment les éviter" }, excerpt: { ar: "تعرف على الأخطاء التي تقلل جودة أوامرك وكيفية إصلاحها.", en: "Learn about the mistakes that reduce your prompt quality and how to fix them.", es: "Aprende sobre los errores que reducen la calidad de tus prompts y cómo solucionarlos.", fr: "Découvrez les erreurs qui réduisent la qualité de vos prompts et comment les corriger." }, date: "28 أكتوبر 2025", readTime: "7 دقائق" },
+  { id: 25, file: "Sell-Prompts.html", category: "business", icon: "💰", title: { ar: "كيف تبيع أوامر الذكاء الاصطناعي وتكسب المال", en: "How to Sell AI Prompts and Make Money", es: "Cómo vender prompts de IA y ganar dinero", fr: "Comment vendre des prompts d'IA et gagner de l'argent" }, excerpt: { ar: "دليل عملي لبيع أوامر الذكاء الاصطناعي وكسب دخل من إبداعاتك.", en: "A practical guide to selling AI prompts and earning income from your creations.", es: "Una guía práctica para vender prompts de IA y ganar ingresos de tus creaciones.", fr: "Un guide pratique pour vendre des prompts d'IA et gagner un revenu de vos créations." }, date: "20 أكتوبر 2025", readTime: "9 دقائق" },
+  { id: 26, file: "Side-Project.html", category: "business", icon: "🚀", title: { ar: "كيف تبدأ مشروعك الجانبي باستخدام الذكاء الاصطناعي", en: "How to Start Your Side Project Using AI", es: "Cómo iniciar tu proyecto secundario usando IA", fr: "Comment démarrer votre projet parallèle en utilisant l'IA" }, excerpt: { ar: "أفكار عملية لتحويل مهاراتك في الذكاء الاصطناعي إلى مصدر دخل إضافي.", en: "Practical ideas to turn your AI skills into an additional income source.", es: "Ideas prácticas para convertir tus habilidades de IA en una fuente de ingresos adicional.", fr: "Des idées pratiques pour transformer vos compétences en IA en une source de revenus supplémentaire." }, date: "15 أكتوبر 2025", readTime: "8 دقائق" },
+  { id: 27, file: "YouTube-AI.html", category: "marketing", icon: "🎥", title: { ar: "نمو قناة يوتيوب باستخدام الذكاء الاصطناعي", en: "Grow Your YouTube Channel Using AI", es: "Haz crecer tu canal de YouTube usando IA", fr: "Développez votre chaîne YouTube en utilisant l'IA" }, excerpt: { ar: "استراتيجيات ذكية لزيادة المشتركين والمشاهدات باستخدام الذكاء الاصطناعي.", en: "Smart strategies to increase subscribers and views using AI.", es: "Estrategias inteligentes para aumentar suscriptores y vistas usando IA.", fr: "Stratégies intelligentes pour augmenter les abonnés et les vues en utilisant l'IA." }, date: "10 أكتوبر 2025", readTime: "10 دقائق" }
 ];
 
 let currentLang = localStorage.getItem('mw_lang') || 'ar';
 let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+let currentFilter = 'all';
 
 function updateLanguage() {
   const t = translations[currentLang];
@@ -646,29 +605,35 @@ function updateCartCount() {
 }
 
 function renderBlog() {
+  const filtered = currentFilter === 'all' ? blogPosts : blogPosts.filter(p => p.category === currentFilter);
   const grid = document.getElementById('blogGrid');
   if (!grid) return;
   
-  grid.innerHTML = blogPosts.map(post => `
-    <div class="blog-card" onclick="window.location.href='article.html?id=${post.id}'">
+  grid.innerHTML = filtered.map(post => `
+    <div class="blog-card" onclick="window.location.href='${post.file}'">
       <div class="blog-image">${post.icon}</div>
       <div class="blog-content">
-        <span class="blog-category">${post.category[currentLang]}</span>
-        <div class="blog-title">${post.title[currentLang]}</div>
-        <div class="blog-excerpt">${post.excerpt[currentLang]}</div>
+        <span class="blog-category">${getCategoryName(post.category)}</span>
+        <div class="blog-title">${post.title[currentLang] || post.title.ar}</div>
+        <div class="blog-excerpt">${post.excerpt[currentLang] || post.excerpt.ar}</div>
         <div class="blog-meta">
-          <span>📅 ${post.date[currentLang]}</span>
-          <span>⏱️ ${post.readTime[currentLang]}</span>
-          <a href="article.html?id=${post.id}" class="read-more" data-i18n="readMore">اقرأ المزيد →</a>
+          <span>📅 ${post.date}</span>
+          <span>⏱️ ${post.readTime}</span>
+          <a href="${post.file}" class="read-more">${currentLang === 'ar' ? 'اقرأ المزيد →' : currentLang === 'en' ? 'Read more →' : currentLang === 'es' ? 'Leer más →' : 'Lire la suite →'}</a>
         </div>
       </div>
     </div>
   `).join('');
-  
-  // Update "Read more" text
-  document.querySelectorAll('[data-i18n="readMore"]').forEach(el => {
-    el.textContent = currentLang === 'ar' ? 'اقرأ المزيد →' : currentLang === 'en' ? 'Read more →' : currentLang === 'es' ? 'Leer más →' : 'Lire la suite →';
-  });
+}
+
+function getCategoryName(category) {
+  const names = {
+    ar: { tools: "🛠️ أدوات", creative: "✍️ كتابة إبداعية", marketing: "📈 تسويق", coding: "💻 برمجة", business: "🏢 أعمال" },
+    en: { tools: "🛠️ Tools", creative: "✍️ Creative Writing", marketing: "📈 Marketing", coding: "💻 Coding", business: "🏢 Business" },
+    es: { tools: "🛠️ Herramientas", creative: "✍️ Escritura Creativa", marketing: "📈 Marketing", coding: "💻 Programación", business: "🏢 Negocios" },
+    fr: { tools: "🛠️ Outils", creative: "✍️ Écriture Créative", marketing: "📈 Marketing", coding: "💻 Programmation", business: "🏢 Affaires" }
+  };
+  return names[currentLang][category] || names.ar[category];
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -679,6 +644,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
   document.querySelectorAll('.lang-option').forEach(opt => {
     opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+  });
+  
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      renderBlog();
+    });
   });
   
   document.addEventListener('click', (e) => {
