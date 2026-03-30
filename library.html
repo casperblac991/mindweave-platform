@@ -3,142 +3,664 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="مكتبة الأوامر المجانية - أكثر من 500 أمر لـ ChatGPT و Midjourney">
-<meta name="keywords" content="أوامر ChatGPT, Midjourney prompts, مكتبة أوامر الذكاء الاصطناعي">
-<meta name="author" content="MindWeave">
-<meta name="google-site-verification" content="ATi9HKInahPK22qqb-sqp70-MIeFlgKp0n8azYVo_Mw" />
-<title>مكتبة الأوامر | MindWeave</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-DZ4WQDX31M');
-</script>
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<title>المكتبة المجانية | MindWeave</title>
+<meta name="description" content="أكثر من 500 أمر مجاني لـ ChatGPT و Midjourney — يتم تحديثها شهرياً">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-.lang-switch:hover{background:#6C5CE7}
-[data-lang="en"]{display:none}
-body.en [data-lang="ar"]{display:none}
-body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}
-body:not(.en){direction:rtl;text-align:right}
-.cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
-.cart-icon{text-decoration:none;color:white}
-.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
-.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
-.filter-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem}
-.filter-btn{background:#1A1A2E;border:1px solid #6C5CE7;padding:8px 20px;border-radius:30px;cursor:pointer;color:white;transition:all 0.3s}
-.filter-btn.active,.filter-btn:hover{background:#6C5CE7}
-.prompts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.5rem;max-width:1200px;margin:auto;padding:2rem}
-.prompt-card{background:#1A1A2E;border-radius:15px;padding:1.5rem;border:1px solid rgba(108,92,231,0.2);transition:transform 0.3s}
-.prompt-card:hover{transform:translateY(-3px);border-color:#6C5CE7}
-.prompt-category{display:inline-block;background:rgba(108,92,231,0.2);color:#6C5CE7;padding:4px 12px;border-radius:20px;font-size:0.8rem;margin-bottom:1rem}
-.btn-detail{background:#6C5CE7;color:white;border:none;padding:8px 20px;border-radius:25px;cursor:pointer;text-decoration:none;display:inline-block;margin-top:1rem}
-.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+  --success: #00FF88;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  line-height: 1.6;
+}
+
+body[data-lang="en"],
+body[data-lang="es"],
+body[data-lang="fr"] {
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+body[data-lang="ar"] {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1001;
+}
+
+body[data-lang="en"] .lang-dropdown,
+body[data-lang="es"] .lang-dropdown,
+body[data-lang="fr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-selector.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--secondary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-lang="en"] .cart-count {
+  right: auto;
+  left: -8px;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 2rem 4rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.library-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--primary);
+  color: var(--bg);
+}
+
+.prompts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.prompt-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.2rem;
+  transition: all 0.3s;
+}
+
+.prompt-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+}
+
+.prompt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.prompt-type {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--primary);
+}
+
+.prompt-copy {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.3rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.prompt-copy:hover {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.prompt-title {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.prompt-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 0.8rem;
+  font-family: monospace;
+  background: var(--bg);
+  padding: 0.8rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--primary);
+}
+
+body[data-lang="ar"] .prompt-text {
+  border-left: none;
+  border-right: 3px solid var(--primary);
+}
+
+footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--primary);
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 9999;
+}
+
+body[data-lang="en"] .notification {
+  right: auto;
+  left: 2rem;
+}
+
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
-<body>
+<body data-lang="ar">
 
-<header>
 <nav>
-<div class="logo"><a href="index.html">🧠 MindWeave</a></div>
-<ul class="nav-menu">
-<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
-<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
-<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
-<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
-<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
-</ul>
-<div class="nav-icons">
-<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
-<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
-</div>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🧠</div>
+    Mind<span>Weave</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+    <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
+    <li><a href="library.html" class="active" data-i18n="nav.library">المكتبة المجانية</a></li>
+    <li><a href="prompt-lab.html" data-i18n="nav.promptlab">Prompt Lab ✨</a></li>
+    <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
+    <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
+  </ul>
+
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLangFlag">🇸🇦</span>
+        <span id="currentLangLabel">العربية</span>
+        <span>▼</span>
+      </button>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+      </div>
+    </div>
+    <a href="cart.html" class="cart-btn">
+      🛒 <span data-i18n="nav.cart">السلة</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </div>
 </nav>
-</header>
 
 <main>
-<section class="page-header">
-<div class="container">
-<h1 data-lang="ar">مكتبة الأوامر المجانية</h1>
-<h1 data-lang="en">Free Prompts Library</h1>
-<p data-lang="ar">أكثر من 500 أمر لـ ChatGPT و Midjourney — محدثة شهرياً</p>
-<p data-lang="en">500+ prompts for ChatGPT and Midjourney — updated monthly</p>
-</div>
-</section>
+  <div class="hero reveal">
+    <div class="hero-badge" data-i18n="hero.badge">📚 مجاني بالكامل</div>
+    <h1 data-i18n="hero.title">المكتبة <span class="gradient">المجانية</span></h1>
+    <p data-i18n="hero.subtitle">أكثر من 500 أمر مجاني لـ ChatGPT و Midjourney — يتم تحديثها شهرياً</p>
+  </div>
 
-<div class="container">
-<div class="filter-buttons" id="filterBtns"></div>
-<div class="prompts-grid" id="promptsGrid"></div>
-<button id="loadMoreBtn" class="btn-primary" style="margin:2rem auto;display:block;width:200px" data-lang="ar">عرض المزيد</button>
-<button id="loadMoreBtn" class="btn-primary" style="margin:2rem auto;display:block;width:200px" data-lang="en">Load More</button>
-</div>
+  <div class="library-filters reveal">
+    <button class="filter-btn active" data-filter="all" data-i18n="filter.all">الكل</button>
+    <button class="filter-btn" data-filter="chatgpt" data-i18n="filter.chatgpt">💬 ChatGPT</button>
+    <button class="filter-btn" data-filter="midjourney" data-i18n="filter.midjourney">🎨 Midjourney</button>
+  </div>
+
+  <div class="prompts-grid" id="promptsGrid"></div>
 </main>
 
 <footer>
-<div class="container">
-<div class="footer-grid">
-<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
-</div>
-<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
-</div>
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a><p style="color: var(--text-muted); margin-top: 1rem;" data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div>
+    <div><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li><li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li></ul></div>
+    <div><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div>
+    <div><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
 </footer>
 
-<script>
-const allPrompts = [];
-for(let i=1;i<=500;i++){
-    let cat = i%2===0 ? "chatgpt" : "midjourney";
-    let titleAr = cat==="chatgpt" ? `أمر ChatGPT رقم ${i}` : `أمر Midjourney رقم ${i}`;
-    let titleEn = cat==="chatgpt" ? `ChatGPT Prompt #${i}` : `Midjourney Prompt #${i}`;
-    allPrompts.push({id:i, titleAr, titleEn, cat});
-}
-let currentFilter = "all";
-let displayCount = 12;
-let currentLangLib = localStorage.getItem('lang') || 'ar';
+<div class="notification" id="notification"><span id="notifIcon">✅</span><span id="notifText"></span></div>
 
-function toggleLanguage() {
-    currentLangLib = currentLangLib === 'ar' ? 'en' : 'ar';
-    localStorage.setItem('lang', currentLangLib);
-    document.body.classList.toggle('en', currentLangLib === 'en');
-    document.getElementById('langBtn').textContent = currentLangLib === 'ar' ? 'English' : 'عربي';
-    renderPrompts();
+<script>
+const translations = {
+  ar: {
+    nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", promptlab: "Prompt Lab ✨", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة" },
+    hero: { badge: "📚 مجاني بالكامل", title: "المكتبة <span class='gradient'>المجانية</span>", subtitle: "أكثر من 500 أمر مجاني لـ ChatGPT و Midjourney — يتم تحديثها شهرياً" },
+    filter: { all: "الكل", chatgpt: "💬 ChatGPT", midjourney: "🎨 Midjourney" },
+    footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" }
+  },
+  en: {
+    nav: { home: "Home", store: "Store", library: "Free Library", promptlab: "Prompt Lab ✨", creators: "Creator Program", blog: "Blog", cart: "Cart" },
+    hero: { badge: "📚 Completely Free", title: "Free <span class='gradient'>Library</span>", subtitle: "500+ free prompts for ChatGPT and Midjourney — updated monthly" },
+    filter: { all: "All", chatgpt: "💬 ChatGPT", midjourney: "🎨 Midjourney" },
+    footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creative tools.", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" }
+  },
+  es: {
+    nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito" },
+    hero: { badge: "📚 Completamente Gratis", title: "Biblioteca <span class='gradient'>Gratuita</span>", subtitle: "Más de 500 prompts gratis para ChatGPT y Midjourney — actualizados mensualmente" },
+    filter: { all: "Todos", chatgpt: "💬 ChatGPT", midjourney: "🎨 Midjourney" },
+    footer: { desc: "Plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Todos los derechos reservados 🧠" }
+  },
+  fr: {
+    nav: { home: "Accueil", store: "Boutique", library: "Bibliothèque Gratuite", promptlab: "Prompt Lab ✨", creators: "Programme Créateurs", blog: "Blog", cart: "Panier" },
+    hero: { badge: "📚 Complètement Gratuit", title: "Bibliothèque <span class='gradient'>Gratuite</span>", subtitle: "Plus de 500 prompts gratuits pour ChatGPT et Midjourney — mis à jour mensuellement" },
+    filter: { all: "Tous", chatgpt: "💬 ChatGPT", midjourney: "🎨 Midjourney" },
+    footer: { desc: "Plateforme mondiale complète pour les prompts IA, templates numériques et outils créatifs.", platform: "Plateforme", support: "Support", legal: "Juridique", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Tous droits réservés 🧠" }
+  }
+};
+
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
+let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+let currentFilter = 'all';
+
+const prompts = [
+  { id: 1, type: "chatgpt", title: { ar: "أمر كتابة محتوى تسويقي", en: "Marketing Content Prompt", es: "Prompt de Contenido de Marketing", fr: "Prompt de Contenu Marketing" }, text: { ar: "أنت خبير تسويق رقمي. اكتب محتوى تسويقي جذاب لمنتج جديد يتعلق بـ [المنتج]، مع التركيز على المزايا والفوائد واستخدام لغة تحفيزية.", en: "You are a digital marketing expert. Write engaging marketing content for a new product related to [product], focusing on features, benefits, and using motivational language.", es: "Eres un experto en marketing digital. Escribe contenido de marketing atractivo para un nuevo producto relacionado con [producto], centrándote en características, beneficios y usando lenguaje motivacional.", fr: "Vous êtes un expert en marketing numérique. Rédigez un contenu marketing attrayant pour un nouveau produit lié à [produit], en vous concentrant sur les caractéristiques, les avantages et en utilisant un langage motivant." } },
+  { id: 2, type: "chatgpt", title: { ar: "أمر تحليل بيانات", en: "Data Analysis Prompt", es: "Prompt de Análisis de Datos", fr: "Prompt d'Analyse de Données" }, text: { ar: "قم بتحليل البيانات التالية واستخرج رؤى قابلة للتنفيذ: [البيانات]. قدم توصيات واضحة بناءً على التحليل.", en: "Analyze the following data and extract actionable insights: [data]. Provide clear recommendations based on the analysis.", es: "Analiza los siguientes datos y extrae información procesable: [datos]. Proporciona recomendaciones claras basadas en el análisis.", fr: "Analysez les données suivantes et extrayez des informations exploitables : [données]. Fournissez des recommandations claires basées sur l'analyse." } },
+  { id: 3, type: "midjourney", title: { ar: "أمر تصميم شعار احترافي", en: "Professional Logo Design Prompt", es: "Prompt de Diseño de Logotipo Profesional", fr: "Prompt de Conception de Logo Professionnel" }, text: { ar: "Professional logo design for [company name], minimalist style, blue and white colors, modern, vector, clean lines, white background --v 6", en: "Professional logo design for [company name], minimalist style, blue and white colors, modern, vector, clean lines, white background --v 6", es: "Diseño de logotipo profesional para [nombre de empresa], estilo minimalista, colores azul y blanco, moderno, vectorial, líneas limpias, fondo blanco --v 6", fr: "Conception de logo professionnel pour [nom de l'entreprise], style minimaliste, couleurs bleu et blanc, moderne, vectoriel, lignes épurées, fond blanc --v 6" } },
+  { id: 4, type: "midjourney", title: { ar: "أمر صورة منتج", en: "Product Image Prompt", es: "Prompt de Imagen de Producto", fr: "Prompt d'Image de Produit" }, text: { ar: "Product photography for [product name], studio lighting, white background, high quality, 4k, detailed, commercial photography --v 6", en: "Product photography for [product name], studio lighting, white background, high quality, 4k, detailed, commercial photography --v 6", es: "Fotografía de producto para [nombre del producto], iluminación de estudio, fondo blanco, alta calidad, 4k, detallado, fotografía comercial --v 6", fr: "Photographie de produit pour [nom du produit], éclairage studio, fond blanc, haute qualité, 4k, détaillé, photographie commerciale --v 6" } },
+  { id: 5, type: "chatgpt", title: { ar: "أمر برمجة وتصحيح أخطاء", en: "Coding & Debugging Prompt", es: "Prompt de Programación y Depuración", fr: "Prompt de Programmation et Débogage" }, text: { ar: "أنا بحاجة إلى مساعدة في كتابة كود [اللغة] لـ [الوصف]. يرجى تقديم حل مع شرح خطوة بخطوة وتصحيح أي أخطاء محتملة.", en: "I need help writing [language] code for [description]. Please provide a solution with step-by-step explanation and fix any potential errors.", es: "Necesito ayuda para escribir código [lenguaje] para [descripción]. Proporcione una solución con explicación paso a paso y corrija cualquier error potencial.", fr: "J'ai besoin d'aide pour écrire du code [langage] pour [description]. Veuillez fournir une solution avec une explication étape par étape et corriger les erreurs potentielles." } },
+  { id: 6, type: "midjourney", title: { ar: "أمر تصميم واجهة مستخدم", en: "UI Design Prompt", es: "Prompt de Diseño de UI", fr: "Prompt de Conception UI" }, text: { ar: "Mobile app UI design for [app name], modern interface, gradient background, clean layout, iOS style, high fidelity --v 6", en: "Mobile app UI design for [app name], modern interface, gradient background, clean layout, iOS style, high fidelity --v 6", es: "Diseño de interfaz de aplicación móvil para [nombre de la app], interfaz moderna, fondo degradado, diseño limpio, estilo iOS, alta fidelidad --v 6", fr: "Conception d'interface d'application mobile pour [nom de l'application], interface moderne, fond dégradé, mise en page épurée, style iOS, haute fidélité --v 6" } }
+];
+
+function updateLanguage() {
+  const t = translations[currentLang];
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) {
+      if (key === 'hero.title') {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    }
+  });
+  
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
+  
+  document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  
+  renderPrompts();
 }
-function applyLanguage() {
-    document.body.classList.toggle('en', currentLangLib === 'en');
-    document.getElementById('langBtn').textContent = currentLangLib === 'ar' ? 'English' : 'عربي';
-    renderPrompts();
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  updateLanguage();
+  toggleLangMenu();
 }
+
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
+}
+
+function updateCartCount() {
+  const countEl = document.getElementById('cartCount');
+  if (countEl) countEl.textContent = cart.length;
+}
+
+function copyPrompt(text) {
+  navigator.clipboard.writeText(text);
+  showNotification('📋', currentLang === 'ar' ? 'تم نسخ الأمر!' : currentLang === 'en' ? 'Prompt copied!' : currentLang === 'es' ? '¡Prompt copiado!' : 'Prompt copié !');
+}
+
+function showNotification(icon, text) {
+  const n = document.getElementById('notification');
+  document.getElementById('notifIcon').textContent = icon;
+  document.getElementById('notifText').textContent = text;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3000);
+}
+
 function renderPrompts() {
-    let filtered = currentFilter === "all" ? allPrompts : allPrompts.filter(p => p.cat === currentFilter);
-    let toShow = filtered.slice(0, displayCount);
-    const isEn = currentLangLib === 'en';
-    const container = document.getElementById('promptsGrid');
-    container.innerHTML = toShow.map(p => `
-        <div class="prompt-card">
-            <div class="prompt-category">${p.cat === 'chatgpt' ? '💬 ChatGPT' : '🎨 Midjourney'}</div>
-            <h3>${isEn ? p.titleEn : p.titleAr}</h3>
-            <a href="prompt-detail.html?id=${p.id}" class="btn-detail">📖 ${isEn ? 'Details' : 'تفاصيل الأمر'}</a>
-        </div>
-    `).join('');
-    const loadBtn = document.getElementById('loadMoreBtn');
-    if (loadBtn) loadBtn.style.display = displayCount >= filtered.length ? 'none' : 'block';
+  const filtered = currentFilter === 'all' ? prompts : prompts.filter(p => p.type === currentFilter);
+  const grid = document.getElementById('promptsGrid');
+  if (!grid) return;
+  
+  grid.innerHTML = filtered.map(p => `
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span class="prompt-type">${p.type === 'chatgpt' ? '💬 ChatGPT' : '🎨 Midjourney'}</span>
+        <button class="prompt-copy" onclick="copyPrompt(\`${p.text[currentLang].replace(/`/g, '\\`')}\`)">📋 نسخ</button>
+      </div>
+      <div class="prompt-title">${p.title[currentLang]}</div>
+      <div class="prompt-text">${p.text[currentLang]}</div>
+    </div>
+  `).join('');
 }
-document.getElementById('loadMoreBtn')?.addEventListener('click', () => { displayCount += 12; renderPrompts(); });
-const cats = [{ id: "all", ar: "كل الأوامر", en: "All Prompts" },{ id: "chatgpt", ar: "ChatGPT", en: "ChatGPT" },{ id: "midjourney", ar: "Midjourney", en: "Midjourney" }];
-document.getElementById('filterBtns').innerHTML = cats.map(c => `<button class="filter-btn ${c.id === currentFilter ? 'active' : ''}" data-filter="${c.id}" onclick="setFilter('${c.id}')" data-lang="ar">${c.ar}</button><button class="filter-btn ${c.id === currentFilter ? 'active' : ''}" data-filter="${c.id}" onclick="setFilter('${c.id}')" data-lang="en">${c.en}</button>`).join('');
-function setFilter(filter) { currentFilter = filter; displayCount = 12; renderPrompts(); document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active')); document.querySelectorAll(`.filter-btn[data-filter="${filter}"]`).forEach(btn => btn.classList.add('active')); }
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-function updateCartDisplay() { const count = cart.reduce((s, i) => s + i.quantity, 0); const cartSpan = document.querySelector('.cart-count'); if (cartSpan) cartSpan.textContent = count; }
-applyLanguage(); updateCartDisplay();
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLanguage();
+  updateCartCount();
+  renderPrompts();
+  
+  document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+  });
+  
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      renderPrompts();
+    });
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      document.getElementById('langSelector')?.classList.remove('active');
+    }
+  });
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
 </script>
 </body>
 </html>
