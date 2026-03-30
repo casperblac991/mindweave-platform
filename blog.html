@@ -1,439 +1,593 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>المدونة | MindWeave</title>
-<meta name="description" content="أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي - أكثر من 50 مقالة">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي - أكثر من 50 مقالة">
+  <meta name="keywords" content="ذكاء اصطناعي, AI, ChatGPT, Midjourney, أدوات">
+  <meta name="author" content="MindWeave">
+  <meta property="og:title" content="المدونة | MindWeave">
+  <meta property="og:description" content="أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي">
+  <meta property="og:image" content="https://mindweave.com/og-image.jpg">
+  <title>المدونة | MindWeave - أحدث دروس الذكاء الاصطناعي</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #00D4FF;
+      --secondary: #FF6B35;
+      --accent: #7C3AED;
+      --bg: #050A0F;
+      --bg-card: #0A1628;
+      --bg-dark: #0F1F3D;
+      --text: #E8F4FD;
+      --text-muted: #7A9BB5;
+      --border: rgba(0,212,255,0.2);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-:root {
-  --primary: #00D4FF;
-  --secondary: #FF6B35;
-  --accent: #7C3AED;
-  --bg: #050A0F;
-  --bg-card: #0A1628;
-  --bg-dark: #0F1F3D;
-  --text: #E8F4FD;
-  --text-muted: #7A9BB5;
-  --border: rgba(0,212,255,0.2);
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Cairo', sans-serif;
-  line-height: 1.6;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-body[data-lang="en"],
-body[data-lang="es"],
-body[data-lang="fr"] {
-  font-family: 'Inter', sans-serif;
-  direction: ltr;
-  text-align: left;
-}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      line-height: 1.6;
+      font-size: 16px;
+    }
 
-body[data-lang="ar"] {
-  font-family: 'Cairo', sans-serif;
-  direction: rtl;
-  text-align: right;
-}
+    body[data-lang="en"],
+    body[data-lang="es"],
+    body[data-lang="fr"] {
+      font-family: 'Inter', sans-serif;
+      direction: ltr;
+      text-align: left;
+    }
 
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(5, 10, 15, 0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 2rem;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1000;
-}
+    /* ========== NAVIGATION ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(5, 10, 15, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: var(--text);
-  text-decoration: none;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--text);
+      text-decoration: none;
+      transition: var(--transition);
+    }
 
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-}
+    .logo:hover {
+      transform: scale(1.05);
+    }
 
-.logo span {
-  color: var(--primary);
-}
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
 
-.nav-links {
-  display: flex;
-  gap: 0.5rem;
-  list-style: none;
-  flex-wrap: wrap;
-}
+    .logo span {
+      color: var(--primary);
+    }
 
-.nav-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.2s;
-}
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--primary);
-  background: rgba(0, 212, 255, 0.1);
-}
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
 
-.nav-buttons {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+      background: rgba(0, 212, 255, 0.1);
+    }
 
-.lang-selector {
-  position: relative;
-}
+    /* ========== BUTTONS & SELECTORS ========== */
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
 
-.lang-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: inherit;
-}
+    .lang-selector {
+      position: relative;
+    }
 
-.lang-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s;
-  z-index: 1001;
-}
+    .lang-btn,
+    .cart-btn,
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: var(--transition);
+    }
 
-body[data-lang="en"] .lang-dropdown,
-body[data-lang="es"] .lang-dropdown,
-body[data-lang="fr"] .lang-dropdown {
-  right: auto;
-  left: 0;
-}
+    .lang-btn:hover,
+    .cart-btn:hover {
+      background: rgba(0, 212, 255, 0.1);
+      border-color: var(--primary);
+    }
 
-.lang-selector.active .lang-dropdown {
-  opacity: 1;
-  visibility: visible;
-}
+    .lang-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 1001;
+      box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+    }
 
-.lang-option {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+    body[data-lang="en"] .lang-dropdown,
+    body[data-lang="es"] .lang-dropdown,
+    body[data-lang="fr"] .lang-dropdown {
+      right: auto;
+      left: 0;
+    }
 
-.lang-option:hover {
-  background: rgba(0, 212, 255, 0.1);
-}
+    .lang-selector.active .lang-dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: white;
-  padding: 0.6rem 1.5rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: none;
-  cursor: pointer;
-}
+    .lang-option {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
-}
+    .lang-option:hover {
+      background: rgba(0, 212, 255, 0.1);
+    }
 
-.cart-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  color: var(--text);
-  text-decoration: none;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+    }
 
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: var(--secondary);
-  color: white;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  font-size: 0.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+    }
 
-body[data-lang="en"] .cart-count {
-  right: auto;
-  left: -8px;
-}
+    .cart-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 2rem 4rem;
-}
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--secondary);
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
 
-.hero {
-  text-align: center;
-  margin-bottom: 3rem;
-}
+    body[data-lang="en"] .cart-count {
+      right: auto;
+      left: -8px;
+    }
 
-.hero-badge {
-  display: inline-block;
-  background: rgba(0, 212, 255, 0.1);
-  border: 1px solid var(--border);
-  padding: 0.5rem 1.2rem;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
+    /* ========== MAIN CONTENT ========== */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 2rem 4rem;
+    }
 
-.hero h1 {
-  font-size: 2.5rem;
-  font-weight: 900;
-  margin-bottom: 1rem;
-}
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
 
-.hero h1 .gradient {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      animation: fadeInDown 0.6s ease;
+    }
 
-.hero p {
-  color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto;
-}
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease 0.1s backwards;
+    }
 
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-.blog-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  transition: all 0.3s;
-  cursor: pointer;
-}
+    .hero p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease 0.2s backwards;
+    }
 
-.blog-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary);
-}
+    /* ========== FILTERS ========== */
+    .category-filters {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease 0.3s backwards;
+    }
 
-.blog-image {
-  height: 120px;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-}
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
 
-.blog-content {
-  padding: 1.5rem;
-}
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--primary);
+      color: var(--bg);
+      border-color: var(--primary);
+    }
 
-.blog-category {
-  font-size: 0.7rem;
-  color: var(--primary);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-  background: rgba(0, 212, 255, 0.1);
-  padding: 0.2rem 0.8rem;
-  border-radius: 50px;
-}
+    /* ========== BLOG GRID ========== */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
 
-.blog-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin: 0.8rem 0;
-  line-height: 1.4;
-}
+    .blog-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      animation: fadeIn 0.6s ease;
+    }
 
-.blog-excerpt {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
+    .blog-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: 0 12px 32px rgba(0, 212, 255, 0.1);
+    }
 
-.blog-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
+    .blog-image {
+      height: 150px;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+    }
 
-.read-more {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
-}
+    .blog-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
 
-.read-more:hover {
-  text-decoration: underline;
-}
+    .blog-category {
+      font-size: 0.7rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      background: rgba(0, 212, 255, 0.1);
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px;
+      width: fit-content;
+    }
 
-footer {
-  background: var(--bg-card);
-  border-top: 1px solid var(--border);
-  padding: 2rem;
-  margin-top: 3rem;
-}
+    .blog-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0.8rem 0;
+      line-height: 1.4;
+    }
 
-.footer-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 2rem;
-}
+    .blog-excerpt {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
 
-@media (max-width: 768px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-}
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0, 212, 255, 0.1);
+    }
 
-.footer-links {
-  list-style: none;
-}
+    .read-more {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
 
-.footer-links li {
-  margin-bottom: 0.5rem;
-}
+    .read-more:hover {
+      text-decoration: underline;
+    }
 
-.footer-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.85rem;
-}
+    /* ========== LOADING STATE ========== */
+    .blog-card.loading {
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
-.footer-links a:hover {
-  color: var(--primary);
-}
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem 1rem;
+      margin-top: 3rem;
+    }
 
-.footer-bottom {
-  text-align: center;
-  padding-top: 1.5rem;
-  margin-top: 1.5rem;
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
-  font-size: 0.8rem;
-}
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
-}
+    .footer-links {
+      list-style: none;
+    }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
 
-/* Category filters */
-.category-filters {
-  display: flex;
-  justify-content: center;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
 
-.filter-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
-  padding: 0.5rem 1.2rem;
-  border-radius: 50px;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all 0.2s;
-}
+    .footer-links a:hover {
+      color: var(--primary);
+    }
 
-.filter-btn.active,
-.filter-btn:hover {
-  background: var(--primary);
-  color: var(--bg);
-}
-</style>
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    /* ========== RESPONSIVE DESIGN ========== */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        gap: 0.2rem;
+        max-width: 100%;
+      }
+
+      .nav-links a {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.9rem;
+      }
+
+      main {
+        padding: 90px 1rem 2rem;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .category-filters {
+        gap: 0.5rem;
+      }
+
+      .filter-btn {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        height: 60px;
+        padding: 0 0.5rem;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+      }
+
+      .logo-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+      }
+
+      main {
+        padding: 80px 1rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .cart-count {
+        font-size: 0.6rem;
+      }
+    }
+
+    /* ========== PRINT STYLES ========== */
+    @media print {
+      nav,
+      footer,
+      .category-filters {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body data-lang="ar">
 
-<nav>
-  <a href="index.html" class="logo">
+<nav role="navigation" aria-label="Main Navigation">
+  <a href="index.html" class="logo" aria-label="MindWeave Home">
     <div class="logo-icon">🧠</div>
     Mind<span>Weave</span>
   </a>
@@ -448,34 +602,34 @@ footer {
   </ul>
 
   <div class="nav-buttons">
-    <div class="lang-selector" id="langSelector">
-      <button class="lang-btn" id="langBtn">
+    <div class="lang-selector" id="langSelector" role="region" aria-label="Language Selector">
+      <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
         <span id="currentLangFlag">🇸🇦</span>
         <span id="currentLangLabel">العربية</span>
         <span>▼</span>
       </button>
-      <div class="lang-dropdown" id="langMenu">
-        <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
-        <div class="lang-option" data-lang="en">🇬🇧 English</div>
-        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
-        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+      <div class="lang-dropdown" id="langMenu" role="listbox">
+        <div class="lang-option" data-lang="ar" role="option">🇸🇦 العربية</div>
+        <div class="lang-option" data-lang="en" role="option">🇬🇧 English</div>
+        <div class="lang-option" data-lang="es" role="option">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="fr" role="option">🇫🇷 Français</div>
       </div>
     </div>
-    <a href="cart.html" class="cart-btn">
+    <a href="cart.html" class="cart-btn" aria-label="Shopping Cart">
       🛒 <span data-i18n="nav.cart">السلة</span>
-      <span class="cart-count" id="cartCount">0</span>
+      <span class="cart-count" id="cartCount" aria-live="polite">0</span>
     </a>
   </div>
 </nav>
 
-<main>
+<main role="main">
   <div class="hero reveal">
     <div class="hero-badge" data-i18n="hero.badge">📝 مدونة MindWeave</div>
     <h1 data-i18n="hero.title">أحدث <span class="gradient">المقالات</span></h1>
     <p data-i18n="hero.subtitle">أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي</p>
   </div>
 
-  <div class="category-filters reveal">
+  <div class="category-filters reveal" role="region" aria-label="Article Filters">
     <button class="filter-btn active" data-filter="all" data-i18n="filter.all">الكل</button>
     <button class="filter-btn" data-filter="tools" data-i18n="filter.tools">🛠️ أدوات</button>
     <button class="filter-btn" data-filter="creative" data-i18n="filter.creative">✍️ كتابة إبداعية</button>
@@ -484,17 +638,45 @@ footer {
     <button class="filter-btn" data-filter="business" data-i18n="filter.business">🏢 أعمال</button>
   </div>
 
-  <div class="blog-grid" id="blogGrid"></div>
+  <div class="blog-grid" id="blogGrid" role="region" aria-label="Blog Articles"></div>
 </main>
 
-<footer>
+<footer role="contentinfo">
   <div class="footer-grid">
-    <div><a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a><p style="color: var(--text-muted); margin-top: 1rem;" data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div>
-    <div><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li><li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li></ul></div>
-    <div><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div>
-    <div><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li></ul></div>
+    <div>
+      <a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
+        <div class="logo-icon">🧠</div>Mind<span>Weave</span>
+      </a>
+      <p style="color: var(--text-muted); margin-top: 1rem;" data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.platform">المنصة</h4>
+      <ul class="footer-links">
+        <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
+        <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+        <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i18n="footer.support">الدعم</h4>
+      <ul class="footer-links">
+        <li><a href="about.html" data-i18n="footer.about">من نحن</a></li>
+        <li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li>
+        <li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i18n="footer.legal">قانوني</h4>
+      <ul class="footer-links">
+        <li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li>
+        <li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
+  <div class="footer-bottom">
+    <p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p>
+  </div>
 </footer>
 
 <script>
@@ -514,7 +696,7 @@ const translations = {
   },
   es: {
     nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito" },
-    hero: { badge: "📝 Blog de MindWeave", title: "Últimos <span class='gradiente'>Artículos</span>", subtitle: "Últimos artículos y guías educativas en el mundo de la IA" },
+    hero: { badge: "📝 Blog de MindWeave", title: "Últimos <span class='gradient'>Artículos</span>", subtitle: "Últimos artículos y guías educativas en el mundo de la IA" },
     filter: { all: "Todos", tools: "🛠️ Herramientas", creative: "✍️ Escritura Creativa", marketing: "📈 Marketing", coding: "💻 Programación", business: "🏢 Negocios" },
     footer: { desc: "Plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Todos los derechos reservados 🧠" }
   },
@@ -526,9 +708,8 @@ const translations = {
   }
 };
 
-// ========== ALL BLOG POSTS (From your GitHub files) ==========
+// ========== BLOG DATA ==========
 const blogPosts = [
-  // Creative Writing & Content
   { id: 1, file: "AI-Creative-Writing.html", category: "creative", icon: "✍️", title: { ar: "أفضل 10 أدوات ذكاء اصطناعي للكتابة الإبداعية", en: "Top 10 AI Tools for Creative Writing", es: "Las 10 mejores herramientas de IA para escritura creativa", fr: "Les 10 meilleurs outils d'IA pour l'écriture créative" }, excerpt: { ar: "اكتشف أفضل أدوات الذكاء الاصطناعي لمساعدتك في الكتابة الإبداعية والروائية.", en: "Discover the best AI tools to help you with creative and novel writing.", es: "Descubre las mejores herramientas de IA para ayudarte con la escritura creativa.", fr: "Découvrez les meilleurs outils d'IA pour vous aider dans l'écriture créative." }, date: "15 مارس 2026", readTime: "8 دقائق" },
   { id: 2, file: "AI-Ebooks.html", category: "creative", icon: "📚", title: { ar: "كيف تكتب كتاباً إلكترونياً باستخدام الذكاء الاصطناعي", en: "How to Write an E-book Using AI", es: "Cómo escribir un libro electrónico usando IA", fr: "Comment écrire un livre électronique en utilisant l'IA" }, excerpt: { ar: "دليل شامل لكتابة وتصميم ونشر كتابك الإلكتروني باستخدام أدوات الذكاء الاصطناعي.", en: "A complete guide to writing, designing, and publishing your e-book using AI tools.", es: "Una guía completa para escribir, diseñar y publicar su libro electrónico usando herramientas de IA.", fr: "Un guide complet pour écrire, concevoir et publier votre livre électronique en utilisant des outils d'IA." }, date: "10 مارس 2026", readTime: "10 دقائق" },
   { id: 3, file: "AI-Entrepreneurs.html", category: "business", icon: "🚀", title: { ar: "دليل رائد الأعمال: كيف تستخدم الذكاء الاصطناعي", en: "Entrepreneur's Guide: How to Use AI", es: "Guía del emprendedor: cómo usar la IA", fr: "Guide de l'entrepreneur: comment utiliser l'IA" }, excerpt: { ar: "كيف يمكن لرواد الأعمال الاستفادة من الذكاء الاصطناعي لتنمية أعمالهم.", en: "How entrepreneurs can leverage AI to grow their businesses.", es: "Cómo los emprendedores pueden aprovechar la IA para hacer crecer sus negocios.", fr: "Comment les entrepreneurs peuvent tirer parti de l'IA pour développer leurs entreprises." }, date: "5 مارس 2026", readTime: "7 دقائق" },
@@ -541,7 +722,7 @@ const blogPosts = [
   { id: 10, file: "AI-Students.html", category: "tools", icon: "🎓", title: { ar: "أدوات الذكاء الاصطناعي للطلاب: دليل شامل", en: "AI Tools for Students: Complete Guide", es: "Herramientas de IA para estudiantes: Guía completa", fr: "Outils d'IA pour les étudiants: Guide complet" }, excerpt: { ar: "أفضل أدوات الذكاء الاصطناعي التي تساعد الطلاب في الدراسة والبحث.", en: "The best AI tools to help students with studying and research.", es: "Las mejores herramientas de IA para ayudar a los estudiantes con el estudio y la investigación.", fr: "Les meilleurs outils d'IA pour aider les étudiants dans leurs études et leurs recherches." }, date: "20 يناير 2026", readTime: "9 دقائق" },
   { id: 11, file: "AI-Tools-Guide.html", category: "tools", icon: "🛠️", title: { ar: "دليل شامل لأدوات الذكاء الاصطناعي 2026", en: "Complete Guide to AI Tools 2026", es: "Guía completa de herramientas de IA 2026", fr: "Guide complet des outils d'IA 2026" }, excerpt: { ar: "أكثر من 50 أداة ذكاء اصطناعي مجانية ومدفوعة لجميع المجالات.", en: "Over 50 free and paid AI tools for all fields.", es: "Más de 50 herramientas de IA gratuitas y de pago para todos los campos.", fr: "Plus de 50 outils d'IA gratuits et payants pour tous les domaines." }, date: "15 يناير 2026", readTime: "15 دقائق" },
   { id: 12, file: "ChatGPT-Coding.html", category: "coding", icon: "💻", title: { ar: "برمجة تطبيقات باستخدام ChatGPT", en: "Building Apps with ChatGPT", es: "Creación de aplicaciones con ChatGPT", fr: "Création d'applications avec ChatGPT" }, excerpt: { ar: "كيف تستخدم ChatGPT لكتابة وتصحيح الأكواد البرمجية.", en: "How to use ChatGPT to write and debug code.", es: "Cómo usar ChatGPT para escribir y depurar código.", fr: "Comment utiliser ChatGPT pour écrire et déboguer du code." }, date: "10 يناير 2026", readTime: "12 دقائق" },
-  { id: 13, file: "ChatGPT.html", category: "tools", icon: "💬", title: { ar: "دليل استخدام ChatGPT: من البداية إلى الاحتراف", en: "ChatGPT Guide: From Beginner to Pro", es: "Guía de ChatGPT: De principiante a profesional", fr: "Guide ChatGPT: Du débutant au professionnel" }, excerpt: { ar: "كل ما تحتاج معرفته عن ChatGPT، من التثبيت إلى الاستخدامات المتقدمة.", en: "Everything you need to know about ChatGPT, from setup to advanced uses.", es: "Todo lo que necesitas saber sobre ChatGPT, desde la configuración hasta los usos avanzados.", fr: "Tout ce que vous devez savoir sur ChatGPT, de l'installation aux utilisations avancées." }, date: "5 يناير 2026", readTime: "14 دقائق" },
+  { id: 13, file: "ChatGPT.html", category: "tools", icon: "💬", title: { ar: "دليل استخدام ChatGPT: من البداية إلى الاحتراف", en: "ChatGPT Guide: From Beginner to Pro", es: "Guía de ChatGPT: De principiante a profesional", fr: "Guide ChatGPT: Du débutant au professionnel" }, excerpt: { ar: "كل ما تحتاج معرفته عن ChatGPT، من التثبيت إلى ��لاستخدامات المتقدمة.", en: "Everything you need to know about ChatGPT, from setup to advanced uses.", es: "Todo lo que necesitas saber sobre ChatGPT, desde la configuración hasta los usos avanzados.", fr: "Tout ce que vous devez savoir sur ChatGPT, de l'installation aux utilisations avancées." }, date: "5 يناير 2026", readTime: "14 دقائق" },
   { id: 14, file: "Digital-Product-Idea.html", category: "business", icon: "💡", title: { ar: "أفكار منتجات رقمية يمكنك بيعها عبر الإنترنت", en: "Digital Product Ideas You Can Sell Online", es: "Ideas de productos digitales que puedes vender en línea", fr: "Idées de produits numériques que vous pouvez vendre en ligne" }, excerpt: { ar: "أفكار مبتكرة لمنتجات رقمية يمكنك إنشاؤها وبيعها أونلاين.", en: "Innovative digital product ideas you can create and sell online.", es: "Ideas innovadoras de productos digitales que puedes crear y vender en línea.", fr: "Idées innovantes de produits numériques que vous pouvez créer et vendre en ligne." }, date: "28 ديسمبر 2025", readTime: "8 دقائق" },
   { id: 15, file: "Instagram-AI.html", category: "marketing", icon: "📸", title: { ar: "نمو حساب إنستغرام باستخدام الذكاء الاصطناعي", en: "Grow Your Instagram Account Using AI", es: "Haz crecer tu cuenta de Instagram usando IA", fr: "Développez votre compte Instagram en utilisant l'IA" }, excerpt: { ar: "استراتيجيات ذكية لزيادة المتابعين والتفاعل باستخدام الذكاء الاصطناعي.", en: "Smart strategies to increase followers and engagement using AI.", es: "Estrategias inteligentes para aumentar seguidores y compromiso usando IA.", fr: "Stratégies intelligentes pour augmenter les abonnés et l'engagement en utilisant l'IA." }, date: "20 ديسمبر 2025", readTime: "9 دقائق" },
   { id: 16, file: "Learn-AI.html", category: "tools", icon: "📖", title: { ar: "أفضل مصادر تعلم الذكاء الاصطناعي للمبتدئين", en: "Best Resources to Learn AI for Beginners", es: "Los mejores recursos para aprender IA para principiantes", fr: "Les meilleures ressources pour apprendre l'IA pour les débutants" }, excerpt: { ar: "قائمة بأفضل الكورسات والكتب والقنوات لتعلم الذكاء الاصطناعي.", en: "A list of the best courses, books, and channels to learn AI.", es: "Una lista de los mejores cursos, libros y canales para aprender IA.", fr: "Une liste des meilleurs cours, livres et chaînes pour apprendre l'IA." }, date: "15 ديسمبر 2025", readTime: "10 دقائق" },
@@ -558,10 +739,33 @@ const blogPosts = [
   { id: 27, file: "YouTube-AI.html", category: "marketing", icon: "🎥", title: { ar: "نمو قناة يوتيوب باستخدام الذكاء الاصطناعي", en: "Grow Your YouTube Channel Using AI", es: "Haz crecer tu canal de YouTube usando IA", fr: "Développez votre chaîne YouTube en utilisant l'IA" }, excerpt: { ar: "استراتيجيات ذكية لزيادة المشتركين والمشاهدات باستخدام الذكاء الاصطناعي.", en: "Smart strategies to increase subscribers and views using AI.", es: "Estrategias inteligentes para aumentar suscriptores y vistas usando IA.", fr: "Stratégies intelligentes pour augmenter les abonnés et les vues en utilisant l'IA." }, date: "10 أكتوبر 2025", readTime: "10 دقائق" }
 ];
 
+// ========== STATE MANAGEMENT ==========
 let currentLang = localStorage.getItem('mw_lang') || 'ar';
 let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
 let currentFilter = 'all';
 
+// ========== UTILITY FUNCTIONS ==========
+function getCategoryName(category) {
+  const names = {
+    ar: { tools: "🛠️ أدوات", creative: "✍️ كتابة إبداعية", marketing: "📈 تسويق", coding: "💻 برمجة", business: "🏢 أعمال" },
+    en: { tools: "🛠️ Tools", creative: "✍️ Creative Writing", marketing: "📈 Marketing", coding: "💻 Coding", business: "🏢 Business" },
+    es: { tools: "🛠️ Herramientas", creative: "✍️ Escritura Creativa", marketing: "📈 Marketing", coding: "💻 Programación", business: "🏢 Negocios" },
+    fr: { tools: "🛠️ Outils", creative: "✍️ Écriture Créative", marketing: "📈 Marketing", coding: "💻 Programmation", business: "🏢 Affaires" }
+  };
+  return names[currentLang][category] || names.ar[category];
+}
+
+function getReadMoreText() {
+  const texts = {
+    ar: 'اقرأ المزيد →',
+    en: 'Read more →',
+    es: 'Leer más →',
+    fr: 'Lire la suite →'
+  };
+  return texts[currentLang] || texts.ar;
+}
+
+// ========== TRANSLATION FUNCTIONS ==========
 function updateLanguage() {
   const t = translations[currentLang];
   
@@ -577,12 +781,14 @@ function updateLanguage() {
     }
   });
   
-  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '��🇸', fr: '🇫🇷' };
   const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  
   document.getElementById('currentLangFlag').textContent = flags[currentLang];
   document.getElementById('currentLangLabel').textContent = labels[currentLang];
   
   document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.lang = currentLang;
   document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   
   renderBlog();
@@ -595,8 +801,12 @@ function changeLanguage(lang) {
   toggleLangMenu();
 }
 
+// ========== UI INTERACTIONS ==========
 function toggleLangMenu() {
-  document.getElementById('langSelector').classList.toggle('active');
+  const selector = document.getElementById('langSelector');
+  const btn = document.getElementById('langBtn');
+  selector.classList.toggle('active');
+  btn.setAttribute('aria-expanded', selector.classList.contains('active'));
 }
 
 function updateCartCount() {
@@ -604,48 +814,49 @@ function updateCartCount() {
   if (countEl) countEl.textContent = cart.length;
 }
 
+// ========== BLOG RENDERING ==========
 function renderBlog() {
   const filtered = currentFilter === 'all' ? blogPosts : blogPosts.filter(p => p.category === currentFilter);
   const grid = document.getElementById('blogGrid');
   if (!grid) return;
   
   grid.innerHTML = filtered.map(post => `
-    <div class="blog-card" onclick="window.location.href='${post.file}'">
-      <div class="blog-image">${post.icon}</div>
+    <article class="blog-card" onclick="window.location.href='${post.file}'">
+      <div class="blog-image" role="img" aria-label="${getCategoryName(post.category)}">${post.icon}</div>
       <div class="blog-content">
         <span class="blog-category">${getCategoryName(post.category)}</span>
-        <div class="blog-title">${post.title[currentLang] || post.title.ar}</div>
-        <div class="blog-excerpt">${post.excerpt[currentLang] || post.excerpt.ar}</div>
+        <h2 class="blog-title">${post.title[currentLang] || post.title.ar}</h2>
+        <p class="blog-excerpt">${post.excerpt[currentLang] || post.excerpt.ar}</p>
         <div class="blog-meta">
           <span>📅 ${post.date}</span>
           <span>⏱️ ${post.readTime}</span>
-          <a href="${post.file}" class="read-more">${currentLang === 'ar' ? 'اقرأ المزيد →' : currentLang === 'en' ? 'Read more →' : currentLang === 'es' ? 'Leer más →' : 'Lire la suite →'}</a>
+          <a href="${post.file}" class="read-more" tabindex="0">${getReadMoreText()}</a>
         </div>
       </div>
-    </div>
+    </article>
   `).join('');
 }
 
-function getCategoryName(category) {
-  const names = {
-    ar: { tools: "🛠️ أدوات", creative: "✍️ كتابة إبداعية", marketing: "📈 تسويق", coding: "💻 برمجة", business: "🏢 أعمال" },
-    en: { tools: "🛠️ Tools", creative: "✍️ Creative Writing", marketing: "📈 Marketing", coding: "💻 Coding", business: "🏢 Business" },
-    es: { tools: "🛠️ Herramientas", creative: "✍️ Escritura Creativa", marketing: "📈 Marketing", coding: "💻 Programación", business: "🏢 Negocios" },
-    fr: { tools: "🛠️ Outils", creative: "✍️ Écriture Créative", marketing: "📈 Marketing", coding: "💻 Programmation", business: "🏢 Affaires" }
-  };
-  return names[currentLang][category] || names.ar[category];
-}
-
+// ========== EVENT LISTENERS ==========
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize
   updateLanguage();
   updateCartCount();
   renderBlog();
   
-  document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
-  document.querySelectorAll('.lang-option').forEach(opt => {
+  // Language selector
+  const langBtn = document.getElementById('langBtn');
+  const langOptions = document.querySelectorAll('.lang-option');
+  
+  langBtn?.addEventListener('click', toggleLangMenu);
+  langOptions.forEach(opt => {
     opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+    opt.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') changeLanguage(opt.dataset.lang);
+    });
   });
   
+  // Category filters
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -655,16 +866,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
+  // Close language menu on outside click
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.lang-selector')) {
       document.getElementById('langSelector')?.classList.remove('active');
     }
   });
   
+  // Lazy loading observer for animations
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
   }, { threshold: 0.1 });
+  
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+
+// Handle keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  // Escape key to close language menu
+  if (e.key === 'Escape') {
+    document.getElementById('langSelector')?.classList.remove('active');
+  }
 });
 </script>
 </body>
