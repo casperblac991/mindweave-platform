@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>برنامج المبدعين | MindWeave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --primary: #00D4FF;
+  --accent: #7C3AED;
+  --secondary: #FF6B35;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+}
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo span { color: var(--primary); }
+.nav-links { display: flex; gap: 0.5rem; list-style: none; }
+.nav-links a { color: var(--text-muted); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; }
+.nav-links a:hover, .nav-links a.active { color: var(--primary); background: rgba(0, 212, 255, 0.1); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+}
+main { max-width: 1200px; margin: 0 auto; padding: 100px 2rem 4rem; }
+.hero { text-align: center; margin-bottom: 3rem; }
+.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+.hero h1 .gradient { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p { color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+.benefit-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+}
+.benefit-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.benefit-card h3 { margin-bottom: 0.5rem; }
+.benefit-card p { color: var(--text-muted); font-size: 0.9rem; }
+.join-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.join-form input {
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  color: var(--text);
+  margin: 1rem auto;
+  display: block;
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="store.html">المتجر</a></li>
+    <li><a href="library.html">المكتبة المجانية</a></li>
+    <li><a href="prompt-lab.html">Prompt Lab ✨</a></li>
+    <li><a href="creators.html" class="active">برنامج المبدعين</a></li>
+  </ul>
+  <a href="cart.html" class="btn-primary">🛒 السلة</a>
+</nav>
+<main>
+  <div class="hero">
+    <h1>💰 برنامج <span class="gradient">المبدعين</span></h1>
+    <p>حوّل إبداعك إلى دخل — انضم إلى مجتمع MindWeave للمبدعين واكسب حتى 70% عمولة</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card"><div class="icon">💰</div><h3>70% عمولة</h3><p>احصل على 70% من كل عملية بيع لمنتجاتك الرقمية</p></div>
+    <div class="benefit-card"><div class="icon">🚀</div><h3>وصول فوري</h3><p>نشر منتجاتك فوراً لمجتمع يضم آلاف المستخدمين</p></div>
+    <div class="benefit-card"><div class="icon">🎯</div><h3>دعم كامل</h3><p>فريق دعم متخصص لمساعدتك في رحلة البيع</p></div>
+  </div>
+  <div class="join-form">
+    <h2>✨ انضم كمبدع الآن</h2>
+    <p>سجل مجاناً وابدأ بيع إبداعاتك اليوم</p>
+    <input type="text" placeholder="الاسم الكامل" id="name">
+    <input type="email" placeholder="البريد الإلكتروني" id="email">
+    <button class="btn-primary" onclick="joinCreator()">انضم مجاناً →</button>
+  </div>
+</main>
+<script>
+function joinCreator() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  if (!name || !email) {
+    alert('الرجاء إدخال جميع البيانات');
+    return;
+  }
+  alert(`مرحباً ${name}! تم استلام طلبك بنجاح. سنتواصل معك قريباً على ${email}`);
+}
+</script>
+</body>
+</html>
