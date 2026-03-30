@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Self AI | تواصل مع ذاتك المستقبلية</title>
+<meta name="description" content="تواصل مع ذاتك المستقبلية باستخدام الذكاء الاصطناعي - احصل على نصائح مخصصة لتحقيق أهدافك">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ========== نفس ألوان وتنسيقات MindWeave ========== */
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --gold: #FFD700;
+  --bg: #050A0F;
+  --bg2: #0A1628;
+  --bg3: #0F1F3D;
+  --card: rgba(255,255,255,0.04);
+  --border: rgba(0,212,255,0.15);
+  --text: #E8F4FD;
+  --muted: #7A9BB5;
+  --success: #00FF88;
+  --danger: #FF4444;
+  --font-ar: 'Cairo', sans-serif;
+  --font-en: 'Inter', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ar);
+  overflow-x: hidden;
+  direction: rtl;
+  transition: direction 0.3s ease;
+}
+
+body[data-lang="en"], body[data-lang="es"], body[data-lang="fr"] {
+  font-family: var(--font-en);
+  direction: ltr;
+}
+
+body[data-lang="ar"] {
+  font-family: var(--font-ar);
+  direction: rtl;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0,212,255,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,58,237,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========== Navigation ========== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(5,10,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+.nav-logo .brain-icon {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.nav-logo span { color: var(--primary); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--primary);
+  background: rgba(0,212,255,0.08);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-nav {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border: none;
+  padding: 0.55rem 1.3rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-nav:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,212,255,0.3); }
+
+.lang-switcher {
+  position: relative;
+}
+
+.lang-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  min-width: 150px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s;
+  z-index: 1001;
+}
+
+body[data-lang="en"] .lang-dropdown,
+body[data-lang="es"] .lang-dropdown,
+body[data-lang="fr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-switcher.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lang-option:hover { background: rgba(0,212,255,0.1); }
+.lang-option.active { background: rgba(0,212,255,0.15); color: var(--primary); }
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: block; }
+}
+
+/* ========== Main Content ========== */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 1.5rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Section */
+.hero-future {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0,212,255,0.1);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-future h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-future p {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+
+/* Chat Container */
+.chat-container {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.chat-header {
+  background: var(--bg2);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-avatar {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.chat-header h3 { font-size: 1.1rem; margin-bottom: 0.2rem; }
+.chat-header p { font-size: 0.75rem; color: var(--muted); }
+
+.chat-messages {
+  height: 400px;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message {
+  display: flex;
+  gap: 12px;
+  max-width: 80%;
+}
+
+.message.user { align-self: flex-end; flex-direction: row-reverse; }
+.message.bot { align-self: flex-start; }
+
+.message-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.message.user .message-avatar { background: var(--primary); }
+.message.bot .message-avatar { background: var(--accent); }
+
+.message-content {
+  background: var(--bg2);
+  padding: 0.8rem 1rem;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.message.user .message-content {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+}
+
+.chat-input-area {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 1rem;
+}
+
+.chat-input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: none;
+}
+
+.chat-input:focus { outline: none; border-color: var(--primary); }
+
+.send-btn {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border: none;
+  border-radius: 12px;
+  padding: 0 1.5rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.send-btn:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(0,212,255,0.3); }
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.8rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(0,212,255,0.1);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 { margin-bottom: 0.8rem; font-size: 1.2rem; }
+.feature-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+
+/* Goals Section */
+.goals-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.goals-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.goals-header h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+.goals-header p { color: var(--muted); }
+
+.goal-input-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.goal-input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  color: var(--text);
+  font-family: inherit;
+}
+
+.goal-add-btn {
+  background: var(--primary);
+  border: none;
+  border-radius: 12px;
+  padding: 0 1.5rem;
+  color: var(--bg);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.goals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  background: var(--bg);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.goal-text { font-size: 0.9rem; }
+.goal-delete { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 1.2rem; }
+
+/* Back Button */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+/* Footer */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover { color: var(--primary); }
+
+/* Notification */
+.notification {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  background: var(--bg2);
+  border: 1px solid var(--primary);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.4s;
+}
+
+body[data-lang="en"] .notification { left: auto; right: 2rem; }
+.notification.show { transform: translateY(0); opacity: 1; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body data-lang="ar">
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <div class="brain-icon">🧠</div>
+    Mind<span>Weave</span>
+  </a>
+  
+  <ul class="nav-links">
+    <li><a href="../index.html">الرئيسية</a></li>
+    <li><a href="../store.html">المتجر</a></li>
+    <li><a href="../library.html">المكتبة المجانية</a></li>
+    <li><a href="../prompt-lab.html">Prompt Lab ✨</a></li>
+    <li><a href="../creators.html">برنامج المبدعين</a></li>
+    <li><a href="../blog.html">المدونة</a></li>
+    <li><a href="index.html" class="active">🚀 Future Self</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-btn" onclick="toggleLangDropdown()">
+        <span class="lang-flag" id="currentLangFlag">🇸🇦</span>
+        <span id="currentLangLabel">العربية</span>
+        <span>▼</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <div class="lang-option active" onclick="changeLanguage('ar')" data-lang="ar"><span class="lang-flag">🇸🇦</span><span>العربية</span></div>
+        <div class="lang-option" onclick="changeLanguage('en')" data-lang="en"><span class="lang-flag">🇬🇧</span><span>English</span></div>
+        <div class="lang-option" onclick="changeLanguage('es')" data-lang="es"><span class="lang-flag">🇪🇸</span><span>Español</span></div>
+        <div class="lang-option" onclick="changeLanguage('fr')" data-lang="fr"><span class="lang-flag">🇫🇷</span><span>Français</span></div>
+      </div>
+    </div>
+    <a href="../cart.html" class="btn-nav" style="background: var(--card); color: var(--text);">🛒 السلة</a>
+    <button class="mobile-menu-btn">☰</button>
+  </div>
+</nav>
+
+<main>
+  <a href="../index.html" class="back-link">← العودة إلى الرئيسية</a>
+
+  <div class="hero-future reveal">
+    <div class="hero-badge">🚀 <span data-i18n="hero.badge">التواصل مع ذاتك المستقبلية</span></div>
+    <h1>Future <span style="color: var(--primary);">Self</span> AI</h1>
+    <p data-i18n="hero.desc">تحدث مع نسختك المستقبلية، احصل على نصائح مخصصة لتحقيق أهدافك، وتتبع تقدمك نحو الشخص الذي تطمح لأن تصبح.</p>
+  </div>
+
+  <!-- Chat Section -->
+  <div class="chat-container reveal">
+    <div class="chat-header">
+      <div class="chat-avatar">🧠</div>
+      <div>
+        <h3 data-i18n="chat.title">Future Self AI Assistant</h3>
+        <p data-i18n="chat.subtitle">متصل دائمًا لمساعدتك</p>
+      </div>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">
+        <div class="message-avatar">🤖</div>
+        <div class="message-content" data-i18n="chat.welcome">مرحبًا! أنا مساعدك للتواصل مع ذاتك المستقبلية. أخبرني عن أهدافك وأحلامك، وسأساعدك في رسم طريق لتحقيقها. ماذا تريد أن تحقق في المستقبل؟</div>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <textarea class="chat-input" id="chatInput" rows="1" placeholder="اكتب رسالتك هنا..." data-i18n-placeholder="chat.placeholder"></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">📤 إرسال</button>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎯</div>
+      <h3 data-i18n="feature1.title">تحديد الأهداف</h3>
+      <p data-i18n="feature1.desc">ساعدنا في فهم أهدافك طويلة المدى وقصيرة المدى</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">📈</div>
+      <h3 data-i18n="feature2.title">تتبع التقدم</h3>
+      <p data-i18n="feature2.desc">تابع رحلتك نحو تحقيق أهدافك مع نصائح مخصصة</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">💡</div>
+      <h3 data-i18n="feature3.title">نصائح ذكية</h3>
+      <p data-i18n="feature3.desc">احصل على نصائح مدعومة بالذكاء الاصطناعي لتحسين مسارك</p>
+    </div>
+  </div>
+
+  <!-- Goals Section -->
+  <div class="goals-section reveal">
+    <div class="goals-header">
+      <h2 data-i18n="goals.title">🎯 أهدافي</h2>
+      <p data-i18n="goals.subtitle">أضف أهدافك وتابع تقدمك نحو تحقيقها</p>
+    </div>
+    <div class="goal-input-group">
+      <input type="text" class="goal-input" id="goalInput" placeholder="أضف هدفًا جديدًا..." data-i18n-placeholder="goals.placeholder">
+      <button class="goal-add-btn" onclick="addGoal()">+ إضافة</button>
+    </div>
+    <div class="goals-list" id="goalsList">
+      <div style="text-align: center; color: var(--muted); padding: 2rem;" data-i18n="goals.empty">لا توجد أهداف بعد. أضف هدفك الأول!</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="../about.html" data-i18n="footer.about">من نحن</a>
+    <a href="../contact.html" data-i18n="footer.contact">تواصل معنا</a>
+    <a href="../privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a>
+    <a href="../terms.html" data-i18n="footer.terms">شروط الاستخدام</a>
+  </div>
+  <p data-i18n="footer.copyright">© 2026 MindWeave — Future Self AI | جميع الحقوق محفوظة</p>
+</footer>
+
+<div class="notification" id="notification"><span id="notifIcon">✅</span><span id="notifText"></span></div>
+
+<script>
+// ========== Language Translations ==========
+const translations = {
+  ar: {
+    hero: { badge: "التواصل مع ذاتك المستقبلية", desc: "تحدث مع نسختك المستقبلية، احصل على نصائح مخصصة لتحقيق أهدافك" },
+    chat: { title: "Future Self AI Assistant", subtitle: "متصل دائمًا لمساعدتك", welcome: "مرحبًا! أنا مساعدك للتواصل مع ذاتك المستقبلية. أخبرني عن أهدافك وأحلامك، وسأساعدك في رسم طريق لتحقيقها.", placeholder: "اكتب رسالتك هنا..." },
+    feature1: { title: "تحديد الأهداف", desc: "ساعدنا في فهم أهدافك طويلة المدى وقصيرة المدى" },
+    feature2: { title: "تتبع التقدم", desc: "تابع رحلتك نحو تحقيق أهدافك مع نصائح مخصصة" },
+    feature3: { title: "نصائح ذكية", desc: "احصل على نصائح مدعومة بالذكاء الاصطناعي لتحسين مسارك" },
+    goals: { title: "🎯 أهدافي", subtitle: "أضف أهدافك وتابع تقدمك نحو تحقيقها", placeholder: "أضف هدفًا جديدًا...", empty: "لا توجد أهداف بعد. أضف هدفك الأول!" },
+    footer: { about: "من نحن", contact: "تواصل معنا", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — Future Self AI | جميع الحقوق محفوظة" }
+  },
+  en: {
+    hero: { badge: "Connect with Your Future Self", desc: "Talk to your future self, get personalized advice to achieve your goals" },
+    chat: { title: "Future Self AI Assistant", subtitle: "Always connected to help you", welcome: "Hello! I'm your Future Self AI assistant. Tell me about your goals and dreams, and I'll help you chart a path to achieve them.", placeholder: "Type your message..." },
+    feature1: { title: "Goal Setting", desc: "Help us understand your long-term and short-term goals" },
+    feature2: { title: "Progress Tracking", desc: "Track your journey with personalized insights" },
+    feature3: { title: "Smart Insights", desc: "Get AI-powered advice to optimize your path" },
+    goals: { title: "🎯 My Goals", subtitle: "Add your goals and track your progress", placeholder: "Add a new goal...", empty: "No goals yet. Add your first goal!" },
+    footer: { about: "About", contact: "Contact", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — Future Self AI | All Rights Reserved" }
+  },
+  es: {
+    hero: { badge: "Conecta con tu Yo Futuro", desc: "Habla con tu yo futuro, obtén consejos personalizados para alcanzar tus metas" },
+    chat: { title: "Future Self AI Assistant", subtitle: "Siempre conectado para ayudarte", welcome: "¡Hola! Soy tu asistente de Future Self AI. Cuéntame sobre tus metas y sueños, y te ayudaré a trazar un camino para alcanzarlos.", placeholder: "Escribe tu mensaje..." },
+    feature1: { title: "Establecimiento de Metas", desc: "Ayúdanos a entender tus metas a largo y corto plazo" },
+    feature2: { title: "Seguimiento de Progreso", desc: "Sigue tu viaje con consejos personalizados" },
+    feature3: { title: "Información Inteligente", desc: "Obtén consejos basados en IA para optimizar tu camino" },
+    goals: { title: "🎯 Mis Metas", subtitle: "Agrega tus metas y sigue tu progreso", placeholder: "Agrega una nueva meta...", empty: "Aún no hay metas. ¡Agrega tu primera meta!" },
+    footer: { about: "Nosotros", contact: "Contacto", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Future Self AI | Todos los derechos reservados" }
+  },
+  fr: {
+    hero: { badge: "Connectez-vous avec votre Moi Futur", desc: "Parlez à votre futur moi, obtenez des conseils personnalisés pour atteindre vos objectifs" },
+    chat: { title: "Future Self AI Assistant", subtitle: "Toujours connecté pour vous aider", welcome: "Bonjour ! Je suis votre assistant Future Self AI. Parlez-moi de vos objectifs et de vos rêves, et je vous aiderai à tracer un chemin pour les atteindre.", placeholder: "Écrivez votre message..." },
+    feature1: { title: "Fixation d'Objectifs", desc: "Aidez-nous à comprendre vos objectifs à long et court terme" },
+    feature2: { title: "Suivi de Progrès", desc: "Suivez votre parcours avec des conseils personnalisés" },
+    feature3: { title: "Conseils Intelligents", desc: "Obtenez des conseils basés sur l'IA pour optimiser votre chemin" },
+    goals: { title: "🎯 Mes Objectifs", subtitle: "Ajoutez vos objectifs et suivez vos progrès", placeholder: "Ajouter un nouvel objectif...", empty: "Pas encore d'objectifs. Ajoutez votre premier objectif !" },
+    footer: { about: "À propos", contact: "Contact", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Future Self AI | Tous droits réservés" }
+  }
+};
+
+// ========== App State ==========
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
+let goals = JSON.parse(localStorage.getItem('future_self_goals') || '[]');
+let chatHistory = JSON.parse(localStorage.getItem('future_self_chat') || '[]');
+
+// ========== Initialize ==========
+function init() {
+  document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  updateLanguageUI();
+  renderGoals();
+  renderChatHistory();
+}
+
+function updateLanguageUI() {
+  const t = translations[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = key.split('.').reduce((o, k) => o?.[k], t);
+    if (val) el.textContent = val;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const val = key.split('.').reduce((o, k) => o?.[k], t);
+    if (val) el.placeholder = val;
+  });
+  document.getElementById('currentLangFlag').textContent = currentLang === 'ar' ? '🇸🇦' : currentLang === 'en' ? '🇬🇧' : currentLang === 'es' ? '🇪🇸' : '🇫🇷';
+  document.getElementById('currentLangLabel').textContent = currentLang === 'ar' ? 'العربية' : currentLang === 'en' ? 'English' : currentLang === 'es' ? 'Español' : 'Français';
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  document.body.setAttribute('data-lang', lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  updateLanguageUI();
+  document.querySelectorAll('.lang-option').forEach(opt => opt.classList.toggle('active', opt.dataset.lang === lang));
+  toggleLangDropdown();
+}
+
+function toggleLangDropdown() { document.getElementById('langSwitcher').classList.toggle('active'); }
+
+// ========== Chat Functions ==========
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const message = input.value.trim();
+  if (!message) return;
+  
+  addMessageToChat('user', message);
+  input.value = '';
+  
+  setTimeout(() => {
+    const response = generateAIResponse(message);
+    addMessageToChat('bot', response);
+  }, 500);
+}
+
+function addMessageToChat(sender, text) {
+  const messagesContainer = document.getElementById('chatMessages');
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `message ${sender}`;
+  messageDiv.innerHTML = `
+    <div class="message-avatar">${sender === 'user' ? '👤' : '🤖'}</div>
+    <div class="message-content">${text}</div>
+  `;
+  messagesContainer.appendChild(messageDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  
+  chatHistory.push({ sender, text, timestamp: Date.now() });
+  localStorage.setItem('future_self_chat', JSON.stringify(chatHistory));
+}
+
+function renderChatHistory() {
+  const messagesContainer = document.getElementById('chatMessages');
+  messagesContainer.innerHTML = '';
+  if (chatHistory.length === 0) {
+    const welcomeMsg = translations[currentLang].chat.welcome;
+    messagesContainer.innerHTML = `<div class="message bot"><div class="message-avatar">🤖</div><div class="message-content">${welcomeMsg}</div></div>`;
+  } else {
+    chatHistory.forEach(msg => {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${msg.sender}`;
+      messageDiv.innerHTML = `
+        <div class="message-avatar">${msg.sender === 'user' ? '👤' : '🤖'}</div>
+        <div class="message-content">${msg.text}</div>
+      `;
+      messagesContainer.appendChild(messageDiv);
+    });
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+}
+
+function generateAIResponse(userMessage) {
+  const responses = {
+    ar: [
+      "رائع! هذا هدف طموح. كيف تخطط لتحقيقه؟",
+      "أرى أنك متحمس لتحقيق ذلك. ما هي الخطوة الأولى التي ستتخذها؟",
+      "هذا يذكرني بأن المستقبل يبدأ اليوم. ماذا ستفعل الآن لتقترب من هدفك؟",
+      "نصيحتي لك: قسّم هذا الهدف الكبير إلى أهداف أصغر يومية. هل جربت ذلك؟"
+    ],
+    en: [
+      "Great! That's an ambitious goal. How do you plan to achieve it?",
+      "I see you're excited about that. What's the first step you'll take?",
+      "Remember, the future starts today. What will you do now to get closer to your goal?",
+      "My advice: break this big goal into smaller daily tasks. Have you tried that?"
+    ],
+    es: [
+      "¡Genial! Ese es un objetivo ambicioso. ¿Cómo planeas lograrlo?",
+      "Veo que estás emocionado por eso. ¿Cuál es el primer paso que tomarás?",
+      "Recuerda, el futuro comienza hoy. ¿Qué harás ahora para acercarte a tu meta?",
+      "Mi consejo: divide este gran objetivo en tareas diarias más pequeñas. ¿Has probado eso?"
+    ],
+    fr: [
+      "Super ! C'est un objectif ambitieux. Comment comptes-tu l'atteindre ?",
+      "Je vois que tu es excité à ce sujet. Quelle est la première étape que tu vas prendre ?",
+      "Souviens-toi, l'avenir commence aujourd'hui. Que vas-tu faire maintenant pour te rapprocher de ton objectif ?",
+      "Mon conseil : divise ce grand objectif en petites tâches quotidiennes. As-tu essayé ça ?"
+    ]
+  };
+  const respList = responses[currentLang] || responses.en;
+  return respList[Math.floor(Math.random() * respList.length)];
+}
+
+// ========== Goals Functions ==========
+function renderGoals() {
+  const container = document.getElementById('goalsList');
+  if (goals.length === 0) {
+    container.innerHTML = `<div style="text-align: center; color: var(--muted); padding: 2rem;">${translations[currentLang].goals.empty}</div>`;
+    return;
+  }
+  container.innerHTML = goals.map((goal, idx) => `
+    <div class="goal-item">
+      <span class="goal-text">✓ ${goal}</span>
+      <button class="goal-delete" onclick="deleteGoal(${idx})">🗑️</button>
+    </div>
+  `).join('');
+}
+
+function addGoal() {
+  const input = document.getElementById('goalInput');
+  const goal = input.value.trim();
+  if (!goal) {
+    showNotif('⚠️', currentLang === 'ar' ? 'الرجاء إدخال هدف' : 'Please enter a goal');
+    return;
+  }
+  goals.push(goal);
+  localStorage.setItem('future_self_goals', JSON.stringify(goals));
+  renderGoals();
+  input.value = '';
+  showNotif('✅', currentLang === 'ar' ? 'تم إضافة الهدف!' : 'Goal added!');
+}
+
+function deleteGoal(index) {
+  goals.splice(index, 1);
+  localStorage.setItem('future_self_goals', JSON.stringify(goals));
+  renderGoals();
+  showNotif('🗑️', currentLang === 'ar' ? 'تم حذف الهدف' : 'Goal deleted');
+}
+
+// ========== Notification ==========
+function showNotif(icon, text) {
+  const n = document.getElementById('notification');
+  document.getElementById('notifIcon').textContent = icon;
+  document.getElementById('notifText').textContent = text;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3000);
+}
+
+// ========== Event Listeners ==========
+document.getElementById('sendBtn').onclick = sendMessage;
+document.getElementById('chatInput').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.lang-switcher')) document.getElementById('langSwitcher').classList.remove('active');
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+init();
+</script>
+</body>
+</html>
