@@ -1,24 +1,746 @@
-const posts = {
-1:{
-titleAr:"كيف تبدأ في AI",
-titleEn:"Start AI",
-contentAr:"<p>ابدأ بتعلم الأساسيات...</p>",
-contentEn:"<p>Start with basics...</p>"
-},
-2:{
-titleAr:"الربح من AI",
-titleEn:"Make Money with AI",
-contentAr:"<p>يمكنك الربح عبر الخدمات...</p>",
-contentEn:"<p>You can earn via services...</p>"
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المقال | MindWeave</title>
+<meta name="description" content="اقرأ أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-};
 
-// توليد 30 مقال
-for(let i=3;i<=30;i++){
-  posts[i]={
-    titleAr:`مقال ${i}`,
-    titleEn:`Article ${i}`,
-    contentAr:`<p>هذا مقال رقم ${i} عن الذكاء الاصطناعي والتسويق.</p>`,
-    contentEn:`<p>This is article ${i} about AI and marketing.</p>`
-  };
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
 }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  line-height: 1.6;
+}
+
+body[data-lang="en"],
+body[data-lang="es"],
+body[data-lang="fr"] {
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+body[data-lang="ar"] {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1001;
+}
+
+body[data-lang="en"] .lang-dropdown,
+body[data-lang="es"] .lang-dropdown,
+body[data-lang="fr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-selector.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--secondary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-lang="en"] .cart-count {
+  right: auto;
+  left: -8px;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 2rem 4rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.article-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.article-category {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.article-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.article-image {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.article-image div {
+  font-size: 5rem;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.article-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.article-content p {
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.article-content h2 {
+  color: var(--primary);
+  margin: 1.5rem 0 1rem;
+  font-size: 1.3rem;
+}
+
+.article-content h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 1rem 0;
+  padding-right: 1.5rem;
+  color: var(--text-muted);
+}
+
+body[data-lang="en"] .article-content ul,
+body[data-lang="en"] .article-content ol {
+  padding-right: 0;
+  padding-left: 1.5rem;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+}
+
+.article-content blockquote {
+  border-right: 3px solid var(--primary);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(0, 212, 255, 0.05);
+  border-radius: 12px;
+  color: var(--text);
+}
+
+body[data-lang="en"] .article-content blockquote {
+  border-right: none;
+  border-left: 3px solid var(--primary);
+}
+
+.article-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.share-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.share-btn:hover {
+  background: var(--primary);
+  color: var(--bg);
+}
+
+.related-posts {
+  margin-top: 3rem;
+}
+
+.related-posts h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.related-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.related-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+}
+
+.related-card h4 {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.related-card p {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body data-lang="ar">
+
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🧠</div>
+    Mind<span>Weave</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="store.html">المتجر</a></li>
+    <li><a href="library.html">المكتبة المجانية</a></li>
+    <li><a href="prompt-lab.html">Prompt Lab ✨</a></li>
+    <li><a href="creators.html">برنامج المبدعين</a></li>
+    <li><a href="blog.html" class="active">المدونة</a></li>
+  </ul>
+
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLangFlag">🇸🇦</span>
+        <span id="currentLangLabel">العربية</span>
+        <span>▼</span>
+      </button>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+      </div>
+    </div>
+    <a href="cart.html" class="cart-btn">
+      🛒 السلة
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+  <a href="blog.html" class="back-link reveal">← العودة إلى المدونة</a>
+
+  <div class="article-header reveal">
+    <span class="article-category" id="articleCategory"></span>
+    <h1 id="articleTitle"></h1>
+    <div class="article-meta">
+      <span id="articleDate"></span>
+      <span id="articleReadTime"></span>
+      <span id="articleAuthor">✍️ فريق MindWeave</span>
+    </div>
+  </div>
+
+  <div class="article-image reveal">
+    <div id="articleIcon"></div>
+  </div>
+
+  <div class="article-content reveal" id="articleContent"></div>
+
+  <div class="article-footer reveal">
+    <div class="share-buttons">
+      <button class="share-btn" onclick="shareArticle('twitter')">🐦 تويتر</button>
+      <button class="share-btn" onclick="shareArticle('facebook')">📘 فيسبوك</button>
+      <button class="share-btn" onclick="shareArticle('linkedin')">💼 لينكدإن</button>
+      <button class="share-btn" onclick="copyLink()">🔗 نسخ الرابط</button>
+    </div>
+  </div>
+
+  <div class="related-posts reveal">
+    <h3>📖 مقالات ذات صلة</h3>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a><p style="color: var(--text-muted); margin-top: 1rem;">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div>
+    <div><h4>المنصة</h4><ul class="footer-links"><li><a href="store.html">المتجر</a></li><li><a href="library.html">المكتبة المجانية</a></li><li><a href="creators.html">برنامج المبدعين</a></li><li><a href="blog.html">المدونة</a></li></ul></div>
+    <div><h4>الدعم</h4><ul class="footer-links"><li><a href="about.html">من نحن</a></li><li><a href="contact.html">تواصل معنا</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li></ul></div>
+    <div><h4>قانوني</h4><ul class="footer-links"><li><a href="privacy.html">سياسة الخصوصية</a></li><li><a href="terms.html">شروط الاستخدام</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
+</footer>
+
+<script>
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
+let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+
+const blogPosts = [
+  {
+    id: 1,
+    slug: "how-to-write-chatgpt-prompts",
+    category: { ar: "تعلم", en: "Learning", es: "Aprendizaje", fr: "Apprentissage" },
+    icon: "📚",
+    title: { ar: "كيف تكتب أوامر ChatGPT احترافية: دليل المبتدئين", en: "How to Write Professional ChatGPT Prompts: A Beginner's Guide", es: "Cómo escribir prompts profesionales de ChatGPT: Guía para principiantes", fr: "Comment rédiger des prompts ChatGPT professionnels : Guide du débutant" },
+    date: "15 مارس 2026",
+    readTime: "5 دقائق",
+    content: {
+      ar: `<p>هندسة الأوامر (Prompt Engineering) هي فن صياغة الأسئلة والتعليمات للحصول على أفضل النتائج من نماذج الذكاء الاصطناعي مثل ChatGPT. في هذا الدليل الشامل، سنتعلم أساسيات كتابة الأوامر الاحترافية.</p>
+      <h2>ما هي هندسة الأوامر؟</h2>
+      <p>هندسة الأوامر هي عملية تصميم وتطوير الأوامر (prompts) التي تستخدم للتفاعل مع نماذج الذكاء الاصطناعي. الهدف هو الحصول على ردود دقيقة وذات صلة عالية باحتياجات المستخدم.</p>
+      <h2>أساسيات كتابة أمر فعال</h2>
+      <p><strong>1. كن محدداً:</strong> كلما كنت أكثر تحديداً في طلبك، كانت النتائج أفضل. بدلاً من "اكتب مقالاً"، قل "اكتب مقالاً من 500 كلمة عن فوائد الذكاء الاصطناعي في التعليم".</p>
+      <p><strong>2. قدم سياقاً واضحاً:</strong> أعطِ النموذج معلومات كافية عن الخلفية والجمهور المستهدف والهدف من النص.</p>
+      <p><strong>3. حدد التنسيق المطلوب:</strong> أخبر النموذج بالشكل الذي تريد الإجابة به: قائمة، فقرات، جدول، كود، إلخ.</p>
+      <p><strong>4. استخدم الأمثلة:</strong> قدم أمثلة على النتائج التي تريدها لتوجيه النموذج بشكل أفضل.</p>
+      <h2>أمثلة عملية</h2>
+      <p><strong>مثال 1 (سيء):</strong> "اكتب عن التسويق"</p>
+      <p><strong>مثال 1 (جيد):</strong> "أنت خبير تسويق رقمي. اكتب دليلاً من 5 نقاط عن استراتيجيات التسويق عبر وسائل التواصل الاجتماعي للشركات الناشئة. استخدم لغة بسيطة وأضف أمثلة عملية."</p>
+      <h2>نصائح متقدمة</h2>
+      <p>يمكنك تحسين نتائجك بشكل كبير باستخدام تقنيات مثل: سلسلة الأفكار (Chain of Thought)، حيث تطلب من النموذج شرح خطوات تفكيره، أو تعيين شخصية (Role-playing) حيث تطلب من النموذج التحدث من منظور خبير محدد.</p>
+      <blockquote>تذكر أن الذكاء الاصطناعي أداة قوية، لكن النتائج تعتمد بشكل كبير على جودة الأوامر التي تقدمها. استثمر وقتك في تعلم هندسة الأوامر وستحصل على نتائج مذهلة.</blockquote>`,
+      en: `<p>Prompt Engineering is the art of crafting questions and instructions to get the best results from AI models like ChatGPT. In this comprehensive guide, we'll learn the basics of professional prompt writing.</p>
+      <h2>What is Prompt Engineering?</h2>
+      <p>Prompt Engineering is the process of designing and developing prompts used to interact with AI models. The goal is to get accurate and highly relevant responses to user needs.</p>
+      <h2>Basics of Writing an Effective Prompt</h2>
+      <p><strong>1. Be Specific:</strong> The more specific you are, the better the results. Instead of "write an article," say "write a 500-word article about the benefits of AI in education."</p>
+      <p><strong>2. Provide Clear Context:</strong> Give the model enough information about the background, target audience, and purpose of the text.</p>
+      <p><strong>3. Specify the Desired Format:</strong> Tell the model the format you want: list, paragraphs, table, code, etc.</p>
+      <p><strong>4. Use Examples:</strong> Provide examples of the results you want to better guide the model.</p>
+      <h2>Practical Examples</h2>
+      <p><strong>Bad Example:</strong> "Write about marketing"</p>
+      <p><strong>Good Example:</strong> "You are a digital marketing expert. Write a 5-point guide on social media marketing strategies for startups. Use simple language and add practical examples."</p>
+      <h2>Advanced Tips</h2>
+      <p>You can significantly improve your results using techniques like Chain of Thought, where you ask the model to explain its reasoning steps, or Role-playing, where you ask the model to speak from a specific expert perspective.</p>
+      <blockquote>Remember that AI is a powerful tool, but the results depend heavily on the quality of prompts you provide. Invest time in learning prompt engineering and you'll get amazing results.</blockquote>`
+    }
+  },
+  {
+    id: 2,
+    slug: "best-midjourney-prompts-logo-design",
+    category: { ar: "تصميم", en: "Design", es: "Diseño", fr: "Design" },
+    icon: "🎨",
+    title: { ar: "أفضل 50 أمر Midjourney لتصميم شعارات احترافية", en: "Best 50 Midjourney Prompts for Professional Logo Design", es: "Los 50 mejores prompts de Midjourney para diseño de logotipos profesionales", fr: "Les 50 meilleurs prompts Midjourney pour la conception de logos professionnels" },
+    date: "10 مارس 2026",
+    readTime: "8 دقائق",
+    content: {
+      ar: `<p>في هذا الدليل الشامل، نقدم لك أفضل 50 أمراً لاستخدامها في Midjourney لتصميم شعارات احترافية ومميزة. سواء كنت مصمماً محترفاً أو مبتدئاً، ستجد هنا أوامر تناسب احتياجاتك.</p>
+      <h2>أساسيات تصميم الشعارات بـ Midjourney</h2>
+      <p>قبل البدء، من المهم فهم كيفية عمل Midjourney. النموذج يولد صوراً بناءً على الأوامر النصية التي تقدمها. كلما كان أمرك أكثر تفصيلاً، كانت النتائج أكثر دقة.</p>
+      <h2>أمثلة على أوامر تصميم الشعارات</h2>
+      <p><strong>1. شعار بسيط وأنيق:</strong><br>"Minimalist logo design for [company name], clean lines, modern, vector, white background --v 6"</p>
+      <p><strong>2. شعار بألوان متدرجة:</strong><br>"Gradient logo design for tech startup, blue to purple gradient, geometric shapes, futuristic, 3D render --v 6"</p>
+      <p><strong>3. شعار طبيعي وعضوي:</strong><br>"Nature-inspired logo for organic brand, leaf and tree elements, earthy colors, hand-drawn style, green and brown --v 6"</p>
+      <h2>نصائح للحصول على أفضل النتائج</h2>
+      <p>• استخدم إصدار Midjourney v6 للحصول على أفضل جودة<br>• أضف كلمات مثل "vector" و"clean" و"professional" للحصول على نتائج احترافية<br>• حدد الألوان بدقة<br>• جرب نسب عرض مختلفة باستخدام --ar</p>
+      <blockquote>نصيحة: لا تتردد في تعديل الأوامر وتجربة أشكال مختلفة. أفضل الشعارات تأتي من التجربة والخطأ.</blockquote>`,
+      en: `<p>In this comprehensive guide, we present the best 50 prompts to use in Midjourney for professional and distinctive logo design. Whether you're a professional designer or a beginner, you'll find prompts that suit your needs.</p>
+      <h2>Basics of Logo Design with Midjourney</h2>
+      <p>Before starting, it's important to understand how Midjourney works. The model generates images based on the text prompts you provide. The more detailed your prompt, the more accurate the results.</p>
+      <h2>Examples of Logo Design Prompts</h2>
+      <p><strong>1. Simple and Elegant Logo:</strong><br>"Minimalist logo design for [company name], clean lines, modern, vector, white background --v 6"</p>
+      <p><strong>2. Gradient Logo:</strong><br>"Gradient logo design for tech startup, blue to purple gradient, geometric shapes, futuristic, 3D render --v 6"</p>
+      <p><strong>3. Natural and Organic Logo:</strong><br>"Nature-inspired logo for organic brand, leaf and tree elements, earthy colors, hand-drawn style, green and brown --v 6"</p>
+      <h2>Tips for Best Results</h2>
+      <p>• Use Midjourney v6 for best quality<br>• Add words like "vector", "clean", and "professional" for professional results<br>• Specify colors precisely<br>• Try different aspect ratios with --ar</p>
+      <blockquote>Tip: Don't hesitate to modify prompts and try different variations. The best logos come from experimentation and iteration.</blockquote>`
+    }
+  }
+];
+
+function updateCartCount() {
+  const countEl = document.getElementById('cartCount');
+  if (countEl) countEl.textContent = cart.length;
+}
+
+function getPostIdFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return parseInt(params.get('id'));
+}
+
+function renderArticle() {
+  const postId = getPostIdFromUrl();
+  const post = blogPosts.find(p => p.id === postId) || blogPosts[0];
+  
+  if (!post) return;
+  
+  document.getElementById('articleCategory').textContent = post.category[currentLang];
+  document.getElementById('articleTitle').textContent = post.title[currentLang];
+  document.getElementById('articleDate').textContent = `📅 ${post.date}`;
+  document.getElementById('articleReadTime').textContent = `⏱️ ${post.readTime}`;
+  document.getElementById('articleIcon').textContent = post.icon;
+  document.getElementById('articleContent').innerHTML = post.content[currentLang];
+  
+  document.title = `${post.title[currentLang]} | MindWeave`;
+  
+  // Render related posts
+  const related = blogPosts.filter(p => p.id !== postId).slice(0, 3);
+  const relatedGrid = document.getElementById('relatedGrid');
+  relatedGrid.innerHTML = related.map(p => `
+    <div class="related-card" onclick="window.location.href='article.html?id=${p.id}'">
+      <div style="font-size: 2rem;">${p.icon}</div>
+      <h4>${p.title[currentLang]}</h4>
+      <p>${p.date}</p>
+    </div>
+  `).join('');
+}
+
+function shareArticle(platform) {
+  const url = encodeURIComponent(window.location.href);
+  const title = encodeURIComponent(document.getElementById('articleTitle').textContent);
+  
+  const shareUrls = {
+    twitter: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`
+  };
+  
+  window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href);
+  alert(currentLang === 'ar' ? 'تم نسخ الرابط!' : 'Link copied!');
+}
+
+function updateLanguage() {
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
+  
+  document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  
+  renderArticle();
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  updateLanguage();
+  toggleLangMenu();
+}
+
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLanguage();
+  updateCartCount();
+  
+  document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      document.getElementById('langSelector')?.classList.remove('active');
+    }
+  });
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+</script>
+</body>
+</html>
