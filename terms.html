@@ -4,119 +4,650 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>شروط الاستخدام | MindWeave</title>
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta name="description" content="شروط وأحكام استخدام منصة MindWeave">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-.lang-switch:hover{background:#6C5CE7}
-[data-lang="en"]{display:none}
-body.en [data-lang="ar"]{display:none}
-body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}
-body:not(.en){direction:rtl;text-align:right}
-.cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
-.cart-icon{text-decoration:none;color:white}
-.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
-.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
-.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
-.legal-content{max-width:800px;margin:auto;padding:2rem;line-height:1.8}
-.legal-content h2{margin-top:1.5rem;color:#6C5CE7}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  line-height: 1.6;
+}
+
+body[data-lang="en"],
+body[data-lang="es"],
+body[data-lang="fr"] {
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+body[data-lang="ar"] {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1001;
+}
+
+body[data-lang="en"] .lang-dropdown,
+body[data-lang="es"] .lang-dropdown,
+body[data-lang="fr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-selector.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--secondary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-lang="en"] .cart-count {
+  right: auto;
+  left: -8px;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 100px 2rem 4rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.content-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+}
+
+.content-section h2 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.content-section p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.content-section ul {
+  color: var(--text-muted);
+  padding-right: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+body[data-lang="en"] .content-section ul {
+  padding-right: 0;
+  padding-left: 1.5rem;
+}
+
+.content-section li {
+  margin-bottom: 0.5rem;
+}
+
+.last-updated {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
-<body>
+<body data-lang="ar">
 
-<header>
-<nav style="display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;padding:1rem">
-<div class="logo"><a href="index.html" style="font-size:1.5rem;text-decoration:none;background:linear-gradient(135deg,#6C5CE7,#00D2FF);-webkit-background-clip:text;background-clip:text;color:transparent">🧠 MindWeave</a></div>
-<ul style="display:flex;list-style:none;gap:2rem">
-<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
-<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
-<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
-<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
-<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
-</ul>
-<div class="nav-icons">
-<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
-<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
-</div>
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🧠</div>
+    Mind<span>Weave</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+    <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
+    <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+    <li><a href="prompt-lab.html" data-i18n="nav.promptlab">Prompt Lab ✨</a></li>
+    <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
+    <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
+  </ul>
+
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLangFlag">🇸🇦</span>
+        <span id="currentLangLabel">العربية</span>
+        <span>▼</span>
+      </button>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+      </div>
+    </div>
+    <a href="cart.html" class="cart-btn">
+      🛒 <span data-i18n="nav.cart">السلة</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </div>
 </nav>
-</header>
 
 <main>
-<section class="page-header">
-<div class="container">
-<h1 data-lang="ar">شروط الاستخدام</h1>
-<h1 data-lang="en">Terms of Use</h1>
-<p data-lang="ar">باستخدامك موقع MindWeave، فإنك توافق على الالتزام بهذه الشروط</p>
-<p data-lang="en">By using MindWeave, you agree to comply with these terms</p>
-</div>
-</section>
+  <div class="hero reveal">
+    <div class="hero-badge" data-i18n="hero.badge">📜 الشروط والأحكام</div>
+    <h1 data-i18n="hero.title">شروط <span class="gradient">الاستخدام</span></h1>
+    <p data-i18n="hero.subtitle">يرجى قراءة هذه الشروط بعناية قبل استخدام منصة MindWeave</p>
+  </div>
 
-<div class="legal-content">
-<h2 data-lang="ar">الملكية الفكرية</h2>
-<h2 data-lang="en">Intellectual Property</h2>
-<p data-lang="ar">جميع المنتجات الرقمية المباعة في المتجر هي ملكية فكرية لـ MindWeave. لا يسمح بإعادة بيعها أو توزيعها أو مشاركتها بدون إذن خطي مسبق. شراء المنتج يمنحك ترخيصًا شخصيًا غير قابل للتحويل للاستخدام فقط.</p>
-<p data-lang="en">All digital products sold in the store are the intellectual property of MindWeave. Reselling, distributing, or sharing without prior written permission is prohibited. Purchasing grants you a non-transferable personal license for use only.</p>
+  <div class="content-section reveal">
+    <h2 data-i18n="section1.title">1. قبول الشروط</h2>
+    <p data-i18n="section1.desc">باستخدامك لمنصة MindWeave، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على أي جزء من هذه الشروط، يرجى عدم استخدام المنصة. نحتفظ بالحق في تعديل هذه الشروط في أي وقت، وسيتم إخطارك بأي تغييرات جوهرية.</p>
+  </div>
 
-<h2 data-lang="ar">سياسة الاسترجاع</h2>
-<h2 data-lang="en">Refund Policy</h2>
-<p data-lang="ar">نظرًا لأن منتجاتنا رقمية ويتم تسليمها فورًا بعد الشراء، فإن سياسة الاسترجاع تنطبق فقط في حالات العطل الفني في الملفات. إذا واجهت مشكلة، تواصل معنا خلال 7 أيام من الشراء على support@mindweave.store وسنقوم باستبدال المنتج أو تقديم بديل مجاني.</p>
-<p data-lang="en">Since our products are digital and delivered immediately after purchase, the refund policy applies only in cases of technical defects in the files. If you encounter an issue, contact us within 7 days of purchase at support@mindweave.store and we will replace the product or provide a free alternative.</p>
+  <div class="content-section reveal">
+    <h2 data-i18n="section2.title">2. إنشاء الحساب</h2>
+    <p data-i18n="section2.desc">للاستفادة من بعض خدماتنا، قد تحتاج إلى إنشاء حساب. أنت مسؤول عن:</p>
+    <ul>
+      <li data-i18n="section2.item1">توفير معلومات دقيقة وكاملة عند التسجيل</li>
+      <li data-i18n="section2.item2">الحفاظ على سرية بيانات حسابك وكلمة المرور</li>
+      <li data-i18n="section2.item3">تحمل المسؤولية عن جميع الأنشطة التي تحدث من خلال حسابك</li>
+      <li data-i18n="section2.item4">إخطارنا فوراً بأي استخدام غير مصرح به لحسابك</li>
+    </ul>
+  </div>
 
-<h2 data-lang="ar">المسؤولية</h2>
-<h2 data-lang="en">Liability</h2>
-<p data-lang="ar">نحن نبذل قصارى جهدنا لضمان جودة المنتجات، لكننا لا نتحمل مسؤولية أي أضرار ناتجة عن استخدام المنتجات بطرق غير مصرح بها أو خارج نطاق الاستخدام الشخصي.</p>
-<p data-lang="en">We strive to ensure product quality, but we are not liable for any damages resulting from using products in unauthorized ways or outside the scope of personal use.</p>
+  <div class="content-section reveal">
+    <h2 data-i18n="section3.title">3. المنتجات والخدمات</h2>
+    <p data-i18n="section3.desc">نقدم مجموعة متنوعة من المنتجات الرقمية بما في ذلك أوامر الذكاء الاصطناعي، القوالب، الكتب الإلكترونية، والخدمات الإبداعية. جميع المنتجات رقمية ويتم تسليمها فوراً بعد إتمام عملية الشراء. لا نقدم ضمانات محددة بشأن نتائج استخدام المنتجات، حيث أن النتائج تعتمد على كيفية استخدامها.</p>
+  </div>
 
-<h2 data-lang="ar">تعديل الشروط</h2>
-<h2 data-lang="en">Modification of Terms</h2>
-<p data-lang="ar">نحتفظ بالحق في تعديل هذه الشروط في أي وقت. سيتم إخطار المستخدمين بالتغييرات الهامة عبر البريد الإلكتروني أو إشعار على الموقع.</p>
-<p data-lang="en">We reserve the right to modify these terms at any time. Users will be notified of significant changes via email or site notice.</p>
+  <div class="content-section reveal">
+    <h2 data-i18n="section4.title">4. سياسة الدفع والاسترداد</h2>
+    <p data-i18n="section4.desc">نحن نقدم ضمان استرداد الأموال لمدة 30 يوماً من تاريخ الشراء. إذا لم تكن راضياً عن المنتج، يمكنك طلب استرداد كامل المبلغ. الاستثناءات تشمل:</p>
+    <ul>
+      <li data-i18n="section4.item1">المنتجات التي تم تحميلها بالفعل واستخدامها بشكل كامل</li>
+      <li data-i18n="section4.item2">الخدمات المخصصة التي تم تنفيذها بالفعل</li>
+      <li data-i18n="section4.item3">المنتجات التي تم شراؤها منذ أكثر من 30 يوماً</li>
+    </ul>
+  </div>
 
-<p data-lang="ar">آخر تحديث: مارس 2026</p>
-<p data-lang="en">Last updated: March 2026</p>
-</div>
+  <div class="content-section reveal">
+    <h2 data-i18n="section5.title">5. حقوق الملكية الفكرية</h2>
+    <p data-i18n="section5.desc">جميع المحتويات والمنتجات المتوفرة على المنصة محمية بحقوق الملكية الفكرية. عند شراء منتج، تحصل على ترخيص للاستخدام الشخصي أو التجاري (حسب وصف المنتج). لا يحق لك إعادة بيع المنتجات أو توزيعها أو مشاركتها مع أطراف ثالثة دون الحصول على ترخيص إضافي.</p>
+  </div>
+
+  <div class="content-section reveal">
+    <h2 data-i18n="section6.title">6. برنامج المبدعين</h2>
+    <p data-i18n="section6.desc">إذا كنت مشاركاً في برنامج المبدعين، فإنك توافق على:</p>
+    <ul>
+      <li data-i18n="section6.item1">تقديم منتجات أصلية لا تنتهك حقوق الملكية الفكرية للغير</li>
+      <li data-i18n="section6.item2">توفير وصف دقيق للمنتجات والخدمات</li>
+      <li data-i18n="section6.item3">الالتزام بسياسة العمولات المحددة (70% من قيمة المبيعات)</li>
+      <li data-i18n="section6.item4">تقديم دعم فني للعملاء الذين يشترون منتجاتك</li>
+    </ul>
+  </div>
+
+  <div class="content-section reveal">
+    <h2 data-i18n="section7.title">7. سلوك المستخدم</h2>
+    <p data-i18n="section7.desc">توافق على استخدام المنصة بطريقة قانونية وأخلاقية، وعدم:</p>
+    <ul>
+      <li data-i18n="section7.item1">انتحال شخصية أي شخص أو كيان آخر</li>
+      <li data-i18n="section7.item2">تحميل أو مشاركة محتوى ضار أو غير قانوني</li>
+      <li data-i18n="section7.item3">محاولة الوصول غير المصرح به إلى أنظمتنا</li>
+      <li data-i18n="section7.item4">التدخل في تشغيل المنصة أو تعطيلها</li>
+      <li data-i18n="section7.item5">جمع بيانات المستخدمين الآخرين دون موافقتهم</li>
+    </ul>
+  </div>
+
+  <div class="content-section reveal">
+    <h2 data-i18n="section8.title">8. إخلاء المسؤولية</h2>
+    <p data-i18n="section8.desc">نقدم المنصة والمنتجات "كما هي" دون أي ضمانات صريحة أو ضمنية. لا نضمن أن المنصة ستكون خالية من الأخطاء أو الانقطاعات. في الحد الأقصى المسموح به بموجب القانون، لا نتحمل المسؤولية عن أي أضرار غير مباشرة أو عرضية أو تبعية تنشأ عن استخدامك للمنصة أو المنتجات.</p>
+  </div>
+
+  <div class="content-section reveal">
+    <h2 data-i18n="section9.title">9. إنهاء الخدمة</h2>
+    <p data-i18n="section9.desc">نحتفظ بالحق في إنهاء أو تعليق حسابك والوصول إلى المنصة في حال انتهاك هذه الشروط. في حالة الإنهاء، لن يحق لك استرداد أي رسوم مدفوعة (باستثناء ما هو منصوص عليه في سياسة الاسترداد).</p>
+  </div>
+
+  <div class="content-section reveal">
+    <h2 data-i18n="section10.title">10. القانون المعمول به</h2>
+    <p data-i18n="section10.desc">تخضع هذه الشروط وتفسر وفقاً لقوانين المملكة العربية السعودية. أي نزاع ينشأ عن هذه الشروط أو استخدام المنصة سيُحال إلى المحاكم المختصة في الرياض، المملكة العربية السعودية.</p>
+  </div>
+
+  <div class="content-section reveal">
+    <h2 data-i18n="section11.title">11. التواصل</h2>
+    <p data-i18n="section11.desc">لأية أسئلة أو استفسارات حول هذه الشروط، يرجى التواصل معنا عبر:</p>
+    <ul>
+      <li>البريد الإلكتروني: support@mindweave.store</li>
+      <li>من خلال صفحة <a href="contact.html" style="color: var(--primary);">اتصل بنا</a></li>
+    </ul>
+  </div>
+
+  <div class="last-updated reveal">
+    <p data-i18n="lastUpdated">آخر تحديث: 30 مارس 2026</p>
+  </div>
 </main>
 
 <footer>
-<div class="container">
-<div class="footer-grid">
-<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
-</div>
-<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
-</div>
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a><p style="color: var(--text-muted); margin-top: 1rem;" data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div>
+    <div><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li><li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li></ul></div>
+    <div><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div>
+    <div><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
 </footer>
 
 <script>
-let currentLang = localStorage.getItem('lang') || 'ar';
+const translations = {
+  ar: {
+    nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", promptlab: "Prompt Lab ✨", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة" },
+    hero: { badge: "📜 الشروط والأحكام", title: "شروط <span class='gradient'>الاستخدام</span>", subtitle: "يرجى قراءة هذه الشروط بعناية قبل استخدام منصة MindWeave" },
+    section1: { title: "1. قبول الشروط", desc: "باستخدامك لمنصة MindWeave، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على أي جزء من هذه الشروط، يرجى عدم استخدام المنصة. نحتفظ بالحق في تعديل هذه الشروط في أي وقت، وسيتم إخطارك بأي تغييرات جوهرية." },
+    section2: { title: "2. إنشاء الحساب", desc: "للاستفادة من بعض خدماتنا، قد تحتاج إلى إنشاء حساب. أنت مسؤول عن:", item1: "توفير معلومات دقيقة وكاملة عند التسجيل", item2: "الحفاظ على سرية بيانات حسابك وكلمة المرور", item3: "تحمل المسؤولية عن جميع الأنشطة التي تحدث من خلال حسابك", item4: "إخطارنا فوراً بأي استخدام غير مصرح به لحسابك" },
+    section3: { title: "3. المنتجات والخدمات", desc: "نقدم مجموعة متنوعة من المنتجات الرقمية بما في ذلك أوامر الذكاء الاصطناعي، القوالب، الكتب الإلكترونية، والخدمات الإبداعية. جميع المنتجات رقمية ويتم تسليمها فوراً بعد إتمام عملية الشراء. لا نقدم ضمانات محددة بشأن نتائج استخدام المنتجات، حيث أن النتائج تعتمد على كيفية استخدامها." },
+    section4: { title: "4. سياسة الدفع والاسترداد", desc: "نحن نقدم ضمان استرداد الأموال لمدة 30 يوماً من تاريخ الشراء. إذا لم تكن راضياً عن المنتج، يمكنك طلب استرداد كامل المبلغ. الاستثناءات تشمل:", item1: "المنتجات التي تم تحميلها بالفعل واستخدامها بشكل كامل", item2: "الخدمات المخصصة التي تم تنفيذها بالفعل", item3: "المنتجات التي تم شراؤها منذ أكثر من 30 يوماً" },
+    section5: { title: "5. حقوق الملكية الفكرية", desc: "جميع المحتويات والمنتجات المتوفرة على المنصة محمية بحقوق الملكية الفكرية. عند شراء منتج، تحصل على ترخيص للاستخدام الشخصي أو التجاري (حسب وصف المنتج). لا يحق لك إعادة بيع المنتجات أو توزيعها أو مشاركتها مع أطراف ثالثة دون الحصول على ترخيص إضافي." },
+    section6: { title: "6. برنامج المبدعين", desc: "إذا كنت مشاركاً في برنامج المبدعين، فإنك توافق على:", item1: "تقديم منتجات أصلية لا تنتهك حقوق الملكية الفكرية للغير", item2: "توفير وصف دقيق للمنتجات والخدمات", item3: "الالتزام بسياسة العمولات المحددة (70% من قيمة المبيعات)", item4: "تقديم دعم فني للعملاء الذين يشترون منتجاتك" },
+    section7: { title: "7. سلوك المستخدم", desc: "توافق على استخدام المنصة بطريقة قانونية وأخلاقية، وعدم:", item1: "انتحال شخصية أي شخص أو كيان آخر", item2: "تحميل أو مشاركة محتوى ضار أو غير قانوني", item3: "محاولة الوصول غير المصرح به إلى أنظمتنا", item4: "التدخل في تشغيل المنصة أو تعطيلها", item5: "جمع بيانات المستخدمين الآخرين دون موافقتهم" },
+    section8: { title: "8. إخلاء المسؤولية", desc: "نقدم المنصة والمنتجات 'كما هي' دون أي ضمانات صريحة أو ضمنية. لا نضمن أن المنصة ستكون خالية من الأخطاء أو الانقطاعات. في الحد الأقصى المسموح به بموجب القانون، لا نتحمل المسؤولية عن أي أضرار غير مباشرة أو عرضية أو تبعية تنشأ عن استخدامك للمنصة أو المنتجات." },
+    section9: { title: "9. إنهاء الخدمة", desc: "نحتفظ بالحق في إنهاء أو تعليق حسابك والوصول إلى المنصة في حال انتهاك هذه الشروط. في حالة الإنهاء، لن يحق لك استرداد أي رسوم مدفوعة (باستثناء ما هو منصوص عليه في سياسة الاسترداد)." },
+    section10: { title: "10. القانون المعمول به", desc: "تخضع هذه الشروط وتفسر وفقاً لقوانين المملكة العربية السعودية. أي نزاع ينشأ عن هذه الشروط أو استخدام المنصة سيُحال إلى المحاكم المختصة في الرياض، المملكة العربية السعودية." },
+    section11: { title: "11. التواصل", desc: "لأية أسئلة أو استفسارات حول هذه الشروط، يرجى التواصل معنا عبر:" },
+    lastUpdated: "آخر تحديث: 30 مارس 2026",
+    footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" }
+  },
+  en: {
+    nav: { home: "Home", store: "Store", library: "Free Library", promptlab: "Prompt Lab ✨", creators: "Creator Program", blog: "Blog", cart: "Cart" },
+    hero: { badge: "📜 Terms & Conditions", title: "Terms of <span class='gradient'>Use</span>", subtitle: "Please read these terms carefully before using MindWeave platform" },
+    section1: { title: "1. Acceptance of Terms", desc: "By using MindWeave platform, you agree to be bound by these terms and conditions. If you do not agree to any part of these terms, please do not use the platform. We reserve the right to modify these terms at any time, and we will notify you of any material changes." },
+    section2: { title: "2. Account Creation", desc: "To use some of our services, you may need to create an account. You are responsible for:", item1: "Providing accurate and complete information when registering", item2: "Maintaining the confidentiality of your account credentials", item3: "Assuming responsibility for all activities that occur under your account", item4: "Notifying us immediately of any unauthorized use of your account" },
+    section3: { title: "3. Products and Services", desc: "We offer a variety of digital products including AI prompts, templates, e-books, and creative services. All products are digital and delivered immediately after purchase. We do not provide specific guarantees regarding the results of using the products, as results depend on how they are used." },
+    section4: { title: "4. Payment and Refund Policy", desc: "We offer a 30-day money-back guarantee from the date of purchase. If you are not satisfied with the product, you may request a full refund. Exceptions include:", item1: "Products that have already been downloaded and fully used", item2: "Custom services that have already been delivered", item3: "Products purchased more than 30 days ago" },
+    section5: { title: "5. Intellectual Property Rights", desc: "All content and products available on the platform are protected by intellectual property rights. When purchasing a product, you receive a license for personal or commercial use (as per product description). You may not resell, distribute, or share the products with third parties without obtaining an additional license." },
+    section6: { title: "6. Creator Program", desc: "If you participate in the Creator Program, you agree to:", item1: "Submit original products that do not infringe on others' intellectual property", item2: "Provide accurate descriptions of products and services", item3: "Comply with the specified commission policy (70% of sales value)", item4: "Provide technical support to customers who purchase your products" },
+    section7: { title: "7. User Conduct", desc: "You agree to use the platform in a lawful and ethical manner, and not to:", item1: "Impersonate any person or entity", item2: "Upload or share harmful or illegal content", item3: "Attempt unauthorized access to our systems", item4: "Interfere with or disrupt the operation of the platform", item5: "Collect other users' data without their consent" },
+    section8: { title: "8. Disclaimer of Warranties", desc: "We provide the platform and products 'as is' without any express or implied warranties. We do not guarantee that the platform will be error-free or uninterrupted. To the maximum extent permitted by law, we are not liable for any indirect, incidental, or consequential damages arising from your use of the platform or products." },
+    section9: { title: "9. Termination", desc: "We reserve the right to terminate or suspend your account and access to the platform in case of violation of these terms. Upon termination, you will not be entitled to any refund of fees paid (except as provided in the refund policy)." },
+    section10: { title: "10. Governing Law", desc: "These terms shall be governed by and construed in accordance with the laws of the Kingdom of Saudi Arabia. Any dispute arising out of these terms or use of the platform shall be submitted to the competent courts in Riyadh, Kingdom of Saudi Arabia." },
+    section11: { title: "11. Contact Us", desc: "For any questions or inquiries regarding these terms, please contact us at:" },
+    lastUpdated: "Last Updated: March 30, 2026",
+    footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creative tools.", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" }
+  },
+  es: {
+    nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito" },
+    hero: { badge: "📜 Términos y Condiciones", title: "Términos de <span class='gradient'>Uso</span>", subtitle: "Por favor, lea estos términos cuidadosamente antes de usar la plataforma MindWeave" },
+    section1: { title: "1. Aceptación de los Términos", desc: "Al usar la plataforma MindWeave, acepta cumplir con estos términos y condiciones. Si no está de acuerdo con alguna parte de estos términos, por favor no use la plataforma. Nos reservamos el derecho de modificar estos términos en cualquier momento y le notificaremos cualquier cambio importante." },
+    section2: { title: "2. Creación de Cuenta", desc: "Para utilizar algunos de nuestros servicios, es posible que necesite crear una cuenta. Usted es responsable de:", item1: "Proporcionar información precisa y completa al registrarse", item2: "Mantener la confidencialidad de las credenciales de su cuenta", item3: "Asumir la responsabilidad de todas las actividades que ocurran bajo su cuenta", item4: "Notificarnos inmediatamente cualquier uso no autorizado de su cuenta" },
+    section3: { title: "3. Productos y Servicios", desc: "Ofrecemos una variedad de productos digitales que incluyen prompts de IA, plantillas, libros electrónicos y servicios creativos. Todos los productos son digitales y se entregan inmediatamente después de la compra. No ofrecemos garantías específicas sobre los resultados del uso de los productos, ya que los resultados dependen de cómo se utilicen." },
+    section4: { title: "4. Política de Pago y Reembolso", desc: "Ofrecemos una garantía de devolución de dinero de 30 días desde la fecha de compra. Si no está satisfecho con el producto, puede solicitar un reembolso completo. Las excepciones incluyen:", item1: "Productos que ya han sido descargados y utilizados completamente", item2: "Servicios personalizados que ya han sido entregados", item3: "Productos comprados hace más de 30 días" },
+    section5: { title: "5. Derechos de Propiedad Intelectual", desc: "Todo el contenido y los productos disponibles en la plataforma están protegidos por derechos de propiedad intelectual. Al comprar un producto, recibe una licencia para uso personal o comercial (según la descripción del producto). No puede revender, distribuir o compartir los productos con terceros sin obtener una licencia adicional." },
+    section6: { title: "6. Programa de Creadores", desc: "Si participa en el Programa de Creadores, acepta:", item1: "Presentar productos originales que no infrinjan la propiedad intelectual de terceros", item2: "Proporcionar descripciones precisas de los productos y servicios", item3: "Cumplir con la política de comisiones especificada (70% del valor de las ventas)", item4: "Proporcionar soporte técnico a los clientes que compren sus productos" },
+    section7: { title: "7. Conducta del Usuario", desc: "Acepta utilizar la plataforma de manera legal y ética, y no:", item1: "Suplantar la identidad de cualquier persona o entidad", item2: "Cargar o compartir contenido dañino o ilegal", item3: "Intentar acceder no autorizadamente a nuestros sistemas", item4: "Interferir o interrumpir el funcionamiento de la plataforma", item5: "Recopilar datos de otros usuarios sin su consentimiento" },
+    section8: { title: "8. Exención de Garantías", desc: "Proporcionamos la plataforma y los productos 'tal cual' sin garantías expresas o implícitas. No garantizamos que la plataforma esté libre de errores o interrupciones. En la máxima medida permitida por la ley, no somos responsables de ningún daño indirecto, incidental o consecuente que surja del uso de la plataforma o los productos." },
+    section9: { title: "9. Terminación", desc: "Nos reservamos el derecho de terminar o suspender su cuenta y el acceso a la plataforma en caso de violación de estos términos. En caso de terminación, no tendrá derecho a ningún reembolso de las tarifas pagadas (excepto lo dispuesto en la política de reembolso)." },
+    section10: { title: "10. Ley Aplicable", desc: "Estos términos se regirán e interpretarán de acuerdo con las leyes del Reino de Arabia Saudita. Cualquier disputa que surja de estos términos o del uso de la plataforma será sometida a los tribunales competentes de Riad, Reino de Arabia Saudita." },
+    section11: { title: "11. Contáctenos", desc: "Para cualquier pregunta o consulta sobre estos términos, por favor contáctenos en:" },
+    lastUpdated: "Última actualización: 30 de marzo de 2026",
+    footer: { desc: "Plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Todos los derechos reservados 🧠" }
+  },
+  fr: {
+    nav: { home: "Accueil", store: "Boutique", library: "Bibliothèque Gratuite", promptlab: "Prompt Lab ✨", creators: "Programme Créateurs", blog: "Blog", cart: "Panier" },
+    hero: { badge: "📜 Termes et Conditions", title: "Conditions d'<span class='gradient'>Utilisation</span>", subtitle: "Veuillez lire attentivement ces conditions avant d'utiliser la plateforme MindWeave" },
+    section1: { title: "1. Acceptation des Conditions", desc: "En utilisant la plateforme MindWeave, vous acceptez d'être lié par ces termes et conditions. Si vous n'êtes pas d'accord avec une partie de ces conditions, veuillez ne pas utiliser la plateforme. Nous nous réservons le droit de modifier ces conditions à tout moment et vous informerons de tout changement important." },
+    section2: { title: "2. Création de Compte", desc: "Pour utiliser certains de nos services, vous devrez peut-être créer un compte. Vous êtes responsable de:", item1: "Fournir des informations précises et complètes lors de l'inscription", item2: "Maintenir la confidentialité des informations de votre compte", item3: "Assumer la responsabilité de toutes les activités qui se produisent sous votre compte", item4: "Nous informer immédiatement de toute utilisation non autorisée de votre compte" },
+    section3: { title: "3. Produits et Services", desc: "Nous offrons une variété de produits numériques incluant des prompts IA, des templates, des livres électroniques et des services créatifs. Tous les produits sont numériques et livrés immédiatement après l'achat. Nous ne fournissons pas de garanties spécifiques concernant les résultats de l'utilisation des produits, car les résultats dépendent de la façon dont ils sont utilisés." },
+    section4: { title: "4. Politique de Paiement et de Remboursement", desc: "Nous offrons une garantie de remboursement de 30 jours à compter de la date d'achat. Si vous n'êtes pas satisfait du produit, vous pouvez demander un remboursement complet. Les exceptions incluent:", item1: "Les produits qui ont déjà été téléchargés et entièrement utilisés", item2: "Les services personnalisés qui ont déjà été livrés", item3: "Les produits achetés il y a plus de 30 jours" },
+    section5: { title: "5. Droits de Propriété Intellectuelle", desc: "Tout le contenu et les produits disponibles sur la plateforme sont protégés par des droits de propriété intellectuelle. Lors de l'achat d'un produit, vous recevez une licence pour un usage personnel ou commercial (selon la description du produit). Vous ne pouvez pas revendre, distribuer ou partager les produits avec des tiers sans obtenir une licence supplémentaire." },
+    section6: { title: "6. Programme Créateurs", desc: "Si vous participez au Programme Créateurs, vous acceptez de:", item1: "Soumettre des produits originaux qui ne portent pas atteinte à la propriété intellectuelle d'autrui", item2: "Fournir des descriptions précises des produits et services", item3: "Respecter la politique de commission spécifiée (70% de la valeur des ventes)", item4: "Fournir un support technique aux clients qui achètent vos produits" },
+    section7: { title: "7. Comportement de l'Utilisateur", desc: "Vous acceptez d'utiliser la plateforme de manière légale et éthique, et de ne pas:", item1: "Usurper l'identité d'une personne ou d'une entité", item2: "Télécharger ou partager du contenu nuisible ou illégal", item3: "Tenter d'accéder non autorisé à nos systèmes", item4: "Interférer ou perturber le fonctionnement de la plateforme", item5: "Collecter les données d'autres utilisateurs sans leur consentement" },
+    section8: { title: "8. Exclusion de Garantie", desc: "Nous fournissons la plateforme et les produits 'tels quels' sans aucune garantie expresse ou implicite. Nous ne garantissons pas que la plateforme sera exempte d'erreurs ou d'interruptions. Dans la mesure maximale permise par la loi, nous ne sommes pas responsables des dommages indirects, accessoires ou consécutifs découlant de votre utilisation de la plateforme ou des produits." },
+    section9: { title: "9. Résiliation", desc: "Nous nous réservons le droit de résilier ou de suspendre votre compte et votre accès à la plateforme en cas de violation de ces conditions. En cas de résiliation, vous n'aurez droit à aucun remboursement des frais payés (sauf disposition contraire dans la politique de remboursement)." },
+    section10: { title: "10. Loi Applicable", desc: "Ces conditions sont régies et interprétées conformément aux lois du Royaume d'Arabie Saoudite. Tout litige découlant de ces conditions ou de l'utilisation de la plateforme sera soumis aux tribunaux compétents de Riyad, Royaume d'Arabie Saoudite." },
+    section11: { title: "11. Contactez-nous", desc: "Pour toute question ou demande concernant ces conditions, veuillez nous contacter à:" },
+    lastUpdated: "Dernière mise à jour : 30 mars 2026",
+    footer: { desc: "Plateforme mondiale complète pour les prompts IA, templates numériques et outils créatifs.", platform: "Plateforme", support: "Support", legal: "Juridique", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Tous droits réservés 🧠" }
+  }
+};
 
-function toggleLanguage() {
-    currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    localStorage.setItem('lang', currentLang);
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
+let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+
+function updateLanguage() {
+  const t = translations[currentLang];
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) {
+      if (key === 'hero.title') {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    }
+  });
+  
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
+  
+  document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
 }
 
-function applyLanguage() {
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  updateLanguage();
+  toggleLangMenu();
 }
 
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-function updateCartDisplay() {
-    const count = cart.reduce((s, i) => s + i.quantity, 0);
-    const cartSpan = document.querySelector('.cart-count');
-    if (cartSpan) cartSpan.textContent = count;
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
 }
 
-applyLanguage();
-updateCartDisplay();
+function updateCartCount() {
+  const countEl = document.getElementById('cartCount');
+  if (countEl) countEl.textContent = cart.length;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLanguage();
+  updateCartCount();
+  
+  document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      document.getElementById('langSelector')?.classList.remove('active');
+    }
+  });
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
 </script>
 </body>
 </html>
