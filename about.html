@@ -4,137 +4,727 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>من نحن | MindWeave</title>
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta name="description" content="تعرف على MindWeave، المنصة العربية الرائدة في مجال أوامر الذكاء الاصطناعي">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-.lang-switch:hover{background:#6C5CE7}
-[data-lang="en"]{display:none}
-body.en [data-lang="ar"]{display:none}
-body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}
-body:not(.en){direction:rtl;text-align:right}
-.cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
-.cart-icon{text-decoration:none;color:white}
-.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
-.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
-.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
-.about-content{max-width:1000px;margin:auto;padding:2rem}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:3rem}
-.about-text h2{color:#6C5CE7;margin:1.5rem 0 0.5rem}
-.about-text p{line-height:1.8;color:#A0A0B0}
-.stats-box{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
-.stat-box{background:#1A1A2E;border-radius:15px;padding:1.5rem;text-align:center;border:1px solid rgba(108,92,231,0.2)}
-.stat-box .number{font-size:2rem;font-weight:700;color:#6C5CE7}
-.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
-.value-card{background:#1A1A2E;border-radius:15px;padding:1.5rem;text-align:center}
-@media(max-width:768px){.about-grid{grid-template-columns:1fr}.values-grid{grid-template-columns:1fr}}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  line-height: 1.6;
+}
+
+body[data-lang="en"],
+body[data-lang="es"],
+body[data-lang="fr"] {
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+body[data-lang="ar"] {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1001;
+}
+
+body[data-lang="en"] .lang-dropdown,
+body[data-lang="es"] .lang-dropdown,
+body[data-lang="fr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-selector.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--secondary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-lang="en"] .cart-count {
+  right: auto;
+  left: -8px;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 2rem 4rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.about-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.about-section p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.value-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.value-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.value-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.value-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .stats-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.team-section {
+  margin: 3rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-tag {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.section-header h2 em {
+  color: var(--primary);
+  font-style: normal;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.team-card {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.team-avatar {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 1rem;
+}
+
+.team-card h3 {
+  margin-bottom: 0.25rem;
+}
+
+.team-card p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
-<body>
+<body data-lang="ar">
 
-<header>
-<nav style="display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;padding:1rem">
-<div class="logo"><a href="index.html" style="font-size:1.5rem;text-decoration:none;background:linear-gradient(135deg,#6C5CE7,#00D2FF);-webkit-background-clip:text;background-clip:text;color:transparent">🧠 MindWeave</a></div>
-<ul style="display:flex;list-style:none;gap:2rem">
-<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
-<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
-<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
-<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
-<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
-</ul>
-<div class="nav-icons">
-<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
-<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
-</div>
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🧠</div>
+    Mind<span>Weave</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+    <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
+    <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+    <li><a href="prompt-lab.html" data-i18n="nav.promptlab">Prompt Lab ✨</a></li>
+    <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
+    <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
+  </ul>
+
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLangFlag">🇸🇦</span>
+        <span id="currentLangLabel">العربية</span>
+        <span>▼</span>
+      </button>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+      </div>
+    </div>
+    <a href="cart.html" class="cart-btn">
+      🛒 <span data-i18n="nav.cart">السلة</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </div>
 </nav>
-</header>
 
 <main>
-<section class="page-header">
-<div class="container">
-<h1 data-lang="ar">من نحن</h1>
-<h1 data-lang="en">About Us</h1>
-<p data-lang="ar">قصة MindWeave ورؤيتنا لمستقبل الذكاء الاصطناعي</p>
-<p data-lang="en">The story of MindWeave and our vision for the future of AI</p>
-</div>
-</section>
+  <div class="hero reveal">
+    <div class="hero-badge" data-i18n="hero.badge">🌟 من نحن</div>
+    <h1 data-i18n="hero.title">قصة <span class="gradient">MindWeave</span></h1>
+    <p data-i18n="hero.subtitle">نحن هنا لتمكين المبدعين وعشاق الذكاء الاصطناعي في العالم العربي والعالم</p>
+  </div>
 
-<div class="about-content">
-<div class="about-grid">
-<div class="about-text">
-<h2 data-lang="ar">✨ نَسَّاج العقول بالذكاء الاصطناعي</h2>
-<h2 data-lang="en">✨ Weaver of Minds with AI</h2>
-<p data-lang="ar">MindWeave هي منصة عالمية تأسست عام 2026 بهدف تمكين الأفراد والشركات من استخدام الذكاء الاصطناعي بفعالية وإبداع. نؤمن بأن الذكاء الاصطناعي ليس بديلاً للعقل البشري، بل هو أداة لنسج أفكار جديدة وتوسيع قدراتنا الإبداعية.</p>
-<p data-lang="en">MindWeave is a global platform founded in 2026 with the goal of empowering individuals and businesses to use AI effectively and creatively. We believe that AI is not a replacement for the human mind, but a tool to weave new ideas and expand our creative capabilities.</p>
+  <div class="about-section reveal">
+    <h2 data-i18n="mission.title">🚀 رسالتنا</h2>
+    <p data-i18n="mission.desc">نسعى لأن نكون المنصة العربية الرائدة في مجال أوامر الذكاء الاصطناعي والمنتجات الرقمية، من خلال توفير أدوات مبتكرة ومحتوى عالي الجودة يمكّن الأفراد والشركات من الاستفادة القصوى من تقنيات الذكاء الاصطناعي.</p>
+  </div>
 
-<h2 data-lang="ar">رؤيتنا</h2>
-<h2 data-lang="en">Our Vision</h2>
-<p data-lang="ar">نسج مستقبل حيث يتعاون الإنسان والذكاء الاصطناعي لتحقيق إبداعات غير مسبوقة.</p>
-<p data-lang="en">Weaving a future where humans and AI collaborate to achieve unprecedented creativity.</p>
+  <div class="about-section reveal">
+    <h2 data-i18n="vision.title">👁️ رؤيتنا</h2>
+    <p data-i18n="vision.desc">نحن نؤمن بأن الذكاء الاصطناعي هو المستقبل، ونعمل على جعل هذه التقنيات المتطورة في متناول الجميع باللغة العربية، مع خلق مجتمع عالمي من المبدعين والمطورين الذين يستخدمون الذكاء الاصطناعي لتحقيق إنجازات غير مسبوقة.</p>
+  </div>
 
-<h2 data-lang="ar">رسالتنا</h2>
-<h2 data-lang="en">Our Mission</h2>
-<p data-lang="ar">تقديم محتوى عربي متميز وأدوات عملية تسهل على الجميع استخدام الذكاء الاصطناعي في حياتهم اليومية وأعمالهم.</p>
-<p data-lang="en">Providing exceptional Arabic content and practical tools that make it easy for everyone to use AI in their daily lives and work.</p>
-</div>
-<div class="stats-box">
-<div class="stat-box"><div class="number">500+</div><span data-lang="ar">أمر مجاني</span><span data-lang="en">Free Prompts</span></div>
-<div class="stat-box"><div class="number">50+</div><span data-lang="ar">منتج رقمي</span><span data-lang="en">Digital Products</span></div>
-<div class="stat-box"><div class="number">98%</div><span data-lang="ar">رضا العملاء</span><span data-lang="en">Satisfaction</span></div>
-<div class="stat-box"><div class="number">15+</div><span data-lang="ar">دولة</span><span data-lang="en">Countries</span></div>
-</div>
-</div>
+  <div class="values-grid reveal">
+    <div class="value-card">
+      <div class="value-icon">💡</div>
+      <h3 data-i18n="value1.title">الابتكار</h3>
+      <p data-i18n="value1.desc">نبحث دائماً عن أحدث الأدوات والتقنيات لنقدمها لمستخدمينا</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🤝</div>
+      <h3 data-i18n="value2.title">المجتمع</h3>
+      <p data-i18n="value2.desc">نؤمن بقوة المجتمع ونسعى لبناء بيئة داعمة للمبدعين</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🎯</div>
+      <h3 data-i18n="value3.title">الجودة</h3>
+      <p data-i18n="value3.desc">نقدم محتوى ومنتجات عالية الجودة تلبي احتياجات مستخدمينا</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🌍</div>
+      <h3 data-i18n="value4.title">الشمولية</h3>
+      <p data-i18n="value4.desc">نخدم المستخدمين بالعربية والإنجليزية والإسبانية والفرنسية</p>
+    </div>
+  </div>
 
-<h2 data-lang="ar" style="text-align:center;color:#6C5CE7">قيمنا</h2>
-<h2 data-lang="en" style="text-align:center;color:#6C5CE7">Our Values</h2>
-<div class="values-grid">
-<div class="value-card"><i class="fas fa-brain" style="font-size:2rem;color:#6C5CE7"></i><h3 data-lang="ar">الإبداع</h3><h3 data-lang="en">Creativity</h3><p data-lang="ar">نشجع الإبداع والتفكير خارج الصندوق</p><p data-lang="en">We encourage creativity and thinking outside the box</p></div>
-<div class="value-card"><i class="fas fa-handshake" style="font-size:2rem;color:#6C5CE7"></i><h3 data-lang="ar">الثقة</h3><h3 data-lang="en">Trust</h3><p data-lang="ar">نبني علاقات قائمة على الشفافية والصدق</p><p data-lang="en">We build relationships based on transparency and honesty</p></div>
-<div class="value-card"><i class="fas fa-chart-line" style="font-size:2rem;color:#6C5CE7"></i><h3 data-lang="ar">التميز</h3><h3 data-lang="en">Excellence</h3><p data-lang="ar">نسعى دائمًا لتقديم أفضل ما لدينا</p><p data-lang="en">We always strive to deliver our best</p></div>
-</div>
-</div>
+  <div class="stats-section reveal">
+    <div>
+      <div class="stat-number">500+</div>
+      <div class="stat-label" data-i18n="stat1">منتج رقمي</div>
+    </div>
+    <div>
+      <div class="stat-number">12K+</div>
+      <div class="stat-label" data-i18n="stat2">مستخدم نشط</div>
+    </div>
+    <div>
+      <div class="stat-number">200+</div>
+      <div class="stat-label" data-i18n="stat3">مبدع</div>
+    </div>
+    <div>
+      <div class="stat-number">4.9★</div>
+      <div class="stat-label" data-i18n="stat4">تقييم المستخدمين</div>
+    </div>
+  </div>
+
+  <div class="team-section reveal">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="team.tag">👥 فريقنا</div>
+      <h2 data-i18n="team.title">نحن <em>شغوفون</em> بالإبداع</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">🧠</div>
+        <h3 data-i18n="team.member1">أحمد المنصور</h3>
+        <p data-i18n="team.role1">المؤسس والرئيس التنفيذي</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">🎨</div>
+        <h3 data-i18n="team.member2">سارة الخالدي</h3>
+        <p data-i18n="team.role2">مديرة التصميم والإبداع</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">💻</div>
+        <h3 data-i18n="team.member3">عمر السعيد</h3>
+        <p data-i18n="team.role3">مدير التقنية</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">📈</div>
+        <h3 data-i18n="team.member4">نورة العتيبي</h3>
+        <p data-i18n="team.role4">مديرة التسويق</p>
+      </div>
+    </div>
+  </div>
 </main>
 
 <footer>
-<div class="container">
-<div class="footer-grid">
-<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
-</div>
-<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
-</div>
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a><p style="color: var(--text-muted); margin-top: 1rem;" data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div>
+    <div><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li><li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li></ul></div>
+    <div><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div>
+    <div><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
 </footer>
 
 <script>
-let currentLang = localStorage.getItem('lang') || 'ar';
+const translations = {
+  ar: {
+    nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", promptlab: "Prompt Lab ✨", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة" },
+    hero: { badge: "🌟 من نحن", title: "قصة <span class='gradient'>MindWeave</span>", subtitle: "نحن هنا لتمكين المبدعين وعشاق الذكاء الاصطناعي في العالم العربي والعالم" },
+    mission: { title: "🚀 رسالتنا", desc: "نسعى لأن نكون المنصة العربية الرائدة في مجال أوامر الذكاء الاصطناعي والمنتجات الرقمية، من خلال توفير أدوات مبتكرة ومحتوى عالي الجودة يمكّن الأفراد والشركات من الاستفادة القصوى من تقنيات الذكاء الاصطناعي." },
+    vision: { title: "👁️ رؤيتنا", desc: "نحن نؤمن بأن الذكاء الاصطناعي هو المستقبل، ونعمل على جعل هذه التقنيات المتطورة في متناول الجميع باللغة العربية، مع خلق مجتمع عالمي من المبدعين والمطورين الذين يستخدمون الذكاء الاصطناعي لتحقيق إنجازات غير مسبوقة." },
+    value1: { title: "الابتكار", desc: "نبحث دائماً عن أحدث الأدوات والتقنيات لنقدمها لمستخدمينا" },
+    value2: { title: "المجتمع", desc: "نؤمن بقوة المجتمع ونسعى لبناء بيئة داعمة للمبدعين" },
+    value3: { title: "الجودة", desc: "نقدم محتوى ومنتجات عالية الجودة تلبي احتياجات مستخدمينا" },
+    value4: { title: "الشمولية", desc: "نخدم المستخدمين بالعربية والإنجليزية والإسبانية والفرنسية" },
+    stat1: "منتج رقمي", stat2: "مستخدم نشط", stat3: "مبدع", stat4: "تقييم المستخدمين",
+    team: { tag: "👥 فريقنا", title: "نحن <em>شغوفون</em> بالإبداع", member1: "أحمد المنصور", role1: "المؤسس والرئيس التنفيذي", member2: "سارة الخالدي", role2: "مديرة التصميم والإبداع", member3: "عمر السعيد", role3: "مدير التقنية", member4: "نورة العتيبي", role4: "مديرة التسويق" },
+    footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" }
+  },
+  en: {
+    nav: { home: "Home", store: "Store", library: "Free Library", promptlab: "Prompt Lab ✨", creators: "Creator Program", blog: "Blog", cart: "Cart" },
+    hero: { badge: "🌟 About Us", title: "The <span class='gradient'>MindWeave</span> Story", subtitle: "We are here to empower creators and AI enthusiasts in the Arab world and beyond" },
+    mission: { title: "🚀 Our Mission", desc: "We strive to be the leading Arabic platform for AI prompts and digital products, providing innovative tools and high-quality content that enables individuals and businesses to maximize the benefits of AI technologies." },
+    vision: { title: "👁️ Our Vision", desc: "We believe AI is the future, and we work to make these advanced technologies accessible to everyone in Arabic, while creating a global community of creators and developers who use AI to achieve unprecedented accomplishments." },
+    value1: { title: "Innovation", desc: "We constantly seek the latest tools and technologies to offer to our users" },
+    value2: { title: "Community", desc: "We believe in the power of community and strive to build a supportive environment for creators" },
+    value3: { title: "Quality", desc: "We provide high-quality content and products that meet our users' needs" },
+    value4: { title: "Inclusivity", desc: "We serve users in Arabic, English, Spanish, and French" },
+    stat1: "Digital Products", stat2: "Active Users", stat3: "Creators", stat4: "User Rating",
+    team: { tag: "👥 Our Team", title: "We are <em>Passionate</em> About Creativity", member1: "Ahmed Al-Mansour", role1: "Founder & CEO", member2: "Sara Al-Khaldi", role2: "Design & Creative Director", member3: "Omar Al-Saeed", role3: "CTO", member4: "Noura Al-Otaibi", role4: "Marketing Director" },
+    footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creative tools.", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" }
+  },
+  es: {
+    nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito" },
+    hero: { badge: "🌟 Sobre Nosotros", title: "La Historia de <span class='gradient'>MindWeave</span>", subtitle: "Estamos aquí para empoderar a creadores y entusiastas de la IA en el mundo árabe y más allá" },
+    mission: { title: "🚀 Nuestra Misión", desc: "Nos esforzamos por ser la plataforma árabe líder en prompts de IA y productos digitales, proporcionando herramientas innovadoras y contenido de alta calidad que permite a individuos y empresas maximizar los beneficios de las tecnologías de IA." },
+    vision: { title: "👁️ Nuestra Visión", desc: "Creemos que la IA es el futuro, y trabajamos para hacer accesibles estas tecnologías avanzadas en árabe, creando una comunidad global de creadores y desarrolladores que usan la IA para lograr logros sin precedentes." },
+    value1: { title: "Innovación", desc: "Buscamos constantemente las últimas herramientas y tecnologías para ofrecer a nuestros usuarios" },
+    value2: { title: "Comunidad", desc: "Creemos en el poder de la comunidad y nos esforzamos por construir un entorno de apoyo para los creadores" },
+    value3: { title: "Calidad", desc: "Proporcionamos contenido y productos de alta calidad que satisfacen las necesidades de nuestros usuarios" },
+    value4: { title: "Inclusividad", desc: "Servimos a usuarios en árabe, inglés, español y francés" },
+    stat1: "Productos Digitales", stat2: "Usuarios Activos", stat3: "Creadores", stat4: "Calificación",
+    team: { tag: "👥 Nuestro Equipo", title: "Somos <em>Apasionados</em> por la Creatividad", member1: "Ahmed Al-Mansour", role1: "Fundador y CEO", member2: "Sara Al-Khaldi", role2: "Directora de Diseño y Creatividad", member3: "Omar Al-Saeed", role3: "CTO", member4: "Noura Al-Otaibi", role4: "Directora de Marketing" },
+    footer: { desc: "Plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Todos los derechos reservados 🧠" }
+  },
+  fr: {
+    nav: { home: "Accueil", store: "Boutique", library: "Bibliothèque Gratuite", promptlab: "Prompt Lab ✨", creators: "Programme Créateurs", blog: "Blog", cart: "Panier" },
+    hero: { badge: "🌟 À Propos", title: "L'Histoire de <span class='gradient'>MindWeave</span>", subtitle: "Nous sommes là pour autonomiser les créateurs et les passionnés d'IA dans le monde arabe et au-delà" },
+    mission: { title: "🚀 Notre Mission", desc: "Nous nous efforçons d'être la plateforme arabe leader en matière de prompts IA et de produits numériques, fournissant des outils innovants et du contenu de haute qualité qui permet aux individus et aux entreprises de maximiser les avantages des technologies d'IA." },
+    vision: { title: "👁️ Notre Vision", desc: "Nous croyons que l'IA est l'avenir, et nous travaillons pour rendre ces technologies avancées accessibles à tous en arabe, tout en créant une communauté mondiale de créateurs et de développeurs qui utilisent l'IA pour accomplir des exploits sans précédent." },
+    value1: { title: "Innovation", desc: "Nous recherchons constamment les derniers outils et technologies à offrir à nos utilisateurs" },
+    value2: { title: "Communauté", desc: "Nous croyons au pouvoir de la communauté et nous nous efforçons de construire un environnement favorable pour les créateurs" },
+    value3: { title: "Qualité", desc: "Nous fournissons un contenu et des produits de haute qualité qui répondent aux besoins de nos utilisateurs" },
+    value4: { title: "Inclusivité", desc: "Nous servons les utilisateurs en arabe, anglais, espagnol et français" },
+    stat1: "Produits Numériques", stat2: "Utilisateurs Actifs", stat3: "Créateurs", stat4: "Note",
+    team: { tag: "👥 Notre Équipe", title: "Nous sommes <em>Passionnés</em> par la Créativité", member1: "Ahmed Al-Mansour", role1: "Fondateur et PDG", member2: "Sara Al-Khaldi", role2: "Directrice du Design et de la Créativité", member3: "Omar Al-Saeed", role3: "CTO", member4: "Noura Al-Otaibi", role4: "Directrice Marketing" },
+    footer: { desc: "Plateforme mondiale complète pour les prompts IA, templates numériques et outils créatifs.", platform: "Plateforme", support: "Support", legal: "Juridique", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Tous droits réservés 🧠" }
+  }
+};
 
-function toggleLanguage() {
-    currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    localStorage.setItem('lang', currentLang);
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
+let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+
+function updateLanguage() {
+  const t = translations[currentLang];
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) {
+      if (key === 'hero.title' || key === 'team.title') {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    }
+  });
+  
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
+  
+  document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
 }
 
-function applyLanguage() {
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  updateLanguage();
+  toggleLangMenu();
 }
 
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-function updateCartDisplay() {
-    const count = cart.reduce((s, i) => s + i.quantity, 0);
-    const cartSpan = document.querySelector('.cart-count');
-    if (cartSpan) cartSpan.textContent = count;
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
 }
 
-applyLanguage();
-updateCartDisplay();
+function updateCartCount() {
+  const countEl = document.getElementById('cartCount');
+  if (countEl) countEl.textContent = cart.length;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLanguage();
+  updateCartCount();
+  
+  document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      document.getElementById('langSelector')?.classList.remove('active');
+    }
+  });
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
 </script>
 </body>
 </html>
