@@ -4,179 +4,150 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Future Self AI | تواصل مع ذاتك المستقبلية</title>
-<meta name="description" content="تواصل مع ذاتك المستقبلية باستخدام الذكاء الاصطناعي - احصل على نصائح مخصصة لتحقيق أهدافك">
+<meta name="description" content="تواصل مع ذاتك المستقبلية باستخدام الذكاء الاصطناعي - احصل على نصائح مخصصة لتحقيق أهدافك وتتبع تقدمك">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-/* ========== نفس ألوان وتنسيقات MindWeave ========== */
-:root {
-  --primary: #00D4FF;
-  --secondary: #FF6B35;
-  --accent: #7C3AED;
-  --gold: #FFD700;
-  --bg: #050A0F;
-  --bg2: #0A1628;
-  --bg3: #0F1F3D;
-  --card: rgba(255,255,255,0.04);
-  --border: rgba(0,212,255,0.15);
-  --text: #E8F4FD;
-  --muted: #7A9BB5;
-  --success: #00FF88;
-  --danger: #FF4444;
-  --font-ar: 'Cairo', sans-serif;
-  --font-en: 'Inter', sans-serif;
-  --mono: 'Space Mono', monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
+:root {
+  --primary: #00D4FF;
+  --primary-dark: #00b8e6;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+  --success: #00FF88;
+  --danger: #FF4444;
+  --gold: #FFD700;
+}
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-ar);
-  overflow-x: hidden;
+  font-family: 'Cairo', sans-serif;
   direction: rtl;
-  transition: direction 0.3s ease;
+  line-height: 1.6;
 }
 
-body[data-lang="en"], body[data-lang="es"], body[data-lang="fr"] {
-  font-family: var(--font-en);
+body[data-lang="en"],
+body[data-lang="es"],
+body[data-lang="fr"] {
+  font-family: 'Inter', sans-serif;
   direction: ltr;
 }
 
 body[data-lang="ar"] {
-  font-family: var(--font-ar);
+  font-family: 'Cairo', sans-serif;
   direction: rtl;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: 
-    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0,212,255,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,58,237,0.06) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ========== Navigation ========== */
+/* Navigation */
 nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: rgba(5,10,15,0.85);
-  backdrop-filter: blur(20px);
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 0 2rem;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 1000;
 }
 
-.nav-logo {
+.logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
+  font-size: 1.5rem;
   font-weight: 900;
-  font-size: 1.4rem;
   color: var(--text);
+  text-decoration: none;
 }
 
-.nav-logo .brain-icon {
-  width: 38px;
-  height: 38px;
+.logo-icon {
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, var(--primary), var(--accent));
-  border-radius: 10px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
-.nav-logo span { color: var(--primary); }
+.logo span {
+  color: var(--primary);
+}
 
 .nav-links {
   display: flex;
-  align-items: center;
-  gap: 0.2rem;
+  gap: 0.5rem;
   list-style: none;
 }
 
 .nav-links a {
-  color: var(--muted);
+  color: var(--text-muted);
   text-decoration: none;
-  padding: 0.5rem 0.9rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
-  font-size: 0.9rem;
   font-weight: 600;
   transition: all 0.2s;
 }
 
-.nav-links a:hover, .nav-links a.active {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--primary);
-  background: rgba(0,212,255,0.08);
+  background: rgba(0, 212, 255, 0.1);
 }
 
-.nav-actions {
+.nav-buttons {
   display: flex;
-  align-items: center;
   gap: 1rem;
+  align-items: center;
 }
 
-.btn-nav {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: white;
-  border: none;
-  padding: 0.55rem 1.3rem;
-  border-radius: 8px;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.btn-nav:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,212,255,0.3); }
-
-.lang-switcher {
+.lang-selector {
   position: relative;
 }
 
 .lang-btn {
-  background: var(--card);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border);
   color: var(--text);
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  font-family: inherit;
-  font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.9rem;
+  font-family: inherit;
 }
 
 .lang-dropdown {
   position: absolute;
   top: 100%;
   right: 0;
-  margin-top: 0.5rem;
-  background: var(--bg2);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 0.5rem;
-  min-width: 150px;
+  margin-top: 0.5rem;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s;
+  transition: all 0.2s;
   z-index: 1001;
 }
 
@@ -187,94 +158,131 @@ body[data-lang="fr"] .lang-dropdown {
   left: 0;
 }
 
-.lang-switcher.active .lang-dropdown {
+.lang-selector.active .lang-dropdown {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
 }
 
 .lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s;
 }
 
-.lang-option:hover { background: rgba(0,212,255,0.1); }
-.lang-option.active { background: rgba(0,212,255,0.15); color: var(--primary); }
-
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 0.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.2rem;
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
 }
 
-@media (max-width: 900px) {
-  .nav-links { display: none; }
-  .mobile-menu-btn { display: block; }
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* ========== Main Content ========== */
+.btn-outline:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+/* Main Content */
 main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 100px 1.5rem 4rem;
-  position: relative;
-  z-index: 1;
 }
 
 /* Hero Section */
-.hero-future {
+.hero {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .hero-badge {
   display: inline-block;
-  background: rgba(0,212,255,0.1);
+  background: rgba(0, 212, 255, 0.1);
   border: 1px solid var(--border);
   padding: 0.5rem 1.2rem;
   border-radius: 50px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   margin-bottom: 1.5rem;
 }
 
-.hero-future h1 {
+.hero h1 {
   font-size: 3rem;
   font-weight: 900;
   margin-bottom: 1rem;
+}
+
+.hero h1 .gradient {
   background: linear-gradient(135deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.hero-future p {
+.hero p {
   font-size: 1.2rem;
-  color: var(--muted);
+  color: var(--text-muted);
   max-width: 700px;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
+}
+
+/* Back Link */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  text-decoration: underline;
 }
 
 /* Chat Container */
 .chat-container {
-  background: var(--card);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 24px;
   overflow: hidden;
-  margin-bottom: 3rem;
+  margin: 2rem 0;
 }
 
 .chat-header {
-  background: var(--bg2);
+  background: var(--bg-dark);
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--border);
   display: flex;
@@ -293,8 +301,15 @@ main {
   font-size: 1.5rem;
 }
 
-.chat-header h3 { font-size: 1.1rem; margin-bottom: 0.2rem; }
-.chat-header p { font-size: 0.75rem; color: var(--muted); }
+.chat-header h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.chat-header p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
 
 .chat-messages {
   height: 400px;
@@ -311,8 +326,14 @@ main {
   max-width: 80%;
 }
 
-.message.user { align-self: flex-end; flex-direction: row-reverse; }
-.message.bot { align-self: flex-start; }
+.message.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.message.bot {
+  align-self: flex-start;
+}
 
 .message-avatar {
   width: 35px;
@@ -325,11 +346,16 @@ main {
   flex-shrink: 0;
 }
 
-.message.user .message-avatar { background: var(--primary); }
-.message.bot .message-avatar { background: var(--accent); }
+.message.user .message-avatar {
+  background: var(--primary);
+}
+
+.message.bot .message-avatar {
+  background: var(--accent);
+}
 
 .message-content {
-  background: var(--bg2);
+  background: var(--bg);
   padding: 0.8rem 1rem;
   border-radius: 16px;
   font-size: 0.9rem;
@@ -360,7 +386,10 @@ main {
   resize: none;
 }
 
-.chat-input:focus { outline: none; border-color: var(--primary); }
+.chat-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
 
 .send-btn {
   background: linear-gradient(135deg, var(--primary), var(--accent));
@@ -373,7 +402,10 @@ main {
   transition: all 0.3s;
 }
 
-.send-btn:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(0,212,255,0.3); }
+.send-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
 
 /* Features Grid */
 .features-grid {
@@ -384,7 +416,7 @@ main {
 }
 
 .feature-card {
-  background: var(--card);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 1.8rem;
@@ -395,7 +427,7 @@ main {
 .feature-card:hover {
   transform: translateY(-5px);
   border-color: var(--primary);
-  box-shadow: 0 10px 30px rgba(0,212,255,0.1);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
 }
 
 .feature-icon {
@@ -403,12 +435,20 @@ main {
   margin-bottom: 1rem;
 }
 
-.feature-card h3 { margin-bottom: 0.8rem; font-size: 1.2rem; }
-.feature-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+.feature-card h3 {
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+}
+
+.feature-card p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
 
 /* Goals Section */
 .goals-section {
-  background: var(--card);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 2rem;
@@ -420,13 +460,20 @@ main {
   margin-bottom: 2rem;
 }
 
-.goals-header h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
-.goals-header p { color: var(--muted); }
+.goals-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.goals-header p {
+  color: var(--text-muted);
+}
 
 .goal-input-group {
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 .goal-input {
@@ -465,75 +512,125 @@ main {
   border: 1px solid var(--border);
 }
 
-.goal-text { font-size: 0.9rem; }
-.goal-delete { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 1.2rem; }
-
-/* Back Button */
-.back-link {
-  display: inline-flex;
+.goal-text {
+  font-size: 0.9rem;
+  display: flex;
   align-items: center;
-  gap: 8px;
-  color: var(--primary);
-  text-decoration: none;
-  margin-bottom: 2rem;
-  font-weight: 600;
+  gap: 10px;
+}
+
+.goal-text::before {
+  content: "🎯";
+}
+
+.goal-delete {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.empty-goals {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 2rem;
 }
 
 /* Footer */
 footer {
-  background: var(--bg2);
+  background: var(--bg-card);
   border-top: 1px solid var(--border);
-  padding: 2rem;
-  text-align: center;
-  margin-top: 4rem;
+  padding: 3rem 2rem 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
 }
 
 .footer-links a {
-  color: var(--muted);
+  color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.85rem;
 }
 
-.footer-links a:hover { color: var(--primary); }
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
 
 /* Notification */
 .notification {
   position: fixed;
   bottom: 2rem;
-  left: 2rem;
-  background: var(--bg2);
+  right: 2rem;
+  background: var(--bg-card);
   border: 1px solid var(--primary);
   border-radius: 12px;
   padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   gap: 10px;
-  z-index: 9999;
   transform: translateY(100px);
   opacity: 0;
-  transition: all 0.4s;
+  transition: all 0.3s;
+  z-index: 9999;
 }
 
-body[data-lang="en"] .notification { left: auto; right: 2rem; }
-.notification.show { transform: translateY(0); opacity: 1; }
+body[data-lang="en"] .notification {
+  right: auto;
+  left: 2rem;
+}
 
-.reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 <body data-lang="ar">
 
 <nav>
-  <a href="../index.html" class="nav-logo">
-    <div class="brain-icon">🧠</div>
+  <a href="../index.html" class="logo">
+    <div class="logo-icon">🧠</div>
     Mind<span>Weave</span>
   </a>
   
@@ -547,32 +644,31 @@ body[data-lang="en"] .notification { left: auto; right: 2rem; }
     <li><a href="index.html" class="active">🚀 Future Self</a></li>
   </ul>
 
-  <div class="nav-actions">
-    <div class="lang-switcher" id="langSwitcher">
-      <button class="lang-btn" onclick="toggleLangDropdown()">
-        <span class="lang-flag" id="currentLangFlag">🇸🇦</span>
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" onclick="toggleLangMenu()">
+        <span id="currentLangFlag">🇸🇦</span>
         <span id="currentLangLabel">العربية</span>
         <span>▼</span>
       </button>
-      <div class="lang-dropdown" id="langDropdown">
-        <div class="lang-option active" onclick="changeLanguage('ar')" data-lang="ar"><span class="lang-flag">🇸🇦</span><span>العربية</span></div>
-        <div class="lang-option" onclick="changeLanguage('en')" data-lang="en"><span class="lang-flag">🇬🇧</span><span>English</span></div>
-        <div class="lang-option" onclick="changeLanguage('es')" data-lang="es"><span class="lang-flag">🇪🇸</span><span>Español</span></div>
-        <div class="lang-option" onclick="changeLanguage('fr')" data-lang="fr"><span class="lang-flag">🇫🇷</span><span>Français</span></div>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" onclick="changeLanguage('ar')">🇸🇦 العربية</div>
+        <div class="lang-option" onclick="changeLanguage('en')">🇬🇧 English</div>
+        <div class="lang-option" onclick="changeLanguage('es')">🇪🇸 Español</div>
+        <div class="lang-option" onclick="changeLanguage('fr')">🇫🇷 Français</div>
       </div>
     </div>
-    <a href="../cart.html" class="btn-nav" style="background: var(--card); color: var(--text);">🛒 السلة</a>
-    <button class="mobile-menu-btn">☰</button>
+    <a href="../cart.html" class="btn-primary" style="background: var(--bg-card); color: var(--text); border: 1px solid var(--border);">🛒 السلة</a>
   </div>
 </nav>
 
 <main>
-  <a href="../index.html" class="back-link">← العودة إلى الرئيسية</a>
+  <a href="../index.html" class="back-link reveal">← العودة إلى الرئيسية</a>
 
-  <div class="hero-future reveal">
-    <div class="hero-badge">🚀 <span data-i18n="hero.badge">التواصل مع ذاتك المستقبلية</span></div>
-    <h1>Future <span style="color: var(--primary);">Self</span> AI</h1>
-    <p data-i18n="hero.desc">تحدث مع نسختك المستقبلية، احصل على نصائح مخصصة لتحقيق أهدافك، وتتبع تقدمك نحو الشخص الذي تطمح لأن تصبح.</p>
+  <div class="hero reveal">
+    <div class="hero-badge" id="heroBadge">🚀 التواصل مع ذاتك المستقبلية</div>
+    <h1>Future <span class="gradient">Self</span> AI</h1>
+    <p id="heroDesc">تحدث مع نسختك المستقبلية، احصل على نصائح مخصصة لتحقيق أهدافك، وتتبع تقدمك نحو الشخص الذي تطمح لأن تصبح.</p>
   </div>
 
   <!-- Chat Section -->
@@ -580,19 +676,19 @@ body[data-lang="en"] .notification { left: auto; right: 2rem; }
     <div class="chat-header">
       <div class="chat-avatar">🧠</div>
       <div>
-        <h3 data-i18n="chat.title">Future Self AI Assistant</h3>
-        <p data-i18n="chat.subtitle">متصل دائمًا لمساعدتك</p>
+        <h3 id="chatTitle">Future Self AI Assistant</h3>
+        <p id="chatSubtitle">متصل دائمًا لمساعدتك</p>
       </div>
     </div>
     <div class="chat-messages" id="chatMessages">
       <div class="message bot">
         <div class="message-avatar">🤖</div>
-        <div class="message-content" data-i18n="chat.welcome">مرحبًا! أنا مساعدك للتواصل مع ذاتك المستقبلية. أخبرني عن أهدافك وأحلامك، وسأساعدك في رسم طريق لتحقيقها. ماذا تريد أن تحقق في المستقبل؟</div>
+        <div class="message-content" id="welcomeMsg">مرحبًا! أنا مساعدك للتواصل مع ذاتك المستقبلية. أخبرني عن أهدافك وأحلامك، وسأساعدك في رسم طريق لتحقيقها. ماذا تريد أن تحقق في المستقبل؟</div>
       </div>
     </div>
     <div class="chat-input-area">
-      <textarea class="chat-input" id="chatInput" rows="1" placeholder="اكتب رسالتك هنا..." data-i18n-placeholder="chat.placeholder"></textarea>
-      <button class="send-btn" id="sendBtn" onclick="sendMessage()">📤 إرسال</button>
+      <textarea class="chat-input" id="chatInput" rows="1" placeholder="اكتب رسالتك هنا..."></textarea>
+      <button class="send-btn" id="sendBtn">📤 إرسال</button>
     </div>
   </div>
 
@@ -600,87 +696,118 @@ body[data-lang="en"] .notification { left: auto; right: 2rem; }
   <div class="features-grid">
     <div class="feature-card reveal">
       <div class="feature-icon">🎯</div>
-      <h3 data-i18n="feature1.title">تحديد الأهداف</h3>
-      <p data-i18n="feature1.desc">ساعدنا في فهم أهدافك طويلة المدى وقصيرة المدى</p>
+      <h3 id="feature1Title">تحديد الأهداف</h3>
+      <p id="feature1Desc">ساعدنا في فهم أهدافك طويلة المدى وقصيرة المدى</p>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon">📈</div>
-      <h3 data-i18n="feature2.title">تتبع التقدم</h3>
-      <p data-i18n="feature2.desc">تابع رحلتك نحو تحقيق أهدافك مع نصائح مخصصة</p>
+      <h3 id="feature2Title">تتبع التقدم</h3>
+      <p id="feature2Desc">تابع رحلتك نحو تحقيق أهدافك مع نصائح مخصصة</p>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon">💡</div>
-      <h3 data-i18n="feature3.title">نصائح ذكية</h3>
-      <p data-i18n="feature3.desc">احصل على نصائح مدعومة بالذكاء الاصطناعي لتحسين مسارك</p>
+      <h3 id="feature3Title">نصائح ذكية</h3>
+      <p id="feature3Desc">احصل على نصائح مدعومة بالذكاء الاصطناعي لتحسين مسارك</p>
     </div>
   </div>
 
   <!-- Goals Section -->
   <div class="goals-section reveal">
     <div class="goals-header">
-      <h2 data-i18n="goals.title">🎯 أهدافي</h2>
-      <p data-i18n="goals.subtitle">أضف أهدافك وتابع تقدمك نحو تحقيقها</p>
+      <h2 id="goalsTitle">🎯 أهدافي</h2>
+      <p id="goalsSubtitle">أضف أهدافك وتابع تقدمك نحو تحقيقها</p>
     </div>
     <div class="goal-input-group">
-      <input type="text" class="goal-input" id="goalInput" placeholder="أضف هدفًا جديدًا..." data-i18n-placeholder="goals.placeholder">
-      <button class="goal-add-btn" onclick="addGoal()">+ إضافة</button>
+      <input type="text" class="goal-input" id="goalInput" placeholder="أضف هدفًا جديدًا...">
+      <button class="goal-add-btn" id="addGoalBtn">+ إضافة</button>
     </div>
     <div class="goals-list" id="goalsList">
-      <div style="text-align: center; color: var(--muted); padding: 2rem;" data-i18n="goals.empty">لا توجد أهداف بعد. أضف هدفك الأول!</div>
+      <div class="empty-goals" id="emptyGoalsMsg">لا توجد أهداف بعد. أضف هدفك الأول!</div>
     </div>
   </div>
 </main>
 
 <footer>
-  <div class="footer-links">
-    <a href="../about.html" data-i18n="footer.about">من نحن</a>
-    <a href="../contact.html" data-i18n="footer.contact">تواصل معنا</a>
-    <a href="../privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a>
-    <a href="../terms.html" data-i18n="footer.terms">شروط الاستخدام</a>
+  <div class="footer-grid">
+    <div>
+      <a href="../index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
+        <div class="logo-icon">🧠</div>
+        Mind<span>Weave</span>
+      </a>
+      <p style="color: var(--text-muted); margin-top: 1rem;" id="footerDesc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p>
+    </div>
+    <div>
+      <h4 id="footerPlatform">المنصة</h4>
+      <ul class="footer-links">
+        <li><a href="../store.html" id="footerStore">المتجر</a></li>
+        <li><a href="../library.html" id="footerLibrary">المكتبة المجانية</a></li>
+        <li><a href="../creators.html" id="footerCreators">برنامج المبدعين</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 id="footerSupport">الدعم</h4>
+      <ul class="footer-links">
+        <li><a href="../about.html" id="footerAbout">من نحن</a></li>
+        <li><a href="../contact.html" id="footerContact">تواصل معنا</a></li>
+        <li><a href="../faq.html" id="footerFaq">الأسئلة الشائعة</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 id="footerLegal">قانوني</h4>
+      <ul class="footer-links">
+        <li><a href="../privacy.html" id="footerPrivacy">سياسة الخصوصية</a></li>
+        <li><a href="../terms.html" id="footerTerms">شروط الاستخدام</a></li>
+      </ul>
+    </div>
   </div>
-  <p data-i18n="footer.copyright">© 2026 MindWeave — Future Self AI | جميع الحقوق محفوظة</p>
+  <div class="footer-bottom">
+    <p id="footerCopyright">© 2026 MindWeave — Future Self AI | جميع الحقوق محفوظة</p>
+  </div>
 </footer>
 
-<div class="notification" id="notification"><span id="notifIcon">✅</span><span id="notifText"></span></div>
+<div class="notification" id="notification">
+  <span id="notifIcon">✅</span>
+  <span id="notifText"></span>
+</div>
 
 <script>
-// ========== Language Translations ==========
+// ========== Translations ==========
 const translations = {
   ar: {
-    hero: { badge: "التواصل مع ذاتك المستقبلية", desc: "تحدث مع نسختك المستقبلية، احصل على نصائح مخصصة لتحقيق أهدافك" },
-    chat: { title: "Future Self AI Assistant", subtitle: "متصل دائمًا لمساعدتك", welcome: "مرحبًا! أنا مساعدك للتواصل مع ذاتك المستقبلية. أخبرني عن أهدافك وأحلامك، وسأساعدك في رسم طريق لتحقيقها.", placeholder: "اكتب رسالتك هنا..." },
+    hero: { badge: "🚀 التواصل مع ذاتك المستقبلية", desc: "تحدث مع نسختك المستقبلية، احصل على نصائح مخصصة لتحقيق أهدافك، وتتبع تقدمك نحو الشخص الذي تطمح لأن تصبح." },
+    chat: { title: "Future Self AI Assistant", subtitle: "متصل دائمًا لمساعدتك", welcome: "مرحبًا! أنا مساعدك للتواصل مع ذاتك المستقبلية. أخبرني عن أهدافك وأحلامك، وسأساعدك في رسم طريق لتحقيقها. ماذا تريد أن تحقق في المستقبل?", placeholder: "اكتب رسالتك هنا..." },
     feature1: { title: "تحديد الأهداف", desc: "ساعدنا في فهم أهدافك طويلة المدى وقصيرة المدى" },
     feature2: { title: "تتبع التقدم", desc: "تابع رحلتك نحو تحقيق أهدافك مع نصائح مخصصة" },
     feature3: { title: "نصائح ذكية", desc: "احصل على نصائح مدعومة بالذكاء الاصطناعي لتحسين مسارك" },
     goals: { title: "🎯 أهدافي", subtitle: "أضف أهدافك وتابع تقدمك نحو تحقيقها", placeholder: "أضف هدفًا جديدًا...", empty: "لا توجد أهداف بعد. أضف هدفك الأول!" },
-    footer: { about: "من نحن", contact: "تواصل معنا", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — Future Self AI | جميع الحقوق محفوظة" }
+    footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.", platform: "المنصة", support: "الدعم", legal: "قانوني", store: "المتجر", library: "المكتبة المجانية", creators: "برنامج المبدعين", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — Future Self AI | جميع الحقوق محفوظة" }
   },
   en: {
-    hero: { badge: "Connect with Your Future Self", desc: "Talk to your future self, get personalized advice to achieve your goals" },
-    chat: { title: "Future Self AI Assistant", subtitle: "Always connected to help you", welcome: "Hello! I'm your Future Self AI assistant. Tell me about your goals and dreams, and I'll help you chart a path to achieve them.", placeholder: "Type your message..." },
+    hero: { badge: "🚀 Connect with Your Future Self", desc: "Talk to your future self, get personalized advice to achieve your goals, and track your progress toward becoming who you aspire to be." },
+    chat: { title: "Future Self AI Assistant", subtitle: "Always connected to help you", welcome: "Hello! I'm your Future Self AI assistant. Tell me about your goals and dreams, and I'll help you chart a path to achieve them. What do you want to achieve in the future?", placeholder: "Type your message..." },
     feature1: { title: "Goal Setting", desc: "Help us understand your long-term and short-term goals" },
-    feature2: { title: "Progress Tracking", desc: "Track your journey with personalized insights" },
+    feature2: { title: "Progress Tracking", desc: "Track your journey toward your goals with personalized insights" },
     feature3: { title: "Smart Insights", desc: "Get AI-powered advice to optimize your path" },
     goals: { title: "🎯 My Goals", subtitle: "Add your goals and track your progress", placeholder: "Add a new goal...", empty: "No goals yet. Add your first goal!" },
-    footer: { about: "About", contact: "Contact", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — Future Self AI | All Rights Reserved" }
+    footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creative tools.", platform: "Platform", support: "Support", legal: "Legal", store: "Store", library: "Free Library", creators: "Creator Program", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — Future Self AI | All Rights Reserved" }
   },
   es: {
-    hero: { badge: "Conecta con tu Yo Futuro", desc: "Habla con tu yo futuro, obtén consejos personalizados para alcanzar tus metas" },
-    chat: { title: "Future Self AI Assistant", subtitle: "Siempre conectado para ayudarte", welcome: "¡Hola! Soy tu asistente de Future Self AI. Cuéntame sobre tus metas y sueños, y te ayudaré a trazar un camino para alcanzarlos.", placeholder: "Escribe tu mensaje..." },
+    hero: { badge: "🚀 Conecta con tu Yo Futuro", desc: "Habla con tu yo futuro, obtén consejos personalizados para alcanzar tus metas y sigue tu progreso para convertirte en quien aspiras ser." },
+    chat: { title: "Future Self AI Assistant", subtitle: "Siempre conectado para ayudarte", welcome: "¡Hola! Soy tu asistente de Future Self AI. Cuéntame sobre tus metas y sueños, y te ayudaré a trazar un camino para alcanzarlos. ¿Qué quieres lograr en el futuro?", placeholder: "Escribe tu mensaje..." },
     feature1: { title: "Establecimiento de Metas", desc: "Ayúdanos a entender tus metas a largo y corto plazo" },
-    feature2: { title: "Seguimiento de Progreso", desc: "Sigue tu viaje con consejos personalizados" },
+    feature2: { title: "Seguimiento de Progreso", desc: "Sigue tu viaje hacia tus metas con consejos personalizados" },
     feature3: { title: "Información Inteligente", desc: "Obtén consejos basados en IA para optimizar tu camino" },
     goals: { title: "🎯 Mis Metas", subtitle: "Agrega tus metas y sigue tu progreso", placeholder: "Agrega una nueva meta...", empty: "Aún no hay metas. ¡Agrega tu primera meta!" },
-    footer: { about: "Nosotros", contact: "Contacto", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Future Self AI | Todos los derechos reservados" }
+    footer: { desc: "Una plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", store: "Tienda", library: "Biblioteca Gratuita", creators: "Programa de Creadores", about: "Nosotros", contact: "Contacto", faq: "Preguntas Frecuentes", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Future Self AI | Todos los derechos reservados" }
   },
   fr: {
-    hero: { badge: "Connectez-vous avec votre Moi Futur", desc: "Parlez à votre futur moi, obtenez des conseils personnalisés pour atteindre vos objectifs" },
-    chat: { title: "Future Self AI Assistant", subtitle: "Toujours connecté pour vous aider", welcome: "Bonjour ! Je suis votre assistant Future Self AI. Parlez-moi de vos objectifs et de vos rêves, et je vous aiderai à tracer un chemin pour les atteindre.", placeholder: "Écrivez votre message..." },
+    hero: { badge: "🚀 Connectez-vous avec votre Moi Futur", desc: "Parlez à votre futur moi, obtenez des conseils personnalisés pour atteindre vos objectifs et suivez vos progrès vers ce que vous aspirez à devenir." },
+    chat: { title: "Future Self AI Assistant", subtitle: "Toujours connecté pour vous aider", welcome: "Bonjour ! Je suis votre assistant Future Self AI. Parlez-moi de vos objectifs et de vos rêves, et je vous aiderai à tracer un chemin pour les atteindre. Que voulez-vous accomplir dans le futur?", placeholder: "Écrivez votre message..." },
     feature1: { title: "Fixation d'Objectifs", desc: "Aidez-nous à comprendre vos objectifs à long et court terme" },
-    feature2: { title: "Suivi de Progrès", desc: "Suivez votre parcours avec des conseils personnalisés" },
+    feature2: { title: "Suivi de Progrès", desc: "Suivez votre parcours vers vos objectifs avec des conseils personnalisés" },
     feature3: { title: "Conseils Intelligents", desc: "Obtenez des conseils basés sur l'IA pour optimiser votre chemin" },
     goals: { title: "🎯 Mes Objectifs", subtitle: "Ajoutez vos objectifs et suivez vos progrès", placeholder: "Ajouter un nouvel objectif...", empty: "Pas encore d'objectifs. Ajoutez votre premier objectif !" },
-    footer: { about: "À propos", contact: "Contact", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Future Self AI | Tous droits réservés" }
+    footer: { desc: "Une plateforme mondiale complète pour les prompts IA, les templates numériques et les outils créatifs.", platform: "Plateforme", support: "Support", legal: "Juridique", store: "Boutique", library: "Bibliothèque Gratuite", creators: "Programme Créateurs", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Future Self AI | Tous droits réservés" }
   }
 };
 
@@ -701,18 +828,42 @@ function init() {
 
 function updateLanguageUI() {
   const t = translations[currentLang];
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    const val = key.split('.').reduce((o, k) => o?.[k], t);
-    if (val) el.textContent = val;
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    const val = key.split('.').reduce((o, k) => o?.[k], t);
-    if (val) el.placeholder = val;
-  });
-  document.getElementById('currentLangFlag').textContent = currentLang === 'ar' ? '🇸🇦' : currentLang === 'en' ? '🇬🇧' : currentLang === 'es' ? '🇪🇸' : '🇫🇷';
-  document.getElementById('currentLangLabel').textContent = currentLang === 'ar' ? 'العربية' : currentLang === 'en' ? 'English' : currentLang === 'es' ? 'Español' : 'Français';
+  
+  // Update text content
+  document.getElementById('heroBadge').textContent = t.hero.badge;
+  document.getElementById('heroDesc').textContent = t.hero.desc;
+  document.getElementById('chatTitle').textContent = t.chat.title;
+  document.getElementById('chatSubtitle').textContent = t.chat.subtitle;
+  document.getElementById('welcomeMsg').textContent = t.chat.welcome;
+  document.getElementById('chatInput').placeholder = t.chat.placeholder;
+  document.getElementById('feature1Title').textContent = t.feature1.title;
+  document.getElementById('feature1Desc').textContent = t.feature1.desc;
+  document.getElementById('feature2Title').textContent = t.feature2.title;
+  document.getElementById('feature2Desc').textContent = t.feature2.desc;
+  document.getElementById('feature3Title').textContent = t.feature3.title;
+  document.getElementById('feature3Desc').textContent = t.feature3.desc;
+  document.getElementById('goalsTitle').textContent = t.goals.title;
+  document.getElementById('goalsSubtitle').textContent = t.goals.subtitle;
+  document.getElementById('goalInput').placeholder = t.goals.placeholder;
+  document.getElementById('footerDesc').textContent = t.footer.desc;
+  document.getElementById('footerPlatform').textContent = t.footer.platform;
+  document.getElementById('footerSupport').textContent = t.footer.support;
+  document.getElementById('footerLegal').textContent = t.footer.legal;
+  document.getElementById('footerStore').textContent = t.footer.store;
+  document.getElementById('footerLibrary').textContent = t.footer.library;
+  document.getElementById('footerCreators').textContent = t.footer.creators;
+  document.getElementById('footerAbout').textContent = t.footer.about;
+  document.getElementById('footerContact').textContent = t.footer.contact;
+  document.getElementById('footerFaq').textContent = t.footer.faq;
+  document.getElementById('footerPrivacy').textContent = t.footer.privacy;
+  document.getElementById('footerTerms').textContent = t.footer.terms;
+  document.getElementById('footerCopyright').textContent = t.footer.copyright;
+  
+  // Update language button
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
 }
 
 function changeLanguage(lang) {
@@ -722,11 +873,13 @@ function changeLanguage(lang) {
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   updateLanguageUI();
-  document.querySelectorAll('.lang-option').forEach(opt => opt.classList.toggle('active', opt.dataset.lang === lang));
-  toggleLangDropdown();
+  renderGoals();
+  toggleLangMenu();
 }
 
-function toggleLangDropdown() { document.getElementById('langSwitcher').classList.toggle('active'); }
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
+}
 
 // ========== Chat Functions ==========
 function sendMessage() {
@@ -755,6 +908,8 @@ function addMessageToChat(sender, text) {
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
   
   chatHistory.push({ sender, text, timestamp: Date.now() });
+  // Keep only last 50 messages
+  if (chatHistory.length > 50) chatHistory = chatHistory.slice(-50);
   localStorage.setItem('future_self_chat', JSON.stringify(chatHistory));
 }
 
@@ -784,25 +939,33 @@ function generateAIResponse(userMessage) {
       "رائع! هذا هدف طموح. كيف تخطط لتحقيقه؟",
       "أرى أنك متحمس لتحقيق ذلك. ما هي الخطوة الأولى التي ستتخذها؟",
       "هذا يذكرني بأن المستقبل يبدأ اليوم. ماذا ستفعل الآن لتقترب من هدفك؟",
-      "نصيحتي لك: قسّم هذا الهدف الكبير إلى أهداف أصغر يومية. هل جربت ذلك؟"
+      "نصيحتي لك: قسّم هذا الهدف الكبير إلى أهداف أصغر يومية. هل جربت ذلك؟",
+      "تذكر أن النجاح هو رحلة وليس وجهة. استمتع بكل خطوة تخطوها نحو هدفك.",
+      "أعتقد أنك تملك القدرة على تحقيق ذلك. ما الذي تحتاجه لتشعر بالثقة أكثر؟"
     ],
     en: [
       "Great! That's an ambitious goal. How do you plan to achieve it?",
       "I see you're excited about that. What's the first step you'll take?",
       "Remember, the future starts today. What will you do now to get closer to your goal?",
-      "My advice: break this big goal into smaller daily tasks. Have you tried that?"
+      "My advice: break this big goal into smaller daily tasks. Have you tried that?",
+      "Remember that success is a journey, not a destination. Enjoy every step!",
+      "I believe you have what it takes. What do you need to feel more confident?"
     ],
     es: [
       "¡Genial! Ese es un objetivo ambicioso. ¿Cómo planeas lograrlo?",
       "Veo que estás emocionado por eso. ¿Cuál es el primer paso que tomarás?",
       "Recuerda, el futuro comienza hoy. ¿Qué harás ahora para acercarte a tu meta?",
-      "Mi consejo: divide este gran objetivo en tareas diarias más pequeñas. ¿Has probado eso?"
+      "Mi consejo: divide este gran objetivo en tareas diarias más pequeñas. ¿Has probado eso?",
+      "Recuerda que el éxito es un viaje, no un destino. ¡Disfruta cada paso!",
+      "Creo que tienes lo necesario. ¿Qué necesitas para sentirte más seguro?"
     ],
     fr: [
       "Super ! C'est un objectif ambitieux. Comment comptes-tu l'atteindre ?",
       "Je vois que tu es excité à ce sujet. Quelle est la première étape que tu vas prendre ?",
       "Souviens-toi, l'avenir commence aujourd'hui. Que vas-tu faire maintenant pour te rapprocher de ton objectif ?",
-      "Mon conseil : divise ce grand objectif en petites tâches quotidiennes. As-tu essayé ça ?"
+      "Mon conseil : divise ce grand objectif en petites tâches quotidiennes. As-tu essayé ça ?",
+      "Rappelle-toi que le succès est un voyage, pas une destination. Profite de chaque étape !",
+      "Je crois que tu as ce qu'il faut. De quoi as-tu besoin pour te sentir plus confiant ?"
     ]
   };
   const respList = responses[currentLang] || responses.en;
@@ -813,12 +976,12 @@ function generateAIResponse(userMessage) {
 function renderGoals() {
   const container = document.getElementById('goalsList');
   if (goals.length === 0) {
-    container.innerHTML = `<div style="text-align: center; color: var(--muted); padding: 2rem;">${translations[currentLang].goals.empty}</div>`;
+    container.innerHTML = `<div class="empty-goals">${translations[currentLang].goals.empty}</div>`;
     return;
   }
   container.innerHTML = goals.map((goal, idx) => `
     <div class="goal-item">
-      <span class="goal-text">✓ ${goal}</span>
+      <span class="goal-text">${goal}</span>
       <button class="goal-delete" onclick="deleteGoal(${idx})">🗑️</button>
     </div>
   `).join('');
@@ -828,25 +991,25 @@ function addGoal() {
   const input = document.getElementById('goalInput');
   const goal = input.value.trim();
   if (!goal) {
-    showNotif('⚠️', currentLang === 'ar' ? 'الرجاء إدخال هدف' : 'Please enter a goal');
+    showNotification('⚠️', currentLang === 'ar' ? 'الرجاء إدخال هدف' : 'Please enter a goal');
     return;
   }
   goals.push(goal);
   localStorage.setItem('future_self_goals', JSON.stringify(goals));
   renderGoals();
   input.value = '';
-  showNotif('✅', currentLang === 'ar' ? 'تم إضافة الهدف!' : 'Goal added!');
+  showNotification('✅', currentLang === 'ar' ? 'تم إضافة الهدف!' : 'Goal added!');
 }
 
 function deleteGoal(index) {
   goals.splice(index, 1);
   localStorage.setItem('future_self_goals', JSON.stringify(goals));
   renderGoals();
-  showNotif('🗑️', currentLang === 'ar' ? 'تم حذف الهدف' : 'Goal deleted');
+  showNotification('🗑️', currentLang === 'ar' ? 'تم حذف الهدف' : 'Goal deleted');
 }
 
 // ========== Notification ==========
-function showNotif(icon, text) {
+function showNotification(icon, text) {
   const n = document.getElementById('notification');
   document.getElementById('notifIcon').textContent = icon;
   document.getElementById('notifText').textContent = text;
@@ -856,6 +1019,7 @@ function showNotif(icon, text) {
 
 // ========== Event Listeners ==========
 document.getElementById('sendBtn').onclick = sendMessage;
+document.getElementById('addGoalBtn').onclick = addGoal;
 document.getElementById('chatInput').addEventListener('keypress', (e) => {
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
@@ -863,15 +1027,22 @@ document.getElementById('chatInput').addEventListener('keypress', (e) => {
   }
 });
 
+// Close lang menu on click outside
 document.addEventListener('click', (e) => {
-  if (!e.target.closest('.lang-switcher')) document.getElementById('langSwitcher').classList.remove('active');
+  if (!e.target.closest('.lang-selector')) {
+    document.getElementById('langSelector').classList.remove('active');
+  }
 });
 
+// Reveal animation
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// Initialize
 init();
 </script>
 </body>
