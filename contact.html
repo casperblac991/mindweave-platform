@@ -4,158 +4,729 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>اتصل بنا | MindWeave</title>
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta name="description" content="تواصل مع فريق MindWeave - نسعد بمساعدتك والاستماع لاقتراحاتك">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-.lang-switch:hover{background:#6C5CE7}
-[data-lang="en"]{display:none}
-body.en [data-lang="ar"]{display:none}
-body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}
-body:not(.en){direction:rtl;text-align:right}
-.cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
-.cart-icon{text-decoration:none;color:white}
-.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
-.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
-.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1000px;margin:auto;padding:2rem}
-.contact-form input,.contact-form textarea{width:100%;padding:12px;margin:10px 0;border-radius:10px;background:#1A1A2E;color:white;border:1px solid rgba(108,92,231,0.2)}
-.contact-form button{background:#6C5CE7;color:white;border:none;padding:12px;border-radius:30px;cursor:pointer;width:100%}
-.contact-info{background:#1A1A2E;border-radius:15px;padding:2rem;border:1px solid rgba(108,92,231,0.2)}
-.contact-info h3{color:#6C5CE7;margin-bottom:1rem}
-.contact-info p{margin:1rem 0;display:flex;align-items:center;gap:0.5rem}
-.bot-btn{background:#6C5CE7;color:white;border:none;padding:12px;border-radius:30px;cursor:pointer;width:100%;margin-top:1rem}
-.faq-preview{margin-top:3rem;text-align:center}
-.faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin:2rem 0}
-.faq-item{background:#1A1A2E;border-radius:15px;padding:1.5rem;border:1px solid rgba(108,92,231,0.2)}
-@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+  --success: #00FF88;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  line-height: 1.6;
+}
+
+body[data-lang="en"],
+body[data-lang="es"],
+body[data-lang="fr"] {
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+body[data-lang="ar"] {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1001;
+}
+
+body[data-lang="en"] .lang-dropdown,
+body[data-lang="es"] .lang-dropdown,
+body[data-lang="fr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-selector.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--secondary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-lang="en"] .cart-count {
+  right: auto;
+  left: -8px;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 2rem 4rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-info {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+}
+
+.contact-info h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.info-content h4 {
+  margin-bottom: 0.25rem;
+}
+
+.info-content p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.social-links {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.3rem;
+  transition: all 0.2s;
+}
+
+.social-link:hover {
+  background: var(--primary);
+  color: var(--bg);
+  border-color: var(--primary);
+}
+
+.contact-form {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+}
+
+.contact-form h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--primary);
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 9999;
+}
+
+body[data-lang="en"] .notification {
+  right: auto;
+  left: 2rem;
+}
+
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
-<body>
+<body data-lang="ar">
 
-<header>
-<nav style="display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;padding:1rem">
-<div class="logo"><a href="index.html" style="font-size:1.5rem;text-decoration:none;background:linear-gradient(135deg,#6C5CE7,#00D2FF);-webkit-background-clip:text;background-clip:text;color:transparent">🧠 MindWeave</a></div>
-<ul style="display:flex;list-style:none;gap:2rem">
-<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
-<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
-<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
-<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
-<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
-</ul>
-<div class="nav-icons">
-<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
-<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
-</div>
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🧠</div>
+    Mind<span>Weave</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+    <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
+    <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+    <li><a href="prompt-lab.html" data-i18n="nav.promptlab">Prompt Lab ✨</a></li>
+    <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
+    <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
+  </ul>
+
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLangFlag">🇸🇦</span>
+        <span id="currentLangLabel">العربية</span>
+        <span>▼</span>
+      </button>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+      </div>
+    </div>
+    <a href="cart.html" class="cart-btn">
+      🛒 <span data-i18n="nav.cart">السلة</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </div>
 </nav>
-</header>
 
 <main>
-<section class="page-header">
-<div class="container">
-<h1 data-lang="ar">اتصل بنا</h1>
-<h1 data-lang="en">Contact Us</h1>
-<p data-lang="ar">نرحب باستفساراتكم واقتراحاتكم — نرد خلال 24 ساعة</p>
-<p data-lang="en">We welcome your inquiries and suggestions — we reply within 24 hours</p>
-</div>
-</section>
+  <div class="hero reveal">
+    <div class="hero-badge" data-i18n="hero.badge">📞 تواصل معنا</div>
+    <h1 data-i18n="hero.title">نحن هنا <span class="gradient">لمساعدتك</span></h1>
+    <p data-i18n="hero.subtitle">نسعد بمساعدتك والاستماع لاقتراحاتك واستفساراتك</p>
+  </div>
 
-<div class="contact-grid">
-<div class="contact-form">
-<form id="contactForm">
-<input type="text" id="name" placeholder="الاسم" required>
-<input type="email" id="email" placeholder="البريد الإلكتروني" required>
-<input type="text" id="subject" placeholder="الموضوع">
-<textarea id="message" rows="5" placeholder="رسالتك..."></textarea>
-<button type="submit" data-lang="ar">إرسال الرسالة</button>
-<button type="submit" data-lang="en">Send Message</button>
-</form>
-</div>
-<div class="contact-info">
-<h3 data-lang="ar">معلومات التواصل</h3>
-<h3 data-lang="en">Contact Information</h3>
-<p><i class="fas fa-envelope"></i> support@mindweave.store</p>
-<p><i class="fas fa-headset"></i> <span data-lang="ar">دعم 24/7 عبر البوت</span><span data-lang="en">24/7 Support via Bot</span></p>
-<p><i class="fab fa-telegram"></i> @mindweave_bot</p>
-<p><i class="fab fa-twitter"></i> @mindweave</p>
-<p><i class="fab fa-instagram"></i> @mindweave</p>
-<h3 data-lang="ar">ساعات الدعم البشري</h3>
-<h3 data-lang="en">Human Support Hours</h3>
-<p><span data-lang="ar">الأحد - الخميس: 9 صباحاً - 9 مساءً</span><span data-lang="en">Sunday - Thursday: 9 AM - 9 PM</span></p>
-<button class="bot-btn" onclick="openChatbot()" data-lang="ar">💬 تحدث مع بوت AI</button>
-<button class="bot-btn" onclick="openChatbot()" data-lang="en">💬 Chat with AI Bot</button>
-</div>
-</div>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <h2 data-i18n="info.title">معلومات الاتصال</h2>
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div class="info-content">
+          <h4 data-i18n="info.address.title">المقر الرئيسي</h4>
+          <p data-i18n="info.address.desc">الرياض، المملكة العربية السعودية</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📧</div>
+        <div class="info-content">
+          <h4 data-i18n="info.email.title">البريد الإلكتروني</h4>
+          <p>support@mindweave.store</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📞</div>
+        <div class="info-content">
+          <h4 data-i18n="info.phone.title">الهاتف</h4>
+          <p>+966 12 345 6789</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🕒</div>
+        <div class="info-content">
+          <h4 data-i18n="info.hours.title">ساعات العمل</h4>
+          <p data-i18n="info.hours.desc">الأحد - الخميس: 9 صباحاً - 6 مساءً</p>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="#" class="social-link">📘</a>
+        <a href="#" class="social-link">🐦</a>
+        <a href="#" class="social-link">📷</a>
+        <a href="#" class="social-link">💼</a>
+      </div>
+    </div>
 
-<div class="faq-preview">
-<div class="container">
-<h3 data-lang="ar">الأسئلة الشائعة</h3>
-<h3 data-lang="en">Frequently Asked Questions</h3>
-<div class="faq-grid">
-<div class="faq-item"><h4 data-lang="ar">كيف يتم تسليم المنتج؟</h4><h4 data-lang="en">How is the product delivered?</h4><p data-lang="ar">بعد الدفع مباشرة، تستلم رابط تحميل عبر البريد الإلكتروني.</p><p data-lang="en">After payment, you receive a download link via email.</p></div>
-<div class="faq-item"><h4 data-lang="ar">هل يمكن استرجاع المنتج؟</h4><h4 data-lang="en">Can I return the product?</h4><p data-lang="ar">المنتجات الرقمية غير قابلة للاسترجاع، لكن نضمن الجودة 100%.</p><p data-lang="en">Digital products are non-refundable, but we guarantee 100% quality.</p></div>
-<div class="faq-item"><h4 data-lang="ar">كيف أحصل على الدعم؟</h4><h4 data-lang="en">How do I get support?</h4><p data-lang="ar">يمكنك التواصل عبر البريد الإلكتروني أو بوت المساعد الذكي.</p><p data-lang="en">You can contact us via email or the AI assistant bot.</p></div>
-</div>
-<a href="faq.html" class="btn-secondary" data-lang="ar">عرض جميع الأسئلة</a><a href="faq.html" class="btn-secondary" data-lang="en">View All Questions</a>
-</div>
-</div>
+    <div class="contact-form">
+      <h2 data-i18n="form.title">أرسل لنا رسالة</h2>
+      <form id="contactForm">
+        <div class="form-group">
+          <input type="text" id="name" placeholder="الاسم الكامل" data-i18n-placeholder="form.name">
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="البريد الإلكتروني" data-i18n-placeholder="form.email">
+        </div>
+        <div class="form-group">
+          <select id="subject">
+            <option value="general" data-i18n="form.subject.general">استفسار عام</option>
+            <option value="support" data-i18n="form.subject.support">دعم فني</option>
+            <option value="partnership" data-i18n="form.subject.partnership">شراكة</option>
+            <option value="creator" data-i18n="form.subject.creator">برنامج المبدعين</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea id="message" placeholder="رسالتك..." data-i18n-placeholder="form.message"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" data-i18n="form.button">إرسال الرسالة →</button>
+      </form>
+    </div>
+  </div>
 </main>
 
 <footer>
-<div class="container">
-<div class="footer-grid">
-<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
-</div>
-<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
-</div>
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a><p style="color: var(--text-muted); margin-top: 1rem;" data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div>
+    <div><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li><li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li></ul></div>
+    <div><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div>
+    <div><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
 </footer>
 
+<div class="notification" id="notification"><span id="notifIcon">✅</span><span id="notifText"></span></div>
+
 <script>
-let currentLang = localStorage.getItem('lang') || 'ar';
-
-function toggleLanguage() {
-    currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    localStorage.setItem('lang', currentLang);
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
-}
-
-function applyLanguage() {
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
-}
-
-function openChatbot() {
-    const chatbotWindow = document.getElementById('chatbotWindow');
-    if (chatbotWindow) {
-        chatbotWindow.style.display = 'block';
-    } else {
-        alert(currentLang === 'ar' ? '🤖 افتح البوت من الزر الموجود أسفل اليسار' : '🤖 Open the bot from the button at the bottom left');
-    }
-}
-
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-function updateCartDisplay() {
-    const count = cart.reduce((s, i) => s + i.quantity, 0);
-    const cartSpan = document.querySelector('.cart-count');
-    if (cartSpan) cartSpan.textContent = count;
-}
-
-document.getElementById('contactForm').onsubmit = function(e) {
-    e.preventDefault();
-    alert(currentLang === 'ar' ? '✅ تم إرسال رسالتك. سنرد خلال 24 ساعة.' : '✅ Your message has been sent. We will reply within 24 hours.');
-    this.reset();
+const translations = {
+  ar: {
+    nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", promptlab: "Prompt Lab ✨", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة" },
+    hero: { badge: "📞 تواصل معنا", title: "نحن هنا <span class='gradient'>لمساعدتك</span>", subtitle: "نسعد بمساعدتك والاستماع لاقتراحاتك واستفساراتك" },
+    info: { title: "معلومات الاتصال", address: { title: "المقر الرئيسي", desc: "الرياض، المملكة العربية السعودية" }, email: { title: "البريد الإلكتروني" }, phone: { title: "الهاتف" }, hours: { title: "ساعات العمل", desc: "الأحد - الخميس: 9 صباحاً - 6 مساءً" } },
+    form: { title: "أرسل لنا رسالة", name: "الاسم الكامل", email: "البريد الإلكتروني", subject: { general: "استفسار عام", support: "دعم فني", partnership: "شراكة", creator: "برنامج المبدعين" }, message: "رسالتك...", button: "إرسال الرسالة →" },
+    footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" }
+  },
+  en: {
+    nav: { home: "Home", store: "Store", library: "Free Library", promptlab: "Prompt Lab ✨", creators: "Creator Program", blog: "Blog", cart: "Cart" },
+    hero: { badge: "📞 Contact Us", title: "We're Here <span class='gradient'>To Help</span>", subtitle: "We're happy to help and hear your suggestions and inquiries" },
+    info: { title: "Contact Information", address: { title: "Headquarters", desc: "Riyadh, Saudi Arabia" }, email: { title: "Email" }, phone: { title: "Phone" }, hours: { title: "Working Hours", desc: "Sunday - Thursday: 9 AM - 6 PM" } },
+    form: { title: "Send Us a Message", name: "Full Name", email: "Email Address", subject: { general: "General Inquiry", support: "Technical Support", partnership: "Partnership", creator: "Creator Program" }, message: "Your Message...", button: "Send Message →" },
+    footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creative tools.", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" }
+  },
+  es: {
+    nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito" },
+    hero: { badge: "📞 Contáctanos", title: "Estamos Aquí <span class='gradient'>Para Ayudarte</span>", subtitle: "Estamos encantados de ayudarte y escuchar tus sugerencias y consultas" },
+    info: { title: "Información de Contacto", address: { title: "Sede", desc: "Riad, Arabia Saudita" }, email: { title: "Correo Electrónico" }, phone: { title: "Teléfono" }, hours: { title: "Horario de Atención", desc: "Domingo - Jueves: 9 AM - 6 PM" } },
+    form: { title: "Envíanos un Mensaje", name: "Nombre Completo", email: "Correo Electrónico", subject: { general: "Consulta General", support: "Soporte Técnico", partnership: "Asociación", creator: "Programa de Creadores" }, message: "Tu Mensaje...", button: "Enviar Mensaje →" },
+    footer: { desc: "Plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Todos los derechos reservados 🧠" }
+  },
+  fr: {
+    nav: { home: "Accueil", store: "Boutique", library: "Bibliothèque Gratuite", promptlab: "Prompt Lab ✨", creators: "Programme Créateurs", blog: "Blog", cart: "Panier" },
+    hero: { badge: "📞 Contactez-nous", title: "Nous Sommes Là <span class='gradient'>Pour Vous Aider</span>", subtitle: "Nous sommes heureux de vous aider et d'écouter vos suggestions et demandes" },
+    info: { title: "Coordonnées", address: { title: "Siège Social", desc: "Riyad, Arabie Saoudite" }, email: { title: "Email" }, phone: { title: "Téléphone" }, hours: { title: "Heures d'Ouverture", desc: "Dimanche - Jeudi: 9h - 18h" } },
+    form: { title: "Envoyez-nous un Message", name: "Nom Complet", email: "Adresse Email", subject: { general: "Demande Générale", support: "Support Technique", partnership: "Partenariat", creator: "Programme Créateurs" }, message: "Votre Message...", button: "Envoyer le Message →" },
+    footer: { desc: "Plateforme mondiale complète pour les prompts IA, templates numériques et outils créatifs.", platform: "Plateforme", support: "Support", legal: "Juridique", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Tous droits réservés 🧠" }
+  }
 };
 
-applyLanguage();
-updateCartDisplay();
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
+let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+
+function updateLanguage() {
+  const t = translations[currentLang];
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) {
+      if (key === 'hero.title') {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    }
+  });
+  
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) el.placeholder = value;
+  });
+  
+  const subjectSelect = document.getElementById('subject');
+  if (subjectSelect) {
+    const options = subjectSelect.options;
+    for (let i = 0; i < options.length; i++) {
+      const opt = options[i];
+      const key = opt.getAttribute('data-i18n');
+      if (key) {
+        const val = key.split('.').reduce((obj, k) => obj?.[k], t);
+        if (val) opt.textContent = val;
+      }
+    }
+  }
+  
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
+  
+  document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  updateLanguage();
+  toggleLangMenu();
+}
+
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
+}
+
+function updateCartCount() {
+  const countEl = document.getElementById('cartCount');
+  if (countEl) countEl.textContent = cart.length;
+}
+
+function showNotification(icon, text) {
+  const n = document.getElementById('notification');
+  document.getElementById('notifIcon').textContent = icon;
+  document.getElementById('notifText').textContent = text;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3000);
+}
+
+document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  if (!name) {
+    showNotification('⚠️', currentLang === 'ar' ? 'الرجاء إدخال الاسم' : currentLang === 'en' ? 'Please enter your name' : currentLang === 'es' ? 'Por favor ingrese su nombre' : 'Veuillez entrer votre nom');
+    return;
+  }
+  showNotification('✅', currentLang === 'ar' ? `شكراً ${name}! تم استلام رسالتك وسنرد عليك قريباً` : currentLang === 'en' ? `Thank you ${name}! Your message has been received and we will reply soon` : currentLang === 'es' ? `¡Gracias ${name}! Tu mensaje ha sido recibido y te responderemos pronto` : `Merci ${name}! Votre message a été reçu et nous vous répondrons bientôt`);
+  document.getElementById('contactForm').reset();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLanguage();
+  updateCartCount();
+  
+  document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      document.getElementById('langSelector')?.classList.remove('active');
+    }
+  });
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
 </script>
 </body>
 </html>
