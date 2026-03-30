@@ -3,310 +3,814 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n="meta.title">MindWeave | منصة الذكاء الاصطناعي العالمية</title>
+<title>MindWeave | منصة الذكاء الاصطناعي العالمية</title>
 <meta name="description" content="أضخم منصة عربية لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع — تنافس العالم من قلب العالم العربي">
-<!-- Google AdSense - Updated with correct publisher ID -->
 <meta name="google-adsense-account" content="ca-pub-5154456531537651">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5154456531537651" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesapis.com/pagead/js/adsbygoogle.js?client=ca-pub-5154456531537651" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --primary: #00D4FF;
-  --secondary: #FF6B35;
-  --accent: #7C3AED;
-  --gold: #FFD700;
-  --bg: #050A0F;
-  --bg2: #0A1628;
-  --bg3: #0F1F3D;
-  --card: rgba(255,255,255,0.04);
-  --border: rgba(0,212,255,0.15);
-  --text: #E8F4FD;
-  --muted: #7A9BB5;
-  --success: #00FF88;
-  --danger: #FF4444;
-  --font-ar: 'Cairo', sans-serif;
-  --font-en: 'Inter', sans-serif;
-  --mono: 'Space Mono', monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
+:root {
+  --primary: #00D4FF;
+  --primary-dark: #00b8e6;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+  --success: #00FF88;
+  --danger: #FF4444;
+}
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-ar);
-  overflow-x: hidden;
+  font-family: 'Cairo', sans-serif;
   direction: rtl;
-  transition: direction 0.3s ease;
+  line-height: 1.6;
 }
 
-body[data-lang="en"], body[data-lang="es"], body[data-lang="fr"] {
-  font-family: var(--font-en);
-  direction: ltr;
-}
-
-body[data-lang="ar"] {
-  font-family: var(--font-ar);
-  direction: rtl;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: 
-    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0,212,255,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,58,237,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255,107,53,0.03) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.lang-switcher {
-  position: relative;
-  margin-left: 1rem;
-}
-
-.lang-btn {
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-family: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
-  transition: all 0.3s;
-}
-
-.lang-btn:hover {
-  background: rgba(0,212,255,0.1);
-  border-color: var(--primary);
-}
-
-.lang-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: 0.5rem;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 0.5rem;
-  min-width: 150px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s;
-  z-index: 1001;
-}
-
-body[data-lang="en"] .lang-dropdown,
-body[data-lang="es"] .lang-dropdown,
-body[data-lang="fr"] .lang-dropdown {
-  right: auto;
-  left: 0;
-}
-
-.lang-switcher.active .lang-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.lang-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 0.9rem;
-}
-
-.lang-option:hover {
-  background: rgba(0,212,255,0.1);
-}
-
-.lang-option.active {
-  background: rgba(0,212,255,0.15);
-  color: var(--primary);
-}
-
-.lang-flag {
-  font-size: 1.2rem;
-}
-
+/* Navigation */
 nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: rgba(5,10,15,0.85);
-  backdrop-filter: blur(20px);
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 0 2rem;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 1000;
 }
 
-.nav-logo {
+.logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
+  font-size: 1.5rem;
   font-weight: 900;
-  font-size: 1.4rem;
   color: var(--text);
+  text-decoration: none;
 }
 
-.nav-logo .brain-icon {
-  width: 38px;
-  height: 38px;
+.logo-icon {
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, var(--primary), var(--accent));
-  border-radius: 10px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
-.nav-logo span { color: var(--primary); }
+.logo span {
+  color: var(--primary);
+}
 
 .nav-links {
   display: flex;
-  align-items: center;
-  gap: 0.2rem;
+  gap: 0.5rem;
   list-style: none;
 }
 
 .nav-links a {
-  color: var(--muted);
+  color: var(--text-muted);
   text-decoration: none;
-  padding: 0.5rem 0.9rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
-  font-size: 0.9rem;
   font-weight: 600;
   transition: all 0.2s;
 }
 
-.nav-links a:hover, .nav-links a.active {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--primary);
-  background: rgba(0,212,255,0.08);
+  background: rgba(0, 212, 255, 0.1);
 }
 
-.nav-actions {
+.nav-buttons {
   display: flex;
-  align-items: center;
   gap: 1rem;
+  align-items: center;
 }
 
-.btn-nav {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: white;
-  border: none;
-  padding: 0.55rem 1.3rem;
-  border-radius: 8px;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.btn-nav:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,212,255,0.3); }
-
-.cart-btn {
+.lang-selector {
   position: relative;
-  background: var(--card);
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 0.55rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+}
+
+.lang-selector.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
+  position: relative;
 }
 
 .cart-count {
   position: absolute;
-  top: -6px;
-  left: -6px;
+  top: -8px;
+  right: -8px;
   background: var(--secondary);
   color: white;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
 }
 
-body[data-lang="en"] .cart-count,
-body[data-lang="es"] .cart-count,
-body[data-lang="fr"] .cart-count {
-  left: auto;
-  right: -6px;
-}
-
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--text);
-  padding: 0.5rem;
-  border-radius: 8px;
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
   cursor: pointer;
-  font-size: 1.2rem;
 }
 
-@media (max-width: 900px) {
-  .nav-links { display: none; }
-  .mobile-menu-btn { display: block; }
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
 }
 
-/* AdSense container styles */
-.adsense-container {
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-outline:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+/* Main Content */
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 90px 2rem 2rem;
+}
+
+/* Hero Section */
+.hero {
   text-align: center;
-  margin: 1rem auto;
-  overflow: hidden;
-  background: rgba(0,0,0,0.2);
+  padding: 3rem 0;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin: 3rem 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 20px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Trust Bar */
+.trust-bar {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background: rgba(0, 212, 255, 0.03);
   border-radius: 12px;
-  min-height: 90px;
+  margin: 2rem 0;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-tag {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+.section-header h2 em {
+  color: var(--primary);
+  font-style: normal;
+}
+
+/* Prompt Lab */
+.prompt-lab {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+  margin: 3rem 0;
+}
+
+.lab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.lab-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lab-title h3 {
+  font-size: 1.5rem;
+}
+
+.live-badge {
+  background: var(--danger);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.lab-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lab-tab {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.lab-tab.active {
+  background: var(--primary);
+  color: var(--bg);
+  border-color: var(--primary);
+}
+
+.lab-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .lab-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lab-textarea {
+  width: 100%;
+  height: 150px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  color: var(--text);
+  font-family: inherit;
+  margin: 1rem 0;
+  resize: vertical;
+}
+
+.prompt-categories {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.cat-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.cat-btn.active {
+  background: var(--primary);
+  color: var(--bg);
+}
+
+.lab-generate-btn {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.lab-output {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 200px;
+  color: var(--text-muted);
+}
+
+.output-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.output-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* Store Filters */
+.store-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--primary);
+  color: var(--bg);
+  border-color: var(--primary);
+}
+
+/* Products Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.product-thumb {
+  height: 160px;
+  background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(124,58,237,0.1));
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.adsense-sidebar {
-  position: sticky;
-  top: 90px;
-  margin-top: 2rem;
-}
-
-@media (max-width: 1024px) {
-  .adsense-sidebar { display: none; }
-}
-
-.hero, section, .prompt-lab, .store-section, .features-section, .creator-section, .pricing-section, .testimonials-section, .cta-section {
+  font-size: 3rem;
   position: relative;
-  z-index: 1;
 }
 
+.product-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--secondary);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+}
+
+.product-body {
+  padding: 1.2rem;
+}
+
+.product-category {
+  font-size: 0.7rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.product-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.product-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.product-rating {
+  color: var(--gold);
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-price {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.price-current {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.price-original {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.add-cart-btn {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--primary);
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.add-cart-btn.added {
+  background: var(--success);
+  color: var(--bg);
+  border-color: var(--success);
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  margin-bottom: 0.8rem;
+}
+
+.feature-new {
+  background: var(--secondary);
+  color: white;
+  font-size: 0.6rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 50px;
+  margin-left: 8px;
+}
+
+/* Creator Section */
+.creator-section {
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-dark));
+  border-radius: 24px;
+  padding: 3rem;
+  margin: 3rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+@media (max-width: 768px) {
+  .creator-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.creator-stats {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.creator-stat {
+  text-align: center;
+}
+
+.creator-stat-number {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.creator-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.creator-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--bg);
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.email-form {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.email-input {
+  background: var(--bg);
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  width: 300px;
+  color: var(--text);
+  font-family: inherit;
+}
+
+/* Footer */
+footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--primary);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 9999;
+}
+
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Reveal Animation */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -317,205 +821,433 @@ body[data-lang="fr"] .cart-count {
   opacity: 1;
   transform: translateY(0);
 }
-
-.notification {
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  background: var(--bg2);
-  border: 1px solid var(--primary);
-  border-radius: 12px;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  z-index: 9999;
-  transform: translateY(100px);
-  opacity: 0;
-  transition: all 0.4s;
-  max-width: 320px;
-}
-
-body[data-lang="en"] .notification,
-body[data-lang="es"] .notification,
-body[data-lang="fr"] .notification {
-  left: auto;
-  right: 2rem;
-}
-
-.notification.show { transform: translateY(0); opacity: 1; }
-.notification .notif-icon { font-size: 1.2rem; }
 </style>
 </head>
-<body data-lang="ar">
+<body>
 
 <nav>
-  <a href="index.html" class="nav-logo">
-    <div class="brain-icon">🧠</div>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🧠</div>
     Mind<span>Weave</span>
   </a>
   
   <ul class="nav-links">
-    <li><a href="index.html" class="active" data-i18n="nav.home">الرئيسية</a></li>
-    <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
-    <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+    <li><a href="index.html" class="active">الرئيسية</a></li>
+    <li><a href="store.html">المتجر</a></li>
+    <li><a href="library.html">المكتبة المجانية</a></li>
     <li><a href="prompt-lab.html">Prompt Lab ✨</a></li>
-    <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
-    <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
+    <li><a href="creators.html">برنامج المبدعين</a></li>
+    <li><a href="blog.html">المدونة</a></li>
   </ul>
 
-  <div class="nav-actions">
-    <div class="lang-switcher" id="langSwitcher">
-      <button class="lang-btn" onclick="toggleLangDropdown()">
-        <span class="lang-flag" id="currentLangFlag">🇸🇦</span>
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" onclick="toggleLangMenu()">
+        <span id="currentLangFlag">🇸🇦</span>
         <span id="currentLangLabel">العربية</span>
         <span>▼</span>
       </button>
-      <div class="lang-dropdown" id="langDropdown">
-        <div class="lang-option active" onclick="changeLanguage('ar')" data-lang="ar"><span class="lang-flag">🇸🇦</span><span>العربية</span></div>
-        <div class="lang-option" onclick="changeLanguage('en')" data-lang="en"><span class="lang-flag">🇬🇧</span><span>English</span></div>
-        <div class="lang-option" onclick="changeLanguage('es')" data-lang="es"><span class="lang-flag">🇪🇸</span><span>Español</span></div>
-        <div class="lang-option" onclick="changeLanguage('fr')" data-lang="fr"><span class="lang-flag">🇫🇷</span><span>Français</span></div>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" onclick="changeLanguage('ar')">🇸🇦 العربية</div>
+        <div class="lang-option" onclick="changeLanguage('en')">🇬🇧 English</div>
+        <div class="lang-option" onclick="changeLanguage('es')">🇪🇸 Español</div>
+        <div class="lang-option" onclick="changeLanguage('fr')">🇫🇷 Français</div>
       </div>
     </div>
-    <a href="cart.html" class="cart-btn">🛒 <span data-i18n="nav.cart">السلة</span> <span class="cart-count" id="cartCount">0</span></a>
-    <a href="store.html" class="btn-nav" data-i18n="nav.start">ابدأ مجاناً →</a>
-    <button class="mobile-menu-btn">☰</button>
+    <a href="cart.html" class="cart-btn">
+      🛒 السلة
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+    <a href="store.html" class="btn-primary">ابدأ مجاناً →</a>
   </div>
 </nav>
 
-<!-- ========== GOOGLE ADSENSE - HEADER AD ========== -->
-<div class="adsense-container" style="margin-top: 80px; max-width: 1200px; margin-left: auto; margin-right: auto;">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-5154456531537651"
-       data-ad-slot="1234567890"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-
-<main style="max-width: 1400px; margin: 0 auto; padding: 0 1rem;">
-  <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 300px;">
-      <!-- Hero Section -->
-      <section class="hero" style="padding-top: 2rem;">
-        <div class="hero-badge">🌍 <span data-i18n="hero.badge">المنصة العربية الأولى للذكاء الاصطناعي</span></div>
-        <h1><span class="line1" data-i18n="hero.title1">نَسِج العقول</span><span class="line2" data-i18n="hero.title2">بالذكاء الاصطناعي</span></h1>
-        <p class="hero-sub" data-i18n="hero.subtitle">منصة عالمية متكاملة لأوامر AI، القوالب الرقمية، وأدوات الإبداع — مع Prompt Lab حصري لاختبار أوامرك قبل الشراء، وبرنامج مبدعين لبيع إبداعاتك</p>
-        <div class="hero-actions"><a href="store.html" class="btn-primary" data-i18n="hero.cta1">🛒 استكشف المتجر</a><a href="#prompt-lab" class="btn-outline" data-i18n="hero.cta2">⚗️ جرّب Prompt Lab مجاناً</a></div>
-        <div class="stats-bar"><div class="stat-item"><span class="stat-num" id="statProducts">500+</span><span class="stat-label" data-i18n="stats.products">منتج رقمي</span></div><div class="stat-item"><span class="stat-num">12K+</span><span class="stat-label" data-i18n="stats.users">مستخدم نشط</span></div><div class="stat-item"><span class="stat-num">4.9★</span><span class="stat-label" data-i18n="stats.rating">تقييم المنصة</span></div><div class="stat-item"><span class="stat-num">24/7</span><span class="stat-label" data-i18n="stats.support">دعم AI فوري</span></div></div>
-      </section>
-
-      <div class="trust-bar" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; padding: 1rem; background: rgba(0,212,255,0.04); border-radius: 12px; margin: 1rem 0;">
-        <div class="trust-item">🔒 <span data-i18n="trust.security">دفع آمن 100%</span></div><div class="trust-item">⚡ <span data-i18n="trust.delivery">تسليم فوري</span></div><div class="trust-item">🔄 <span data-i18n="trust.updates">تحديثات مدى الحياة</span></div><div class="trust-item">↩️ <span data-i18n="trust.refund">ضمان استرداد 30 يوماً</span></div>
-      </div>
-
-      <!-- Prompt Lab Section -->
-      <section class="prompt-lab" id="prompt-lab">
-        <div class="section-header reveal"><div class="section-tag">⚗️ <span data-i18n="lab.badge">حصري — لا يوجد عند المنافسين</span></div><h2>Prompt <em>Lab</em></h2><p data-i18n="lab.subtitle">جرّب وأنشئ أوامر AI احترافية مجاناً</p></div>
-        <div class="lab-container reveal">
-          <div class="lab-header"><div class="lab-title"><span>⚗️</span><h3>Prompt Lab</h3><span class="live-badge">LIVE</span></div><div class="lab-tabs"><button class="lab-tab active" data-mode="generate" data-i18n="lab.tab1">توليد أمر</button><button class="lab-tab" data-mode="improve" data-i18n="lab.tab2">تحسين أمر</button><button class="lab-tab" data-mode="translate" data-i18n="lab.tab3">ترجمة</button></div></div>
-          <div class="lab-body"><div class="lab-input-side"><h4 data-i18n="lab.inputTitle">📝 وصف احتياجك</h4><div class="prompt-categories"><button class="cat-btn active" data-cat="general">عام</button><button class="cat-btn" data-cat="marketing">تسويق</button><button class="cat-btn" data-cat="design">تصميم</button><button class="cat-btn" data-cat="coding">برمجة</button><button class="cat-btn" data-cat="content">محتوى</button><button class="cat-btn" data-cat="business">أعمال</button></div><textarea class="lab-textarea" id="labInput" placeholder="مثال: أريد أمر لإنشاء محتوى تسويقي لمتجر إلكتروني يبيع عطوراً فاخرة..."></textarea><button class="lab-generate-btn" id="labGenerateBtn"><span id="labBtnText">⚡ توليد أمر احترافي</span></button></div><div class="lab-output-side"><h4 data-i18n="lab.outputTitle">🤖 الأمر المُولَّد</h4><div class="lab-output empty" id="labOutput">سيظهر الأمر المُولَّد هنا...</div><div class="output-actions" id="outputActions" style="display:none"><button class="output-btn" onclick="copyPrompt()">📋 نسخ</button><button class="output-btn" onclick="savePrompt()">💾 حفظ</button><button class="output-btn" onclick="sellPrompt()">💰 بيع في المتجر</button></div></div></div>
-        </div>
-        <!-- AdSense inside Prompt Lab -->
-        <div class="adsense-container" style="margin-top: 2rem;">
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5154456531537651" data-ad-slot="1234567891" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-      </section>
-
-      <!-- Store Section -->
-      <section class="store-section">
-        <div class="section-header reveal"><div class="section-tag">🛒 <span data-i18n="store.badge">المتجر</span></div><h2 data-i18n="store.title">منتجات <em>مميزة</em></h2><p data-i18n="store.subtitle">أكثر من 500 منتج رقمي — تحميل فوري</p></div>
-        <div class="store-filters reveal"><button class="filter-btn active" data-filter="all">الكل</button><button class="filter-btn" data-filter="prompts">🧠 أوامر AI</button><button class="filter-btn" data-filter="design">🎨 تصميم</button><button class="filter-btn" data-filter="notion">📊 Notion</button><button class="filter-btn" data-filter="ebooks">📚 كتب</button><button class="filter-btn" data-filter="coding">💻 برمجة</button><button class="filter-btn" data-filter="services">🎯 خدمات</button></div>
-        <div class="products-grid" id="productsGrid"></div>
-        <div style="text-align:center; margin-top:3rem;"><a href="store.html" class="btn-outline" data-i18n="store.viewAll">عرض جميع المنتجات (500+) →</a></div>
-      </section>
-
-      <!-- Features Section -->
-      <section class="features-section">
-        <div class="section-header reveal"><div class="section-tag">✨ <span data-i18n="features.badge">لماذا MindWeave؟</span></div><h2 data-i18n="features.title">ميزات <em>لا تجدها</em> في أي مكان آخر</h2></div>
-        <div class="features-grid"><div class="feature-card fc-blue reveal"><div class="feature-icon fi-blue">⚗️</div><h3><span class="feature-new">جديد</span>Prompt Lab</h3><p data-i18n="features.desc1">اختبر وولّد أوامر احترافية مجاناً قبل الشراء</p></div><div class="feature-card fc-purple reveal"><div class="feature-icon fi-purple">🎨</div><h3><span class="feature-new">جديد</span>Prompt Mixer</h3><p data-i18n="features.desc2">ادمج عدة أوامر وأنشئ أمراً هجيناً مخصصاً</p></div><div class="feature-card fc-orange reveal"><div class="feature-icon fi-orange">💰</div><h3><span class="feature-new">جديد</span>برنامج المبدعين</h3><p data-i18n="features.desc3">بيع أوامرك وقوالبك واكسب 70% من كل عملية بيع</p></div></div>
-        <!-- AdSense between features -->
-        <div class="adsense-container" style="margin: 2rem auto;">
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5154456531537651" data-ad-slot="1234567892" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-      </section>
-
-      <!-- Creator Section -->
-      <section class="creator-section">
-        <div class="creator-inner"><div><div class="section-tag">💰 <span data-i18n="creator.badge">برنامج المبدعين</span></div><h2 style="font-size:2.5rem;font-weight:900;margin:1rem 0;" data-i18n="creator.title">حوّل إبداعك<br><em style="color:var(--primary)">إلى دخل</em></h2><p style="color:var(--muted);line-height:1.8;margin-bottom:2rem;" data-i18n="creator.desc">انضم إلى مجتمع المبدعين في MindWeave — بيع أوامرك، قوالبك، وأدواتك الرقمية واكسب 70% من كل عملية بيع.</p><div class="creator-stats"><div class="cstat"><div class="cstat-num">70%</div><div class="cstat-label" data-i18n="creator.stat1">عمولة المبدع</div></div><div class="cstat"><div class="cstat-num">200+</div><div class="cstat-label" data-i18n="creator.stat2">مبدع نشط</div></div></div><a href="creators.html" class="btn-primary" style="margin-top:2rem;display:inline-flex;" data-i18n="creator.cta">انضم كمبدع →</a></div><div class="creator-steps"><div class="creator-step"><div class="step-num">1</div><div class="step-content"><h4 data-i18n="creator.step1Title">سجّل حساب مجاناً</h4><p data-i18n="creator.step1Desc">أنشئ حساب مبدع في أقل من دقيقة</p></div></div><div class="creator-step"><div class="step-num">2</div><div class="step-content"><h4 data-i18n="creator.step2Title">ارفع منتجك الرقمي</h4><p data-i18n="creator.step2Desc">أوامر AI، قوالب، كتب إلكترونية</p></div></div></div></div>
-      </section>
-
-      <!-- CTA Section -->
-      <section class="cta-section"><div class="cta-box reveal"><div style="font-size:3rem;margin-bottom:1rem">🎁</div><h2 data-i18n="cta.title">احصل على <em style="color:var(--primary)">100 أمر مجاني</em></h2><p data-i18n="cta.desc">اشترك في النشرة البريدية واحصل فوراً على مكتبة ChatGPT Prompts الكاملة مجاناً</p><div class="email-form"><input type="email" class="email-input" placeholder="بريدك الإلكتروني..." id="emailInput"><button class="btn-primary" onclick="subscribeEmail()" data-i18n="cta.button">احصل عليها →</button></div></div></section>
+<main>
+  <!-- Hero Section -->
+  <section class="hero reveal">
+    <div class="hero-badge">🌍 المنصة العربية الأولى للذكاء الاصطناعي</div>
+    <h1>نَسِج العقول <span class="gradient">بالذكاء الاصطناعي</span></h1>
+    <p class="hero-sub">منصة عالمية متكاملة لأوامر AI، القوالب الرقمية، وأدوات الإبداع — مع Prompt Lab حصري لاختبار أوامرك قبل الشراء</p>
+    <div class="hero-actions">
+      <a href="store.html" class="btn-primary">🛒 استكشف المتجر</a>
+      <a href="#prompt-lab" class="btn-outline">⚗️ جرّب Prompt Lab مجاناً</a>
     </div>
+  </section>
 
-    <!-- Sidebar AdSense (visible on desktop only) -->
-    <div class="adsense-sidebar" style="width: 300px; flex-shrink: 0;">
-      <div class="adsense-container" style="min-height: 600px;">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5154456531537651" data-ad-slot="1234567893" data-ad-format="rectangle" data-full-width-responsive="false"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
+  <!-- Stats -->
+  <div class="stats reveal">
+    <div class="stat-item">
+      <div class="stat-number">500+</div>
+      <div class="stat-label">منتج رقمي</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">12K+</div>
+      <div class="stat-label">مستخدم نشط</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">4.9★</div>
+      <div class="stat-label">تقييم المنصة</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">دعم AI فوري</div>
     </div>
   </div>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar reveal">
+    <span>🔒 دفع آمن 100%</span>
+    <span>⚡ تسليم فوري</span>
+    <span>🔄 تحديثات مدى الحياة</span>
+    <span>↩️ ضمان استرداد 30 يوماً</span>
+  </div>
+
+  <!-- Prompt Lab Section -->
+  <section class="prompt-lab reveal" id="prompt-lab">
+    <div class="lab-header">
+      <div class="lab-title">
+        <span>⚗️</span>
+        <h3>Prompt Lab</h3>
+        <span class="live-badge">LIVE</span>
+      </div>
+      <div class="lab-tabs">
+        <button class="lab-tab active">توليد أمر</button>
+        <button class="lab-tab">تحسين أمر</button>
+        <button class="lab-tab">ترجمة</button>
+      </div>
+    </div>
+    <div class="lab-body">
+      <div>
+        <h4>📝 وصف احتياجك</h4>
+        <div class="prompt-categories">
+          <button class="cat-btn active">عام</button>
+          <button class="cat-btn">تسويق</button>
+          <button class="cat-btn">تصميم</button>
+          <button class="cat-btn">برمجة</button>
+          <button class="cat-btn">محتوى</button>
+          <button class="cat-btn">أعمال</button>
+        </div>
+        <textarea class="lab-textarea" id="promptInput" placeholder="مثال: أريد أمر لإنشاء محتوى تسويقي لمتجر إلكتروني يبيع عطوراً فاخرة..."></textarea>
+        <button class="lab-generate-btn" id="generateBtn">⚡ توليد أمر احترافي</button>
+      </div>
+      <div>
+        <h4>🤖 الأمر المُولَّد</h4>
+        <div class="lab-output" id="promptOutput">سيظهر الأمر المُولَّد هنا...</div>
+        <div class="output-actions" id="outputActions" style="display: none;">
+          <button class="output-btn" id="copyBtn">📋 نسخ</button>
+          <button class="output-btn" id="saveBtn">💾 حفظ</button>
+          <button class="output-btn" id="sellBtn">💰 بيع في المتجر</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store Section -->
+  <section class="store-section reveal">
+    <div class="section-header">
+      <div class="section-tag">🛒 المتجر</div>
+      <h2>منتجات <em>مميزة</em></h2>
+      <p>أكثر من 500 منتج رقمي — تحميل فوري</p>
+    </div>
+
+    <div class="store-filters">
+      <button class="filter-btn active" data-filter="all">الكل</button>
+      <button class="filter-btn" data-filter="prompts">🧠 أوامر AI</button>
+      <button class="filter-btn" data-filter="design">🎨 تصميم</button>
+      <button class="filter-btn" data-filter="notion">📊 Notion</button>
+      <button class="filter-btn" data-filter="ebooks">📚 كتب</button>
+      <button class="filter-btn" data-filter="coding">💻 برمجة</button>
+      <button class="filter-btn" data-filter="services">🎯 خدمات</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="store.html" class="btn-outline">عرض جميع المنتجات (500+) →</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section reveal">
+    <div class="section-header">
+      <div class="section-tag">✨ لماذا MindWeave؟</div>
+      <h2>ميزات <em>لا تجدها</em> في أي مكان آخر</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚗️</div>
+        <h3><span class="feature-new">جديد</span> Prompt Lab</h3>
+        <p>اختبر وولّد أوامر احترافية مجاناً قبل الشراء</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3><span class="feature-new">جديد</span> Prompt Mixer</h3>
+        <p>ادمج عدة أوامر وأنشئ أمراً هجيناً مخصصاً</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3><span class="feature-new">جديد</span> برنامج المبدعين</h3>
+        <p>بيع أوامرك وقوالبك واكسب 70% من كل عملية بيع</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Creator Section -->
+  <section class="creator-section reveal">
+    <div>
+      <div class="section-tag">💰 برنامج المبدعين</div>
+      <h2 style="font-size: 2rem; margin: 1rem 0;">حوّل إبداعك<br><em style="color: var(--primary);">إلى دخل</em></h2>
+      <p style="color: var(--text-muted);">انضم إلى مجتمع المبدعين في MindWeave — بيع أوامرك، قوالبك، وأدواتك الرقمية واكسب 70% من كل عملية بيع.</p>
+      <div class="creator-stats">
+        <div class="creator-stat">
+          <div class="creator-stat-number">70%</div>
+          <div>عمولة المبدع</div>
+        </div>
+        <div class="creator-stat">
+          <div class="creator-stat-number">200+</div>
+          <div>مبدع نشط</div>
+        </div>
+      </div>
+      <a href="creators.html" class="btn-primary">انضم كمبدع →</a>
+    </div>
+    <div class="creator-steps">
+      <div class="creator-step">
+        <div class="step-number">1</div>
+        <div>
+          <h4>سجّل حساب مجاناً</h4>
+          <p style="color: var(--text-muted);">أنشئ حساب مبدع في أقل من دقيقة</p>
+        </div>
+      </div>
+      <div class="creator-step">
+        <div class="step-number">2</div>
+        <div>
+          <h4>ارفع منتجك الرقمي</h4>
+          <p style="color: var(--text-muted);">أوامر AI، قوالب، كتب إلكترونية</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section reveal">
+    <div style="font-size: 3rem;">🎁</div>
+    <h2>احصل على <em style="color: var(--primary);">100 أمر مجاني</em></h2>
+    <p>اشترك في النشرة البريدية واحصل فوراً على مكتبة ChatGPT Prompts الكاملة مجاناً</p>
+    <div class="email-form">
+      <input type="email" class="email-input" id="emailInput" placeholder="بريدك الإلكتروني...">
+      <button class="btn-primary" id="subscribeBtn">احصل عليها →</button>
+    </div>
+  </section>
 </main>
 
-<!-- Footer AdSense -->
-<div class="adsense-container" style="max-width: 1200px; margin: 2rem auto;">
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5154456531537651" data-ad-slot="1234567894" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-
-<footer style="background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 2rem 2rem; margin-top: 2rem;">
-  <div class="footer-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;"><div class="footer-brand"><a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex;"><div class="brain-icon">🧠</div>Mind<span>Weave</span></a><p data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div><div class="footer-col"><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li></ul></div><div class="footer-col"><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div><div class="footer-col"><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li></ul></div></div>
-  <div class="footer-bottom" style="max-width:1200px;margin:0 auto;padding-top:2rem;border-top:1px solid var(--border);text-align:center;"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
+        <div class="logo-icon">🧠</div>
+        Mind<span>Weave</span>
+      </a>
+      <p style="color: var(--text-muted); margin-top: 1rem;">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p>
+    </div>
+    <div>
+      <h4>المنصة</h4>
+      <ul class="footer-links">
+        <li><a href="store.html">المتجر</a></li>
+        <li><a href="library.html">المكتبة المجانية</a></li>
+        <li><a href="creators.html">برنامج المبدعين</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>الدعم</h4>
+      <ul class="footer-links">
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>قانوني</h4>
+      <ul class="footer-links">
+        <li><a href="privacy.html">سياسة الخصوصية</a></li>
+        <li><a href="terms.html">شروط الاستخدام</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p>
+  </div>
 </footer>
 
-<div class="notification" id="notification"><span class="notif-icon" id="notifIcon">✅</span><span id="notifText">تمت الإضافة للسلة!</span></div>
+<div class="notification" id="notification">
+  <span id="notifIcon">✅</span>
+  <span id="notifText">تمت الإضافة للسلة!</span>
+</div>
 
 <script>
-// ===== Simplified Data & Functions =====
-const translations = {
-  ar: { meta: { title: "MindWeave | منصة الذكاء الاصطناعي العالمية" }, nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة", start: "ابدأ مجاناً →" }, hero: { badge: "المنصة العربية الأولى للذكاء الاصطناعي", title1: "نَسِج العقول", title2: "بالذكاء الاصطناعي", subtitle: "منصة عالمية متكاملة لأوامر AI، القوالب الرقمية، وأدوات الإبداع", cta1: "🛒 استكشف المتجر", cta2: "⚗️ جرّب Prompt Lab مجاناً" }, stats: { products: "منتج رقمي", users: "مستخدم نشط", rating: "تقييم المنصة", support: "دعم AI فوري" }, trust: { security: "دفع آمن 100%", delivery: "تسليم فوري", updates: "تحديثات مدى الحياة", refund: "ضمان استرداد 30 يوماً" }, lab: { badge: "حصري — لا يوجد عند المنافسين", subtitle: "جرّب وأنشئ أوامر AI احترافية مجاناً", tab1: "توليد أمر", tab2: "تحسين أمر", tab3: "ترجمة", inputTitle: "📝 وصف احتياجك", generate: "⚡ توليد أمر احترافي", outputTitle: "🤖 الأمر المُولَّد", copy: "📋 نسخ", save: "💾 حفظ", sell: "💰 بيع في المتجر" }, store: { badge: "المتجر", title: "منتجات مميزة", subtitle: "أكثر من 500 منتج رقمي", viewAll: "عرض جميع المنتجات (500+) →" }, filter: { all: "الكل", prompts: "🧠 أوامر AI", design: "🎨 تصميم", notion: "📊 Notion", ebooks: "📚 كتب", coding: "💻 برمجة", services: "🎯 خدمات" }, features: { badge: "لماذا MindWeave؟", title: "ميزات لا تجدها في أي مكان آخر", desc1: "اختبر وولّد أوامر احترافية مجاناً قبل الشراء", desc2: "ادمج عدة أوامر وأنشئ أمراً هجيناً مخصصاً", desc3: "بيع أوامرك وقوالبك واكسب 70% من كل عملية بيع" }, creator: { badge: "برنامج المبدعين", title: "حوّل إبداعك إلى دخل", desc: "انضم إلى مجتمع المبدعين في MindWeave", stat1: "عمولة المبدع", stat2: "مبدع نشط", cta: "انضم كمبدع →", step1Title: "سجّل حساب مجاناً", step1Desc: "أنشئ حساب مبدع في أقل من دقيقة", step2Title: "ارفع منتجك الرقمي", step2Desc: "أوامر AI، قوالب، كتب إلكترونية" }, cta: { title: "احصل على 100 أمر مجاني", desc: "اشترك في النشرة البريدية", button: "احصل عليها →" }, footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" } },
-  en: { meta: { title: "MindWeave | Global AI Platform" }, nav: { home: "Home", store: "Store", library: "Free Library", creators: "Creator Program", blog: "Blog", cart: "Cart", start: "Start Free →" }, hero: { badge: "The First Arabic AI Platform", title1: "Weave Minds", title2: "With AI", subtitle: "A comprehensive global platform for AI prompts", cta1: "🛒 Explore Store", cta2: "⚗️ Try Prompt Lab Free" }, stats: { products: "Digital Products", users: "Active Users", rating: "Platform Rating", support: "Instant AI Support" }, trust: { security: "100% Secure Payment", delivery: "Instant Delivery", updates: "Lifetime Updates", refund: "30-Day Guarantee" }, lab: { badge: "Exclusive", subtitle: "Test and create professional AI prompts", tab1: "Generate", tab2: "Improve", tab3: "Translate", inputTitle: "📝 Describe Your Need", generate: "⚡ Generate Prompt", outputTitle: "🤖 Generated Prompt", copy: "📋 Copy", save: "💾 Save", sell: "💰 Sell in Store" }, store: { badge: "Store", title: "Featured Products", subtitle: "Over 500 digital products", viewAll: "View All Products →" }, filter: { all: "All", prompts: "🧠 AI Prompts", design: "🎨 Design", notion: "📊 Notion", ebooks: "📚 Books", coding: "💻 Coding", services: "🎯 Services" }, features: { badge: "Why MindWeave?", title: "Features You Won't Find Anywhere Else", desc1: "Test prompts before buying", desc2: "Merge prompts to create hybrids", desc3: "Sell and earn 70% commission" }, creator: { badge: "Creator Program", title: "Turn Creativity Into Income", desc: "Join the creator community", stat1: "Creator Commission", stat2: "Active Creators", cta: "Join as Creator →", step1Title: "Create Free Account", step1Desc: "Sign up in under a minute", step2Title: "Upload Your Product", step2Desc: "AI prompts, templates, e-books" }, cta: { title: "Get 100 Free Prompts", desc: "Subscribe to newsletter", button: "Get It →" }, footer: { desc: "A comprehensive global platform for AI prompts", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy", terms: "Terms", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" } }
-};
-
-let currentLang = localStorage.getItem('mw_lang') || 'ar';
+// ========== Data ==========
 let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
 let currentFilter = 'all';
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
 
 const products = [
-  { id: 1, filter: "prompts", category: "prompts", emoji: "🧠", badge: "badge-hot", badgeText: { ar: "🔥 الأكثر مبيعاً", en: "🔥 Best Seller" }, name: { ar: "حزمة ChatGPT للتسويق الرقمي", en: "ChatGPT Digital Marketing Pack" }, desc: { ar: "150 أمر احترافي للتسويق", en: "150 professional marketing prompts" }, rating: "4.9", sales: { ar: "2.3K مبيعة", en: "2.3K sold" }, price: "$7.99", original: "$14.99" },
-  { id: 2, filter: "design", category: "design", emoji: "🎨", badge: "badge-new", badgeText: { ar: "✨ جديد", en: "✨ New" }, name: { ar: "حزمة Midjourney v6", en: "Midjourney v6 Pack" }, desc: { ar: "200 أمر لتوليد صور احترافية", en: "200 prompts for pro images" }, rating: "4.8", sales: { ar: "1.8K مبيعة", en: "1.8K sold" }, price: "$9.99", original: "$19.99" },
-  { id: 3, filter: "notion", category: "notion", emoji: "📊", badge: "badge-pro", badgeText: { ar: "💎 حصري", en: "💎 Exclusive" }, name: { ar: "نظام إدارة الأعمال بـ Notion", en: "Notion Business System" }, desc: { ar: "قالب شامل مع أتمتة AI", en: "Complete template with AI automation" }, rating: "5.0", sales: { ar: "890 مبيعة", en: "890 sold" }, price: "$12.99", original: "$24.99" },
-  { id: 4, filter: "coding", category: "coding", emoji: "💻", badge: "badge-hot", badgeText: { ar: "🔥 رائج", en: "🔥 Trending" }, name: { ar: "أوامر البرمجة الكاملة", en: "Complete Coding Prompts" }, desc: { ar: "100 أمر لتوليد كود", en: "100 code generation prompts" }, rating: "4.9", sales: { ar: "1.5K مبيعة", en: "1.5K sold" }, price: "$14.99", original: "$29.99" }
+  { id: 1, filter: "prompts", emoji: "🧠", badge: "🔥 الأكثر مبيعاً", name: "حزمة ChatGPT للتسويق الرقمي", desc: "150 أمر احترافي للتسويق", rating: "4.9", sales: "2.3K مبيعة", price: "$7.99", original: "$14.99" },
+  { id: 2, filter: "design", emoji: "🎨", badge: "✨ جديد", name: "حزمة Midjourney v6", desc: "200 أمر لتوليد صور احترافية", rating: "4.8", sales: "1.8K مبيعة", price: "$9.99", original: "$19.99" },
+  { id: 3, filter: "notion", emoji: "📊", badge: "💎 حصري", name: "نظام إدارة الأعمال بـ Notion", desc: "قالب شامل مع أتمتة AI", rating: "5.0", sales: "890 مبيعة", price: "$12.99", original: "$24.99" },
+  { id: 4, filter: "coding", emoji: "💻", badge: "🔥 رائج", name: "أوامر البرمجة الكاملة", desc: "100 أمر لتوليد كود", rating: "4.9", sales: "1.5K مبيعة", price: "$14.99", original: "$29.99" }
 ];
 
-function updateCartCount() { document.getElementById('cartCount').textContent = cart.length; }
-function getCategoryName(cat) { const names = { ar: { prompts: '🧠 أوامر AI', design: '🎨 تصميم', notion: '📊 Notion', ebooks: '📚 كتب', coding: '💻 برمجة', services: '🎯 خدمات' }, en: { prompts: '🧠 AI Prompts', design: '🎨 Design', notion: '📊 Notion', ebooks: '📚 Books', coding: '💻 Coding', services: '🎯 Services' } }; return names[currentLang][cat] || cat; }
-function renderProducts(filter = 'all') { currentFilter = filter; const filtered = filter === 'all' ? products : products.filter(p => p.filter === filter); document.getElementById('productsGrid').innerHTML = filtered.map(p => `<div class="product-card" data-id="${p.id}"><div class="product-thumb thumb-blue"><span>${p.emoji}</span><span class="product-badge ${p.badge}">${p.badgeText[currentLang]}</span></div><div class="product-body"><div class="product-category">${getCategoryName(p.category)}</div><div class="product-name">${p.name[currentLang]}</div><div class="product-desc">${p.desc[currentLang]}</div><div class="product-meta"><div class="product-rating">★ ${p.rating}</div><div class="product-sales">${p.sales[currentLang]}</div></div><div class="product-footer"><div class="product-price"><span class="price-current">${p.price}</span>${p.original ? `<span class="price-original">${p.original}</span>` : ''}</div><button class="add-cart-btn ${cart.includes(p.id) ? 'added' : ''}" id="cartBtn${p.id}" onclick="addToCart(${p.id})">${cart.includes(p.id) ? (currentLang === 'ar' ? '✓ تمت الإضافة' : '✓ Added') : (currentLang === 'ar' ? '+ أضف للسلة' : '+ Add to Cart')}</button></div></div></div>`).join(''); }
-function addToCart(id) { if (!cart.includes(id)) { cart.push(id); localStorage.setItem('mw_cart', JSON.stringify(cart)); updateCartCount(); const btn = document.getElementById(`cartBtn${id}`); if (btn) btn.textContent = currentLang === 'ar' ? '✓ تمت الإضافة' : '✓ Added'; showNotif('✅', currentLang === 'ar' ? 'تمت الإضافة للسلة!' : 'Added to cart!'); } else { showNotif('🛒', currentLang === 'ar' ? 'المنتج موجود بالفعل' : 'Already in cart'); } }
-function generatePrompt() { const output = document.getElementById('labOutput'); output.classList.remove('empty'); output.innerHTML = '<div style="color:var(--primary)">✨ أمر تجريبي: "قم بإنشاء محتوى تسويقي جذاب بالعربية مع إحصائيات دقيقة"</div>'; document.getElementById('outputActions').style.display = 'flex'; }
-function copyPrompt() { const text = document.getElementById('labOutput').innerText; navigator.clipboard.writeText(text); showNotif('📋', currentLang === 'ar' ? 'تم النسخ!' : 'Copied!'); }
-function savePrompt() { showNotif('💾', currentLang === 'ar' ? 'تم الحفظ!' : 'Saved!'); }
-function sellPrompt() { window.location.href = 'creators.html'; }
-function showNotif(icon, text) { const n = document.getElementById('notification'); document.getElementById('notifIcon').textContent = icon; document.getElementById('notifText').textContent = text; n.classList.add('show'); setTimeout(() => n.classList.remove('show'), 3000); }
-function subscribeEmail() { const email = document.getElementById('emailInput').value; if (!email || !email.includes('@')) { showNotif('⚠️', currentLang === 'ar' ? 'يرجى إدخال بريد إلكتروني صحيح' : 'Please enter a valid email'); return; } showNotif('🎁', currentLang === 'ar' ? 'تم إرسال الـ 100 أمر لبريدك!' : '100 prompts sent!'); document.getElementById('emailInput').value = ''; }
-function toggleLangDropdown() { document.getElementById('langSwitcher').classList.toggle('active'); }
-function changeLanguage(lang) { currentLang = lang; localStorage.setItem('mw_lang', lang); document.body.setAttribute('data-lang', lang); document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; document.getElementById('currentLangFlag').textContent = lang === 'ar' ? '🇸🇦' : lang === 'en' ? '🇬🇧' : lang === 'es' ? '🇪🇸' : '🇫🇷'; document.getElementById('currentLangLabel').textContent = lang === 'ar' ? 'العربية' : lang === 'en' ? 'English' : lang === 'es' ? 'Español' : 'Français'; document.querySelectorAll('.lang-option').forEach(opt => opt.classList.toggle('active', opt.dataset.lang === lang)); translatePage(); renderProducts(currentFilter); toggleLangDropdown(); }
-function translatePage() { const t = translations[currentLang]; document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); const val = key.split('.').reduce((o, k) => o && o[k], t); if (val) el.textContent = val; }); document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const key = el.getAttribute('data-i18n-placeholder'); const val = key.split('.').reduce((o, k) => o && o[k], t); if (val) el.placeholder = val; }); if (t.meta?.title) document.title = t.meta.title; }
-function initLanguage() { document.body.setAttribute('data-lang', currentLang); document.documentElement.lang = currentLang; document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr'; translatePage(); updateCartCount(); renderProducts(); }
-document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderProducts(btn.dataset.filter); }); });
-document.getElementById('labGenerateBtn').onclick = generatePrompt;
-document.addEventListener('click', (e) => { if (!e.target.closest('.lang-switcher')) document.getElementById('langSwitcher').classList.remove('active'); });
-const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+// ========== Functions ==========
+function updateCartCount() {
+  document.getElementById('cartCount').textContent = cart.length;
+}
+
+function addToCart(id) {
+  if (!cart.includes(id)) {
+    cart.push(id);
+    localStorage.setItem('mw_cart', JSON.stringify(cart));
+    updateCartCount();
+    showNotification('✅', 'تمت الإضافة للسلة!');
+    renderProducts();
+  } else {
+    showNotification('🛒', 'المنتج موجود بالفعل في السلة');
+  }
+}
+
+function renderProducts() {
+  const filtered = currentFilter === 'all' ? products : products.filter(p => p.filter === currentFilter);
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card">
+      <div class="product-thumb">
+        <span>${p.emoji}</span>
+        <span class="product-badge">${p.badge}</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">${p.filter === 'prompts' ? '🧠 أوامر AI' : p.filter === 'design' ? '🎨 تصميم' : p.filter === 'notion' ? '📊 Notion' : '💻 برمجة'}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-meta">
+          <div class="product-rating">★ ${p.rating}</div>
+          <div>${p.sales}</div>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-current">${p.price}</span>
+            <span class="price-original">${p.original}</span>
+          </div>
+          <button class="add-cart-btn ${cart.includes(p.id) ? 'added' : ''}" onclick="addToCart(${p.id})">
+            ${cart.includes(p.id) ? '✓ تمت الإضافة' : '+ أضف للسلة'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function showNotification(icon, text) {
+  const notif = document.getElementById('notification');
+  document.getElementById('notifIcon').textContent = icon;
+  document.getElementById('notifText').textContent = text;
+  notif.classList.add('show');
+  setTimeout(() => notif.classList.remove('show'), 3000);
+}
+
+// ========== Prompt Lab ==========
+function generatePrompt() {
+  const input = document.getElementById('promptInput').value;
+  const output = document.getElementById('promptOutput');
+  const actions = document.getElementById('outputActions');
+  
+  if (!input.trim()) {
+    output.innerHTML = '⚠️ الرجاء إدخال وصف لاحتياجك أولاً';
+    return;
+  }
+  
+  output.innerHTML = `✨ أمر احترافي: "قم بإنشاء محتوى تسويقي جذاب بالعربية حول "${input}" مع إحصائيات دقيقة ونصائح عملية، مع استخدام لغة تحفيزية وأسلوب مقنع."`;
+  actions.style.display = 'flex';
+}
+
+function copyPrompt() {
+  const text = document.getElementById('promptOutput').innerText;
+  navigator.clipboard.writeText(text);
+  showNotification('📋', 'تم نسخ الأمر!');
+}
+
+function savePrompt() {
+  showNotification('💾', 'تم حفظ الأمر!');
+}
+
+function sellPrompt() {
+  window.location.href = 'creators.html';
+}
+
+// ========== Language ==========
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.body.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
+  
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  
+  document.getElementById('currentLangFlag').textContent = flags[lang];
+  document.getElementById('currentLangLabel').textContent = labels[lang];
+  
+  toggleLangMenu();
+}
+
+// ========== Email Subscription ==========
+function subscribeEmail() {
+  const email = document.getElementById('emailInput').value;
+  if (!email || !email.includes('@')) {
+    showNotification('⚠️', 'يرجى إدخال بريد إلكتروني صحيح');
+    return;
+  }
+  showNotification('🎁', 'تم إرسال الـ 100 أمر لبريدك!');
+  document.getElementById('emailInput').value = '';
+}
+
+// ========== Filter Buttons ==========
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderProducts();
+  });
+});
+
+// ========== Prompt Lab Buttons ==========
+document.getElementById('generateBtn').onclick = generatePrompt;
+document.getElementById('copyBtn').onclick = copyPrompt;
+document.getElementById('saveBtn').onclick = savePrompt;
+document.getElementById('sellBtn').onclick = sellPrompt;
+document.getElementById('subscribeBtn').onclick = subscribeEmail;
+
+// ========== Reveal Animation ==========
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-initLanguage();
+
+// ========== Close Lang Menu on Click Outside ==========
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.lang-selector')) {
+    document.getElementById('langSelector').classList.remove('active');
+  }
+});
+
+// ========== Initialize ==========
+updateCartCount();
+renderProducts();
 </script>
 </body>
 </html>
