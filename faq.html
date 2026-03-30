@@ -4,143 +4,671 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>الأسئلة الشائعة | MindWeave</title>
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta name="description" content="إجابات على الأسئلة الأكثر شيوعاً حول MindWeave">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-.lang-switch:hover{background:#6C5CE7}
-[data-lang="en"]{display:none}
-body.en [data-lang="ar"]{display:none}
-body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}
-body:not(.en){direction:rtl;text-align:right}
-.cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
-.cart-icon{text-decoration:none;color:white}
-.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
-.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
-.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
-.faq-container{max-width:800px;margin:auto;padding:2rem}
-.faq-item{background:#1A1A2E;border-radius:15px;margin-bottom:1rem;border:1px solid rgba(108,92,231,0.2)}
-.faq-question{padding:1rem;cursor:pointer;font-weight:bold;color:#6C5CE7;display:flex;justify-content:space-between;align-items:center}
-.faq-question i{transition:transform 0.3s}
-.faq-answer{padding:0 1rem 1rem 1rem;display:none;color:#A0A0B0;line-height:1.6}
-.faq-item.active .faq-answer{display:block}
-.faq-item.active .faq-question i{transform:rotate(180deg)}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  line-height: 1.6;
+}
+
+body[data-lang="en"],
+body[data-lang="es"],
+body[data-lang="fr"] {
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+body[data-lang="ar"] {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1001;
+}
+
+body[data-lang="en"] .lang-dropdown,
+body[data-lang="es"] .lang-dropdown,
+body[data-lang="fr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-selector.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--secondary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-lang="en"] .cart-count {
+  right: auto;
+  left: -8px;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 100px 2rem 4rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.faq-search {
+  margin-bottom: 2rem;
+}
+
+.faq-search input {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 0.8rem 1.5rem;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.faq-search input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.faq-categories {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.cat-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cat-btn.active,
+.cat-btn:hover {
+  background: var(--primary);
+  color: var(--bg);
+  border-color: var(--primary);
+}
+
+.faq-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.faq-question:hover {
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.faq-question h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.faq-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  border-top: 1px solid transparent;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 300px;
+  border-top-color: var(--border);
+}
+
+.faq-answer p {
+  padding: 1.2rem 1.5rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
-<body>
+<body data-lang="ar">
 
-<header>
-<nav style="display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;padding:1rem">
-<div class="logo"><a href="index.html" style="font-size:1.5rem;text-decoration:none;background:linear-gradient(135deg,#6C5CE7,#00D2FF);-webkit-background-clip:text;background-clip:text;color:transparent">🧠 MindWeave</a></div>
-<ul style="display:flex;list-style:none;gap:2rem">
-<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
-<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
-<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
-<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
-<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
-</ul>
-<div class="nav-icons">
-<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
-<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
-</div>
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🧠</div>
+    Mind<span>Weave</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+    <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
+    <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+    <li><a href="prompt-lab.html" data-i18n="nav.promptlab">Prompt Lab ✨</a></li>
+    <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
+    <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
+  </ul>
+
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLangFlag">🇸🇦</span>
+        <span id="currentLangLabel">العربية</span>
+        <span>▼</span>
+      </button>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+      </div>
+    </div>
+    <a href="cart.html" class="cart-btn">
+      🛒 <span data-i18n="nav.cart">السلة</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </div>
 </nav>
-</header>
 
 <main>
-<section class="page-header">
-<div class="container">
-<h1 data-lang="ar">الأسئلة الشائعة</h1>
-<h1 data-lang="en">Frequently Asked Questions</h1>
-<p data-lang="ar">كل ما تريد معرفته عن MindWeave في مكان واحد</p>
-<p data-lang="en">Everything you need to know about MindWeave in one place</p>
-</div>
-</section>
+  <div class="hero reveal">
+    <div class="hero-badge" data-i18n="hero.badge">❓ الأسئلة الشائعة</div>
+    <h1 data-i18n="hero.title">هل لديك <span class="gradient">سؤال؟</span></h1>
+    <p data-i18n="hero.subtitle">إجابات على الأسئلة الأكثر شيوعاً حول MindWeave</p>
+  </div>
 
-<div class="faq-container">
-<div class="faq-item">
-<div class="faq-question"><span data-lang="ar">كيف يتم تسليم المنتج بعد الشراء؟</span><span data-lang="en">How is the product delivered after purchase?</span><i class="fas fa-chevron-down"></i></div>
-<div class="faq-answer"><p data-lang="ar">بعد إتمام الدفع عبر Gumroad، ستتلقى رسالة بريد إلكتروني فورية تحتوي على رابط تحميل المنتج. يمكنك تحميل الملفات مباشرة من الرابط، كما ستظهر في حسابك على Gumroad للوصول الدائم.</p><p data-lang="en">After payment via Gumroad, you will receive an immediate email with a download link. You can download the files directly, and they will also appear in your Gumroad account for permanent access.</p></div>
-</div>
+  <div class="faq-search reveal">
+    <input type="text" id="searchInput" placeholder="ابحث عن سؤال..." data-i18n-placeholder="search">
+  </div>
 
-<div class="faq-item">
-<div class="faq-question"><span data-lang="ar">هل يمكن استرجاع المنتج إذا لم يعجبني؟</span><span data-lang="en">Can I return a product if I don't like it?</span><i class="fas fa-chevron-down"></i></div>
-<div class="faq-answer"><p data-lang="ar">نظرًا لأن المنتجات رقمية ويتم تسليمها فورًا، لا نقدم استردادًا ماليًا بعد التحميل. لكن إذا واجهت مشكلة فنية في الملف، تواصل معنا خلال 7 أيام وسنقوم باستبداله مجانًا.</p><p data-lang="en">Since products are digital and delivered immediately, we don't offer refunds after download. However, if you encounter a technical issue with the file, contact us within 7 days and we'll replace it for free.</p></div>
-</div>
+  <div class="faq-categories reveal">
+    <button class="cat-btn active" data-cat="all" data-i18n="cat.all">الكل</button>
+    <button class="cat-btn" data-cat="general" data-i18n="cat.general">عام</button>
+    <button class="cat-btn" data-cat="account" data-i18n="cat.account">الحساب</button>
+    <button class="cat-btn" data-cat="payment" data-i18n="cat.payment">الدفع</button>
+    <button class="cat-btn" data-cat="products" data-i18n="cat.products">المنتجات</button>
+    <button class="cat-btn" data-cat="creator" data-i18n="cat.creator">برنامج المبدعين</button>
+  </div>
 
-<div class="faq-item">
-<div class="faq-question"><span data-lang="ar">كيف أحصل على الدعم الفني؟</span><span data-lang="en">How do I get technical support?</span><i class="fas fa-chevron-down"></i></div>
-<div class="faq-answer"><p data-lang="ar">يمكنك التواصل معنا عبر البريد الإلكتروني support@mindweave.store، أو استخدام بوت المساعد الذكي المتاح 24/7 في الموقع. نرد خلال 24 ساعة في أيام العمل.</p><p data-lang="en">You can contact us via email at support@mindweave.store, or use the AI assistant bot available 24/7 on the site. We reply within 24 hours on business days.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question"><span data-lang="ar">هل أحتاج اشتراك لاستخدام مكتبة الأوامر؟</span><span data-lang="en">Do I need a subscription to use the prompts library?</span><i class="fas fa-chevron-down"></i></div>
-<div class="faq-answer"><p data-lang="ar">المكتبة الأساسية مجانية بالكامل وتحتوي على أكثر من 500 أمر. خطط الاشتراك (نَسَّاج أساسي، محترف، أعمال) تمنحك محتوى حصريًا، تحميلات غير محدودة، ومزايا إضافية.</p><p data-lang="en">The basic library is completely free with over 500 prompts. Subscription plans (Basic, Pro, Business Weaver) give you exclusive content, unlimited downloads, and additional features.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question"><span data-lang="ar">ما هي طرق الدفع المتاحة؟</span><span data-lang="en">What payment methods are available?</span><i class="fas fa-chevron-down"></i></div>
-<div class="faq-answer"><p data-lang="ar">نقبل الدفع عبر Gumroad الذي يدعم: بطاقات Visa/Mastercard، PayPal، Apple Pay، والعديد من الطرق الأخرى. جميع المعاملات مشفرة وآمنة 100%.</p><p data-lang="en">We accept payments via Gumroad which supports: Visa/Mastercard, PayPal, Apple Pay, and many other methods. All transactions are encrypted and 100% secure.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question"><span data-lang="ar">ماذا أفعل إذا لم تصلني رسالة التحميل؟</span><span data-lang="en">What if I don't receive the download email?</span><i class="fas fa-chevron-down"></i></div>
-<div class="faq-answer"><p data-lang="ar">تأكد من مراجعة مجلد البريد العشوائي (Spam). إذا لم تجد الرسالة، تواصل معنا على support@mindweave.store وسنقوم بإعادة إرسال رابط التحميل خلال ساعة.</p><p data-lang="en">Check your spam folder. If you don't find the email, contact us at support@mindweave.store and we will resend the download link within an hour.</p></div>
-</div>
-
-<div class="faq-item">
-<div class="faq-question"><span data-lang="ar">هل المنتجات متاحة للاستخدام التجاري؟</span><span data-lang="en">Are products available for commercial use?</span><i class="fas fa-chevron-down"></i></div>
-<div class="faq-answer"><p data-lang="ar">نعم، جميع المنتجات المشتراة تأتي مع ترخيص للاستخدام التجاري. يمكنك استخدام الأوامر والتصاميم في مشاريعك التجارية.</p><p data-lang="en">Yes, all purchased products come with a commercial use license. You can use the prompts and designs in your commercial projects.</p></div>
-</div>
-</div>
+  <div class="faq-grid" id="faqGrid"></div>
 </main>
 
 <footer>
-<div class="container">
-<div class="footer-grid">
-<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
-</div>
-<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
-</div>
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a><p style="color: var(--text-muted); margin-top: 1rem;" data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div>
+    <div><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li><li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li></ul></div>
+    <div><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div>
+    <div><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
 </footer>
 
 <script>
-let currentLang = localStorage.getItem('lang') || 'ar';
+const translations = {
+  ar: {
+    nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", promptlab: "Prompt Lab ✨", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة" },
+    hero: { badge: "❓ الأسئلة الشائعة", title: "هل لديك <span class='gradient'>سؤال؟</span>", subtitle: "إجابات على الأسئلة الأكثر شيوعاً حول MindWeave" },
+    search: "ابحث عن سؤال...",
+    cat: { all: "الكل", general: "عام", account: "الحساب", payment: "الدفع", products: "المنتجات", creator: "برنامج المبدعين" },
+    footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" }
+  },
+  en: {
+    nav: { home: "Home", store: "Store", library: "Free Library", promptlab: "Prompt Lab ✨", creators: "Creator Program", blog: "Blog", cart: "Cart" },
+    hero: { badge: "❓ FAQ", title: "Have a <span class='gradient'>Question?</span>", subtitle: "Answers to the most frequently asked questions about MindWeave" },
+    search: "Search for a question...",
+    cat: { all: "All", general: "General", account: "Account", payment: "Payment", products: "Products", creator: "Creator Program" },
+    footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creative tools.", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" }
+  },
+  es: {
+    nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito" },
+    hero: { badge: "❓ Preguntas Frecuentes", title: "¿Tienes una <span class='gradient'>Pregunta?</span>", subtitle: "Respuestas a las preguntas más frecuentes sobre MindWeave" },
+    search: "Buscar una pregunta...",
+    cat: { all: "Todos", general: "General", account: "Cuenta", payment: "Pago", products: "Productos", creator: "Programa de Creadores" },
+    footer: { desc: "Plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Todos los derechos reservados 🧠" }
+  },
+  fr: {
+    nav: { home: "Accueil", store: "Boutique", library: "Bibliothèque Gratuite", promptlab: "Prompt Lab ✨", creators: "Programme Créateurs", blog: "Blog", cart: "Panier" },
+    hero: { badge: "❓ FAQ", title: "Vous avez une <span class='gradient'>Question?</span>", subtitle: "Réponses aux questions les plus fréquentes sur MindWeave" },
+    search: "Rechercher une question...",
+    cat: { all: "Tous", general: "Général", account: "Compte", payment: "Paiement", products: "Produits", creator: "Programme Créateurs" },
+    footer: { desc: "Plateforme mondiale complète pour les prompts IA, templates numériques et outils créatifs.", platform: "Plateforme", support: "Support", legal: "Juridique", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Tous droits réservés 🧠" }
+  }
+};
 
-function toggleLanguage() {
-    currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    localStorage.setItem('lang', currentLang);
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+const faqData = [
+  { id: 1, category: "general", question: { ar: "ما هي MindWeave؟", en: "What is MindWeave?", es: "¿Qué es MindWeave?", fr: "Qu'est-ce que MindWeave?" }, answer: { ar: "MindWeave هي منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع. نوفر أكثر من 500 منتج رقمي وخدمات متنوعة للمبدعين والمطورين.", en: "MindWeave is a comprehensive global platform for AI prompts, digital templates, and creative tools. We provide over 500 digital products and various services for creators and developers.", es: "MindWeave es una plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas. Ofrecemos más de 500 productos digitales y diversos servicios para creadores y desarrolladores.", fr: "MindWeave est une plateforme mondiale complète pour les prompts IA, les templates numériques et les outils créatifs. Nous fournissons plus de 500 produits numériques et divers services pour les créateurs et les développeurs." } },
+  { id: 2, category: "account", question: { ar: "كيف يمكنني إنشاء حساب؟", en: "How can I create an account?", es: "¿Cómo puedo crear una cuenta?", fr: "Comment puis-je créer un compte?" }, answer: { ar: "يمكنك إنشاء حساب مجاناً بالضغط على 'ابدأ مجاناً' في الصفحة الرئيسية، أو من خلال صفحة التسجيل.只需要 إدخال بريدك الإلكتروني وإنشاء كلمة مرور.", en: "You can create a free account by clicking 'Start Free' on the homepage, or through the registration page. Simply enter your email and create a password.", es: "Puedes crear una cuenta gratis haciendo clic en 'Empezar Gratis' en la página de inicio, o a través de la página de registro. Simplemente ingresa tu correo electrónico y crea una contraseña.", fr: "Vous pouvez créer un compte gratuitement en cliquant sur 'Commencer Gratuitement' sur la page d'accueil, ou via la page d'inscription. Entrez simplement votre email et créez un mot de passe." } },
+  { id: 3, category: "payment", question: { ar: "ما هي طرق الدفع المتاحة؟", en: "What payment methods are available?", es: "¿Qué métodos de pago están disponibles?", fr: "Quels sont les modes de paiement disponibles?" }, answer: { ar: "نقبل الدفع عبر البطاقات الائتمانية (Visa/Mastercard)، باي بال، والتحويل البنكي. جميع المدفوعات مشفرة وآمنة 100%.", en: "We accept payment via credit cards (Visa/Mastercard), PayPal, and bank transfer. All payments are encrypted and 100% secure.", es: "Aceptamos pagos mediante tarjetas de crédito (Visa/Mastercard), PayPal y transferencia bancaria. Todos los pagos están encriptados y son 100% seguros.", fr: "Nous acceptons les paiements par cartes de crédit (Visa/Mastercard), PayPal et virement bancaire. Tous les paiements sont cryptés et 100% sécurisés." } },
+  { id: 4, category: "products", question: { ar: "كيف أحصل على المنتج بعد الشراء؟", en: "How do I get the product after purchase?", es: "¿Cómo obtengo el producto después de la compra?", fr: "Comment obtenir le produit après l'achat?" }, answer: { ar: "بعد إتمام عملية الشراء، ستتلقى بريداً إلكترونياً يحتوي على رابط التحميل الفوري للمنتج. يمكنك أيضاً الوصول إلى المنتجات المشتراة من صفحة 'طلباتي' في حسابك.", en: "After completing your purchase, you will receive an email with an instant download link for the product. You can also access purchased products from your 'My Orders' page in your account.", es: "Después de completar tu compra, recibirás un correo electrónico con un enlace de descarga instantánea del producto. También puedes acceder a los productos comprados desde la página 'Mis Pedidos' en tu cuenta.", fr: "Après avoir effectué votre achat, vous recevrez un e-mail avec un lien de téléchargement instantané du produit. Vous pouvez également accéder aux produits achetés depuis la page 'Mes Commandes' de votre compte." } },
+  { id: 5, category: "creator", question: { ar: "كيف يمكنني الانضمام لبرنامج المبدعين؟", en: "How can I join the Creator Program?", es: "¿Cómo puedo unirme al Programa de Creadores?", fr: "Comment puis-je rejoindre le Programme Créateurs?" }, answer: { ar: "يمكنك الانضمام لبرنامج المبدعين مجاناً من خلال صفحة 'برنامج المبدعين'. بعد التسجيل، يمكنك رفع منتجاتك الرقمية والبدء في البيع وكسب عمولة تصل إلى 70%.", en: "You can join the Creator Program for free through the 'Creator Program' page. After registering, you can upload your digital products and start selling, earning up to 70% commission.", es: "Puedes unirte al Programa de Creadores gratis a través de la página 'Programa de Creadores'. Después de registrarte, puedes subir tus productos digitales y comenzar a vender, ganando hasta un 70% de comisión.", fr: "Vous pouvez rejoindre le Programme Créateurs gratuitement via la page 'Programme Créateurs'. Après votre inscription, vous pouvez télécharger vos produits numériques et commencer à vendre, gagnant jusqu'à 70% de commission." } },
+  { id: 6, category: "general", question: { ar: "هل هناك ضمان لاسترداد الأموال؟", en: "Is there a money-back guarantee?", es: "¿Hay garantía de devolución de dinero?", fr: "Y a-t-il une garantie de remboursement?" }, answer: { ar: "نعم، نوفر ضمان استرداد الأموال لمدة 30 يوماً. إذا لم تكن راضياً عن المنتج، يمكنك طلب استرداد كامل المبلغ.", en: "Yes, we offer a 30-day money-back guarantee. If you're not satisfied with the product, you can request a full refund.", es: "Sí, ofrecemos una garantía de devolución de dinero de 30 días. Si no estás satisfecho con el producto, puedes solicitar un reembolso completo.", fr: "Oui, nous offrons une garantie de remboursement de 30 jours. Si vous n'êtes pas satisfait du produit, vous pouvez demander un remboursement complet." } },
+  { id: 7, category: "products", question: { ar: "هل يمكنني استخدام المنتجات تجارياً؟", en: "Can I use the products commercially?", es: "¿Puedo usar los productos comercialmente?", fr: "Puis-je utiliser les produits commercialement?" }, answer: { ar: "نعم، معظم منتجاتنا تأتي مع ترخيص تجاري يسمح لك باستخدامها في مشاريعك التجارية. يرجى مراجعة وصف المنتج للحصول على تفاصيل الترخيص.", en: "Yes, most of our products come with a commercial license that allows you to use them in your commercial projects. Please check the product description for license details.", es: "Sí, la mayoría de nuestros productos vienen con una licencia comercial que te permite usarlos en tus proyectos comerciales. Por favor, consulta la descripción del producto para detalles de la licencia.", fr: "Oui, la plupart de nos produits sont accompagnés d'une licence commerciale qui vous permet de les utiliser dans vos projets commerciaux. Veuillez consulter la description du produit pour plus de détails sur la licence." } },
+  { id: 8, category: "account", question: { ar: "كيف يمكنني إعادة تعيين كلمة المرور؟", en: "How can I reset my password?", es: "¿Cómo puedo restablecer mi contraseña?", fr: "Comment puis-je réinitialiser mon mot de passe?" }, answer: { ar: "يمكنك إعادة تعيين كلمة المرور من خلال صفحة تسجيل الدخول بالضغط على 'نسيت كلمة المرور'. ستتلقى بريداً إلكترونياً يحتوي على رابط لإعادة التعيين.", en: "You can reset your password from the login page by clicking 'Forgot password'. You will receive an email with a reset link.", es: "Puedes restablecer tu contraseña desde la página de inicio de sesión haciendo clic en 'Olvidé mi contraseña'. Recibirás un correo electrónico con un enlace para restablecerla.", fr: "Vous pouvez réinitialiser votre mot de passe depuis la page de connexion en cliquant sur 'Mot de passe oublié'. Vous recevrez un e-mail avec un lien de réinitialisation." } }
+];
+
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
+let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+let currentCategory = 'all';
+let searchTerm = '';
+
+function updateLanguage() {
+  const t = translations[currentLang];
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) {
+      if (key === 'hero.title') {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    }
+  });
+  
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) el.placeholder = value;
+  });
+  
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
+  
+  document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  
+  renderFaq();
 }
 
-function applyLanguage() {
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  updateLanguage();
+  toggleLangMenu();
 }
 
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-function updateCartDisplay() {
-    const count = cart.reduce((s, i) => s + i.quantity, 0);
-    const cartSpan = document.querySelector('.cart-count');
-    if (cartSpan) cartSpan.textContent = count;
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
 }
 
-applyLanguage();
-updateCartDisplay();
+function updateCartCount() {
+  const countEl = document.getElementById('cartCount');
+  if (countEl) countEl.textContent = cart.length;
+}
 
-// FAQ Accordion
-document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
-        const item = q.closest('.faq-item');
-        item.classList.toggle('active');
+function renderFaq() {
+  let filtered = faqData;
+  if (currentCategory !== 'all') {
+    filtered = filtered.filter(item => item.category === currentCategory);
+  }
+  if (searchTerm) {
+    filtered = filtered.filter(item => 
+      item.question[currentLang].toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.answer[currentLang].toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
+  
+  const grid = document.getElementById('faqGrid');
+  if (!grid) return;
+  
+  grid.innerHTML = filtered.map(item => `
+    <div class="faq-item" data-id="${item.id}">
+      <div class="faq-question" onclick="toggleFaq(${item.id})">
+        <h3>${item.question[currentLang]}</h3>
+        <span class="faq-icon">▼</span>
+      </div>
+      <div class="faq-answer">
+        <p>${item.answer[currentLang]}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleFaq(id) {
+  const item = document.querySelector(`.faq-item[data-id="${id}"]`);
+  if (item) {
+    item.classList.toggle('active');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLanguage();
+  updateCartCount();
+  renderFaq();
+  
+  document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+  });
+  
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = btn.dataset.cat;
+      renderFaq();
     });
+  });
+  
+  document.getElementById('searchInput')?.addEventListener('input', (e) => {
+    searchTerm = e.target.value;
+    renderFaq();
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      document.getElementById('langSelector')?.classList.remove('active');
+    }
+  });
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 });
 </script>
 </body>
