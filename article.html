@@ -612,14 +612,14 @@ const translations = {
   }
 };
 
-// ========== BLOG POSTS DATA (12 Articles) ==========
+// ========== 12 BLOG POSTS WITH FULL CONTENT ==========
 const blogPosts = [
   {
     id: 1,
     category: { ar: "تعلم", en: "Learning", es: "Aprendizaje", fr: "Apprentissage" },
     icon: "📚",
     title: { ar: "كيف تكتب أوامر ChatGPT احترافية: دليل المبتدئين", en: "How to Write Professional ChatGPT Prompts: A Beginner's Guide", es: "Cómo escribir prompts profesionales de ChatGPT: Guía para principiantes", fr: "Comment rédiger des prompts ChatGPT professionnels : Guide du débutant" },
-    date: "15 مارس 2026",
+    date: { ar: "15 مارس 2026", en: "March 15, 2026", es: "15 de marzo de 2026", fr: "15 mars 2026" },
     readTime: { ar: "5 دقائق", en: "5 min read", es: "5 min de lectura", fr: "5 min de lecture" },
     content: {
       ar: `<p>هندسة الأوامر (Prompt Engineering) هي فن صياغة الأسئلة والتعليمات للحصول على أفضل النتائج من نماذج الذكاء الاصطناعي مثل ChatGPT. في هذا الدليل الشامل، سنتعلم أساسيات كتابة الأوامر الاحترافية.</p>
@@ -657,7 +657,7 @@ const blogPosts = [
     category: { ar: "تصميم", en: "Design", es: "Diseño", fr: "Design" },
     icon: "🎨",
     title: { ar: "أفضل 50 أمر Midjourney لتصميم شعارات احترافية", en: "Best 50 Midjourney Prompts for Professional Logo Design", es: "Los 50 mejores prompts de Midjourney para diseño de logotipos profesionales", fr: "Les 50 meilleurs prompts Midjourney pour la conception de logos professionnels" },
-    date: "10 مارس 2026",
+    date: { ar: "10 مارس 2026", en: "March 10, 2026", es: "10 de marzo de 2026", fr: "10 mars 2026" },
     readTime: { ar: "8 دقائق", en: "8 min read", es: "8 min de lectura", fr: "8 min de lecture" },
     content: {
       ar: `<p>في هذا الدليل الشامل، نقدم لك أفضل 50 أمراً لاستخدامها في Midjourney لتصميم شعارات احترافية ومميزة. سواء كنت مصمماً محترفاً أو مبتدئاً، ستجد هنا أوامر تناسب احتياجاتك.</p>
@@ -687,73 +687,319 @@ const blogPosts = [
     category: { ar: "أدوات", en: "Tools", es: "Herramientas", fr: "Outils" },
     icon: "🛠️",
     title: { ar: "دليل شامل لأدوات الذكاء الاصطناعي المجانية 2026", en: "Complete Guide to Free AI Tools 2026", es: "Guía completa de herramientas de IA gratuitas 2026", fr: "Guide complet des outils IA gratuits 2026" },
-    date: "5 مارس 2026",
+    date: { ar: "5 مارس 2026", en: "March 5, 2026", es: "5 de marzo de 2026", fr: "5 mars 2026" },
     readTime: { ar: "10 دقائق", en: "10 min read", es: "10 min de lectura", fr: "10 min de lecture" },
     content: {
       ar: `<p>في هذا الدليل الشامل، نستعرض أكثر من 50 أداة ذكاء اصطناعي مجانية يمكنك استخدامها لتعزيز إنتاجيتك وتوفير الوقت والمال. تم اختيار هذه الأدوات بعناية لتغطي مختلف المجالات.</p>
       <h2>أدوات كتابة المحتوى</h2>
-      <p>• ChatGPT - مساعد كتابة ذكي<br>• Copy.ai - لتوليد نصوص تسويقية<br>• Jasper - لكتابة محتوى طويل</p>
+      <p>• ChatGPT - مساعد كتابة ذكي<br>• Copy.ai - لتوليد نصوص تسويقية<br>• Jasper - لكتابة محتوى طويل<br>• Writesonic - لتوليد محتوى SEO</p>
       <h2>أدوات توليد الصور</h2>
-      <p>• Midjourney - لتوليد صور احترافية<br>• DALL-E - من OpenAI<br>• Leonardo AI - بديل مجاني قوي</p>
+      <p>• Midjourney - لتوليد صور احترافية<br>• DALL-E - من OpenAI<br>• Leonardo AI - بديل مجاني قوي<br>• Playground AI - توليد صور متعددة</p>
       <h2>أدوات الإنتاجية</h2>
-      <p>• Notion AI - مساعد ذكي داخل Notion<br>• Otter.ai - لتحويل الصوت إلى نص<br>• Grammarly - لتدقيق النصوص</p>
+      <p>• Notion AI - مساعد ذكي داخل Notion<br>• Otter.ai - لتحويل الصوت إلى نص<br>• Grammarly - لتدقيق النصوص<br>• Fireflies.ai - لتسجيل وتلخيص الاجتماعات</p>
       <blockquote>نصيحة: جرب الأدوات المختلفة واختر التي تناسب احتياجاتك. معظم هذه الأدوات تقدم نسخاً مجانية مع ميزات أساسية.</blockquote>`,
       en: `<p>In this comprehensive guide, we review over 50 free AI tools you can use to boost your productivity and save time and money. These tools have been carefully selected to cover various fields.</p>
       <h2>Content Writing Tools</h2>
-      <p>• ChatGPT - Smart writing assistant<br>• Copy.ai - For generating marketing copy<br>• Jasper - For long-form content</p>
+      <p>• ChatGPT - Smart writing assistant<br>• Copy.ai - For generating marketing copy<br>• Jasper - For long-form content<br>• Writesonic - For SEO content</p>
       <h2>Image Generation Tools</h2>
-      <p>• Midjourney - For professional images<br>• DALL-E - From OpenAI<br>• Leonardo AI - Powerful free alternative</p>
+      <p>• Midjourney - For professional images<br>• DALL-E - From OpenAI<br>• Leonardo AI - Powerful free alternative<br>• Playground AI - Multi-image generation</p>
       <h2>Productivity Tools</h2>
-      <p>• Notion AI - Smart assistant inside Notion<br>• Otter.ai - For speech to text<br>• Grammarly - For proofreading</p>
+      <p>• Notion AI - Smart assistant inside Notion<br>• Otter.ai - For speech to text<br>• Grammarly - For proofreading<br>• Fireflies.ai - For meeting recording and summaries</p>
       <blockquote>Tip: Try different tools and choose what suits your needs. Most of these tools offer free versions with basic features.</blockquote>`
+    }
+  },
+  {
+    id: 4,
+    category: { ar: "ريادة أعمال", en: "Entrepreneurship", es: "Emprendimiento", fr: "Entrepreneuriat" },
+    icon: "💡",
+    title: { ar: "كيف تبدأ مشروعك الجانبي باستخدام الذكاء الاصطناعي", en: "How to Start Your Side Project Using AI", es: "Cómo iniciar tu proyecto secundario usando IA", fr: "Comment démarrer votre projet parallèle en utilisant l'IA" },
+    date: { ar: "28 فبراير 2026", en: "February 28, 2026", es: "28 de febrero de 2026", fr: "28 février 2026" },
+    readTime: { ar: "7 دقائق", en: "7 min read", es: "7 min de lectura", fr: "7 min de lecture" },
+    content: {
+      ar: `<p>الذكاء الاصطناعي يفتح آفاقاً جديدة للعمل الحر والمشاريع الجانبية. في هذا المقال، سنستعرض أفكاراً عملية لتحويل مهاراتك في الذكاء الاصطناعي إلى مصدر دخل إضافي.</p>
+      <h2>أفكار مشاريع جانبية باستخدام الذكاء الاصطناعي</h2>
+      <p><strong>1. خدمات كتابة المحتوى باستخدام AI:</strong> استخدم ChatGPT و Jasper لكتابة مقالات، منشورات، وإعلانات للعملاء.</p>
+      <p><strong>2. تصميم الشعارات والهويات البصرية:</strong> باستخدام Midjourney، يمكنك تقديم خدمات تصميم شعارات احترافية.</p>
+      <p><strong>3. إنشاء قوالب Notion مدعومة بالذكاء الاصطناعي:</strong> صمم وبع قوالب Notion مع أتمتة ذكية.</p>
+      <p><strong>4. دورات تدريبية في هندسة الأوامر:</strong> علم الآخرين كيفية كتابة أوامر فعالة.</p>
+      <h2>كيف تبدأ؟</h2>
+      <p>ابدأ بتعلم الأساسيات، ثم أنشئ محفظة أعمال (Portfolio) تعرض قدراتك. استخدم منصات مثل Fiverr و Upwork لتسويق خدماتك.</p>
+      <blockquote>الذكاء الاصطناعي ليس بديلاً عن الإبداع البشري، بل أداة تعززه. استخدمه لتقديم قيمة حقيقية لعملائك.</blockquote>`,
+      en: `<p>AI is opening new horizons for freelancing and side projects. In this article, we'll explore practical ideas to turn your AI skills into an additional income source.</p>
+      <h2>Side Project Ideas Using AI</h2>
+      <p><strong>1. AI Content Writing Services:</strong> Use ChatGPT and Jasper to write articles, posts, and ads for clients.</p>
+      <p><strong>2. Logo and Visual Identity Design:</strong> Using Midjourney, you can offer professional logo design services.</p>
+      <p><strong>3. Create AI-Powered Notion Templates:</strong> Design and sell Notion templates with smart automation.</p>
+      <p><strong>4. Prompt Engineering Courses:</strong> Teach others how to write effective prompts.</p>
+      <h2>How to Start?</h2>
+      <p>Start by learning the basics, then build a portfolio showcasing your skills. Use platforms like Fiverr and Upwork to market your services.</p>
+      <blockquote>AI is not a replacement for human creativity, but a tool that enhances it. Use it to deliver real value to your clients.</blockquote>`
+    }
+  },
+  {
+    id: 5,
+    category: { ar: "تسويق", en: "Marketing", es: "Marketing", fr: "Marketing" },
+    icon: "📈",
+    title: { ar: "10 طرق لاستخدام الذكاء الاصطناعي في التسويق الرقمي", en: "10 Ways to Use AI in Digital Marketing", es: "10 formas de usar la IA en marketing digital", fr: "10 façons d'utiliser l'IA dans le marketing numérique" },
+    date: { ar: "20 فبراير 2026", en: "February 20, 2026", es: "20 de febrero de 2026", fr: "20 février 2026" },
+    readTime: { ar: "6 دقائق", en: "6 min read", es: "6 min de lectura", fr: "6 min de lecture" },
+    content: {
+      ar: `<p>الذكاء الاصطناعي يغير قواعد اللعبة في التسويق الرقمي. إليك 10 طرق عملية لاستخدامه في حملاتك التسويقية:</p>
+      <h2>1. تحليل سلوك العملاء</h2>
+      <p>استخدم أدوات AI لتحليل بيانات العملاء وفهم سلوكهم وتوقع احتياجاتهم المستقبلية.</p>
+      <h2>2. تخصيص المحتوى (Personalization)</h2>
+      <p>قدم محتوى مخصصاً لكل عميل بناءً على اهتماماته وسلوكه السابق.</p>
+      <h2>3. كتابة الإعلانات</h2>
+      <p>استخدم ChatGPT و Jasper لكتابة نصوص إعلانية مقنعة ومؤثرة.</p>
+      <h2>4. تحسين محركات البحث (SEO)</h2>
+      <p>أدوات AI تساعد في تحليل الكلمات المفتاحية وتحسين المحتوى لمحركات البحث.</p>
+      <h2>5. إنشاء محتوى مرئي</h2>
+      <p>استخدم Midjourney و DALL-E لإنشاء صور ورسوم بيانية جذابة.</p>
+      <blockquote>الذكاء الاصطناعي يمكن أن يضاعف فعالية حملاتك التسويقية إذا استخدمته بشكل صحيح.</blockquote>`,
+      en: `<p>AI is changing the game in digital marketing. Here are 10 practical ways to use it in your marketing campaigns:</p>
+      <h2>1. Customer Behavior Analysis</h2>
+      <p>Use AI tools to analyze customer data and understand their behavior and future needs.</p>
+      <h2>2. Content Personalization</h2>
+      <p>Deliver personalized content to each customer based on their interests and past behavior.</p>
+      <h2>3. Ad Copywriting</h2>
+      <p>Use ChatGPT and Jasper to write compelling and effective ad copy.</p>
+      <h2>4. SEO Optimization</h2>
+      <p>AI tools help analyze keywords and optimize content for search engines.</p>
+      <h2>5. Visual Content Creation</h2>
+      <p>Use Midjourney and DALL-E to create engaging images and graphics.</p>
+      <blockquote>AI can multiply the effectiveness of your marketing campaigns if used correctly.</blockquote>`
+    }
+  },
+  {
+    id: 6,
+    category: { ar: "برمجة", en: "Coding", es: "Programación", fr: "Programmation" },
+    icon: "💻",
+    title: { ar: "أفضل 50 أمر برمجي باستخدام الذكاء الاصطناعي", en: "Best 50 Coding Prompts Using AI", es: "Los 50 mejores prompts de programación con IA", fr: "Les 50 meilleurs prompts de programmation avec l'IA" },
+    date: { ar: "15 فبراير 2026", en: "February 15, 2026", es: "15 de febrero de 2026", fr: "15 février 2026" },
+    readTime: { ar: "8 دقائق", en: "8 min read", es: "8 min de lectura", fr: "8 min de lecture" },
+    content: {
+      ar: `<p>في هذا المقال، نقدم مجموعة من الأوامر البرمجية التي تساعدك في توليد وتصحيح الأكواد باستخدام الذكاء الاصطناعي.</p>
+      <h2>أوامر لتوليد الأكواد</h2>
+      <p><strong>1. توليد دالة بلغة Python:</strong><br>"Write a Python function that takes a list of numbers and returns the average, median, and mode."</p>
+      <p><strong>2. توليد كود React Component:</strong><br>"Create a React component for a login form with email and password fields, including validation and error handling."</p>
+      <h2>أوامر لتصحيح الأخطاء</h2>
+      <p><strong>3. تصحيح كود JavaScript:</strong><br>"Debug the following JavaScript code: [paste code]. Identify the bug and provide a fixed version with explanation."</p>
+      <h2>أوامر لتحسين الأداء</h2>
+      <p><strong>4. تحسين استعلام SQL:</strong><br>"Optimize this SQL query for better performance: [paste query]"</p>
+      <blockquote>استخدم هذه الأوامر كنقطة بداية وعدلها حسب احتياجاتك الخاصة.</blockquote>`,
+      en: `<p>In this article, we present a set of coding prompts that help you generate and debug code using AI.</p>
+      <h2>Code Generation Prompts</h2>
+      <p><strong>1. Generate Python Function:</strong><br>"Write a Python function that takes a list of numbers and returns the average, median, and mode."</p>
+      <p><strong>2. Generate React Component:</strong><br>"Create a React component for a login form with email and password fields, including validation and error handling."</p>
+      <h2>Debugging Prompts</h2>
+      <p><strong>3. Debug JavaScript Code:</strong><br>"Debug the following JavaScript code: [paste code]. Identify the bug and provide a fixed version with explanation."</p>
+      <h2>Performance Optimization Prompts</h2>
+      <p><strong>4. Optimize SQL Query:</strong><br>"Optimize this SQL query for better performance: [paste query]"</p>
+      <blockquote>Use these prompts as a starting point and modify them according to your specific needs.</blockquote>`
+    }
+  },
+  {
+    id: 7,
+    category: { ar: "مقارنة", en: "Comparison", es: "Comparación", fr: "Comparaison" },
+    icon: "⚖️",
+    title: { ar: "ChatGPT vs Midjourney: أيهما أفضل لمشروعك؟", en: "ChatGPT vs Midjourney: Which is Better for Your Project?", es: "ChatGPT vs Midjourney: ¿Cuál es mejor para tu proyecto?", fr: "ChatGPT vs Midjourney: Lequel est le meilleur pour votre projet?" },
+    date: { ar: "10 فبراير 2026", en: "February 10, 2026", es: "10 de febrero de 2026", fr: "10 février 2026" },
+    readTime: { ar: "9 دقائق", en: "9 min read", es: "9 min de lectura", fr: "9 min de lecture" },
+    content: {
+      ar: `<p>ChatGPT و Midjourney هما من أقوى أدوات الذكاء الاصطناعي، لكن لكل منهما استخدامات مختلفة. في هذا المقال، نقارن بينهما لمساعدتك في اختيار الأداة المناسبة لمشروعك.</p>
+      <h2>ChatGPT - معالج النصوص</h2>
+      <p><strong>الاستخدامات:</strong> كتابة المحتوى، البرمجة، التحليل، الترجمة، الدعم الفني.</p>
+      <p><strong>المميزات:</strong> مجاني جزئياً، دعم متعدد اللغات، قدرة على فهم السياق.</p>
+      <h2>Midjourney - معالج الصور</h2>
+      <p><strong>الاستخدامات:</strong> تصميم الشعارات، إنشاء الصور الفنية، الرسوم البيانية.</p>
+      <p><strong>المميزات:</strong> جودة عالية، إبداع فني، تحكم دقيق بالأسلوب.</p>
+      <h2>متى تستخدم كل منهما؟</h2>
+      <p>استخدم ChatGPT للمهام النصية والتحليلية. استخدم Midjourney للمشاريع البصرية والتصميمية. يمكنك أيضاً دمجهما معاً للحصول على نتائج أفضل.</p>
+      <blockquote>اختر الأداة المناسبة بناءً على طبيعة مشروعك، ولا تتردد في استخدام كليهما معاً.</blockquote>`,
+      en: `<p>ChatGPT and Midjourney are among the most powerful AI tools, but each has different uses. In this article, we compare them to help you choose the right tool for your project.</p>
+      <h2>ChatGPT - Text Processor</h2>
+      <p><strong>Uses:</strong> Content writing, coding, analysis, translation, customer support.</p>
+      <p><strong>Features:</strong> Partially free, multilingual support, context understanding.</p>
+      <h2>Midjourney - Image Processor</h2>
+      <p><strong>Uses:</strong> Logo design, artistic images, graphics creation.</p>
+      <p><strong>Features:</strong> High quality, artistic creativity, precise style control.</p>
+      <h2>When to Use Each?</h2>
+      <p>Use ChatGPT for text-based and analytical tasks. Use Midjourney for visual projects and design. You can also combine both for better results.</p>
+      <blockquote>Choose the right tool based on your project's nature, and don't hesitate to use both together.</blockquote>`
+    }
+  },
+  {
+    id: 8,
+    category: { ar: "إنتاجية", en: "Productivity", es: "Productividad", fr: "Productivité" },
+    icon: "📊",
+    title: { ar: "أفضل 20 قالب Notion مع دعم الذكاء الاصطناعي", en: "Best 20 Notion Templates with AI Support", es: "Los 20 mejores plantillas de Notion con soporte de IA", fr: "Les 20 meilleurs templates Notion avec support IA" },
+    date: { ar: "5 فبراير 2026", en: "February 5, 2026", es: "5 de febrero de 2026", fr: "5 février 2026" },
+    readTime: { ar: "6 دقائق", en: "6 min read", es: "6 min de lectura", fr: "6 min de lecture" },
+    content: {
+      ar: `<p>Notion مع Notion AI يصبح أداة إنتاجية لا مثيل لها. في هذا المقال، نستعرض أفضل 20 قالباً يمكنك استخدامها لتعزيز إنتاجيتك.</p>
+      <h2>قوالب إدارة المشاريع</h2>
+      <p>• قالب إدارة المشاريع مع تتبع المهام<br>• قالب اجتماعات الفريق مع ملاحظات AI<br>• قالب تخطيط الاستراتيجية</p>
+      <h2>قوالب الإنتاجية الشخصية</h2>
+      <p>• قالب إدارة الوقت والأهداف<br>• قالب اليوميات الذكية<br>• قالب التخطيط الأسبوعي</p>
+      <h2>قوالب الأعمال</h2>
+      <p>• قالب إدارة العملاء (CRM)<br>• قالب تخطيط المحتوى<br>• قالب إدارة الميزانيات</p>
+      <blockquote>استخدم Notion AI لتلخيص الملاحظات وإنشاء المهام وتوليد المحتوى مباشرة داخل القوالب.</blockquote>`,
+      en: `<p>Notion with Notion AI becomes an unmatched productivity tool. In this article, we review the best 20 templates you can use to boost your productivity.</p>
+      <h2>Project Management Templates</h2>
+      <p>• Project management with task tracking<br>• Team meetings with AI notes<br>• Strategy planning template</p>
+      <h2>Personal Productivity Templates</h2>
+      <p>• Time and goals management<br>• Smart journaling template<br>• Weekly planning template</p>
+      <h2>Business Templates</h2>
+      <p>• CRM template<br>• Content planning template<br>• Budget management template</p>
+      <blockquote>Use Notion AI to summarize notes, create tasks, and generate content directly within the templates.</blockquote>`
+    }
+  },
+  {
+    id: 9,
+    category: { ar: "تصميم", en: "Design", es: "Diseño", fr: "Design" },
+    icon: "🖼️",
+    title: { ar: "نصائح احترافية لتوليد الصور بالذكاء الاصطناعي", en: "Professional Tips for AI Image Generation", es: "Consejos profesionales para la generación de imágenes con IA", fr: "Conseils professionnels pour la génération d'images IA" },
+    date: { ar: "28 يناير 2026", en: "January 28, 2026", es: "28 de enero de 2026", fr: "28 janvier 2026" },
+    readTime: { ar: "7 دقائق", en: "7 min read", es: "7 min de lectura", fr: "7 min de lecture" },
+    content: {
+      ar: `<p>توليد الصور بالذكاء الاصطناعي أصبح فناً قائماً بذاته. إليك نصائح احترافية للحصول على أفضل النتائج:</p>
+      <h2>1. كن محدداً في وصفك</h2>
+      <p>بدلاً من "قطة"، قل "قطة صغيرة سوداء تجلس على كرسي خشبي، ضوء طبيعي، خلفية ضبابية".</p>
+      <h2>2. استخدم كلمات فنية</h2>
+      <p>أضف كلمات مثل: "photorealistic, 4k, detailed, cinematic lighting, professional photography" للحصول على نتائج واقعية.</p>
+      <h2>3. جرب أنماطاً مختلفة</h2>
+      <p>استخدم كلمات مثل: "oil painting, watercolor, sketch, vector art, 3d render" لتغيير الأسلوب.</p>
+      <h2>4. استخدم النسب المناسبة</h2>
+      <p>أضف --ar 16:9 للصور العريضة، --ar 1:1 للمربع، --ar 9:16 للمحمول.</p>
+      <blockquote>التجربة المستمرة هي مفتاح النجاح. جرب أوامر مختلفة وسجل ما يعمل بشكل أفضل.</blockquote>`,
+      en: `<p>AI image generation has become an art form in itself. Here are professional tips for getting the best results:</p>
+      <h2>1. Be Specific in Your Description</h2>
+      <p>Instead of "cat," say "small black cat sitting on a wooden chair, natural lighting, blurry background."</p>
+      <h2>2. Use Artistic Keywords</h2>
+      <p>Add words like: "photorealistic, 4k, detailed, cinematic lighting, professional photography" for realistic results.</p>
+      <h2>3. Try Different Styles</h2>
+      <p>Use words like: "oil painting, watercolor, sketch, vector art, 3d render" to change the style.</p>
+      <h2>4. Use Appropriate Ratios</h2>
+      <p>Add --ar 16:9 for widescreen, --ar 1:1 for square, --ar 9:16 for mobile.</p>
+      <blockquote>Continuous experimentation is the key to success. Try different prompts and record what works best.</blockquote>`
+    }
+  },
+  {
+    id: 10,
+    category: { ar: "أعمال", en: "Business", es: "Negocios", fr: "Affaires" },
+    icon: "🏢",
+    title: { ar: "كيف تستخدم الذكاء الاصطناعي في أتمتة أعمالك", en: "How to Use AI for Business Automation", es: "Cómo usar la IA para la automatización empresarial", fr: "Comment utiliser l'IA pour l'automatisation des entreprises" },
+    date: { ar: "20 يناير 2026", en: "January 20, 2026", es: "20 de enero de 2026", fr: "20 janvier 2026" },
+    readTime: { ar: "8 دقائق", en: "8 min read", es: "8 min de lectura", fr: "8 min de lecture" },
+    content: {
+      ar: `<p>أتمتة الأعمال باستخدام الذكاء الاصطناعي يمكن أن توفر الوقت والمال بشكل كبير. إليك كيفية البدء:</p>
+      <h2>1. أتمتة خدمة العملاء</h2>
+      <p>استخدم ChatGPT لإنشاء ردود تلقائية على الأسئلة الشائعة، أو استخدم روبوتات محادثة متقدمة.</p>
+      <h2>2. أتمتة المحتوى والتسويق</h2>
+      <p>استخدم أدوات AI لجدولة المنشورات، كتابة الإعلانات، وتحليل أداء الحملات.</p>
+      <h2>3. أتمتة المهام الإدارية</h2>
+      <p>أتمتة إدخال البيانات، تنظيم الملفات، وإدارة البريد الإلكتروني باستخدام أدوات الذكاء الاصطناعي.</p>
+      <h2>4. أتمتة التحليلات والتقارير</h2>
+      <p>استخدم AI لتحليل البيانات وإنشاء تقارير تلقائية مع رؤى قابلة للتنفيذ.</p>
+      <blockquote>ابدأ بأتمتة المهام المتكررة التي تستغرق وقتاً طويلاً، ثم وسع نطاق الأتمتة تدريجياً.</blockquote>`,
+      en: `<p>Business automation using AI can save significant time and money. Here's how to get started:</p>
+      <h2>1. Automate Customer Service</h2>
+      <p>Use ChatGPT to create automated responses to FAQs, or use advanced chatbots.</p>
+      <h2>2. Automate Content and Marketing</h2>
+      <p>Use AI tools to schedule posts, write ads, and analyze campaign performance.</p>
+      <h2>3. Automate Administrative Tasks</h2>
+      <p>Automate data entry, file organization, and email management using AI tools.</p>
+      <h2>4. Automate Analytics and Reporting</h2>
+      <p>Use AI to analyze data and generate automated reports with actionable insights.</p>
+      <blockquote>Start by automating repetitive time-consuming tasks, then gradually expand automation.</blockquote>`
+    }
+  },
+  {
+    id: 11,
+    category: { ar: "أدوات", en: "Tools", es: "Herramientas", fr: "Outils" },
+    icon: "💎",
+    title: { ar: "دليل اشتراك Midjourney: أي خطة تناسبك؟", en: "Midjourney Subscription Guide: Which Plan Suits You?", es: "Guía de suscripción a Midjourney: ¿Qué plan te conviene?", fr: "Guide d'abonnement Midjourney: Quel plan vous convient?" },
+    date: { ar: "15 يناير 2026", en: "January 15, 2026", es: "15 de enero de 2026", fr: "15 janvier 2026" },
+    readTime: { ar: "5 دقائق", en: "5 min read", es: "5 min de lectura", fr: "5 min de lecture" },
+    content: {
+      ar: `<p>Midjourney يقدم عدة خطط اشتراك تناسب مختلف المستخدمين. في هذا الدليل، نشرح كل خطة لمساعدتك في اختيار الأنسب لك.</p>
+      <h2>الخطة الأساسية (Basic Plan)</h2>
+      <p>• السعر: $10/شهر<br>• عدد الصور: ~200 صورة/شهر<br>• مناسب للمبتدئين والاستخدام الخفيف</p>
+      <h2>الخطة القياسية (Standard Plan)</h2>
+      <p>• السعر: $30/شهر<br>• عدد الصور: ~900 صورة/شهر<br>• مناسب للمصممين المحترفين</p>
+      <h2>الخطة الاحترافية (Pro Plan)</h2>
+      <p>• السعر: $60/شهر<br>• عدد الصور: ~1800 صورة/شهر<br>• مناسب للاستخدام التجاري الكثيف</p>
+      <h2>الخطة المؤسسية (Mega Plan)</h2>
+      <p>• السعر: $120/شهر<br>• عدد الصور: غير محدود تقريباً<br>• مناسب للشركات والاستوديوهات</p>
+      <blockquote>ابدأ بالخطة الأساسية وجرب، ثم قم بالترقية حسب احتياجاتك.</blockquote>`,
+      en: `<p>Midjourney offers several subscription plans for different users. In this guide, we explain each plan to help you choose the right one.</p>
+      <h2>Basic Plan</h2>
+      <p>• Price: $10/month<br>• Images: ~200 images/month<br>• Suitable for beginners and light use</p>
+      <h2>Standard Plan</h2>
+      <p>• Price: $30/month<br>• Images: ~900 images/month<br>• Suitable for professional designers</p>
+      <h2>Pro Plan</h2>
+      <p>• Price: $60/month<br>• Images: ~1800 images/month<br>• Suitable for heavy commercial use</p>
+      <h2>Mega Plan</h2>
+      <p>• Price: $120/month<br>• Images: Almost unlimited<br>• Suitable for companies and studios</p>
+      <blockquote>Start with the Basic Plan and try it, then upgrade based on your needs.</blockquote>`
+    }
+  },
+  {
+    id: 12,
+    category: { ar: "تعلم", en: "Learning", es: "Aprendizaje", fr: "Apprentissage" },
+    icon: "⚠️",
+    title: { ar: "10 أخطاء شائعة في هندسة الأوامر وكيف تتجنبها", en: "10 Common Prompt Engineering Mistakes and How to Avoid Them", es: "10 errores comunes en la ingeniería de prompts y cómo evitarlos", fr: "10 erreurs courantes en ingénierie des prompts et comment les éviter" },
+    date: { ar: "10 يناير 2026", en: "January 10, 2026", es: "10 de enero de 2026", fr: "10 janvier 2026" },
+    readTime: { ar: "6 دقائق", en: "6 min read", es: "6 min de lectura", fr: "6 min de lecture" },
+    content: {
+      ar: `<p>هندسة الأوامر مهارة تحتاج إلى ممارسة. إليك 10 أخطاء شائعة وكيفية تجنبها:</p>
+      <h2>1. الأوامر الغامضة</h2>
+      <p>الحل: كن محدداً وواضحاً في طلبك. اذكر التفاصيل المهمة.</p>
+      <h2>2. عدم توفير السياق</h2>
+      <p>الحل: أعطِ النموذج معلومات عن الخلفية والجمهور والهدف.</p>
+      <h2>3. الأوامر الطويلة جداً</h2>
+      <p>الحل: قسم الأمر إلى أجزاء أو استخدم سلسلة من الأوامر.</p>
+      <h2>4. تجاهل تنسيق الإجابة</h2>
+      <p>الحل: حدد بوضوح الشكل الذي تريد الإجابة به (قائمة، فقرات، جدول).</p>
+      <h2>5. عدم استخدام الأمثلة</h2>
+      <p>الحل: قدم أمثلة على النتائج التي تريدها لتوجيه النموذج.</p>
+      <blockquote>تذكر أن جودة المخرجات تعتمد بشكل كبير على جودة المدخلات.</blockquote>`,
+      en: `<p>Prompt Engineering is a skill that requires practice. Here are 10 common mistakes and how to avoid them:</p>
+      <h2>1. Vague Prompts</h2>
+      <p>Solution: Be specific and clear in your request. Mention important details.</p>
+      <h2>2. Lack of Context</h2>
+      <p>Solution: Give the model information about background, audience, and purpose.</p>
+      <h2>3. Overly Long Prompts</h2>
+      <p>Solution: Break the prompt into parts or use a chain of prompts.</p>
+      <h2>4. Ignoring Response Format</h2>
+      <p>Solution: Clearly specify the format you want (list, paragraphs, table).</p>
+      <h2>5. Not Using Examples</h2>
+      <p>Solution: Provide examples of the results you want to guide the model.</p>
+      <blockquote>Remember that output quality depends heavily on input quality.</blockquote>`
     }
   }
 ];
 
-// ========== Add more posts 4-12 (similar structure) ==========
-for (let i = 4; i <= 12; i++) {
-  blogPosts.push({
-    id: i,
-    category: { ar: i % 2 === 0 ? "تسويق" : "برمجة", en: i % 2 === 0 ? "Marketing" : "Coding", es: i % 2 === 0 ? "Marketing" : "Programación", fr: i % 2 === 0 ? "Marketing" : "Programmation" },
-    icon: i % 2 === 0 ? "📈" : "💻",
-    title: { ar: `مقال ${i}: محتوى احترافي عن الذكاء الاصطناعي`, en: `Article ${i}: Professional Content about AI`, es: `Artículo ${i}: Contenido Profesional sobre IA`, fr: `Article ${i}: Contenu Professionnel sur l'IA` },
-    date: `${15 - (i-4)} فبراير 2026`,
-    readTime: { ar: "7 دقائق", en: "7 min read", es: "7 min de lectura", fr: "7 min de lecture" },
-    content: { ar: `<p>هذا هو محتوى المقال رقم ${i}. يمكنك تخصيص هذا المحتوى ليتناسب مع موضوع المقال الفعلي. المحتوى هنا هو نموذج توضيحي.</p><h2>عنوان القسم الأول</h2><p>نص توضيحي للمحتوى. يمكنك إضافة معلومات قيمة هنا.</p><h2>عنوان القسم الثاني</h2><p>نص توضيحي إضافي للمحتوى.</p><blockquote>اقتباس مهم من المقال.</blockquote>`, en: `<p>This is the content of article ${i}. You can customize this content to match the actual article topic. This content is a sample.</p><h2>First Section Title</h2><p>Explanatory text for the content. You can add valuable information here.</p><h2>Second Section Title</h2><p>Additional explanatory text.</p><blockquote>Important quote from the article.</blockquote>` }
-  });
-}
-
-// ========== App State ==========
 let currentLang = localStorage.getItem('mw_lang') || 'ar';
 let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
 
 function updateLanguage() {
   const t = translations[currentLang];
   
-  // Update data-i18n elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     const value = key.split('.').reduce((obj, k) => obj?.[k], t);
-    if (value) {
-      if (key === 'hero.title') {
-        el.innerHTML = value;
-      } else {
-        el.textContent = value;
-      }
-    }
+    if (value) el.textContent = value;
   });
   
-  // Update language button
   const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
   const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
   document.getElementById('currentLangFlag').textContent = flags[currentLang];
   document.getElementById('currentLangLabel').textContent = labels[currentLang];
   
-  // Set direction
   document.body.setAttribute('data-lang', currentLang);
   document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   
-  // Re-render article content
   renderArticle();
 }
 
@@ -784,25 +1030,22 @@ function renderArticle() {
   
   if (!post) return;
   
-  // Update article header
   document.getElementById('articleCategory').textContent = post.category[currentLang];
   document.getElementById('articleTitle').textContent = post.title[currentLang];
-  document.getElementById('articleDate').textContent = `📅 ${post.date}`;
+  document.getElementById('articleDate').textContent = `📅 ${post.date[currentLang]}`;
   document.getElementById('articleReadTime').textContent = `⏱️ ${post.readTime[currentLang]}`;
   document.getElementById('articleIcon').textContent = post.icon;
   document.getElementById('articleContent').innerHTML = post.content[currentLang];
   
-  // Update page title
   document.title = `${post.title[currentLang]} | MindWeave`;
   
-  // Render related posts (exclude current post, take first 3)
   const related = blogPosts.filter(p => p.id !== postId).slice(0, 3);
   const relatedGrid = document.getElementById('relatedGrid');
   relatedGrid.innerHTML = related.map(p => `
     <div class="related-card" onclick="window.location.href='article.html?id=${p.id}'">
       <div class="related-card-icon">${p.icon}</div>
       <h4>${p.title[currentLang]}</h4>
-      <p>📅 ${p.date}</p>
+      <p>📅 ${p.date[currentLang]}</p>
     </div>
   `).join('');
 }
@@ -826,10 +1069,10 @@ function copyLink() {
   alert(msg);
 }
 
-// ========== Event Listeners ==========
 document.addEventListener('DOMContentLoaded', () => {
   updateLanguage();
   updateCartCount();
+  renderArticle();
   
   document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
   document.querySelectorAll('.lang-option').forEach(opt => {
