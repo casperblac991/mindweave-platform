@@ -4,108 +4,786 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>المتجر | MindWeave</title>
-<link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta name="description" content="تسوق أفضل المنتجات الرقمية - أوامر AI، قوالب Notion، كتب وأدوات إبداعية">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-.lang-switch{background:#1A1A2E;border:1px solid #6C5CE7;padding:6px 12px;border-radius:30px;cursor:pointer;color:white}
-.lang-switch:hover{background:#6C5CE7}
-[data-lang="en"]{display:none}
-body.en [data-lang="ar"]{display:none}
-body.en [data-lang="en"]{display:block}
-body.en{direction:ltr;text-align:left}
-body:not(.en){direction:rtl;text-align:right}
-.cart-count{background:#6C5CE7;border-radius:50%;padding:2px 6px;font-size:12px}
-.cart-icon{text-decoration:none;color:white}
-.btn-try{background:linear-gradient(135deg,#6C5CE7,#00D2FF);color:white;padding:8px 20px;border-radius:30px;text-decoration:none;font-weight:600;margin-left:10px}
-.btn-try:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(108,92,231,0.3)}
-.page-header{padding:120px 0 40px;text-align:center;background:linear-gradient(135deg,#0A0A0F,#1A1A2E)}
-.products-section{padding:60px 0}
-.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
-.product-card{background:#1A1A2E;border-radius:20px;padding:1.5rem;border:1px solid rgba(108,92,231,0.2)}
-.product-badge{background:linear-gradient(135deg,#6C5CE7,#00D2FF);display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.7rem}
-.price{font-size:1.3rem;color:#6C5CE7;margin:1rem 0}
-.old-price{text-decoration:line-through;color:#A0A0B0;font-size:0.9rem}
-.btn-buy{background:#6C5CE7;color:white;border:none;padding:10px 20px;border-radius:30px;cursor:pointer;text-decoration:none;display:inline-block}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+  --success: #00FF88;
+  --gold: #FFD700;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  line-height: 1.6;
+}
+
+body[data-lang="en"],
+body[data-lang="es"],
+body[data-lang="fr"] {
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+body[data-lang="ar"] {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1001;
+}
+
+body[data-lang="en"] .lang-dropdown,
+body[data-lang="es"] .lang-dropdown,
+body[data-lang="fr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-selector.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-outline:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--secondary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-lang="en"] .cart-count {
+  right: auto;
+  left: -8px;
+}
+
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 2rem 4rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.store-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--primary);
+  color: var(--bg);
+  border-color: var(--primary);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+}
+
+.product-thumb {
+  height: 160px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  position: relative;
+}
+
+.product-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--secondary);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+}
+
+body[data-lang="en"] .product-badge {
+  right: auto;
+  left: 10px;
+}
+
+.product-body {
+  padding: 1.2rem;
+}
+
+.product-category {
+  font-size: 0.7rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.product-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.product-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.product-rating {
+  color: var(--gold);
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.product-price {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.price-current {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.price-original {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.add-cart-btn {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--primary);
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.add-cart-btn:hover {
+  background: var(--primary);
+  color: var(--bg);
+}
+
+.add-cart-btn.added {
+  background: var(--success);
+  color: var(--bg);
+  border-color: var(--success);
+}
+
+footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--primary);
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 9999;
+}
+
+body[data-lang="en"] .notification {
+  right: auto;
+  left: 2rem;
+}
+
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
-<body>
+<body data-lang="ar">
 
-<header>
-<nav style="display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;padding:1rem">
-<div class="logo"><a href="index.html" style="font-size:1.5rem;text-decoration:none;background:linear-gradient(135deg,#6C5CE7,#00D2FF);-webkit-background-clip:text;background-clip:text;color:transparent">🧠 MindWeave</a></div>
-<ul style="display:flex;list-style:none;gap:2rem">
-<li><a href="index.html" data-lang="ar">الرئيسية</a><a href="index.html" data-lang="en">Home</a></li>
-<li><a href="library.html" data-lang="ar">المكتبة</a><a href="library.html" data-lang="en">Library</a></li>
-<li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li>
-<li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li>
-<li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li>
-<li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li>
-</ul>
-<div class="nav-icons">
-<button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
-<a href="store.html" class="btn-try" data-lang="ar">جرب المنصة</a><a href="store.html" class="btn-try" data-lang="en">Try Platform</a>
-<a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
-</div>
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🧠</div>
+    Mind<span>Weave</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+    <li><a href="store.html" class="active" data-i18n="nav.store">المتجر</a></li>
+    <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+    <li><a href="prompt-lab.html" data-i18n="nav.promptlab">Prompt Lab ✨</a></li>
+    <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
+    <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
+  </ul>
+
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLangFlag">🇸🇦</span>
+        <span id="currentLangLabel">العربية</span>
+        <span>▼</span>
+      </button>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+      </div>
+    </div>
+    <a href="cart.html" class="cart-btn">
+      🛒 <span data-i18n="nav.cart">السلة</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </div>
 </nav>
-</header>
 
 <main>
-<section class="page-header">
-<div class="container">
-<h1 data-lang="ar">المتجر</h1>
-<h1 data-lang="en">Store</h1>
-<p data-lang="ar">اختر منتجك الرقمي — تسليم فوري عبر الإيميل</p>
-<p data-lang="en">Choose your digital product — instant email delivery</p>
-</div>
-</section>
+  <div class="hero reveal">
+    <div class="hero-badge" data-i18n="hero.badge">🛒 المتجر الرقمي</div>
+    <h1 data-i18n="hero.title">اختر منتجك <span class="gradient">الرقمي</span></h1>
+    <p data-i18n="hero.subtitle">تسوق أفضل المنتجات الرقمية — أوامر AI، قوالب Notion، كتب وأدوات إبداعية</p>
+  </div>
 
-<section class="products-section">
-<div class="container">
-<div class="products-grid">
-<div class="product-card"><div class="product-badge">🔥 الأكثر مبيعاً -11%</div><div class="product-icon">🎨</div><h3>Midjourney Prompts Pack</h3><p data-lang="ar">100 أمر احترافي لتوليد صور تجارية وشعارات</p><p data-lang="en">100 professional prompts for commercial images and logos</p><div class="price">$9.99 <span class="old-price">$19.99</span></div><a href="https://schaik8.gumroad.com/l/zwpry" target="_blank" class="btn-buy">اشتري الآن</a></div>
-<div class="product-card"><div class="product-badge">⭐ مميز -14%</div><div class="product-icon">📝</div><h3>ChatGPT Prompts Pack</h3><p data-lang="ar">50 أمر مخصص للتسويق والمبيعات وإعلانات</p><p data-lang="en">50 prompts for marketing, sales, and ads</p><div class="price">$7.99 <span class="old-price">$12.99</span></div><a href="https://schaik8.gumroad.com/l/xabopy" target="_blank" class="btn-buy">اشتري الآن</a></div>
-<div class="product-card"><div class="product-badge">💎 حصري -11%</div><div class="product-icon">📊</div><h3>Notion AI Template</h3><p data-lang="ar">إدارة المشاريع بالذكاء الاصطناعي مع أتمتة كاملة</p><p data-lang="en">Project management with AI and full automation</p><div class="price">$12.99 <span class="old-price">$19.99</span></div><a href="https://schaik8.gumroad.com/l/ohghoo" target="_blank" class="btn-buy">اشتري الآن</a></div>
-<div class="product-card"><div class="product-badge">🔥 الأكثر مبيعاً -13%</div><div class="product-icon">📚</div><h3>AI Tools Directory</h3><p data-lang="ar">أكثر من 50 أداة مجانية مع شرح مفصل</p><p data-lang="en">50+ free AI tools with detailed explanations</p><div class="price">$5.99 <span class="old-price">$9.99</span></div><a href="https://schaik8.gumroad.com/l/ukbii" target="_blank" class="btn-buy">اشتري الآن</a></div>
-<div class="product-card"><div class="product-badge">⭐ مميز -13%</div><div class="product-icon">🎯</div><h3>AI Logo Design Service</h3><p data-lang="ar">تصميم احترافي خلال 24 ساعة مع 3 تعديلات</p><p data-lang="en">Professional design in 24h with 3 revisions</p><div class="price">$19.99 <span class="old-price">$29.99</span></div><a href="https://schaik8.gumroad.com/l/pitiee" target="_blank" class="btn-buy">اشتري الآن</a></div>
-<div class="product-card"><div class="product-badge">💎 حصري -13%</div><div class="product-icon">💻</div><h3>Coding Prompts Pack</h3><p data-lang="ar">50 أمر لتوليد أكواد برمجية وحل المشاكل</p><p data-lang="en">50 prompts for code generation and debugging</p><div class="price">$14.99 <span class="old-price">$24.99</span></div><a href="https://schaik8.gumroad.com/l/tdvouw" target="_blank" class="btn-buy">اشتري الآن</a></div>
-</div>
-</div>
-</section>
+  <div class="store-filters reveal">
+    <button class="filter-btn active" data-filter="all" data-i18n="filter.all">الكل</button>
+    <button class="filter-btn" data-filter="prompts" data-i18n="filter.prompts">🧠 أوامر AI</button>
+    <button class="filter-btn" data-filter="design" data-i18n="filter.design">🎨 تصميم</button>
+    <button class="filter-btn" data-filter="notion" data-i18n="filter.notion">📊 Notion</button>
+    <button class="filter-btn" data-filter="ebooks" data-i18n="filter.ebooks">📚 كتب</button>
+    <button class="filter-btn" data-filter="coding" data-i18n="filter.coding">💻 برمجة</button>
+    <button class="filter-btn" data-filter="services" data-i18n="filter.services">🎯 خدمات</button>
+  </div>
+
+  <div class="products-grid" id="productsGrid"></div>
 </main>
 
 <footer>
-<div class="container">
-<div class="footer-grid">
-<div class="footer-col"><div class="footer-logo">🧠 MindWeave</div><p data-lang="ar">حيث يلتقي العقل البشري بالذكاء الاصطناعي</p><p data-lang="en">Where human mind meets AI</p><div class="social-links"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div></div>
-<div class="footer-col"><h4 data-lang="ar">روابط سريعة</h4><h4 data-lang="en">Quick Links</h4><ul><li><a href="library.html" data-lang="ar">مكتبة الأوامر</a><a href="library.html" data-lang="en">Library</a></li><li><a href="blog.html" data-lang="ar">المدونة</a><a href="blog.html" data-lang="en">Blog</a></li><li><a href="store.html" data-lang="ar">المتجر</a><a href="store.html" data-lang="en">Store</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">الدعم</h4><h4 data-lang="en">Support</h4><ul><li><a href="about.html" data-lang="ar">من نحن</a><a href="about.html" data-lang="en">About</a></li><li><a href="contact.html" data-lang="ar">اتصل بنا</a><a href="contact.html" data-lang="en">Contact</a></li></ul></div>
-<div class="footer-col"><h4 data-lang="ar">قانوني</h4><h4 data-lang="en">Legal</h4><ul><li><a href="privacy.html" data-lang="ar">سياسة الخصوصية</a><a href="privacy.html" data-lang="en">Privacy</a></li><li><a href="terms.html" data-lang="ar">شروط الاستخدام</a><a href="terms.html" data-lang="en">Terms</a></li></ul></div>
-</div>
-<div class="footer-bottom"><p>© 2026 MindWeave</p></div>
-</div>
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a><p style="color: var(--text-muted); margin-top: 1rem;" data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div>
+    <div><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li><li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li></ul></div>
+    <div><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div>
+    <div><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
 </footer>
 
+<div class="notification" id="notification"><span id="notifIcon">✅</span><span id="notifText"></span></div>
+
 <script>
-let currentLang = localStorage.getItem('lang') || 'ar';
-function toggleLanguage() {
-    currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    localStorage.setItem('lang', currentLang);
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+const translations = {
+  ar: {
+    nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", promptlab: "Prompt Lab ✨", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة" },
+    hero: { badge: "🛒 المتجر الرقمي", title: "اختر منتجك <span class='gradient'>الرقمي</span>", subtitle: "تسوق أفضل المنتجات الرقمية — أوامر AI، قوالب Notion، كتب وأدوات إبداعية" },
+    filter: { all: "الكل", prompts: "🧠 أوامر AI", design: "🎨 تصميم", notion: "📊 Notion", ebooks: "📚 كتب", coding: "💻 برمجة", services: "🎯 خدمات" },
+    footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" }
+  },
+  en: {
+    nav: { home: "Home", store: "Store", library: "Free Library", promptlab: "Prompt Lab ✨", creators: "Creator Program", blog: "Blog", cart: "Cart" },
+    hero: { badge: "🛒 Digital Store", title: "Choose Your <span class='gradient'>Digital Product</span>", subtitle: "Shop the best digital products — AI prompts, Notion templates, books, and creative tools" },
+    filter: { all: "All", prompts: "🧠 AI Prompts", design: "🎨 Design", notion: "📊 Notion", ebooks: "📚 Books", coding: "💻 Coding", services: "🎯 Services" },
+    footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creative tools.", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" }
+  },
+  es: {
+    nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito" },
+    hero: { badge: "🛒 Tienda Digital", title: "Elige tu <span class='gradient'>Producto Digital</span>", subtitle: "Compra los mejores productos digitales — prompts IA, plantillas Notion, libros y herramientas creativas" },
+    filter: { all: "Todos", prompts: "🧠 Prompts IA", design: "🎨 Diseño", notion: "📊 Notion", ebooks: "📚 Libros", coding: "💻 Programación", services: "🎯 Servicios" },
+    footer: { desc: "Plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Todos los derechos reservados 🧠" }
+  },
+  fr: {
+    nav: { home: "Accueil", store: "Boutique", library: "Bibliothèque Gratuite", promptlab: "Prompt Lab ✨", creators: "Programme Créateurs", blog: "Blog", cart: "Panier" },
+    hero: { badge: "🛒 Boutique Numérique", title: "Choisissez votre <span class='gradient'>Produit Numérique</span>", subtitle: "Achetez les meilleurs produits numériques — prompts IA, templates Notion, livres et outils créatifs" },
+    filter: { all: "Tous", prompts: "🧠 Prompts IA", design: "🎨 Design", notion: "📊 Notion", ebooks: "📚 Livres", coding: "💻 Programmation", services: "🎯 Services" },
+    footer: { desc: "Plateforme mondiale complète pour les prompts IA, templates numériques et outils créatifs.", platform: "Plateforme", support: "Support", legal: "Juridique", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Tous droits réservés 🧠" }
+  }
+};
+
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
+let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+let currentFilter = 'all';
+
+const products = [
+  { id: 1, filter: "prompts", emoji: "🧠", badge: { ar: "🔥 الأكثر مبيعاً", en: "🔥 Best Seller", es: "🔥 Más Vendido", fr: "🔥 Meilleure Vente" }, name: { ar: "حزمة ChatGPT للتسويق الرقمي", en: "ChatGPT Digital Marketing Pack", es: "Paquete de Marketing Digital ChatGPT", fr: "Pack Marketing Digital ChatGPT" }, desc: { ar: "150 أمر احترافي للتسويق والإعلانات", en: "150 professional marketing and advertising prompts", es: "150 prompts profesionales de marketing y publicidad", fr: "150 prompts marketing et publicité professionnels" }, rating: "4.9", sales: { ar: "2.3K مبيعة", en: "2.3K sold", es: "2.3K vendidos", fr: "2.3K vendus" }, price: "$7.99", original: "$14.99" },
+  { id: 2, filter: "prompts", emoji: "🎨", badge: { ar: "✨ جديد", en: "✨ New", es: "✨ Nuevo", fr: "✨ Nouveau" }, name: { ar: "حزمة Midjourney v6", en: "Midjourney v6 Pack", es: "Paquete Midjourney v6", fr: "Pack Midjourney v6" }, desc: { ar: "200 أمر لتوليد صور احترافية ولوغوهات", en: "200 prompts for professional images and logos", es: "200 prompts para imágenes profesionales y logotipos", fr: "200 prompts pour images professionnelles et logos" }, rating: "4.8", sales: { ar: "1.8K مبيعة", en: "1.8K sold", es: "1.8K vendidos", fr: "1.8K vendus" }, price: "$9.99", original: "$19.99" },
+  { id: 3, filter: "notion", emoji: "📊", badge: { ar: "💎 حصري", en: "💎 Exclusive", es: "💎 Exclusivo", fr: "💎 Exclusif" }, name: { ar: "نظام إدارة الأعمال بـ Notion", en: "Notion Business System", es: "Sistema de Negocios Notion", fr: "Système d'Entreprise Notion" }, desc: { ar: "قالب شامل مع أتمتة AI وإدارة المشاريع", en: "Complete template with AI automation and project management", es: "Plantilla completa con automatización AI y gestión de proyectos", fr: "Template complet avec automatisation AI et gestion de projet" }, rating: "5.0", sales: { ar: "890 مبيعة", en: "890 sold", es: "890 vendidos", fr: "890 vendus" }, price: "$12.99", original: "$24.99" },
+  { id: 4, filter: "coding", emoji: "💻", badge: { ar: "🔥 رائج", en: "🔥 Trending", es: "🔥 Tendencia", fr: "🔥 Tendance" }, name: { ar: "أوامر البرمجة الكاملة", en: "Complete Coding Prompts", es: "Prompts de Programación Completa", fr: "Prompts de Programmation Complets" }, desc: { ar: "100 أمر لتوليد كود وتصحيح الأخطاء", en: "100 code generation and debugging prompts", es: "100 prompts de generación de código y depuración", fr: "100 prompts de génération de code et débogage" }, rating: "4.9", sales: { ar: "1.5K مبيعة", en: "1.5K sold", es: "1.5K vendidos", fr: "1.5K vendus" }, price: "$14.99", original: "$29.99" },
+  { id: 5, filter: "ebooks", emoji: "📚", badge: { ar: "📖 جديد", en: "📖 New", es: "📖 Nuevo", fr: "📖 Nouveau" }, name: { ar: "دليل أدوات الذكاء الاصطناعي 2026", en: "AI Tools Directory 2026", es: "Directorio de Herramientas IA 2026", fr: "Annuaire des Outils IA 2026" }, desc: { ar: "50+ أداة AI مجانية مع شرح مفصل", en: "50+ free AI tools with detailed explanations", es: "50+ herramientas IA gratuitas con explicaciones detalladas", fr: "50+ outils IA gratuits avec explications détaillées" }, rating: "4.7", sales: { ar: "2.1K مبيعة", en: "2.1K sold", es: "2.1K vendidos", fr: "2.1K vendus" }, price: "$5.99", original: "$9.99" },
+  { id: 6, filter: "services", emoji: "🎯", badge: { ar: "⭐ مميز", en: "⭐ Featured", es: "⭐ Destacado", fr: "⭐ Vedette" }, name: { ar: "خدمة تصميم شعارات بالذكاء الاصطناعي", en: "AI Logo Design Service", es: "Servicio de Diseño de Logotipos IA", fr: "Service de Conception de Logos IA" }, desc: { ar: "تصميم احترافي خلال 24 ساعة مع 3 تعديلات", en: "Professional design in 24h with 3 revisions", es: "Diseño profesional en 24h con 3 revisiones", fr: "Design professionnel en 24h avec 3 révisions" }, rating: "4.9", sales: { ar: "560 مبيعة", en: "560 sold", es: "560 vendidos", fr: "560 vendus" }, price: "$19.99", original: "$29.99" }
+];
+
+function updateLanguage() {
+  const t = translations[currentLang];
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) {
+      if (key === 'hero.title') {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    }
+  });
+  
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
+  
+  document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  
+  renderProducts();
 }
-function applyLanguage() {
-    document.body.classList.toggle('en', currentLang === 'en');
-    document.getElementById('langBtn').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  updateLanguage();
+  toggleLangMenu();
 }
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-function updateCartDisplay() {
-    const count = cart.reduce((s, i) => s + i.quantity, 0);
-    const cartSpan = document.querySelector('.cart-count');
-    if (cartSpan) cartSpan.textContent = count;
+
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
 }
-applyLanguage();
-updateCartDisplay();
+
+function updateCartCount() {
+  const countEl = document.getElementById('cartCount');
+  if (countEl) countEl.textContent = cart.length;
+}
+
+function addToCart(id) {
+  if (!cart.includes(id)) {
+    cart.push(id);
+    localStorage.setItem('mw_cart', JSON.stringify(cart));
+    updateCartCount();
+    showNotification('✅', currentLang === 'ar' ? 'تمت الإضافة للسلة!' : currentLang === 'en' ? 'Added to cart!' : currentLang === 'es' ? '¡Añadido al carrito!' : 'Ajouté au panier!');
+    renderProducts();
+  } else {
+    showNotification('🛒', currentLang === 'ar' ? 'المنتج موجود بالفعل' : currentLang === 'en' ? 'Already in cart' : currentLang === 'es' ? 'Ya en el carrito' : 'Déjà dans le panier');
+  }
+}
+
+function renderProducts() {
+  const filtered = currentFilter === 'all' ? products : products.filter(p => p.filter === currentFilter);
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card">
+      <div class="product-thumb">
+        <span>${p.emoji}</span>
+        <span class="product-badge">${p.badge[currentLang]}</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">${getCategoryName(p.filter)}</div>
+        <div class="product-name">${p.name[currentLang]}</div>
+        <div class="product-desc">${p.desc[currentLang]}</div>
+        <div class="product-meta">
+          <div class="product-rating">★ ${p.rating}</div>
+          <div>${p.sales[currentLang]}</div>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-current">${p.price}</span>
+            <span class="price-original">${p.original}</span>
+          </div>
+          <button class="add-cart-btn ${cart.includes(p.id) ? 'added' : ''}" onclick="addToCart(${p.id})">
+            ${cart.includes(p.id) ? getAddedText() : getAddText()}
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function getCategoryName(filter) {
+  const names = {
+    ar: { prompts: '🧠 أوامر AI', design: '🎨 تصميم', notion: '📊 Notion', ebooks: '📚 كتب', coding: '💻 برمجة', services: '🎯 خدمات' },
+    en: { prompts: '🧠 AI Prompts', design: '🎨 Design', notion: '📊 Notion', ebooks: '📚 Books', coding: '💻 Coding', services: '🎯 Services' },
+    es: { prompts: '🧠 Prompts IA', design: '🎨 Diseño', notion: '📊 Notion', ebooks: '📚 Libros', coding: '💻 Programación', services: '🎯 Servicios' },
+    fr: { prompts: '🧠 Prompts IA', design: '🎨 Design', notion: '📊 Notion', ebooks: '📚 Livres', coding: '💻 Programmation', services: '🎯 Services' }
+  };
+  return names[currentLang][filter] || filter;
+}
+
+function getAddText() {
+  const texts = { ar: '+ أضف للسلة', en: '+ Add to Cart', es: '+ Añadir', fr: '+ Ajouter' };
+  return texts[currentLang] || '+ Add to Cart';
+}
+
+function getAddedText() {
+  const texts = { ar: '✓ تمت الإضافة', en: '✓ Added', es: '✓ Añadido', fr: '✓ Ajouté' };
+  return texts[currentLang] || '✓ Added';
+}
+
+function showNotification(icon, text) {
+  const n = document.getElementById('notification');
+  document.getElementById('notifIcon').textContent = icon;
+  document.getElementById('notifText').textContent = text;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLanguage();
+  updateCartCount();
+  renderProducts();
+  
+  document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+  });
+  
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      renderProducts();
+    });
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      document.getElementById('langSelector')?.classList.remove('active');
+    }
+  });
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
 </script>
 </body>
 </html>
