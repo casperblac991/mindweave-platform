@@ -4,26 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>برنامج المبدعين | MindWeave</title>
+<meta name="description" content="حوّل إبداعك إلى دخل — انضم إلى برنامج المبدعين في MindWeave واكسب حتى 70% عمولة">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --primary: #00D4FF;
-  --accent: #7C3AED;
   --secondary: #FF6B35;
+  --accent: #7C3AED;
   --bg: #050A0F;
   --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
   --text: #E8F4FD;
   --text-muted: #7A9BB5;
   --border: rgba(0,212,255,0.2);
+  --success: #00FF88;
 }
+
 body {
   background: var(--bg);
   color: var(--text);
   font-family: 'Cairo', sans-serif;
-  direction: rtl;
+  line-height: 1.6;
 }
+
+body[data-lang="en"],
+body[data-lang="es"],
+body[data-lang="fr"] {
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+body[data-lang="ar"] {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
 nav {
   position: fixed;
   top: 0;
@@ -39,6 +63,7 @@ nav {
   justify-content: space-between;
   z-index: 1000;
 }
+
 .logo {
   display: flex;
   align-items: center;
@@ -48,6 +73,7 @@ nav {
   color: var(--text);
   text-decoration: none;
 }
+
 .logo-icon {
   width: 40px;
   height: 40px;
@@ -56,11 +82,98 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.3rem;
 }
-.logo span { color: var(--primary); }
-.nav-links { display: flex; gap: 0.5rem; list-style: none; }
-.nav-links a { color: var(--text-muted); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; }
-.nav-links a:hover, .nav-links a.active { color: var(--primary); background: rgba(0, 212, 255, 0.1); }
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1001;
+}
+
+body[data-lang="en"] .lang-dropdown,
+body[data-lang="es"] .lang-dropdown,
+body[data-lang="fr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-selector.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: white;
@@ -68,90 +181,569 @@ nav {
   border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
-  display: inline-block;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
 }
-main { max-width: 1200px; margin: 0 auto; padding: 100px 2rem 4rem; }
-.hero { text-align: center; margin-bottom: 3rem; }
-.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-.hero h1 .gradient { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.hero p { color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--secondary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-lang="en"] .cart-count {
+  right: auto;
+  left: -8px;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 2rem 4rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   margin: 3rem 0;
 }
+
 .benefit-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 2rem;
   text-align: center;
+  transition: all 0.3s;
 }
-.benefit-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
-.benefit-card h3 { margin-bottom: 0.5rem; }
-.benefit-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.benefit-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.benefit-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.how-it-works {
+  margin: 3rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-tag {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.section-header h2 em {
+  color: var(--primary);
+  font-style: normal;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.step-card {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 auto 1rem;
+}
+
 .join-form {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 2rem;
   text-align: center;
-  margin-top: 2rem;
+  margin: 3rem 0;
 }
-.join-form input {
-  width: 100%;
+
+.join-form h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.join-form p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
   max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-group input {
+  width: 100%;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 0.8rem 1rem;
   color: var(--text);
-  margin: 1rem auto;
-  display: block;
+  font-family: inherit;
+  margin-bottom: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--primary);
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 9999;
+}
+
+body[data-lang="en"] .notification {
+  right: auto;
+  left: 2rem;
+}
+
+.notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
 </head>
-<body>
+<body data-lang="ar">
+
 <nav>
-  <a href="index.html" class="logo"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🧠</div>
+    Mind<span>Weave</span>
+  </a>
+
   <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="store.html">المتجر</a></li>
-    <li><a href="library.html">المكتبة المجانية</a></li>
-    <li><a href="prompt-lab.html">Prompt Lab ✨</a></li>
-    <li><a href="creators.html" class="active">برنامج المبدعين</a></li>
+    <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+    <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
+    <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+    <li><a href="prompt-lab.html" data-i18n="nav.promptlab">Prompt Lab ✨</a></li>
+    <li><a href="creators.html" class="active" data-i18n="nav.creators">برنامج المبدعين</a></li>
+    <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
   </ul>
-  <a href="cart.html" class="btn-primary">🛒 السلة</a>
+
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLangFlag">🇸🇦</span>
+        <span id="currentLangLabel">العربية</span>
+        <span>▼</span>
+      </button>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+      </div>
+    </div>
+    <a href="cart.html" class="cart-btn">
+      🛒 <span data-i18n="nav.cart">السلة</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </div>
 </nav>
+
 <main>
-  <div class="hero">
-    <h1>💰 برنامج <span class="gradient">المبدعين</span></h1>
-    <p>حوّل إبداعك إلى دخل — انضم إلى مجتمع MindWeave للمبدعين واكسب حتى 70% عمولة</p>
+  <div class="hero reveal">
+    <div class="hero-badge" data-i18n="hero.badge">💰 برنامج المبدعين</div>
+    <h1 data-i18n="hero.title">حوّل إبداعك <span class="gradient">إلى دخل</span></h1>
+    <p data-i18n="hero.subtitle">انضم إلى مجتمع المبدعين في MindWeave — بيع أوامرك، قوالبك، وأدواتك الرقمية واكسب حتى 70% من كل عملية بيع</p>
   </div>
-  <div class="benefits-grid">
-    <div class="benefit-card"><div class="icon">💰</div><h3>70% عمولة</h3><p>احصل على 70% من كل عملية بيع لمنتجاتك الرقمية</p></div>
-    <div class="benefit-card"><div class="icon">🚀</div><h3>وصول فوري</h3><p>نشر منتجاتك فوراً لمجتمع يضم آلاف المستخدمين</p></div>
-    <div class="benefit-card"><div class="icon">🎯</div><h3>دعم كامل</h3><p>فريق دعم متخصص لمساعدتك في رحلة البيع</p></div>
+
+  <div class="benefits-grid reveal">
+    <div class="benefit-card">
+      <div class="benefit-icon">💰</div>
+      <h3 data-i18n="benefit1.title">70% عمولة</h3>
+      <p data-i18n="benefit1.desc">احصل على 70% من كل عملية بيع لمنتجاتك الرقمية</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🚀</div>
+      <h3 data-i18n="benefit2.title">وصول فوري</h3>
+      <p data-i18n="benefit2.desc">نشر منتجاتك فوراً لمجتمع يضم آلاف المستخدمين</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🎯</div>
+      <h3 data-i18n="benefit3.title">دعم كامل</h3>
+      <p data-i18n="benefit3.desc">فريق دعم متخصص لمساعدتك في رحلة البيع</p>
+    </div>
   </div>
-  <div class="join-form">
-    <h2>✨ انضم كمبدع الآن</h2>
-    <p>سجل مجاناً وابدأ بيع إبداعاتك اليوم</p>
-    <input type="text" placeholder="الاسم الكامل" id="name">
-    <input type="email" placeholder="البريد الإلكتروني" id="email">
-    <button class="btn-primary" onclick="joinCreator()">انضم مجاناً →</button>
+
+  <div class="how-it-works reveal">
+    <div class="section-header">
+      <div class="section-tag" data-i18n="steps.tag">📝 كيف تعمل</div>
+      <h2 data-i18n="steps.title">ابدأ <em>في 3 خطوات</em></h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3 data-i18n="step1.title">سجّل حساب مجاناً</h3>
+        <p data-i18n="step1.desc">أنشئ حساب مبدع في أقل من دقيقة</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3 data-i18n="step2.title">ارفع منتجك الرقمي</h3>
+        <p data-i18n="step2.desc">أوامر AI، قوالب، كتب إلكترونية</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3 data-i18n="step3.title">ابدأ البيع وكسب</h3>
+        <p data-i18n="step3.desc">احصل على أرباحك فوراً بعد كل عملية بيع</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="join-form reveal">
+    <h3 data-i18n="form.title">✨ انضم كمبدع الآن</h3>
+    <p data-i18n="form.subtitle">سجل مجاناً وابدأ بيع إبداعاتك اليوم</p>
+    <div class="form-group">
+      <input type="text" id="creatorName" placeholder="الاسم الكامل" data-i18n-placeholder="form.name">
+      <input type="email" id="creatorEmail" placeholder="البريد الإلكتروني" data-i18n-placeholder="form.email">
+      <input type="text" id="creatorProduct" placeholder="نوع المنتج الذي تريد بيعه" data-i18n-placeholder="form.product">
+      <button class="btn-primary" onclick="joinCreator()" data-i18n="form.button">انضم مجاناً →</button>
+    </div>
   </div>
 </main>
+
+<footer>
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a><p style="color: var(--text-muted); margin-top: 1rem;" data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div>
+    <div><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li><li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li></ul></div>
+    <div><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div>
+    <div><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
+</footer>
+
+<div class="notification" id="notification"><span id="notifIcon">✅</span><span id="notifText"></span></div>
+
 <script>
+const translations = {
+  ar: {
+    nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", promptlab: "Prompt Lab ✨", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة" },
+    hero: { badge: "💰 برنامج المبدعين", title: "حوّل إبداعك <span class='gradient'>إلى دخل</span>", subtitle: "انضم إلى مجتمع المبدعين في MindWeave — بيع أوامرك، قوالبك، وأدواتك الرقمية واكسب حتى 70% من كل عملية بيع" },
+    benefit1: { title: "70% عمولة", desc: "احصل على 70% من كل عملية بيع لمنتجاتك الرقمية" },
+    benefit2: { title: "وصول فوري", desc: "نشر منتجاتك فوراً لمجتمع يضم آلاف المستخدمين" },
+    benefit3: { title: "دعم كامل", desc: "فريق دعم متخصص لمساعدتك في رحلة البيع" },
+    steps: { tag: "📝 كيف تعمل", title: "ابدأ <em>في 3 خطوات</em>" },
+    step1: { title: "سجّل حساب مجاناً", desc: "أنشئ حساب مبدع في أقل من دقيقة" },
+    step2: { title: "ارفع منتجك الرقمي", desc: "أوامر AI، قوالب، كتب إلكترونية" },
+    step3: { title: "ابدأ البيع وكسب", desc: "احصل على أرباحك فوراً بعد كل عملية بيع" },
+    form: { title: "✨ انضم كمبدع الآن", subtitle: "سجل مجاناً وابدأ بيع إبداعاتك اليوم", name: "الاسم الكامل", email: "البريد الإلكتروني", product: "نوع المنتج الذي تريد بيعه", button: "انضم مجاناً →" },
+    footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" }
+  },
+  en: {
+    nav: { home: "Home", store: "Store", library: "Free Library", promptlab: "Prompt Lab ✨", creators: "Creator Program", blog: "Blog", cart: "Cart" },
+    hero: { badge: "💰 Creator Program", title: "Turn Creativity <span class='gradient'>Into Income</span>", subtitle: "Join the MindWeave creator community — sell your prompts, templates, and digital tools, and earn up to 70% commission on every sale" },
+    benefit1: { title: "70% Commission", desc: "Earn 70% commission on every sale of your digital products" },
+    benefit2: { title: "Instant Reach", desc: "Publish your products instantly to a community of thousands of users" },
+    benefit3: { title: "Full Support", desc: "Dedicated support team to help you on your selling journey" },
+    steps: { tag: "📝 How It Works", title: "Start <em>in 3 Steps</em>" },
+    step1: { title: "Create Free Account", desc: "Sign up as a creator in under a minute" },
+    step2: { title: "Upload Your Product", desc: "AI prompts, templates, e-books" },
+    step3: { title: "Start Selling & Earning", desc: "Get your earnings instantly after each sale" },
+    form: { title: "✨ Join as a Creator Now", subtitle: "Sign up for free and start selling your creations today", name: "Full Name", email: "Email Address", product: "Type of product you want to sell", button: "Join for Free →" },
+    footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creative tools.", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" }
+  },
+  es: {
+    nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito" },
+    hero: { badge: "💰 Programa de Creadores", title: "Convierte Creatividad <span class='gradient'>en Ingresos</span>", subtitle: "Únete a la comunidad de creadores de MindWeave — vende tus prompts, plantillas y herramientas digitales, y gana hasta 70% de comisión" },
+    benefit1: { title: "70% Comisión", desc: "Gana 70% de comisión en cada venta de tus productos digitales" },
+    benefit2: { title: "Alcance Instantáneo", desc: "Publica tus productos instantáneamente a una comunidad de miles de usuarios" },
+    benefit3: { title: "Soporte Completo", desc: "Equipo de soporte dedicado para ayudarte en tu viaje de ventas" },
+    steps: { tag: "📝 Cómo Funciona", title: "Comienza <em>en 3 Pasos</em>" },
+    step1: { title: "Crea Cuenta Gratis", desc: "Regístrate como creador en menos de un minuto" },
+    step2: { title: "Sube tu Producto", desc: "Prompts IA, plantillas, libros electrónicos" },
+    step3: { title: "Empieza a Vender", desc: "Obtén tus ganancias instantáneamente después de cada venta" },
+    form: { title: "✨ Únete como Creador Ahora", subtitle: "Regístrate gratis y empieza a vender tus creaciones hoy", name: "Nombre Completo", email: "Correo Electrónico", product: "Tipo de producto que quieres vender", button: "Únete Gratis →" },
+    footer: { desc: "Plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Todos los derechos reservados 🧠" }
+  },
+  fr: {
+    nav: { home: "Accueil", store: "Boutique", library: "Bibliothèque Gratuite", promptlab: "Prompt Lab ✨", creators: "Programme Créateurs", blog: "Blog", cart: "Panier" },
+    hero: { badge: "💰 Programme Créateurs", title: "Transformez la Créativité <span class='gradient'>en Revenus</span>", subtitle: "Rejoignez la communauté de créateurs MindWeave — vendez vos prompts, templates et outils numériques, et gagnez jusqu'à 70% de commission" },
+    benefit1: { title: "70% Commission", desc: "Gagnez 70% de commission sur chaque vente de vos produits numériques" },
+    benefit2: { title: "Portée Instantanée", desc: "Publiez vos produits instantanément auprès d'une communauté de milliers d'utilisateurs" },
+    benefit3: { title: "Support Complet", desc: "Équipe de support dédiée pour vous aider dans votre parcours de vente" },
+    steps: { tag: "📝 Comment ça Marche", title: "Commencez <em>en 3 Étapes</em>" },
+    step1: { title: "Créez un Compte Gratuit", desc: "Inscrivez-vous comme créateur en moins d'une minute" },
+    step2: { title: "Téléchargez Votre Produit", desc: "Prompts IA, templates, livres électroniques" },
+    step3: { title: "Commencez à Vendre", desc: "Recevez vos gains instantanément après chaque vente" },
+    form: { title: "✨ Rejoignez comme Créateur Maintenant", subtitle: "Inscrivez-vous gratuitement et commencez à vendre vos créations aujourd'hui", name: "Nom Complet", email: "Adresse Email", product: "Type de produit que vous voulez vendre", button: "Rejoindre Gratuitement →" },
+    footer: { desc: "Plateforme mondiale complète pour les prompts IA, templates numériques et outils créatifs.", platform: "Plateforme", support: "Support", legal: "Juridique", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Tous droits réservés 🧠" }
+  }
+};
+
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
+let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+
+function updateLanguage() {
+  const t = translations[currentLang];
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) {
+      if (key === 'hero.title' || key === 'steps.title') {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    }
+  });
+  
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) el.placeholder = value;
+  });
+  
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
+  
+  document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  updateLanguage();
+  toggleLangMenu();
+}
+
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
+}
+
+function updateCartCount() {
+  const countEl = document.getElementById('cartCount');
+  if (countEl) countEl.textContent = cart.length;
+}
+
+function showNotification(icon, text) {
+  const n = document.getElementById('notification');
+  document.getElementById('notifIcon').textContent = icon;
+  document.getElementById('notifText').textContent = text;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3000);
+}
+
 function joinCreator() {
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
+  const name = document.getElementById('creatorName').value;
+  const email = document.getElementById('creatorEmail').value;
+  const product = document.getElementById('creatorProduct').value;
+  
   if (!name || !email) {
-    alert('الرجاء إدخال جميع البيانات');
+    showNotification('⚠️', currentLang === 'ar' ? 'الرجاء إدخال جميع البيانات' : currentLang === 'en' ? 'Please fill all fields' : currentLang === 'es' ? 'Por favor complete todos los campos' : 'Veuillez remplir tous les champs');
     return;
   }
-  alert(`مرحباً ${name}! تم استلام طلبك بنجاح. سنتواصل معك قريباً على ${email}`);
+  
+  showNotification('✅', currentLang === 'ar' ? `مرحباً ${name}! تم استلام طلبك بنجاح. سنتواصل معك قريباً` : currentLang === 'en' ? `Welcome ${name}! Your request has been received. We'll contact you soon` : currentLang === 'es' ? `¡Bienvenido ${name}! Tu solicitud ha sido recibida. Te contactaremos pronto` : `Bienvenue ${name}! Votre demande a été reçue. Nous vous contacterons bientôt`);
+  
+  document.getElementById('creatorName').value = '';
+  document.getElementById('creatorEmail').value = '';
+  document.getElementById('creatorProduct').value = '';
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLanguage();
+  updateCartCount();
+  
+  document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      document.getElementById('langSelector')?.classList.remove('active');
+    }
+  });
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
 </script>
 </body>
 </html>
