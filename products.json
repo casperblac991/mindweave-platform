@@ -1,0 +1,736 @@
+{
+  "products": [
+    {
+      "id": "p001",
+      "category": "prompts",
+      "emoji": "🧠",
+      "badge": {
+        "ar": "🔥 الأكثر مبيعاً",
+        "en": "🔥 Best Seller",
+        "es": "🔥 Más Vendido",
+        "fr": "🔥 Meilleure Vente"
+      },
+      "name": {
+        "ar": "حزمة ChatGPT للتسويق الرقمي",
+        "en": "ChatGPT Digital Marketing Pack",
+        "es": "Paquete Marketing Digital ChatGPT",
+        "fr": "Pack Marketing Digital ChatGPT"
+      },
+      "desc": {
+        "ar": "50 أمر احترافي للتسويق الرقمي - Instagram, Facebook, Email Marketing",
+        "en": "50 professional digital marketing prompts - Instagram, Facebook, Email Marketing",
+        "es": "50 prompts profesionales de marketing digital",
+        "fr": "50 prompts professionnels de marketing digital"
+      },
+      "rating": "4.9",
+      "sales": {
+        "ar": "127 مبيعة",
+        "en": "127 sold",
+        "es": "127 vendidos",
+        "fr": "127 vendus"
+      },
+      "price": "$4.99",
+      "original": "$9.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/chatgpt-marketing",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar/en"
+    },
+    {
+      "id": "p002",
+      "category": "prompts",
+      "emoji": "✍️",
+      "badge": {
+        "ar": "✨ جديد",
+        "en": "✨ New",
+        "es": "✨ Nuevo",
+        "fr": "✨ Nouveau"
+      },
+      "name": {
+        "ar": "أوامر كتابة المحتوى الإبداعي",
+        "en": "Creative Content Writing Prompts",
+        "es": "Prompts de Escritura Creativa",
+        "fr": "Prompts d'Écriture Créative"
+      },
+      "desc": {
+        "ar": "30 أمر لكتابة مقالات، قصص، ومحتوى إبداعي بالعربية",
+        "en": "30 prompts for articles, stories, and creative Arabic content",
+        "es": "30 prompts para artículos y contenido creativo",
+        "fr": "30 prompts pour articles et contenu créatif"
+      },
+      "rating": "4.8",
+      "sales": {
+        "ar": "89 مبيعة",
+        "en": "89 sold",
+        "es": "89 vendidos",
+        "fr": "89 vendus"
+      },
+      "price": "$3.99",
+      "original": "$7.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/creative-writing",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar/en"
+    },
+    {
+      "id": "p003",
+      "category": "design",
+      "emoji": "🎨",
+      "badge": {
+        "ar": "🔥 رائج",
+        "en": "🔥 Trending",
+        "es": "🔥 Tendencia",
+        "fr": "🔥 Tendance"
+      },
+      "name": {
+        "ar": "حزمة Midjourney للمحتوى العربي",
+        "en": "Midjourney Arabic Content Pack",
+        "es": "Pack Midjourney Contenido Árabe",
+        "fr": "Pack Midjourney Contenu Arabe"
+      },
+      "desc": {
+        "ar": "40 أمر Midjourney لتوليد صور ثقافة عربية، خطوط، وتصاميم إسلامية",
+        "en": "40 Midjourney prompts for Arabic culture, calligraphy, Islamic designs",
+        "es": "40 prompts Midjourney para cultura árabe",
+        "fr": "40 prompts Midjourney pour culture arabe"
+      },
+      "rating": "5.0",
+      "sales": {
+        "ar": "156 مبيعة",
+        "en": "156 sold",
+        "es": "156 vendidos",
+        "fr": "156 vendus"
+      },
+      "price": "$5.99",
+      "original": "$11.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/midjourney-arabic",
+      "downloadable": true,
+      "fileType": "PDF + TXT",
+      "language": "ar/en"
+    },
+    {
+      "id": "p004",
+      "category": "notion",
+      "emoji": "📊",
+      "badge": {
+        "ar": "💎 حصري",
+        "en": "💎 Exclusive",
+        "es": "💎 Exclusivo",
+        "fr": "💎 Exclusif"
+      },
+      "name": {
+        "ar": "نظام إدارة المشاريع - Notion",
+        "en": "Notion Project Management System",
+        "es": "Sistema Gestión Proyectos Notion",
+        "fr": "Système Gestion Projets Notion"
+      },
+      "desc": {
+        "ar": "قالب Notion شامل لإدارة المشاريع، المهام، والفريق بالعربية",
+        "en": "Complete Notion template for project, task, and team management in Arabic",
+        "es": "Plantilla Notion completa para gestión de proyectos",
+        "fr": "Template Notion complet pour gestion de projets"
+      },
+      "rating": "4.9",
+      "sales": {
+        "ar": "73 مبيعة",
+        "en": "73 sold",
+        "es": "73 vendidos",
+        "fr": "73 vendus"
+      },
+      "price": "$7.99",
+      "original": "$14.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/notion-project-mgmt",
+      "downloadable": true,
+      "fileType": "Notion Template Link",
+      "language": "ar"
+    },
+    {
+      "id": "p005",
+      "category": "ebooks",
+      "emoji": "📚",
+      "badge": {
+        "ar": "📖 كتاب",
+        "en": "📖 Book",
+        "es": "📖 Libro",
+        "fr": "📖 Livre"
+      },
+      "name": {
+        "ar": "دليل الذكاء الاصطناعي للمبتدئين",
+        "en": "AI Guide for Beginners",
+        "es": "Guía de IA para Principiantes",
+        "fr": "Guide IA pour Débutants"
+      },
+      "desc": {
+        "ar": "كتاب إلكتروني 80 صفحة يشرح أساسيات AI وكيفية استخدامه بالعربية",
+        "en": "80-page ebook explaining AI basics and usage in Arabic",
+        "es": "Libro electrónico de 80 páginas sobre fundamentos de IA",
+        "fr": "Livre électronique de 80 pages sur les bases de l'IA"
+      },
+      "rating": "4.7",
+      "sales": {
+        "ar": "94 مبيعة",
+        "en": "94 sold",
+        "es": "94 vendidos",
+        "fr": "94 vendus"
+      },
+      "price": "$6.99",
+      "original": "$12.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/ai-guide-arabic",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar"
+    },
+    {
+      "id": "p006",
+      "category": "prompts",
+      "emoji": "💼",
+      "badge": {
+        "ar": "⭐ مميز",
+        "en": "⭐ Featured",
+        "es": "⭐ Destacado",
+        "fr": "⭐ En Vedette"
+      },
+      "name": {
+        "ar": "أوامر التجارة الإلكترونية",
+        "en": "E-commerce Prompts Pack",
+        "es": "Pack Prompts E-commerce",
+        "fr": "Pack Prompts E-commerce"
+      },
+      "desc": {
+        "ar": "25 أمر لإنشاء أوصاف منتجات، إعلانات، واستراتيجيات بيع",
+        "en": "25 prompts for product descriptions, ads, and sales strategies",
+        "es": "25 prompts para descripciones de productos y ventas",
+        "fr": "25 prompts pour descriptions produits et ventes"
+      },
+      "rating": "4.8",
+      "sales": {
+        "ar": "112 مبيعة",
+        "en": "112 sold",
+        "es": "112 vendidos",
+        "fr": "112 vendus"
+      },
+      "price": "$4.99",
+      "original": "$8.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/ecommerce-prompts",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar/en"
+    },
+    {
+      "id": "p007",
+      "category": "notion",
+      "emoji": "📝",
+      "badge": {
+        "ar": "✨ جديد",
+        "en": "✨ New",
+        "es": "✨ Nuevo",
+        "fr": "✨ Nouveau"
+      },
+      "name": {
+        "ar": "نظام إدارة المحتوى - Notion",
+        "en": "Notion Content Management System",
+        "es": "Sistema Gestión Contenido Notion",
+        "fr": "Système Gestion Contenu Notion"
+      },
+      "desc": {
+        "ar": "قالب لإدارة تقويم المحتوى، الأفكار، والنشر عبر المنصات",
+        "en": "Template for content calendar, ideas, and multi-platform publishing",
+        "es": "Plantilla para calendario de contenido y publicación",
+        "fr": "Template pour calendrier de contenu et publication"
+      },
+      "rating": "4.9",
+      "sales": {
+        "ar": "58 مبيعة",
+        "en": "58 sold",
+        "es": "58 vendidos",
+        "fr": "58 vendus"
+      },
+      "price": "$6.99",
+      "original": "$12.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/notion-content-mgmt",
+      "downloadable": true,
+      "fileType": "Notion Template Link",
+      "language": "ar"
+    },
+    {
+      "id": "p008",
+      "category": "design",
+      "emoji": "🖼️",
+      "badge": {
+        "ar": "🔥 الأكثر مبيعاً",
+        "en": "🔥 Best Seller",
+        "es": "🔥 Más Vendido",
+        "fr": "🔥 Meilleure Vente"
+      },
+      "name": {
+        "ar": "حزمة DALL-E للأعمال",
+        "en": "DALL-E Business Pack",
+        "es": "Pack DALL-E Negocios",
+        "fr": "Pack DALL-E Affaires"
+      },
+      "desc": {
+        "ar": "35 أمر لتوليد صور شعارات، غلافات، ومنشورات احترافية",
+        "en": "35 prompts for logos, covers, and professional social media posts",
+        "es": "35 prompts para logos y publicaciones profesionales",
+        "fr": "35 prompts pour logos et publications professionnelles"
+      },
+      "rating": "4.8",
+      "sales": {
+        "ar": "143 مبيعة",
+        "en": "143 sold",
+        "es": "143 vendidos",
+        "fr": "143 vendus"
+      },
+      "price": "$5.99",
+      "original": "$10.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/dalle-business",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar/en"
+    },
+    {
+      "id": "p009",
+      "category": "prompts",
+      "emoji": "🎓",
+      "badge": {
+        "ar": "📖 تعليمي",
+        "en": "📖 Educational",
+        "es": "📖 Educativo",
+        "fr": "📖 Éducatif"
+      },
+      "name": {
+        "ar": "أوامر ChatGPT للتعليم",
+        "en": "ChatGPT Education Prompts",
+        "es": "Prompts ChatGPT Educación",
+        "fr": "Prompts ChatGPT Éducation"
+      },
+      "desc": {
+        "ar": "45 أمر لإنشاء دروس، اختبارات، وخطط تعليمية بالعربية",
+        "en": "45 prompts for creating lessons, quizzes, and educational plans in Arabic",
+        "es": "45 prompts para crear lecciones y planes educativos",
+        "fr": "45 prompts pour créer des leçons et plans éducatifs"
+      },
+      "rating": "4.9",
+      "sales": {
+        "ar": "81 مبيعة",
+        "en": "81 sold",
+        "es": "81 vendidos",
+        "fr": "81 vendus"
+      },
+      "price": "$4.99",
+      "original": "$9.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/education-prompts",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar"
+    },
+    {
+      "id": "p010",
+      "category": "coding",
+      "emoji": "💻",
+      "badge": {
+        "ar": "👨‍💻 برمجة",
+        "en": "👨‍💻 Coding",
+        "es": "👨‍💻 Programación",
+        "fr": "👨‍💻 Programmation"
+      },
+      "name": {
+        "ar": "أوامر البرمجة بـ ChatGPT",
+        "en": "ChatGPT Coding Prompts",
+        "es": "Prompts Programación ChatGPT",
+        "fr": "Prompts Programmation ChatGPT"
+      },
+      "desc": {
+        "ar": "30 أمر لتوليد كود Python, JavaScript, HTML/CSS مع شرح عربي",
+        "en": "30 prompts for generating Python, JavaScript, HTML/CSS code with Arabic explanations",
+        "es": "30 prompts para generar código con explicaciones",
+        "fr": "30 prompts pour générer du code avec explications"
+      },
+      "rating": "4.7",
+      "sales": {
+        "ar": "67 مبيعة",
+        "en": "67 sold",
+        "es": "67 vendidos",
+        "fr": "67 vendus"
+      },
+      "price": "$5.99",
+      "original": "$11.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/coding-prompts",
+      "downloadable": true,
+      "fileType": "PDF + Code Files",
+      "language": "ar/en"
+    },
+    {
+      "id": "p011",
+      "category": "ebooks",
+      "emoji": "📕",
+      "badge": {
+        "ar": "📚 دليل شامل",
+        "en": "📚 Complete Guide",
+        "es": "📚 Guía Completa",
+        "fr": "📚 Guide Complet"
+      },
+      "name": {
+        "ar": "دليل Prompt Engineering الكامل",
+        "en": "Complete Prompt Engineering Guide",
+        "es": "Guía Completa Ingeniería Prompts",
+        "fr": "Guide Complet Ingénierie Prompts"
+      },
+      "desc": {
+        "ar": "كتاب 120 صفحة يعلمك كتابة أوامر احترافية + 100 مثال",
+        "en": "120-page book teaching professional prompt writing + 100 examples",
+        "es": "Libro de 120 páginas con 100 ejemplos de prompts",
+        "fr": "Livre de 120 pages avec 100 exemples de prompts"
+      },
+      "rating": "5.0",
+      "sales": {
+        "ar": "201 مبيعة",
+        "en": "201 sold",
+        "es": "201 vendidos",
+        "fr": "201 vendus"
+      },
+      "price": "$9.99",
+      "original": "$19.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/prompt-engineering-guide",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar"
+    },
+    {
+      "id": "p012",
+      "category": "notion",
+      "emoji": "💰",
+      "badge": {
+        "ar": "💼 أعمال",
+        "en": "💼 Business",
+        "es": "💼 Negocios",
+        "fr": "💼 Affaires"
+      },
+      "name": {
+        "ar": "نظام CRM للمبيعات - Notion",
+        "en": "Notion Sales CRM System",
+        "es": "Sistema CRM Ventas Notion",
+        "fr": "Système CRM Ventes Notion"
+      },
+      "desc": {
+        "ar": "قالب Notion لإدارة العملاء، المبيعات، والمتابعة",
+        "en": "Notion template for customer management, sales, and follow-up",
+        "es": "Plantilla Notion para gestión de clientes y ventas",
+        "fr": "Template Notion pour gestion clients et ventes"
+      },
+      "rating": "4.8",
+      "sales": {
+        "ar": "45 مبيعة",
+        "en": "45 sold",
+        "es": "45 vendidos",
+        "fr": "45 vendus"
+      },
+      "price": "$8.99",
+      "original": "$16.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/notion-crm",
+      "downloadable": true,
+      "fileType": "Notion Template Link",
+      "language": "ar"
+    },
+    {
+      "id": "p013",
+      "category": "prompts",
+      "emoji": "📱",
+      "badge": {
+        "ar": "🔥 رائج",
+        "en": "🔥 Trending",
+        "es": "🔥 Tendencia",
+        "fr": "🔥 Tendance"
+      },
+      "name": {
+        "ar": "أوامر السوشيال ميديا الشاملة",
+        "en": "Complete Social Media Prompts",
+        "es": "Prompts Completos Redes Sociales",
+        "fr": "Prompts Complets Réseaux Sociaux"
+      },
+      "desc": {
+        "ar": "60 أمر لـ Instagram, TikTok, Twitter, LinkedIn بالعربية",
+        "en": "60 prompts for Instagram, TikTok, Twitter, LinkedIn in Arabic",
+        "es": "60 prompts para Instagram, TikTok, Twitter, LinkedIn",
+        "fr": "60 prompts pour Instagram, TikTok, Twitter, LinkedIn"
+      },
+      "rating": "4.9",
+      "sales": {
+        "ar": "178 مبيعة",
+        "en": "178 sold",
+        "es": "178 vendidos",
+        "fr": "178 vendus"
+      },
+      "price": "$6.99",
+      "original": "$13.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/social-media-prompts",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar/en"
+    },
+    {
+      "id": "p014",
+      "category": "design",
+      "emoji": "🎬",
+      "badge": {
+        "ar": "✨ جديد",
+        "en": "✨ New",
+        "es": "✨ Nuevo",
+        "fr": "✨ Nouveau"
+      },
+      "name": {
+        "ar": "حزمة Runway للفيديوهات القصيرة",
+        "en": "Runway Short Videos Pack",
+        "es": "Pack Runway Videos Cortos",
+        "fr": "Pack Runway Vidéos Courtes"
+      },
+      "desc": {
+        "ar": "20 أمر Runway لتوليد فيديوهات Reels وTikTok احترافية",
+        "en": "20 Runway prompts for professional Reels and TikTok videos",
+        "es": "20 prompts Runway para Reels y TikTok profesionales",
+        "fr": "20 prompts Runway pour Reels et TikTok professionnels"
+      },
+      "rating": "4.7",
+      "sales": {
+        "ar": "52 مبيعة",
+        "en": "52 sold",
+        "es": "52 vendidos",
+        "fr": "52 vendus"
+      },
+      "price": "$7.99",
+      "original": "$14.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/runway-videos",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar/en"
+    },
+    {
+      "id": "p015",
+      "category": "ebooks",
+      "emoji": "🚀",
+      "badge": {
+        "ar": "💡 استراتيجي",
+        "en": "💡 Strategic",
+        "es": "💡 Estratégico",
+        "fr": "💡 Stratégique"
+      },
+      "name": {
+        "ar": "استراتيجيات التسويق بالذكاء الاصطناعي",
+        "en": "AI Marketing Strategies",
+        "es": "Estrategias Marketing con IA",
+        "fr": "Stratégies Marketing avec IA"
+      },
+      "desc": {
+        "ar": "كتاب 95 صفحة: كيف تستخدم AI في التسويق الرقمي بشكل عملي",
+        "en": "95-page book: How to use AI in digital marketing practically",
+        "es": "Libro de 95 páginas sobre uso práctico de IA en marketing",
+        "fr": "Livre de 95 pages sur l'utilisation pratique de l'IA en marketing"
+      },
+      "rating": "4.9",
+      "sales": {
+        "ar": "133 مبيعة",
+        "en": "133 sold",
+        "es": "133 vendidos",
+        "fr": "133 vendus"
+      },
+      "price": "$8.99",
+      "original": "$16.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/ai-marketing-strategies",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar"
+    },
+    {
+      "id": "p016",
+      "category": "prompts",
+      "emoji": "✉️",
+      "badge": {
+        "ar": "📧 Email",
+        "en": "📧 Email",
+        "es": "📧 Email",
+        "fr": "📧 Email"
+      },
+      "name": {
+        "ar": "أوامر Email Marketing الاحترافية",
+        "en": "Professional Email Marketing Prompts",
+        "es": "Prompts Profesionales Email Marketing",
+        "fr": "Prompts Professionnels Email Marketing"
+      },
+      "desc": {
+        "ar": "28 أمر لكتابة ايميلات تسويقية، نشرات بريدية، وحملات",
+        "en": "28 prompts for marketing emails, newsletters, and campaigns",
+        "es": "28 prompts para emails de marketing y campañas",
+        "fr": "28 prompts pour emails marketing et campagnes"
+      },
+      "rating": "4.8",
+      "sales": {
+        "ar": "96 مبيعة",
+        "en": "96 sold",
+        "es": "96 vendidos",
+        "fr": "96 vendus"
+      },
+      "price": "$4.99",
+      "original": "$9.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/email-marketing-prompts",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar/en"
+    },
+    {
+      "id": "p017",
+      "category": "notion",
+      "emoji": "🎯",
+      "badge": {
+        "ar": "⭐ مميز",
+        "en": "⭐ Featured",
+        "es": "⭐ Destacado",
+        "fr": "⭐ En Vedette"
+      },
+      "name": {
+        "ar": "نظام الأهداف والإنتاجية - Notion",
+        "en": "Notion Goals & Productivity System",
+        "es": "Sistema Objetivos y Productividad Notion",
+        "fr": "Système Objectifs et Productivité Notion"
+      },
+      "desc": {
+        "ar": "قالب Notion لتتبع الأهداف، العادات، والإنجازات الشخصية",
+        "en": "Notion template for tracking goals, habits, and personal achievements",
+        "es": "Plantilla Notion para seguimiento de objetivos y hábitos",
+        "fr": "Template Notion pour suivi d'objectifs et habitudes"
+      },
+      "rating": "5.0",
+      "sales": {
+        "ar": "68 مبيعة",
+        "en": "68 sold",
+        "es": "68 vendidos",
+        "fr": "68 vendus"
+      },
+      "price": "$6.99",
+      "original": "$12.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/notion-goals",
+      "downloadable": true,
+      "fileType": "Notion Template Link",
+      "language": "ar"
+    },
+    {
+      "id": "p018",
+      "category": "design",
+      "emoji": "🌐",
+      "badge": {
+        "ar": "💻 ويب",
+        "en": "💻 Web",
+        "es": "💻 Web",
+        "fr": "💻 Web"
+      },
+      "name": {
+        "ar": "أوامر تصميم واجهات المستخدم",
+        "en": "UI Design Prompts Pack",
+        "es": "Pack Prompts Diseño UI",
+        "fr": "Pack Prompts Design UI"
+      },
+      "desc": {
+        "ar": "25 أمر لتوليد تصاميم UI/UX، Landing Pages، وأيقونات",
+        "en": "25 prompts for generating UI/UX designs, landing pages, and icons",
+        "es": "25 prompts para diseños UI/UX y páginas de destino",
+        "fr": "25 prompts pour designs UI/UX et pages d'atterrissage"
+      },
+      "rating": "4.7",
+      "sales": {
+        "ar": "74 مبيعة",
+        "en": "74 sold",
+        "es": "74 vendidos",
+        "fr": "74 vendus"
+      },
+      "price": "$5.99",
+      "original": "$11.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/ui-design-prompts",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar/en"
+    },
+    {
+      "id": "p019",
+      "category": "prompts",
+      "emoji": "🎙️",
+      "badge": {
+        "ar": "🎧 بودكاست",
+        "en": "🎧 Podcast",
+        "es": "🎧 Podcast",
+        "fr": "🎧 Podcast"
+      },
+      "name": {
+        "ar": "أوامر إنتاج البودكاست والفيديو",
+        "en": "Podcast & Video Production Prompts",
+        "es": "Prompts Producción Podcast y Video",
+        "fr": "Prompts Production Podcast et Vidéo"
+      },
+      "desc": {
+        "ar": "35 أمر لكتابة سكريبتات، أفكار حلقات، وأوصاف جذابة",
+        "en": "35 prompts for scripts, episode ideas, and engaging descriptions",
+        "es": "35 prompts para guiones e ideas de episodios",
+        "fr": "35 prompts pour scripts et idées d'épisodes"
+      },
+      "rating": "4.8",
+      "sales": {
+        "ar": "59 مبيعة",
+        "en": "59 sold",
+        "es": "59 vendidos",
+        "fr": "59 vendus"
+      },
+      "price": "$5.99",
+      "original": "$10.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/podcast-prompts",
+      "downloadable": true,
+      "fileType": "PDF",
+      "language": "ar/en"
+    },
+    {
+      "id": "p020",
+      "category": "coding",
+      "emoji": "🤖",
+      "badge": {
+        "ar": "🔥 الأكثر مبيعاً",
+        "en": "🔥 Best Seller",
+        "es": "🔥 Más Vendido",
+        "fr": "🔥 Meilleure Vente"
+      },
+      "name": {
+        "ar": "أوامر تطوير تطبيقات الويب",
+        "en": "Web App Development Prompts",
+        "es": "Prompts Desarrollo Apps Web",
+        "fr": "Prompts Développement Apps Web"
+      },
+      "desc": {
+        "ar": "40 أمر لبناء تطبيقات ويب بـ React, Node.js، وقواعد بيانات",
+        "en": "40 prompts for building web apps with React, Node.js, and databases",
+        "es": "40 prompts para construir apps web con React y Node.js",
+        "fr": "40 prompts pour construire apps web avec React et Node.js"
+      },
+      "rating": "4.9",
+      "sales": {
+        "ar": "187 مبيعة",
+        "en": "187 sold",
+        "es": "187 vendidos",
+        "fr": "187 vendus"
+      },
+      "price": "$7.99",
+      "original": "$15.99",
+      "gumroad": "https://mindweavestore.gumroad.com/l/webapp-dev-prompts",
+      "downloadable": true,
+      "fileType": "PDF + Code Templates",
+      "language": "ar/en"
+    }
+  ],
+  "stats": {
+    "totalProducts": 20,
+    "totalSales": 2091,
+    "averageRating": 4.85,
+    "categories": {
+      "prompts": 9,
+      "design": 4,
+      "notion": 4,
+      "ebooks": 3,
+      "coding": 2
+    }
+  }
+    }
