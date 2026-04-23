@@ -1,0 +1,310 @@
+{
+  "articles": [
+    {
+      "id": "art001",
+      "slug": "chatgpt-prompt-engineering-guide-arabic",
+      "title": {
+        "ar": "دليل شامل لهندسة الأوامر في ChatGPT للمبتدئين",
+        "en": "Complete Guide to ChatGPT Prompt Engineering for Beginners"
+      },
+      "description": {
+        "ar": "تعلم كيفية كتابة أوامر فعالة لـ ChatGPT وزيادة جودة النتائج بنسبة 300% - دليل عملي بالأمثلة",
+        "en": "Learn how to write effective ChatGPT prompts and increase output quality by 300% - practical guide with examples"
+      },
+      "category": "تعليمي",
+      "readTime": "12 دقيقة",
+      "publishDate": "2026-04-15",
+      "author": "فريق MindWeave",
+      "image": "https://via.placeholder.com/800x400/0A1628/00D4FF?text=Prompt+Engineering",
+      "excerpt": {
+        "ar": "هندسة الأوامر (Prompt Engineering) هي المهارة الأهم في عصر الذكاء الاصطناعي. تعلم كيف تحوّل أسئلتك البسيطة إلى أوامر احترافية تحصل منها على نتائج دقيقة ومفيدة من ChatGPT. في هذا الدليل الشامل، سنشرح الأساسيات والتقنيات المتقدمة مع 20 مثالاً عملياً.",
+        "en": "Prompt Engineering is the most important skill in the AI age. Learn how to transform simple questions into professional prompts that get accurate and useful results from ChatGPT."
+      },
+      "content": {
+        "ar": "محتوى المقالة الكامل سيتم إضافته في ملف منفصل",
+        "en": "Full article content will be added in a separate file"
+      },
+      "tags": ["ChatGPT", "Prompt Engineering", "الذكاء الاصطناعي", "تعليم", "أوامر AI"],
+      "seo": {
+        "metaTitle": "دليل هندسة الأوامر ChatGPT بالعربية 2026 | MindWeave",
+        "metaDescription": "تعلم هندسة الأوامر في ChatGPT خطوة بخطوة مع أمثلة عملية وأفضل الممارسات لزيادة جودة النتائج - دليل عربي شامل 2026",
+        "keywords": "ChatGPT بالعربية, هندسة الأوامر, Prompt Engineering, تعلم ChatGPT, أوامر ChatGPT, الذكاء الاصطناعي"
+      }
+    },
+    {
+      "id": "art002",
+      "slug": "midjourney-arabic-prompts-guide",
+      "title": {
+        "ar": "كيف تولد صوراً احترافية بـ Midjourney باستخدام الأوامر العربية",
+        "en": "How to Generate Professional Images with Midjourney Using Arabic Prompts"
+      },
+      "description": {
+        "ar": "دليل عملي لإنشاء صور عربية احترافية باستخدام Midjourney - تقنيات وأوامر مجربة",
+        "en": "Practical guide to creating professional Arabic images using Midjourney - tested techniques and prompts"
+      },
+      "category": "تصميم",
+      "readTime": "10 دقائق",
+      "publishDate": "2026-04-10",
+      "author": "فريق MindWeave",
+      "image": "https://via.placeholder.com/800x400/0A1628/FF6B35?text=Midjourney+Arabic",
+      "excerpt": {
+        "ar": "Midjourney أداة قوية لتوليد الصور بالذكاء الاصطناعي، لكن استخدامها للمحتوى العربي يحتاج تقنيات خاصة. اكتشف كيف تكتب أوامر فعالة للحصول على صور تعكس الثقافة العربية والإسلامية بدقة.",
+        "en": "Midjourney is a powerful AI image generation tool, but using it for Arabic content requires special techniques."
+      },
+      "tags": ["Midjourney", "تصميم", "صور AI", "الثقافة العربية", "توليد صور"],
+      "seo": {
+        "metaTitle": "دليل Midjourney بالعربية - توليد صور عربية احترافية 2026",
+        "metaDescription": "تعلم كيف تستخدم Midjourney لتوليد صور عربية وإسلامية احترافية مع أوامر مجربة ونصائح عملية",
+        "keywords": "Midjourney بالعربية, توليد صور عربية, تصميم إسلامي AI, صور الثقافة العربية"
+      }
+    },
+    {
+      "id": "art003",
+      "slug": "ai-content-creation-arabic-guide",
+      "title": {
+        "ar": "دليل كامل لإنشاء محتوى عربي بالذكاء الاصطناعي في 2026",
+        "en": "Complete Guide to Arabic Content Creation with AI in 2026"
+      },
+      "description": {
+        "ar": "كل ما تحتاج معرفته عن إنشاء محتوى عربي احترافي باستخدام أدوات الذكاء الاصطناعي",
+        "en": "Everything you need to know about creating professional Arabic content using AI tools"
+      },
+      "category": "محتوى",
+      "readTime": "15 دقيقة",
+      "publishDate": "2026-04-05",
+      "author": "فريق MindWeave",
+      "image": "https://via.placeholder.com/800x400/0A1628/7C3AED?text=AI+Content+Arabic",
+      "excerpt": {
+        "ar": "الذكاء الاصطناعي غيّر طريقة إنتاج المحتوى بشكل جذري. تعرف على أفضل الأدوات والتقنيات لإنشاء محتوى عربي عالي الجودة للمدونات، السوشيال ميديا، والتسويق الرقمي.",
+        "en": "AI has fundamentally changed content production. Learn the best tools and techniques for creating high-quality Arabic content."
+      },
+      "tags": ["إنشاء محتوى", "AI بالعربية", "تسويق رقمي", "كتابة محتوى", "ChatGPT"],
+      "seo": {
+        "metaTitle": "إنشاء محتوى عربي بالذكاء الاصطناعي - دليل 2026 الشامل",
+        "metaDescription": "تعلم كيف تنشئ محتوى عربي احترافي باستخدام ChatGPT وأدوات AI الحديثة - استراتيجيات مجربة ونتائج فورية",
+        "keywords": "إنشاء محتوى عربي, AI للمحتوى, كتابة بالذكاء الاصطناعي, ChatGPT عربي"
+      }
+    },
+    {
+      "id": "art004",
+      "slug": "notion-productivity-system-arabic",
+      "title": {
+        "ar": "كيف تبني نظام إنتاجية متكامل باستخدام Notion بالعربية",
+        "en": "How to Build a Complete Productivity System Using Notion in Arabic"
+      },
+      "description": {
+        "ar": "دليل خطوة بخطوة لإنشاء نظام إنتاجية شخصي أو لفريقك باستخدام Notion",
+        "en": "Step-by-step guide to creating a personal or team productivity system using Notion"
+      },
+      "category": "إنتاجية",
+      "readTime": "13 دقيقة",
+      "publishDate": "2026-04-01",
+      "author": "فريق MindWeave",
+      "image": "https://via.placeholder.com/800x400/0A1628/00FF88?text=Notion+Arabic",
+      "excerpt": {
+        "ar": "Notion أكثر من مجرد تطبيق ملاحظات - إنه منصة كاملة لإدارة حياتك ومشاريعك. اكتشف كيف تبني نظاماً متكاملاً يساعدك على تنظيم مهامك، أهدافك، ومشاريعك بكفاءة.",
+        "en": "Notion is more than a notes app - it's a complete platform for managing your life and projects."
+      },
+      "tags": ["Notion", "إنتاجية", "تنظيم", "إدارة مشاريع", "أدوات"],
+      "seo": {
+        "metaTitle": "نظام Notion للإنتاجية بالعربية - دليل شامل 2026",
+        "metaDescription": "تعلم كيف تبني نظام إنتاجية احترافي باستخدام Notion - قوالب جاهزة ونصائح عملية بالعربية",
+        "keywords": "Notion بالعربية, نظام إنتاجية, تنظيم المهام, إدارة المشاريع Notion"
+      }
+    },
+    {
+      "id": "art005",
+      "slug": "digital-marketing-ai-strategies",
+      "title": {
+        "ar": "استراتيجيات التسويق الرقمي بالذكاء الاصطناعي لعام 2026",
+        "en": "AI-Powered Digital Marketing Strategies for 2026"
+      },
+      "description": {
+        "ar": "كيف تستخدم أدوات AI لتحسين حملاتك التسويقية وزيادة المبيعات",
+        "en": "How to use AI tools to improve your marketing campaigns and increase sales"
+      },
+      "category": "تسويق",
+      "readTime": "11 دقيقة",
+      "publishDate": "2026-03-28",
+      "author": "فريق MindWeave",
+      "image": "https://via.placeholder.com/800x400/0A1628/FFD700?text=AI+Marketing",
+      "excerpt": {
+        "ar": "الذكاء الاصطناعي أصبح أداة أساسية في التسويق الرقمي. تعلم كيف تستخدم ChatGPT، Midjourney، وأدوات AI الأخرى لإنشاء حملات تسويقية فعالة تحقق نتائج قابلة للقياس.",
+        "en": "AI has become an essential tool in digital marketing. Learn how to use ChatGPT, Midjourney, and other AI tools."
+      },
+      "tags": ["تسويق رقمي", "AI Marketing", "استراتيجيات", "حملات إعلانية", "ChatGPT"],
+      "seo": {
+        "metaTitle": "التسويق بالذكاء الاصطناعي 2026 - استراتيجيات وأدوات فعالة",
+        "metaDescription": "دليل شامل لاستخدام AI في التسويق الرقمي - أدوات، استراتيجيات، وأمثلة ناجحة بالعربية",
+        "keywords": "التسويق بالذكاء الاصطناعي, AI Marketing, تسويق رقمي, ChatGPT تسويق"
+      }
+    },
+    {
+      "id": "art006",
+      "slug": "freelancing-ai-skills-arabic",
+      "title": {
+        "ar": "كيف تبدأ العمل الحر باستخدام مهارات الذكاء الاصطناعي",
+        "en": "How to Start Freelancing with AI Skills"
+      },
+      "description": {
+        "ar": "دليل للمبتدئين: حول مهاراتك في AI إلى مصدر دخل عبر العمل الحر",
+        "en": "Beginner's guide: Turn your AI skills into income through freelancing"
+      },
+      "category": "عمل حر",
+      "readTime": "14 دقيقة",
+      "publishDate": "2026-03-25",
+      "author": "فريق MindWeave",
+      "image": "https://via.placeholder.com/800x400/0A1628/00D4FF?text=Freelancing+AI",
+      "excerpt": {
+        "ar": "مهارات الذكاء الاصطناعي أصبحت من أكثر المهارات طلباً في سوق العمل الحر. اكتشف كيف تحول معرفتك بـ ChatGPT، Midjourney، وأدوات AI الأخرى إلى خدمات تُباع بأسعار مرتفعة.",
+        "en": "AI skills have become among the most in-demand skills in the freelance market."
+      },
+      "tags": ["عمل حر", "Freelancing", "مهارات AI", "دخل إضافي", "خدمات رقمية"],
+      "seo": {
+        "metaTitle": "العمل الحر بمهارات الذكاء الاصطناعي - دليل المبتدئين 2026",
+        "metaDescription": "تعلم كيف تبدأ العمل الحر باستخدام ChatGPT وأدوات AI - خدمات مطلوبة وأسعار مرتفعة",
+        "keywords": "العمل الحر بالذكاء الاصطناعي, Freelancing AI, خدمات ChatGPT, دخل من AI"
+      }
+    },
+    {
+      "id": "art007",
+      "slug": "ecommerce-ai-product-descriptions",
+      "title": {
+        "ar": "كيف تكتب أوصاف منتجات احترافية للتجارة الإلكترونية باستخدام AI",
+        "en": "How to Write Professional E-commerce Product Descriptions Using AI"
+      },
+      "description": {
+        "ar": "دليل عملي لاستخدام ChatGPT في كتابة أوصاف منتجات تزيد المبيعات",
+        "en": "Practical guide to using ChatGPT for writing product descriptions that increase sales"
+      },
+      "category": "تجارة إلكترونية",
+      "readTime": "9 دقائق",
+      "publishDate": "2026-03-20",
+      "author": "فريق MindWeave",
+      "image": "https://via.placeholder.com/800x400/0A1628/FF6B35?text=E-commerce+AI",
+      "excerpt": {
+        "ar": "أوصاف المنتجات الجيدة هي مفتاح زيادة المبيعات في التجارة الإلكترونية. تعلم كيف تستخدم ChatGPT لكتابة أوصاف جذابة، محسّنة لمحركات البحث، وتحول الزوار إلى عملاء.",
+        "en": "Good product descriptions are key to increasing e-commerce sales."
+      },
+      "tags": ["تجارة إلكترونية", "ChatGPT", "أوصاف منتجات", "SEO", "مبيعات"],
+      "seo": {
+        "metaTitle": "أوصاف منتجات احترافية بالذكاء الاصطناعي - زيد مبيعاتك",
+        "metaDescription": "تعلم كيف تكتب أوصاف منتجات محسنة للSEO باستخدام ChatGPT - أمثلة وقوالب جاهزة",
+        "keywords": "أوصاف منتجات AI, ChatGPT تجارة إلكترونية, كتابة محتوى تسويقي"
+      }
+    },
+    {
+      "id": "art008",
+      "slug": "social-media-content-ai-calendar",
+      "title": {
+        "ar": "بناء تقويم محتوى سوشيال ميديا كامل باستخدام الذكاء الاصطناعي",
+        "en": "Build a Complete Social Media Content Calendar Using AI"
+      },
+      "description": {
+        "ar": "كيف تنشئ شهر كامل من محتوى سوشيال ميديا في ساعة واحدة باستخدام ChatGPT",
+        "en": "How to create a full month of social media content in one hour using ChatGPT"
+      },
+      "category": "سوشيال ميديا",
+      "readTime": "12 دقيقة",
+      "publishDate": "2026-03-15",
+      "author": "فريق MindWeave",
+      "image": "https://via.placeholder.com/800x400/0A1628/7C3AED?text=Social+Media+AI",
+      "excerpt": {
+        "ar": "إنشاء محتوى يومي للسوشيال ميديا مهمة مرهقة. اكتشف كيف تستخدم ChatGPT لتوليد 30 يوماً من المحتوى الإبداعي لـ Instagram، Facebook، وTwitter في جلسة واحدة.",
+        "en": "Creating daily social media content is an exhausting task."
+      },
+      "tags": ["سوشيال ميديا", "محتوى", "ChatGPT", "تقويم محتوى", "Instagram"],
+      "seo": {
+        "metaTitle": "تقويم محتوى سوشيال ميديا بالذكاء الاصطناعي 2026",
+        "metaDescription": "أنشئ شهر كامل من محتوى السوشيال ميديا باستخدام ChatGPT - أفكار، قوالب، واستراتيجيات",
+        "keywords": "محتوى سوشيال ميديا AI, تقويم محتوى ChatGPT, Instagram بالذكاء الاصطناعي"
+      }
+    },
+    {
+      "id": "art009",
+      "slug": "coding-with-chatgpt-beginners",
+      "title": {
+        "ar": "تعلم البرمجة باستخدام ChatGPT - دليل المبتدئين الكامل",
+        "en": "Learn Programming with ChatGPT - Complete Beginner's Guide"
+      },
+      "description": {
+        "ar": "كيف يساعدك ChatGPT في تعلم البرمجة وكتابة كود احترافي حتى لو كنت مبتدئاً",
+        "en": "How ChatGPT helps you learn programming and write professional code even as a beginner"
+      },
+      "category": "برمجة",
+      "readTime": "16 دقيقة",
+      "publishDate": "2026-03-10",
+      "author": "فريق MindWeave",
+      "image": "https://via.placeholder.com/800x400/0A1628/00FF88?text=Coding+ChatGPT",
+      "excerpt": {
+        "ar": "تعلم البرمجة أصبح أسهل من أي وقت مضى بفضل ChatGPT. اكتشف كيف تستخدم AI كمعلم شخصي لتعلم Python، JavaScript، وغيرها من لغات البرمجة بطريقة تفاعلية.",
+        "en": "Learning programming has become easier than ever thanks to ChatGPT."
+      },
+      "tags": ["برمجة", "تعليم", "ChatGPT", "Python", "JavaScript"],
+      "seo": {
+        "metaTitle": "تعلم البرمجة مع ChatGPT - دليل المبتدئين بالعربية 2026",
+        "metaDescription": "ابدأ رحلتك في البرمجة باستخدام ChatGPT كمعلم شخصي - دروس تفاعلية وأمثلة عملية",
+        "keywords": "تعلم البرمجة ChatGPT, Python بالذكاء الاصطناعي, برمجة للمبتدئين"
+      }
+    },
+    {
+      "id": "art010",
+      "slug": "dall-e-midjourney-comparison-arabic",
+      "title": {
+        "ar": "مقارنة شاملة: DALL-E 3 vs Midjourney - أيهما أفضل للمحتوى العربي؟",
+        "en": "Comprehensive Comparison: DALL-E 3 vs Midjourney - Which is Better for Arabic Content?"
+      },
+      "description": {
+        "ar": "مقارنة تفصيلية بين أقوى أدوات توليد الصور بالذكاء الاصطناعي",
+        "en": "Detailed comparison between the most powerful AI image generation tools"
+      },
+      "category": "مقارنات",
+      "readTime": "10 دقائق",
+      "publishDate": "2026-03-05",
+      "author": "فريق MindWeave",
+      "image": "https://via.placeholder.com/800x400/0A1628/FFD700?text=DALL-E+vs+Midjourney",
+      "excerpt": {
+        "ar": "DALL-E 3 وMidjourney هما الأداتان الأقوى لتوليد الصور بالذكاء الاصطناعي. في هذه المقارنة الشاملة، نختبر الأداتين على محتوى عربي ونكشف أيهما أفضل لاحتياجاتك.",
+        "en": "DALL-E 3 and Midjourney are the two most powerful AI image generation tools."
+      },
+      "tags": ["DALL-E", "Midjourney", "مقارنات", "توليد صور", "AI"],
+      "seo": {
+        "metaTitle": "DALL-E 3 vs Midjourney - مقارنة شاملة للمحتوى العربي 2026",
+        "metaDescription": "مقارنة تفصيلية بين DALL-E 3 وMidjourney مع اختبارات على محتوى عربي - أيهما أفضل لك؟",
+        "keywords": "DALL-E vs Midjourney, مقارنة أدوات AI, توليد صور عربية, أفضل أداة AI"
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": "educational",
+      "name": { "ar": "تعليمي", "en": "Educational" },
+      "count": 3
+    },
+    {
+      "id": "design",
+      "name": { "ar": "تصميم", "en": "Design" },
+      "count": 2
+    },
+    {
+      "id": "marketing",
+      "name": { "ar": "تسويق", "en": "Marketing" },
+      "count": 2
+    },
+    {
+      "id": "productivity",
+      "name": { "ar": "إنتاجية", "en": "Productivity" },
+      "count": 1
+    },
+    {
+      "id": "freelancing",
+      "name": { "ar": "عمل حر", "en": "Freelancing" },
+      "count": 1
+    },
+    {
+      "id": "coding",
+      "name": { "ar": "برمجة", "en": "Coding" },
+      "count": 1
+    }
+  ]
+}
