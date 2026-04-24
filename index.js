@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,12 +10,12 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Google Analytics injection
+// ========== حقن Google Analytics تلقائياً ==========
 app.use((req, res, next) => {
   const originalSend = res.send;
   res.send = function (body) {
     if (typeof body === 'string' && body.includes('</head>')) {
-      const gaTag = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DZ4WQDX31M');</script>`;
+      const gaTag = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-DZ4WQDX31M');</script>`;
       body = body.replace('</head>', gaTag + '</head>');
     }
     return originalSend.call(this, body);
@@ -22,52 +23,78 @@ app.use((req, res, next) => {
   next();
 });
 
-// API endpoint - متطابق مع الواجهة
+// ========== API: توليد الأوامر ==========
 app.post('/api/generate', async (req, res) => {
   try {
     const { prompt, mode, category } = req.body;
     
     if (!prompt) {
-      return res.json({ success: false, error: 'Prompt required' });
+      return res.json({ 
+        success: false, 
+        error: 'المدخل فارغ' 
+      });
     }
 
-    // استخدام Claude API (مجاني مؤقتًا)
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const apiKey = process.env.ZAI_API_KEY;
+    
+    if (!apiKey) {
+      // توليد محلي بسيط في حالة عدم وجود مفتاح API
+      const localPrompt = `✨ أمر احترافي (${mode === 'generate' ? 'توليد' : mode === 'improve' ? 'تحسين' : 'ترجمة'}) في مجال ${category}:\n\n${prompt}\n\n✅ هذا رد تجريبي - أضف مفتاح Z.ai في Render للحصول على أوامر احترافية بالذكاء الاصطناعي`;
+      return res.json({ success: true, prompt: localPrompt });
+    }
+
+    const response = await fetch('https://api.z.ai/api/paas/v4/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.CLAUDE_API_KEY || '',
-        'anthropic-version': '2023-06-01'
+        'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',
-        max_tokens: 1000,
-        messages: [{
-          role: 'user',
-          content: `أنت خبير في هندسة الأوامر. ${mode === 'improve' ? 'حسن الأمر التالي' : mode === 'translate' ? 'ترجم الأمر التالي' : 'أنشئ أمرًا احترافيًا'} في مجال "${category}". اكتب الأمر مباشرة دون مقدمات:\n\n${prompt}`
-        }]
+        model: 'glm-4-flash',
+        messages: [
+          {
+            role: 'system',
+            content: `أنت خبير في هندسة الأوامر (Prompt Engineering). ${mode === 'improve' ? 'قم بتحسين الأمر التالي' : mode === 'translate' ? 'قم بترجمة الأمر التالي' : 'قم بتوليد أمر احترافي جديد'} في مجال "${category}". اكتب الأمر مباشرة دون أي مقدمات أو شرح.`
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        temperature: 0.7,
+        max_tokens: 1000
       })
     });
 
-    if (response.ok) {
-      const data = await response.json();
-      res.json({ success: true, prompt: data.content[0].text });
-    } else {
-      // Fallback إذا لم يتوفر API
-      res.json({ success: true, prompt: `✨ أمر احترافي لمجال ${category}:\n\n${prompt}\n\nملاحظة: أضف مفتاح Claude API في Render لتفعيل الذكاء الاصطناعي` });
+    if (!response.ok) {
+      throw new Error(`Z.ai API error: ${response.status}`);
     }
+
+    const data = await response.json();
+    const generatedPrompt = data.choices[0].message.content;
+    
+    res.json({ success: true, prompt: generatedPrompt });
+
   } catch (error) {
-    res.json({ success: true, prompt: `✨ أمر احترافي لمجال ${req.body.category || 'عام'}:\n\n${req.body.prompt}\n\n(توليد مؤقت - أضف مفتاح API)` });
+    console.error('Generate error:', error);
+    // رد احتياطي في حالة فشل API
+    const fallbackPrompt = `✨ أمر احترافي (${mode === 'generate' ? 'توليد' : mode === 'improve' ? 'تحسين' : 'ترجمة'}) في مجال ${category}:\n\n${req.body.prompt}\n\n(رد مؤقت - يرجى التحقق من اتصال API)`;
+    res.json({ success: true, prompt: fallbackPrompt });
   }
 });
 
+// ========== API: اشتراك ==========
 app.post('/api/subscribe', (req, res) => {
   const { email } = req.body;
   if (!email || !email.includes('@')) {
-    return res.json({ success: false, error: 'Invalid email' });
+    return res.json({ success: false, error: 'بريد إلكتروني غير صالح' });
   }
-  res.json({ success: true, message: 'Subscribed' });
+  console.log(`مشترك جديد: ${email}`);
+  res.json({ success: true, message: 'تم الاشتراك بنجاح' });
 });
 
+// ========== تشغيل الخادم ==========
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`MindWeave server running on port ${PORT}`);
+});
