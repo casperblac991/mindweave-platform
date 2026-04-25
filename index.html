@@ -1330,19 +1330,12 @@ async function generatePrompt() {
   output.innerHTML = currentLang === 'ar' ? '⏳ جاري توليد أمر احترافي...' : 'Generating professional prompt...';
   
   try {
-    // استدعاء Claude API
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    // استدعاء الخادم المحلي /api/groq
+    const response = await fetch('/api/groq', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'anthropic-version': '2023-06-01'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{
-          role: 'user',
-          content: `أنت خبير في هندسة الأوامر (Prompt Engineering). المستخدم يريد ${currentMode === 'generate' ? 'توليد أمر جديد' : currentMode === 'improve' ? 'تحسين أمر موجود' : 'ترجمة أمر'} في مجال "${selectedCategory}". 
+        message: `أنت خبير في هندسة الأوامر (Prompt Engineering). المستخدم يريد ${currentMode === 'generate' ? 'توليد أمر جديد' : currentMode === 'improve' ? 'تحسين أمر موجود' : 'ترجمة أمر'} في مجال "${selectedCategory}". 
 
 الطلب: ${input}
 
@@ -1353,16 +1346,15 @@ ${currentMode === 'generate' ? 'قم بتوليد أمر احترافي ومفص
 4. يستخدم لغة دقيقة
 
 اكتب الأمر مباشرة دون مقدمات.`
-        }]
       })
     });
     
     if (!response.ok) {
-      throw new Error('فشل الاتصال بالـ API');
+      throw new Error('فشل الاتصال بالخادم');
     }
     
     const data = await response.json();
-    const promptText = data.content[0].text;
+    const promptText = data.reply;
     
     output.innerHTML = promptText;
     actions.style.display = 'flex';
