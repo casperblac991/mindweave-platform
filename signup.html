@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل حساب | MindWeave</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #050A0F;
+      color: #E8F4FD;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .container {
+      background: #0A1628;
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 24px;
+      padding: 3rem;
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    h1 span { color: #00D4FF; }
+    p { color: #7A9BB5; margin-bottom: 2rem; font-size: 0.9rem; }
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      background: #050A0F;
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 12px;
+      color: #E8F4FD;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+    }
+    input:focus { outline: none; border-color: #00D4FF; }
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #00D4FF, #7C3AED);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-family: 'Cairo', sans-serif;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    .link { color: #00D4FF; text-decoration: none; font-size: 0.9rem; margin-top: 1rem; display: block; }
+    .error { color: #FF6B35; font-size: 0.8rem; margin-top: 0.5rem; display: none; }
+    .success { color: #00FF88; font-size: 1rem; display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>انضم إلى <span>MindWeave</span></h1>
+    <p>أنشئ حسابك لتحصل على أوامر مخصصة وتتابع مشترياتك</p>
+    
+    <form id="signupForm">
+      <input type="text" id="name" placeholder="الاسم الكامل" required>
+      <input type="email" id="email" placeholder="بريدك الإلكتروني" required>
+      <input type="tel" id="phone" placeholder="رقم الهاتف (اختياري)">
+      <input type="password" id="password" placeholder="كلمة المرور" required minlength="6">
+      <button type="submit">🚀 أنشئ حسابك الآن</button>
+    </form>
+    
+    <p class="error" id="errorMsg"></p>
+    <p class="success" id="successMsg">✅ تم إنشاء حسابك بنجاح! جاري تحويلك...</p>
+    <a href="login.html" class="link">لديك حساب؟ سجّل دخولك</a>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    
+    const supabase = createClient(
+      'https://mtirzcuntupkuavmjtcv.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aXJ6Y3VudHVwa3Vhdm1qdGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU2MjM4MTQsImV4cCI6MjA2MTE5OTgxNH0.sqalEujWNI3p7WX8HFuxg1j0NFGEDbA1Mx82cDOqMUQ'
+    );
+
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const password = document.getElementById('password').value;
+      
+      const { error } = await supabase.from('users').insert([
+        { name, email, phone, password }
+      ]);
+      
+      if (error) {
+        document.getElementById('errorMsg').textContent = 'البريد الإلكتروني مستخدم بالفعل';
+        document.getElementById('errorMsg').style.display = 'block';
+      } else {
+        document.getElementById('signupForm').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+        setTimeout(() => { window.location.href = 'index.html'; }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>
