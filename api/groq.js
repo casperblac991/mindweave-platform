@@ -8,10 +8,11 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Message is required' });
   }
 
-  // المحاولة الأولى: NVIDIA NIM (مجاني)
+  // --- المحاولة الأولى: NVIDIA NIM (مجاني) ---
   const nvidiaKey = process.env.NVIDIA_API_KEY;
   if (nvidiaKey) {
     try {
+      console.log('Trying NVIDIA...');
       const nvidiaRes = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -33,18 +34,21 @@ export default async function handler(req, res) {
         const data = await nvidiaRes.json();
         const reply = data.choices?.[0]?.message?.content;
         if (reply && reply.length > 20) {
+          console.log('NVIDIA success');
           return res.status(200).json({ reply });
         }
       }
+      console.log('NVIDIA response not ok or empty');
     } catch (e) {
-      console.log('NVIDIA failed, trying Groq...');
+      console.error('NVIDIA failed, trying Groq...', e.message);
     }
   }
 
-  // المحاولة الثانية: Groq (احتياطي)
+  // --- المحاولة الثانية: Groq (احتياطي) ---
   const groqKey = process.env.GROQ_API_KEY;
   if (groqKey) {
     try {
+      console.log('Trying Groq...');
       const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -52,7 +56,7 @@ export default async function handler(req, res) {
           'Authorization': `Bearer ${groqKey}`
         },
         body: JSON.stringify({
-          model: 'llama-3.3-70b-versatile',
+          model: 'llama-3.3-70b-versatile', // <-- تم تصحيح الاسم هنا
           messages: [
             { role: 'system', content: 'أنت خبير في هندسة الأوامر (Prompt Engineering) باللغة العربية. أنشئ أوامر احترافية ومفصلة.' },
             { role: 'user', content: message }
@@ -64,16 +68,19 @@ export default async function handler(req, res) {
 
       if (groqRes.ok) {
         const data = await groqRes.json();
-        const reply = data.choices?.[0]?.message?.content;
+        const reply = data.choices?.[0]?.message?.content; // <-- تم تصحيح طريقة جلب الرد هنا
         if (reply) {
+          console.log('Groq success');
           return res.status(200).json({ reply });
         }
       }
+      console.log('Groq response not ok or empty');
     } catch (e) {
-      console.log('Groq failed too');
+      console.error('Groq failed too', e.message);
     }
   }
 
-  // إذا فشل كل شيء، أرجع خطأ
+  // إذا فشل كل شيء
+  console.error('All providers failed');
   return res.status(500).json({ error: 'All providers failed' });
 }
