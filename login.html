@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول | MindWeave</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: #050A0F;
+      color: #E8F4FD;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .container {
+      background: #0A1628;
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 24px;
+      padding: 3rem;
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    h1 span { color: #00D4FF; }
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      background: #050A0F;
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 12px;
+      color: #E8F4FD;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+    }
+    input:focus { outline: none; border-color: #00D4FF; }
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #00D4FF, #7C3AED);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-family: 'Cairo', sans-serif;
+      cursor: pointer;
+    }
+    .link { color: #00D4FF; text-decoration: none; font-size: 0.9rem; margin-top: 1rem; display: block; }
+    .error { color: #FF6B35; font-size: 0.8rem; margin-top: 0.5rem; display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>مرحباً بعودتك إلى <span>MindWeave</span></h1>
+    
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="بريدك الإلكتروني" required>
+      <input type="password" id="password" placeholder="كلمة المرور" required>
+      <button type="submit">🔐 سجّل دخولك</button>
+    </form>
+    
+    <p class="error" id="errorMsg"></p>
+    <a href="signup.html" class="link">ليس لديك حساب؟ أنشئ واحداً</a>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    
+    const supabase = createClient(
+      'https://mtirzcuntupkuavmjtcv.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aXJ6Y3VudHVwa3Vhdm1qdGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU2MjM4MTQsImV4cCI6MjA2MTE5OTgxNH0.sqalEujWNI3p7WX8HFuxg1j0NFGEDbA1Mx82cDOqMUQ'
+    );
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', email)
+        .eq('password', password)
+        .single();
+      
+      if (error || !data) {
+        document.getElementById('errorMsg').textContent = 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+        document.getElementById('errorMsg').style.display = 'block';
+      } else {
+        localStorage.setItem('mw_user', JSON.stringify(data));
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>
