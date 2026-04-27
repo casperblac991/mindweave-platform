@@ -19,5 +19,13 @@ python3 ai_social_growth_engine.py "$RANDOM_TOPIC" "توفير 90% من الوق
 echo "Generating Lead Magnet..."
 python3 lead_magnet_automation.py "$RANDOM_TOPIC"
 
-# Automation Finished
-echo "--- Automation Finished: New content, products, and social campaigns are ready in the repository! ---"
+# Inject content into the website data
+echo "Injecting content into the website..."
+BLOG_FILE=$(ls -t blog_*.md 2>/dev/null | head -1)
+PRODUCT_FILE=$(ls -t product_*.md 2>/dev/null | head -1)
+
+if [ -n "$BLOG_FILE" ] && [ -n "$PRODUCT_FILE" ]; then
+    python3 inject_content.py "$BLOG_FILE" "$PRODUCT_FILE"
+fi
+
+echo "--- Automation Finished: Website updated with new content! ---"

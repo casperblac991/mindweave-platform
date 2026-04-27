@@ -1486,3 +1486,49 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
     </html>
+
+<!-- Dynamic Content Loader - Injected by Manus AI Automation -->
+<script>
+// Load content from content-data.json and update the page dynamically
+async function loadDynamicContent() {
+    try {
+        const response = await fetch('content-data.json');
+        const data = await response.json();
+        
+        // Update statistics
+        if (document.getElementById('statProducts')) {
+            document.getElementById('statProducts').textContent = data.stats.products;
+        }
+        if (document.getElementById('statSales')) {
+            document.getElementById('statSales').textContent = data.stats.sales.toLocaleString();
+        }
+        
+        // Update products grid
+        const productsGrid = document.getElementById('productsGrid');
+        if (productsGrid && data.products && data.products.length > 0) {
+            productsGrid.innerHTML = data.products.slice(0, 4).map(p => `
+                <div class="product-card">
+                    <div class="product-emoji">${p.emoji || '✨'}</div>
+                    <h3>${p.name}</h3>
+                    <p>${p.description}</p>
+                    <div class="product-footer">
+                        <span class="product-price">${p.price}</span>
+                        <button class="btn-primary">شراء الآن</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        console.log('✅ Dynamic content loaded successfully');
+    } catch (e) {
+        console.log('ℹ️ Using default content (content-data.json not found)');
+    }
+}
+
+// Load content when page is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadDynamicContent);
+} else {
+    loadDynamicContent();
+}
+</script>
