@@ -19,11 +19,5 @@ python3 ai_social_growth_engine.py "$RANDOM_TOPIC" "توفير 90% من الوق
 echo "Generating Lead Magnet..."
 python3 lead_magnet_automation.py "$RANDOM_TOPIC"
 
-# Update the website content data
-echo "Updating website content..."
-BLOG_FILE=$(ls -t blog_*.md | head -1)
-PRODUCT_FILE=$(ls -t product_*.md | head -1)
-SOCIAL_FILE=$(ls -t social_*.md | head -1)
-python3 update_content_data.py "$BLOG_FILE" "$PRODUCT_FILE" "$SOCIAL_FILE"
-
-echo "--- Automation Finished: Website updated with new content! ---"
+# Automation Finished
+echo "--- Automation Finished: New content, products, and social campaigns are ready in the repository! ---"
