@@ -25,7 +25,9 @@ def create_lead_capture_plan(topic):
     print(f"🧲 Creating Lead Magnet for: {topic}")
     content = generate_lead_magnet(topic)
     
-    file_name = f"lead_magnet_{topic.replace(' ', '_')}.md"
+    import time
+    file_id = int(time.time())
+    file_name = f"lead_magnet_{file_id}.md"
     with open(file_name, "w", encoding="utf-8") as f:
         f.write(content)
     

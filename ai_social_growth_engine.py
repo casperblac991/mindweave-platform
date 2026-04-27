@@ -43,7 +43,9 @@ def run_promotion_campaign(product_name, benefit):
         content = generate_viral_social_content(platform, product_name, benefit)
         campaign_data += f"\n\n--- {platform} CAMPAIGN ---\n{content}"
         
-    file_name = f"campaign_{product_name.replace(' ', '_')}.md"
+    import time
+    file_id = int(time.time())
+    file_name = f"campaign_{file_id}.md"
     with open(file_name, "w", encoding="utf-8") as f:
         f.write(campaign_data)
     

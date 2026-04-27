@@ -35,19 +35,23 @@ def generate_ai_content(prompt_type, topic):
 def automate_platform_update(topic):
     print(f"🚀 Starting Automated AI Update for: {topic}")
     
+    # Use a generic timestamp or simple ID for filenames to avoid Arabic characters
+    import time
+    file_id = int(time.time())
+    
     print("Generating Blog Post...")
     blog_content = generate_ai_content("blog", topic)
-    with open(f"blog_{topic.replace(' ', '_')}.md", "w", encoding="utf-8") as f:
+    with open(f"blog_{file_id}.md", "w", encoding="utf-8") as f:
         f.write(blog_content)
     
     print("Generating New Product...")
     product_content = generate_ai_content("product", topic)
-    with open(f"product_{topic.replace(' ', '_')}.md", "w", encoding="utf-8") as f:
+    with open(f"product_{file_id}.md", "w", encoding="utf-8") as f:
         f.write(product_content)
         
     print("Generating Social Media Posts...")
     social_content = generate_ai_content("social", topic)
-    with open(f"social_{topic.replace(' ', '_')}.md", "w", encoding="utf-8") as f:
+    with open(f"social_{file_id}.md", "w", encoding="utf-8") as f:
         f.write(social_content)
         
     print("✅ Platform Automation Task Completed!")
