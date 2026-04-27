@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWeave | منصة الذكاء الاصطناعي العربية الأولى - نسخة مؤتمتة</title>
+    <meta name="description" content="منصة عربية متكاملة لأوامر AI، القوالب الرقمية، والكتب الإلكترونية - مع نظام أتمتة ذكي">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #00d4ff;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #00d4ff;
+        }
+        
+        .hero {
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+        
+        .automation-panel {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .automation-panel h2 {
+            color: #00d4ff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .automation-panel .status {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .status-item {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .status-item .number {
+            font-size: 32px;
+            color: #00d4ff;
+            font-weight: bold;
+        }
+        
+        .status-item .label {
+            color: #b0b0b0;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .automation-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #00d4ff;
+            border: 1px solid #00d4ff;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .product-card h3 {
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+        
+        .product-card p {
+            color: #b0b0b0;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .product-card .price {
+            color: #00d4ff;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .automation-log {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            padding: 10px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            font-size: 14px;
+            color: #b0b0b0;
+        }
+        
+        .log-entry.success {
+            color: #00ff00;
+        }
+        
+        .log-entry.error {
+            color: #ff0000;
+        }
+        
+        .log-entry.info {
+            color: #00d4ff;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(0, 212, 255, 0.3);
+            color: #b0b0b0;
+            margin-top: 60px;
+        }
+        
+        .ai-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🧠 MindWeave <span class="ai-badge">AI-Powered</span></div>
+            <nav>
+                <a href="#home">الرئيسية</a>
+                <a href="#automation">الأتمتة</a>
+                <a href="#products">المنتجات</a>
+                <a href="#blog">المدونة</a>
+            </nav>
+        </header>
+        
+        <div class="hero">
+            <h1>منصة الذكاء الاصطناعي العربية الأولى</h1>
+            <p>نسخة مؤتمتة بالكامل - تعمل بدون تدخل بشري</p>
+        </div>
+        
+        <div class="automation-panel">
+            <h2>⚙️ نظام الأتمتة الذكي</h2>
+            
+            <div class="status">
+                <div class="status-item">
+                    <div class="number" id="blog-count">0</div>
+                    <div class="label">مقالات مولدة</div>
+                </div>
+                <div class="status-item">
+                    <div class="number" id="product-count">0</div>
+                    <div class="label">منتجات مولدة</div>
+                </div>
+                <div class="status-item">
+                    <div class="number" id="social-count">0</div>
+                    <div class="label">منشورات اجتماعية</div>
+                </div>
+            </div>
+            
+            <div class="automation-controls">
+                <button class="btn-primary" onclick="generateContent('مقالات الذكاء الاصطناعي')">🚀 توليد محتوى جديد</button>
+                <button class="btn-secondary" onclick="toggleAutomation()">⏸️ إيقاف/تشغيل الأتمتة</button>
+            </div>
+            
+            <div class="automation-log">
+                <div class="log-entry info">🔄 نظام الأتمتة جاهز للعمل...</div>
+                <div id="log-container"></div>
+            </div>
+        </div>
+        
+        <h2 style="margin-top: 50px; color: #00d4ff;">📦 المنتجات المولدة تلقائياً</h2>
+        <div class="products-grid" id="products-container">
+            <div class="product-card">
+                <h3>🧠 أوامر AI</h3>
+                <p>حزمة أوامر ChatGPT للتسويق الرقمي - تم توليدها بواسطة الذكاء الاصطناعي</p>
+                <div class="price">$9.99</div>
+                <button class="btn-primary">إضافة للسلة</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 MindWeave — منصة الذكاء الاصطناعي العربية الأولى 🚀</p>
+            <p style="margin-top: 10px; font-size: 12px;">نسخة مؤتمتة بالكامل | Fully Automated Version</p>
+        </footer>
+    </div>
+    
+    <script>
+        let automationEnabled = true;
+        let blogCount = 0;
+        let productCount = 0;
+        let socialCount = 0;
+        
+        function addLog(message, type = 'info') {
+            const logContainer = document.getElementById('log-container');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString('ar-SA')}] ${message}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        function generateContent(topic) {
+            if (!automationEnabled) {
+                addLog('❌ الأتمتة معطلة حالياً', 'error');
+                return;
+            }
+            
+            addLog(`🔄 جاري توليد محتوى عن: ${topic}`, 'info');
+            
+            // Simulate AI generation
+            setTimeout(() => {
+                blogCount++;
+                productCount++;
+                socialCount += 3;
+                
+                document.getElementById('blog-count').textContent = blogCount;
+                document.getElementById('product-count').textContent = productCount;
+                document.getElementById('social-count').textContent = socialCount;
+                
+                addLog(`✅ تم توليد مقالة جديدة عن: ${topic}`, 'success');
+                addLog(`✅ تم توليد منتج جديد`, 'success');
+                addLog(`✅ تم توليد 3 منشورات اجتماعية`, 'success');
+                
+                // Add new product card
+                const productsContainer = document.getElementById('products-container');
+                const newCard = document.createElement('div');
+                newCard.className = 'product-card';
+                newCard.innerHTML = `
+                    <h3>🤖 ${topic}</h3>
+                    <p>منتج جديد تم توليده بواسطة الذكاء الاصطناعي</p>
+                    <div class="price">$7.99</div>
+                    <button class="btn-primary">إضافة للسلة</button>
+                `;
+                productsContainer.appendChild(newCard);
+            }, 2000);
+        }
+        
+        function toggleAutomation() {
+            automationEnabled = !automationEnabled;
+            if (automationEnabled) {
+                addLog('✅ الأتمتة مفعلة الآن', 'success');
+            } else {
+                addLog('⏸️ الأتمتة معطلة الآن', 'info');
+            }
+        }
+        
+        // Auto-generate content every 30 seconds when enabled
+        setInterval(() => {
+            if (automationEnabled && Math.random() > 0.7) {
+                const topics = ['أوامر AI متقدمة', 'قوالب Notion', 'كتب إلكترونية', 'استراتيجيات تسويق'];
+                generateContent(topics[Math.floor(Math.random() * topics.length)]);
+            }
+        }, 30000);
+        
+        // Initial log
+        addLog('🚀 نظام الأتمتة الذكي قيد التشغيل...', 'success');
+    </script>
+</body>
+</html>
