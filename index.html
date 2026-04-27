@@ -1508,6 +1508,7 @@ async function loadDynamicContent() {
         if (productsGrid && data.products && data.products.length > 0) {
             productsGrid.innerHTML = data.products.slice(0, 4).map(p => `
                 <div class="product-card">
+                    <div class="product-badge">New AI Content</div>
                     <div class="product-emoji">${p.emoji || '✨'}</div>
                     <h3>${p.name}</h3>
                     <p>${p.description}</p>
