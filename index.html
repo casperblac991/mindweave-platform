@@ -1492,16 +1492,17 @@ document.addEventListener('DOMContentLoaded', () => {
 // Load content from content-data.json and update the page dynamically
 async function loadDynamicContent() {
     try {
-        const response = await fetch('content-data.json');
+        // Use a relative path or a direct URL if needed, but for GitHub Pages/local it should be relative
+        const response = await fetch('./content-data.json');
+        if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         
-        // Update statistics
-        if (document.getElementById('statProducts')) {
-            document.getElementById('statProducts').textContent = data.stats.products;
-        }
-        if (document.getElementById('statSales')) {
-            document.getElementById('statSales').textContent = data.stats.sales.toLocaleString();
-        }
+        // Update statistics - Match exact IDs from the HTML
+        const prodStat = document.getElementById('statProducts') || document.querySelector('.stat-number');
+        if (prodStat) prodStat.textContent = data.stats.products;
+        
+        const salesStat = document.getElementById('statSales') || document.querySelectorAll('.stat-number')[1];
+        if (salesStat) salesStat.textContent = data.stats.sales.toLocaleString();
         
         // Update products grid
         const productsGrid = document.getElementById('productsGrid');
@@ -1517,6 +1518,22 @@ async function loadDynamicContent() {
                         <button class="btn-primary">شراء الآن</button>
                     </div>
                 </div>
+            `).join('');
+        }
+
+        // Update blog section
+        const blogList = document.getElementById('blogList') || document.querySelector('.blog-grid');
+        if (blogList && data.blog && data.blog.length > 0) {
+            blogList.innerHTML = data.blog.slice(0, 3).map(b => `
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-category">${b.category}</span>
+                        <span class="blog-date">${b.date}</span>
+                    </div>
+                    <h3>${b.title}</h3>
+                    <p>${b.excerpt}</p>
+                    <a href="https://github.com/casperblac991/mindweave-platform" class="read-more">اقرأ المزيد ←</a>
+                </article>
             `).join('');
         }
         
