@@ -6,9 +6,9 @@ import requests
 # The OpenAI client is pre-configured with the API key and base URL
 client = OpenAI()
 
-# Supabase Configuration
-SUPABASE_URL = "https://mtirzcuntupkuavmjtcv.supabase.co"
-SUPABASE_ANON_KEY = "YOUR_ANON_KEY_HERE" # User should replace this
+# Supabase Configuration - Reading from Render Environment Variables
+SUPABASE_URL = os.getenv("SUPABASE_URL", "https://mtirzcuntupkuavmjtcv.supabase.co")
+SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY", "")
 
 def generate_ai_content(prompt_type, topic):
     """

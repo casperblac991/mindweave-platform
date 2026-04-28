@@ -5,8 +5,13 @@
 
 // Initialize Supabase Client
 // Replace these with your actual Supabase credentials
-const SUPABASE_URL = 'https://mtirzcuntupkuavmjtcv.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY_HERE'; // Replace with your actual key
+/**
+ * MindWeave Supabase Configuration
+ * On Render, these can be injected via build scripts or handled via a secure endpoint.
+ * For client-side, we use the public environment variables.
+ */
+const SUPABASE_URL = window.ENV?.SUPABASE_URL || 'https://mtirzcuntupkuavmjtcv.supabase.co';
+const SUPABASE_ANON_KEY = window.ENV?.SUPABASE_ANON_KEY || ''; // Will be populated from Render environment
 
 // Create Supabase client
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
