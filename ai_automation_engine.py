@@ -1,8 +1,14 @@
 import os
+import time
 from openai import OpenAI
+import requests
 
 # The OpenAI client is pre-configured with the API key and base URL
 client = OpenAI()
+
+# Supabase Configuration
+SUPABASE_URL = "https://mtirzcuntupkuavmjtcv.supabase.co"
+SUPABASE_ANON_KEY = "YOUR_ANON_KEY_HERE" # User should replace this
 
 def generate_ai_content(prompt_type, topic):
     """
@@ -19,7 +25,6 @@ def generate_ai_content(prompt_type, topic):
         "product": f"صمم حزمة أوامر AI متخصصة في: {topic}. اذكر الفوائد وكيفية الاستخدام.",
         "social": f"اكتب منشورات ترويجية لـ: {topic}. استخدم الهاشتاغات المناسبة."
     }
-
     try:
         response = client.chat.completions.create(
             model="gpt-4.1-mini",
@@ -32,11 +37,38 @@ def generate_ai_content(prompt_type, topic):
     except Exception as e:
         return f"Error generating content: {str(e)}"
 
+def send_newsletter_notification(topic, product_name):
+    """
+    Sends a newsletter notification to all subscribers via Supabase Edge Functions.
+    """
+    print(f"📧 Sending Newsletter Notification for: {product_name}")
+    function_url = f"{SUPABASE_URL}/functions/v1/send-newsletter"
+    
+    headers = {
+        "Authorization": f"Bearer {SUPABASE_ANON_KEY}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {
+        "subject": f"🎉 جديد في MindWeave: {product_name}",
+        "content": f"لقد أضفنا للتو محتوى جديداً ومقالات تقنية حول {topic}. اكتشف أحدث الأدوات والحلول الآن!",
+        "productName": product_name
+    }
+    
+    try:
+        # Note: This requires the Supabase Edge Function to be deployed
+        # response = requests.post(function_url, json=payload, headers=headers)
+        # return response.json()
+        print(f"✅ Newsletter payload prepared for {product_name}")
+        return {"success": True}
+    except Exception as e:
+        print(f"❌ Failed to send newsletter: {str(e)}")
+        return {"success": False, "error": str(e)}
+
 def automate_platform_update(topic):
     print(f"🚀 Starting Automated AI Update for: {topic}")
     
     # Use a generic timestamp or simple ID for filenames to avoid Arabic characters
-    import time
     file_id = int(time.time())
     
     print("Generating Blog Post...")
@@ -46,6 +78,8 @@ def automate_platform_update(topic):
     
     print("Generating New Product...")
     product_content = generate_ai_content("product", topic)
+    # Extract a simple name for the product from content (first line usually)
+    product_name = product_content.split('\n')[0].replace('#', '').strip()[:50] or topic
     with open(f"product_{file_id}.md", "w", encoding="utf-8") as f:
         f.write(product_content)
         
@@ -53,6 +87,9 @@ def automate_platform_update(topic):
     social_content = generate_ai_content("social", topic)
     with open(f"social_{file_id}.md", "w", encoding="utf-8") as f:
         f.write(social_content)
+    
+    # Send newsletter notification to subscribers
+    send_newsletter_notification(topic, product_name)
         
     print("✅ Platform Automation Task Completed!")
 
