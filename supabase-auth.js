@@ -1,20 +1,136 @@
 /**
  * MindWeave Supabase Authentication & Email Collection Module
  * Handles user registration, login, and email collection for newsletters
+ * WITH STRICT AUTH GUARD - No access without login and email verification
  */
 
 // Initialize Supabase Client
-// Replace these with your actual Supabase credentials
-/**
- * MindWeave Supabase Configuration
- * On Render, these can be injected via build scripts or handled via a secure endpoint.
- * For client-side, we use the public environment variables.
- */
 const SUPABASE_URL = window.ENV?.SUPABASE_URL || 'https://mtirzcuntupkuavmjtcv.supabase.co';
-const SUPABASE_ANON_KEY = window.ENV?.SUPABASE_ANON_KEY || ''; // Will be populated from Render environment
+const SUPABASE_ANON_KEY = window.ENV?.SUPABASE_ANON_KEY || '';
 
 // Create Supabase client
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ============================================
+// 0. AUTH GUARD - BLOCK ALL ACCESS UNTIL LOGIN
+// ============================================
+
+/**
+ * Check if user is authenticated and email is verified
+ */
+async function checkAuthStatus() {
+    try {
+        const { data: { user }, error } = await supabaseClient.auth.getUser();
+        
+        if (error || !user) {
+            return { authenticated: false, verified: false };
+        }
+
+        // Check if email is confirmed
+        const isEmailConfirmed = user.email_confirmed_at !== null;
+        
+        return { 
+            authenticated: true, 
+            verified: isEmailConfirmed,
+            user: user
+        };
+    } catch (error) {
+        console.error('Auth check error:', error);
+        return { authenticated: false, verified: false };
+    }
+}
+
+/**
+ * Hide all content and show auth modal if user is not authenticated
+ */
+async function enforceAuthGuard() {
+    const authStatus = await checkAuthStatus();
+    
+    if (!authStatus.authenticated) {
+        // Hide main content
+        document.body.style.display = 'none';
+        
+        // Show auth modal
+        showAuthModal('signup');
+        
+        // Make modal visible
+        const modal = document.getElementById('authModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.display = 'block';
+            // Hide everything except modal
+            const mainContent = document.querySelector('main') || document.querySelector('.container');
+            if (mainContent) mainContent.style.display = 'none';
+        }
+    } else if (!authStatus.verified) {
+        // User logged in but email not verified
+        showVerificationPendingModal(authStatus.user.email);
+    } else {
+        // User authenticated and email verified - show content
+        document.body.style.display = 'block';
+        const modal = document.getElementById('authModal');
+        if (modal) modal.style.display = 'none';
+        const mainContent = document.querySelector('main') || document.querySelector('.container');
+        if (mainContent) mainContent.style.display = 'block';
+    }
+}
+
+/**
+ * Show modal for pending email verification
+ */
+function showVerificationPendingModal(email) {
+    const modal = document.getElementById('verificationModal');
+    if (!modal) {
+        // Create verification modal if it doesn't exist
+        const verificationHTML = `
+            <div id="verificationModal" style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+            ">
+                <div style="
+                    background: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    text-align: center;
+                    max-width: 500px;
+                    direction: rtl;
+                ">
+                    <h2 style="color: #0000FF; margin-bottom: 20px;">تحقق من بريدك الإلكتروني</h2>
+                    <p style="font-size: 18px; margin-bottom: 20px;">
+                        تم إرسال رابط التفعيل إلى: <strong>${email}</strong>
+                    </p>
+                    <p style="color: #666; margin-bottom: 30px;">
+                        يرجى التحقق من بريدك الإلكتروني والنقر على رابط التفعيل لتفعيل حسابك والوصول إلى المنصة.
+                    </p>
+                    <button onclick="location.reload();" style="
+                        background: #0000FF;
+                        color: white;
+                        border: none;
+                        padding: 12px 30px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 16px;
+                    ">تحديث الصفحة</button>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', verificationHTML);
+    } else {
+        modal.style.display = 'flex';
+    }
+    
+    // Hide main content
+    const mainContent = document.querySelector('main') || document.querySelector('.container');
+    if (mainContent) mainContent.style.display = 'none';
+}
 
 // ============================================
 // 1. USER AUTHENTICATION FUNCTIONS
@@ -25,10 +141,13 @@ const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
  */
 async function signUpUser(email, password, fullName) {
     try {
-        // Create user in Supabase Auth
+        // Create user in Supabase Auth with email confirmation required
         const { data: authData, error: authError } = await supabaseClient.auth.signUp({
             email: email,
             password: password,
+            options: {
+                emailRedirectTo: window.location.origin,
+            }
         });
 
         if (authError) {
@@ -51,12 +170,12 @@ async function signUpUser(email, password, fullName) {
 
         if (profileError) {
             console.error('Profile Error:', profileError.message);
-            return { success: false, message: 'Failed to create profile' };
+            return { success: false, message: 'فشل في إنشاء الملف الشخصي' };
         }
 
         return { 
             success: true, 
-            message: 'تم إنشاء الحساب بنجاح! يرجى التحقق من بريدك الإلكتروني.',
+            message: 'تم إنشاء الحساب بنجاح! يرجى التحقق من بريدك الإلكتروني لتفعيل الحساب.',
             user: authData.user
         };
     } catch (error) {
@@ -78,6 +197,15 @@ async function signInUser(email, password) {
         if (error) {
             console.error('Sign in error:', error.message);
             return { success: false, message: error.message };
+        }
+
+        // Check if email is verified
+        if (!data.user.email_confirmed_at) {
+            return { 
+                success: false, 
+                message: 'يرجى تفعيل حسابك عبر البريد الإلكتروني أولاً.',
+                user: data.user
+            };
         }
 
         return { 
@@ -203,14 +331,12 @@ async function getNewsletterSubscribers() {
  */
 async function sendNewsletterUpdate(subject, content, productName) {
     try {
-        // Get all active subscribers
         const subscribers = await getNewsletterSubscribers();
         
         if (!subscribers.success) {
             return { success: false, message: 'فشل في جلب المشتركين' };
         }
 
-        // Call edge function to send emails (you need to set this up in Supabase)
         const { data, error } = await supabaseClient.functions.invoke('send-newsletter', {
             body: {
                 subscribers: subscribers.data,
@@ -259,12 +385,12 @@ function showAuthModal(mode = 'login') {
         authTitle.textContent = 'إنشاء حساب جديد';
         authSubmitBtn.textContent = 'إنشاء الحساب';
         document.getElementById('fullNameField').style.display = 'block';
-        toggleAuthMode.innerHTML = 'هل لديك حساب بالفعل؟ <a href="#" onclick="showAuthModal(\'login\')">دخول</a>';
+        toggleAuthMode.innerHTML = 'هل لديك حساب بالفعل؟ <a href="#" onclick="showAuthModal(\'login\'); return false;">دخول</a>';
     } else {
         authTitle.textContent = 'تسجيل الدخول';
         authSubmitBtn.textContent = 'دخول';
         document.getElementById('fullNameField').style.display = 'none';
-        toggleAuthMode.innerHTML = 'ليس لديك حساب؟ <a href="#" onclick="showAuthModal(\'signup\')">إنشاء حساب</a>';
+        toggleAuthMode.innerHTML = 'ليس لديك حساب؟ <a href="#" onclick="showAuthModal(\'signup\'); return false;">إنشاء حساب</a>';
     }
 
     authForm.dataset.mode = mode;
@@ -310,8 +436,12 @@ async function handleAuthSubmit(event) {
 
     if (result.success) {
         alert(result.message);
-        closeAuthModal();
-        updateUIAfterAuth();
+        if (mode === 'signup') {
+            showVerificationPendingModal(email);
+        } else {
+            closeAuthModal();
+            enforceAuthGuard();
+        }
     } else {
         alert('خطأ: ' + result.message);
     }
@@ -348,9 +478,12 @@ async function updateUIAfterAuth() {
 // ============================================
 
 /**
- * Initialize auth system on page load
+ * Initialize auth system on page load with strict guard
  */
 document.addEventListener('DOMContentLoaded', async () => {
+    // ENFORCE AUTH GUARD - Block all access until authenticated
+    await enforceAuthGuard();
+    
     // Check if user is already logged in
     await updateUIAfterAuth();
 
@@ -377,9 +510,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Listen for auth state changes
-    supabaseClient.auth.onAuthStateChange((event, session) => {
+    supabaseClient.auth.onAuthStateChange(async (event, session) => {
         console.log('Auth state changed:', event);
-        updateUIAfterAuth();
+        await enforceAuthGuard();
+        await updateUIAfterAuth();
     });
 });
 
@@ -395,5 +529,7 @@ if (typeof module !== 'undefined' && module.exports) {
         sendNewsletterUpdate,
         showAuthModal,
         closeAuthModal,
+        checkAuthStatus,
+        enforceAuthGuard,
     };
 }
