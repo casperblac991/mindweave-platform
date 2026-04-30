@@ -1210,9 +1210,9 @@ let currentMode = 'generate';
 // ========== Load Products from JSON ==========
 async function loadProducts() {
   try {
-    const response = await fetch('products.json');
-    const data = await response.json();
+    const response = await fetch(\'content-data.json\');   const data = await response.json();
     products = data.products || [];
+    let blogPosts = data.blog || []; // Initialize blogPosts from content-data.json
     
     // تحديث الإحصائيات الحقيقية
     if (data.stats) {
@@ -1221,6 +1221,7 @@ async function loadProducts() {
     }
     
     renderProducts();
+    renderBlogPosts(); // Call new function to render blog posts
   } catch (error) {
     console.error('خطأ في تحميل المنتجات:', error);
     // عرض منتجات افتراضية في حالة الخطأ
@@ -1247,6 +1248,7 @@ function updateLanguage() {
   document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   
   renderProducts();
+    renderBlogPosts(); // Call new function to render blog posts
 }
 
 function changeLanguage(lang) {
@@ -1273,6 +1275,7 @@ function addToCart(id) {
     updateCartCount();
     showNotification('✅', currentLang === 'ar' ? 'تمت الإضافة للسلة!' : currentLang === 'en' ? 'Added to cart!' : currentLang === 'es' ? '¡Añadido al carrito!' : 'Ajouté au panier!');
     renderProducts();
+    renderBlogPosts(); // Call new function to render blog posts
   } else {
     showNotification('🛒', currentLang === 'ar' ? 'المنتج موجود بالفعل' : currentLang === 'en' ? 'Already in cart' : currentLang === 'es' ? 'Ya en el carrito' : 'Déjà dans le panier');
   }
@@ -1289,6 +1292,59 @@ function getCategoryLabel(category) {
 }
 
 function renderProducts() {
+  const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  
+  grid.innerHTML = filtered.slice(0, 8).map(p => `
+    <div class="product-card" onclick="window.location.href='${p.gumroad}'">
+      <div class="product-thumb">
+        <span>${p.emoji}</span>
+        <span class="product-badge">${p.badge[currentLang]}</span>
+      </div>
+      <div class="product-body">
+        <div class="product-category">${getCategoryLabel(p.category)}</div>
+        <div class="product-name">${p.name[currentLang]}</div>
+        <div class="product-desc">${p.desc[currentLang]}</div>
+        <div class="product-meta">
+          <div class="product-rating">★ ${p.rating}</div>
+          <div>${p.sales[currentLang]}</div>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-original">${p.original}</span>
+            <span class="price-current">${p.price}</span>
+          </div>
+          <button class="add-cart-btn ${cart.includes(p.id) ? 'added' : ''}" onclick="event.stopPropagation(); addToCart('${p.id}')">
+            ${cart.includes(p.id) ? (currentLang === 'ar' ? '✓ تمت الإضافة' : currentLang === 'en' ? '✓ Added' : currentLang === 'es' ? '✓ Añadido' : '✓ Ajouté') : (currentLang === 'ar' ? '+ أضف للسلة' : currentLang === 'en' ? '+ Add to Cart' : currentLang === 'es' ? '+ Añadir' : '+ Ajouter')}
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderBlogPosts() {
+  const blogGrid = document.getElementById('blogGrid');
+  if (!blogGrid) return;
+
+  blogGrid.innerHTML = blogPosts.slice(0, 3).map(post => `
+    <div class="blog-card">
+      <img src="${post.image}" alt="${post.title[currentLang]}" class="blog-thumb">
+      <div class="blog-body">
+        <div class="blog-category">${post.category[currentLang]}</div>
+        <h3 class="blog-title">${post.title[currentLang]}</h3>
+        <p class="blog-desc">${post.description[currentLang]}</p>
+        <a href="${post.link}" class="blog-link">${currentLang === 'ar' ? 'اقرأ المزيد →' : 'Read More →'}</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Add this to the DOMContentLoaded event listener
+// renderBlogPosts();
+
+function getCategoryLabel(category) {
   const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
@@ -1439,6 +1495,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active');
       currentFilter = btn.dataset.filter;
       renderProducts();
+    renderBlogPosts(); // Call new function to render blog posts
     });
   });
   
