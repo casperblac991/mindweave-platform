@@ -7,3 +7,7 @@ services:
     envVars:
       - key: GROQ_API_KEY
         sync: false
+      - key: SUPABASE_URL
+        value: https://mtirzcuntupkuavmjtcv.supabase.co
+      - key: SUPABASE_ANON_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aXJ6Y3VudHVwa3Vhdm1qdGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDEwNjEsImV4cCI6MjA5Mjc3NzA2MX0.npI70eZJU5PB-Si0cST_iYJnRF0omn8tBx1IeVU7wHU
