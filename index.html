@@ -11,6 +11,25 @@ gtag('config', 'G-DZ4WQDX31M');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Environment Variables Configuration -->
+<script>
+  window.ENV = {
+    SUPABASE_URL: "https://mtirzcuntupkuavmjtcv.supabase.co",
+    SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aXJ6Y3VudHVwa3Vhdm1qdGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDEwNjEsImV4cCI6MjA5Mjc3NzA2MX0.npI70eZJU5PB-Si0cST_iYJnRFzomn8tBx1IeVU7wHU"
+  };
+</script>
+<!-- MindWeave Auth Guard -->
+<script src="supabase-auth.js"></script>
+<script>
+  // Execute Auth Guard before page renders to prevent flicker
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof enforceAuthGuard === 'function') {
+      enforceAuthGuard();
+    }
+  });
+</script>
 <title>MindWeave | منصة الذكاء الاصطناعي العربية الأولى</title>
 <meta name="description" content="منصة عربية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، والكتب الإلكترونية - Prompt Lab مجاني لاختبار أوامرك">
 <meta name="keywords" content="ChatGPT عربي, أوامر AI, Midjourney بالعربية, Prompt Engineering, قوالب Notion, منتجات رقمية">
