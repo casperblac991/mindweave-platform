@@ -1157,6 +1157,29 @@ body[data-lang="en"] .notification {
 
 <div class="notification" id="notification"><span id="notifIcon">✅</span><span id="notifText"></span></div>
 
+<!-- Auth Modal -->
+<div id="authModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+  <div class="auth-card" style="background: var(--bg-card); border: 1px solid var(--border); padding: 40px; border-radius: 20px; width: 100%; max-width: 450px; position: relative;">
+    <h2 id="authTitle" style="text-align: center; margin-bottom: 30px; color: var(--primary);">تسجيل الدخول</h2>
+    <form id="authForm" data-mode="login">
+      <div id="fullNameField" style="display: none; margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 8px; color: var(--text-muted);">الاسم الكامل</label>
+        <input type="text" id="authFullName" style="width: 100%; padding: 12px; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px; color: white;">
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 8px; color: var(--text-muted);">البريد الإلكتروني</label>
+        <input type="email" id="authEmail" required style="width: 100%; padding: 12px; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px; color: white;">
+      </div>
+      <div style="margin-bottom: 30px;">
+        <label style="display: block; margin-bottom: 8px; color: var(--text-muted);">كلمة المرور</label>
+        <input type="password" id="authPassword" required style="width: 100%; padding: 12px; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px; color: white;">
+      </div>
+      <button type="submit" id="authSubmitBtn" class="btn-primary" style="width: 100%; padding: 14px; font-weight: bold;">دخول</button>
+    </form>
+    <p id="toggleAuthMode" style="text-align: center; margin-top: 20px; color: var(--text-muted);">ليس لديك حساب؟ <a href="#" onclick="showAuthModal('signup'); return false;" style="color: var(--primary); text-decoration: none;">إنشاء حساب</a></p>
+  </div>
+</div>
+
 <script>
 // ========== TRANSLATIONS (4 Languages) ==========
 const translations = {
@@ -1583,15 +1606,22 @@ async function loadDynamicContent() {
         // Update products grid
         const productsGrid = document.getElementById('productsGrid');
         if (productsGrid && data.products && data.products.length > 0) {
-            productsGrid.innerHTML = data.products.slice(0, 4).map(p => `
+            productsGrid.innerHTML = data.products.slice(0, 8).map(p => `
                 <div class="product-card">
-                    <div class="product-badge">New AI Content</div>
-                    <div class="product-emoji">${p.emoji || '✨'}</div>
-                    <h3>${p.name}</h3>
-                    <p>${p.description}</p>
-                    <div class="product-footer">
-                        <span class="product-price">${p.price}</span>
-                        <button class="btn-primary">شراء الآن</button>
+                    <div class="product-thumb">
+                        <span>${p.emoji || '✨'}</span>
+                        <span class="product-badge">${typeof p.badge === 'object' ? p.badge[currentLang] : 'New'}</span>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-category">${p.category || 'AI'}</div>
+                        <div class="product-name">${typeof p.name === 'object' ? p.name[currentLang] : p.name}</div>
+                        <div class="product-desc">${typeof p.desc === 'object' ? p.desc[currentLang] : (p.description || '')}</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-current">${p.price}</span>
+                            </div>
+                            <button class="add-cart-btn" onclick="window.location.href='store.html'">${currentLang === 'ar' ? 'شراء الآن' : 'Buy Now'}</button>
+                        </div>
                     </div>
                 </div>
             `).join('');
