@@ -45,22 +45,26 @@ async function checkAuthStatus() {
  */
 async function enforceAuthGuard() {
     const authStatus = await checkAuthStatus();
+    const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
     
     if (!authStatus.authenticated) {
-        // Hide main content
-        document.body.style.display = 'none';
-        
-        // Show auth modal
-        showAuthModal('signup');
-        
-        // Make modal visible
-        const modal = document.getElementById('authModal');
-        if (modal) {
-            modal.style.display = 'flex';
+        if (!isHomePage) {
+            // Protect internal pages: hide content and show login
+            document.body.style.display = 'none';
+            showAuthModal('login');
+            const modal = document.getElementById('authModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.display = 'block';
+                const mainContent = document.querySelector('main') || document.querySelector('.container');
+                if (mainContent) mainContent.style.display = 'none';
+            }
+        } else {
+            // On home page: show content but ensure login button is visible
             document.body.style.display = 'block';
-            // Hide everything except modal
             const mainContent = document.querySelector('main') || document.querySelector('.container');
-            if (mainContent) mainContent.style.display = 'none';
+            if (mainContent) mainContent.style.display = 'block';
+            console.log('Home page visible, user not authenticated');
         }
     } else if (!authStatus.verified) {
         // User logged in but email not verified

@@ -1021,12 +1021,48 @@ function updateCartCount() {
 
 function getPostIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
-  return parseInt(params.get('id'));
+  return params.get('id');
 }
 
-function renderArticle() {
+async function renderArticle() {
   const postId = getPostIdFromUrl();
-  const post = blogPosts.find(p => p.id === postId) || blogPosts[0];
+  let post;
+  
+  if (postId && postId.startsWith('ai-')) {
+    try {
+      const response = await fetch('./content-data.json');
+      if (response.ok) {
+        const data = await response.json();
+        const aiId = parseInt(postId.replace('ai-', ''));
+        const aiPost = data.blog.find(p => p.id === aiId);
+        if (aiPost) {
+          // Convert Markdown to HTML-like structure for display
+          const htmlContent = aiPost.content.split('\n').map(line => {
+            if (line.trim() === '') return '';
+            if (line.startsWith('###')) return `<h3>${line.replace('###', '').trim()}</h3>`;
+            if (line.startsWith('##')) return `<h2>${line.replace('##', '').trim()}</h2>`;
+            if (line.startsWith('#')) return `<h1>${line.replace('#', '').trim()}</h1>`;
+            return `<p>${line.trim()}</p>`;
+          }).join('');
+          
+          post = {
+            id: postId,
+            category: { ar: "أدوات", en: "Tools" },
+            icon: "🤖",
+            title: { ar: aiPost.title, en: aiPost.title },
+            date: { ar: aiPost.date, en: aiPost.date },
+            readTime: { ar: "5 دقائق", en: "5 min read" },
+            content: { ar: htmlContent, en: htmlContent }
+          };
+        }
+      }
+    } catch (e) { console.log('Error loading AI post', e); }
+  }
+  
+  if (!post) {
+    const numericId = parseInt(postId);
+    post = blogPosts.find(p => p.id === numericId) || blogPosts[0];
+  }
   
   if (!post) return;
   
@@ -1069,10 +1105,10 @@ function copyLink() {
   alert(msg);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   updateLanguage();
   updateCartCount();
-  renderArticle();
+  await renderArticle();
   
   document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
   document.querySelectorAll('.lang-option').forEach(opt => {

@@ -17,12 +17,15 @@ def extract_product_info(product_text):
     return name, description
 
 def extract_blog_info(blog_text):
-    """Extract blog title and excerpt from AI-generated text."""
+    """Extract blog title, excerpt and full content from AI-generated text."""
     lines = blog_text.strip().split('\n')
-    title = lines[0].replace('#', '').strip()[:80]
+    title = lines[0].replace('#', '').strip()[:100]
+    # Use first few lines for excerpt
     excerpt = ' '.join(lines[1:4]) if len(lines) > 1 else "مقالة جديدة"
-    excerpt = excerpt.replace('##', '').replace('####', '').strip()[:150]
-    return title, excerpt
+    excerpt = excerpt.replace('##', '').replace('####', '').strip()[:200]
+    # Keep the rest as full content, ensuring it's clean
+    full_content = blog_text.strip()
+    return title, excerpt, full_content
 
 def update_content_data(blog_file, product_file):
     """Update content-data.json with new AI-generated content."""
@@ -70,6 +73,7 @@ def update_content_data(blog_file, product_file):
             "id": len(data['blog']) + 1,
             "title": blog_title,
             "excerpt": blog_excerpt,
+            "content": blog_content, # Store full content
             "date": datetime.now().strftime("%Y-%m-%d"),
             "category": "AI News",
             "author": "MindWeave AI"

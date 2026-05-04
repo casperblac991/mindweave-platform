@@ -23,12 +23,24 @@ gtag('config', 'G-DZ4WQDX31M');
 <!-- MindWeave Auth Guard -->
 <script src="supabase-auth.js"></script>
 <script>
-  // Execute Auth Guard before page renders to prevent flicker
-  document.addEventListener('DOMContentLoaded', () => {
-    if (typeof enforceAuthGuard === 'function') {
-      enforceAuthGuard();
-    }
-  });
+    // Initialize Auth UI and handle navigation gating
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (typeof enforceAuthGuard === 'function') {
+        // Run auth check but don't hide body on home page
+        const authStatus = await checkAuthStatus();
+        await updateUIAfterAuth();
+        
+        // Gate internal links for unauthenticated users
+        document.querySelectorAll('a[href="store.html"], a[href="library.html"], a[href="creators.html"]').forEach(link => {
+          link.addEventListener('click', (e) => {
+            if (!authStatus.authenticated) {
+              e.preventDefault();
+              showAuthModal('login');
+            }
+          });
+        });
+      }
+    });
 </script>
 <title>MindWeave | منصة الذكاء الاصطناعي العربية الأولى</title>
 <meta name="description" content="منصة عربية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، والكتب الإلكترونية - Prompt Lab مجاني لاختبار أوامرك">
@@ -1124,7 +1136,10 @@ body[data-lang="en"] .notification {
         <div><div class="creator-stat-number">70%</div><div data-i18n="creator.stat1">عمولة المبدع</div></div>
         <div><div class="creator-stat-number">12+</div><div data-i18n="creator.stat2">مبدع نشط</div></div>
       </div>
-      <a href="signup.html" class="btn-primary" data-i18n="creator.cta">انضم كمبدع →</a>
+      <div id="authButtons" style="display: flex; gap: 10px; align-items: center;">
+          <button onclick="showAuthModal('login')" class="btn-outline" style="padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">🔐 دخول</button>
+          <button onclick="showAuthModal('signup')" class="btn-primary" style="padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">🚀 ابدأ مجاناً</button>
+        </div>>
     </div>
     <div class="creator-steps">
       <div class="creator-step"><div class="step-number">1</div><div><h4 data-i18n="creator.step1">سجّل حساب مجاناً</h4><p data-i18n="creator.step1Desc">أنشئ حساب مبدع في أقل من دقيقة</p></div></div>

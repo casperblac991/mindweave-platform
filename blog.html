@@ -743,6 +743,7 @@ const blogPosts = [
 let currentLang = localStorage.getItem('mw_lang') || 'ar';
 let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
 let currentFilter = 'all';
+let aiBlogPosts = [];
 
 // ========== UTILITY FUNCTIONS ==========
 function getCategoryName(category) {
@@ -816,7 +817,8 @@ function updateCartCount() {
 
 // ========== BLOG RENDERING ==========
 function renderBlog() {
-  const filtered = currentFilter === 'all' ? blogPosts : blogPosts.filter(p => p.category === currentFilter);
+  const allPosts = [...aiBlogPosts, ...blogPosts];
+  const filtered = currentFilter === 'all' ? allPosts : allPosts.filter(p => p.category === currentFilter);
   const grid = document.getElementById('blogGrid');
   if (!grid) return;
   
@@ -838,10 +840,31 @@ function renderBlog() {
 }
 
 // ========== EVENT LISTENERS ==========
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   // Initialize
   updateLanguage();
   updateCartCount();
+  
+  // Load AI content
+  try {
+    const response = await fetch('./content-data.json');
+    if (response.ok) {
+      const data = await response.json();
+      if (data.blog && data.blog.length > 0) {
+        aiBlogPosts = data.blog.map(post => ({
+          id: 'ai-' + post.id,
+          file: `article.html?id=ai-${post.id}`,
+          category: 'tools',
+          icon: '🤖',
+          title: { ar: post.title, en: post.title },
+          excerpt: { ar: post.excerpt, en: post.excerpt },
+          date: post.date,
+          readTime: '5 دقائق'
+        }));
+      }
+    }
+  } catch (e) { console.log('AI blog posts not found'); }
+  
   renderBlog();
   
   // Language selector
