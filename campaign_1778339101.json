@@ -1,0 +1,15 @@
+{
+  "product_name": "MindWeave AI",
+  "benefit": "أداة ذكاء اصطناعي مجانية",
+  "platforms": [
+    "X",
+    "Instagram",
+    "LinkedIn"
+  ],
+  "generated_at": "2026-05-09T15:05:01.212599",
+  "files": {
+    "X": "Error generating content: 'dict' object has no attribute 'chat'",
+    "Instagram": "Error generating content: 'dict' object has no attribute 'chat'",
+    "LinkedIn": "Error generating content: 'dict' object has no attribute 'chat'"
+  }
+}

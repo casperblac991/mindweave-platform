@@ -58,6 +58,7 @@ def generate_ai_content(prompt_type, topic):
             return response.choices[0].message.content
         
         elif client_type == "ollama":
+            import json
             resp = requests.post(
                 f"{os.getenv('OLLAMA_BASE_URL')}/api/chat",
                 json={
@@ -65,11 +66,14 @@ def generate_ai_content(prompt_type, topic):
                     "messages": [
                         {"role": "system", "content": system_prompts.get(prompt_type, "أنت مساعد ذكي.")},
                         {"role": "user", "content": user_prompts.get(prompt_type, topic)}
-                    ]
+                    ],
+                    "stream": False
                 },
-                timeout=60
+                timeout=300
             )
-            return resp.json().get("message", {}).get("content", "")
+            first_line = resp.text.split('\n')[0]
+            data = json.loads(first_line)
+            return data.get("message", {}).get("content", "")
         
         else:
             from openai import OpenAI

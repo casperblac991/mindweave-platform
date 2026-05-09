@@ -56,7 +56,7 @@ def generate_viral_social_content(platform, product_name, benefit):
             resp = requests.post(
                 f"{os.getenv('OLLAMA_BASE_URL')}/api/chat",
                 json={
-                    "model": "llama3",
+                    "model": "llama3", "stream": False,
                     "messages": [
                         {"role": "system", "content": system_prompts.get(platform, "أنت مساعد تسويق ذكي.")},
                         {"role": "user", "content": user_prompts.get(platform)}
@@ -64,7 +64,10 @@ def generate_viral_social_content(platform, product_name, benefit):
                 },
                 timeout=60
             )
-            return resp.json().get("message", {}).get("content", "")
+            import json
+            first_line = resp.text.split(chr(10))[0]
+            data = json.loads(first_line)
+            return data.get("message", {}).get("content", "")
         
         else:
             from openai import OpenAI

@@ -46,15 +46,18 @@ def generate_lead_magnet(topic):
             resp = requests.post(
                 f"{os.getenv('OLLAMA_BASE_URL')}/api/chat",
                 json={
-                    "model": "llama3",
+                    "model": "llama3", "stream": False,
                     "messages": [
                         {"role": "system", "content": "أنت خبير في بناء القوائم البريدية وتحويل الزوار إلى عملاء محتملين."},
                         {"role": "user", "content": prompt}
                     ]
                 },
-                timeout=60
+                timeout=300
             )
-            return resp.json().get("message", {}).get("content", "")
+            import json
+            first_line = resp.text.split(chr(10))[0]
+            data = json.loads(first_line)
+            return data.get("message", {}).get("content", "")
         
         else:
             from openai import OpenAI
