@@ -1,0 +1,110 @@
+# MindWeave Daily AI Automation Workflow
+name: Daily AI Automation
+
+on:
+  # Run daily at 8 AM UTC (10 AM Mecca time)
+  schedule:
+    - cron: '0 8 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Topic for automation'
+        required: true
+        default: 'الذكاء الاصطناعي والتسويق'
+      mode:
+        description: 'Automation mode'
+        required: true
+        default: 'daily-automation'
+        type: choice
+        options:
+          - daily-automation
+          - social-campaign
+          - customer-service
+
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+
+jobs:
+  daily-automation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          
+      - name: Run Daily AI Automation
+        run: |
+          python3 mindweave_ai_agent.py --mode daily-automation "${{ github.event.inputs.topic || 'الذكاء الاصطناعي' }}"
+          
+      - name: Commit generated content
+        run: |
+          git config --local user.email "openhands@all-hands.dev"
+          git config --local user.name "openhands"
+          git add -A
+          git diff --staged --quiet || git commit -m "🤖 AI Automation: Generated new content"
+          git push
+        continue-on-error: true
+
+  social-campaign:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          
+      - name: Run Social Campaign
+        run: |
+          python3 mindweave_ai_agent.py --mode social-campaign "${{ github.event.inputs.topic || 'منتج جديد' }}" "تعلم أسرع واستثمر وقتك"
+          
+      - name: Commit generated content
+        run: |
+          git config --local user.email "openhands@all-hands.dev"
+          git config --local user.name "openhands"
+          git add -A
+          git diff --staged --quiet || git commit -m "📱 AI Social Campaign"
+          git push
+        continue-on-error: true
+
+  customer-service:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          
+      - name: Generate Signup Content
+        run: |
+          python3 mindweave_ai_agent.py --mode generate-signup
