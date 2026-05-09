@@ -1,5 +1,6 @@
 import express from 'express';
 import groqHandler from './api/groq.js';
+import aiService from './api/ai-customer-service.js';
 
 const app = express();
 app.use(express.json());
@@ -9,6 +10,7 @@ app.use(express.static('.'));
 
 // API route
 app.post('/api/groq', groqHandler);
+app.use('/api/ai', aiService);
 
 // أي رابط غير موجود يعود إلى الصفحة الرئيسية
 app.get('*', (req, res) => {

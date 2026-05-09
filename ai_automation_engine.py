@@ -56,11 +56,14 @@ def send_newsletter_notification(topic, product_name):
     }
     
     try:
-        # Note: This requires the Supabase Edge Function to be deployed
-        # response = requests.post(function_url, json=payload, headers=headers)
-        # return response.json()
-        print(f"✅ Newsletter payload prepared for {product_name}")
-        return {"success": True}
+        # Send newsletter notification to subscribers
+        # Note: Requires Supabase Edge Function to be deployed and configured
+        if SUPABASE_URL and SUPABASE_ANON_KEY:
+            response = requests.post(function_url, json=payload, headers=headers, timeout=10)
+            return response.json()
+        else:
+            print(f"✅ Newsletter payload prepared for {product_name} (Supabase not configured)")
+            return {"success": True, "pending": True}
     except Exception as e:
         print(f"❌ Failed to send newsletter: {str(e)}")
         return {"success": False, "error": str(e)}
