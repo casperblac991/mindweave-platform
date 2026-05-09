@@ -1,9 +1,12 @@
 import express from 'express';
 import groqHandler from './api/groq.js';
-import aiService from './api/ai-customer-service.js';
+import aiCustomerService from './api/ai-customer-service.js';
 
 const app = express();
 app.use(express.json());
+
+// AI routes
+app.use('/api/ai', aiCustomerService);
 
 // يخدم جميع ملفات HTML و CSS و JS من المجلد الحالي
 app.use(express.static('.'));

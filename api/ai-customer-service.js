@@ -167,4 +167,5 @@ app.listen(PORT, () => {
   console.log(`🤖 MindWeave API running on port ${PORT}`);
 });
 
-module.exports = app;
+// Export for ESM
+export default app;
