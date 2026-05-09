@@ -5,15 +5,12 @@ import aiCustomerService from './api/ai-customer-service.js';
 const app = express();
 app.use(express.json());
 
-// AI routes
-app.use('/api/ai', aiCustomerService);
-
 // يخدم جميع ملفات HTML و CSS و JS من المجلد الحالي
 app.use(express.static('.'));
 
 // API route
 app.post('/api/groq', groqHandler);
-app.use('/api/ai', aiService);
+app.use('/api/ai', aiCustomerService);
 
 // أي رابط غير موجود يعود إلى الصفحة الرئيسية
 app.get('*', (req, res) => {
