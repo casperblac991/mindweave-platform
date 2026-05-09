@@ -4,7 +4,9 @@
  * Handles customer inquiries with AI
  */
 
-const express = require('express');
+import express from 'express';
+import { v4 as uuidv4 } from 'uuid';
+
 const app = express();
 app.use(express.json());
 
@@ -85,7 +87,7 @@ app.post('/api/customer-service', async (req, res) => {
   
   // Save conversation
   const conversation = {
-    id: Date.now(),
+    id: uuidv4(),
     email,
     message,
     response: result.response,
@@ -146,7 +148,7 @@ app.post('/api/send-newsletter', async (req, res) => {
   res.json({
     success: true,
     message: 'Newsletter queued for sending',
-    campaign_id: Date.now()
+    campaign_id: uuidv4()
   });
 });
 
