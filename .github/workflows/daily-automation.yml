@@ -1,11 +1,8 @@
-# MindWeave Daily AI Automation Workflow
 name: Daily AI Automation
 
 on:
-  # Run daily at 8 AM UTC (10 AM Mecca time)
   schedule:
     - cron: '0 8 * * *'
-  # Allow manual trigger
   workflow_dispatch:
     inputs:
       topic:
@@ -48,7 +45,7 @@ jobs:
       - name: Run Daily AI Automation
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
-            echo "⚠️ Skipping - OPENAI_API_KEY not configured"
+            echo "Skipping - OPENAI_API_KEY not configured"
             exit 0
           fi
           python3 mindweave_ai_agent.py --mode daily-automation "${{ github.event.inputs.topic || 'الذكاء الاصطناعي' }}"
@@ -58,7 +55,7 @@ jobs:
           git config --local user.email "openhands@all-hands.dev"
           git config --local user.name "openhands"
           git add -A
-          git diff --staged --quiet || git commit -m "🤖 AI Automation: Generated new content"
+          git diff --staged --quiet || git commit -m "AI Automation: Generated new content"
           git push
         continue-on-error: true
 
@@ -82,17 +79,17 @@ jobs:
       - name: Run Social Campaign
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
-            echo "⚠️ Skipping - OPENAI_API_KEY not configured"
+            echo "Skipping - OPENAI_API_KEY not configured"
             exit 0
           fi
-          python3 mindweave_ai_agent.py --mode social-campaign "${{ github.event.inputs.topic || 'منتج جديد' }}" "تعلم أسرع واستثمر وقتك"
+          python3 mindweave_ai_agent.py --mode social-campaign "${{ github.event.inputs.topic || 'منتج جديد' }}" "تعلم أسرع"
           
       - name: Commit generated content
         run: |
           git config --local user.email "openhands@all-hands.dev"
           git config --local user.name "openhands"
           git add -A
-          git diff --staged --quiet || git commit -m "📱 AI Social Campaign"
+          git diff --staged --quiet || git commit -m "AI Social Campaign"
           git push
         continue-on-error: true
 
@@ -115,21 +112,14 @@ jobs:
           
       - name: Generate Signup Content
         run: |
-          # Skip if no API key - just generate template
           if [ -z "$OPENAI_API_KEY" ]; then
-            echo "⚠️ OPENAI_API_KEY not set - generating template content"
+            echo "OPENAI_API_KEY not set - generating template"
             mkdir -p output
-            cat > output/signup_template.md << 'EOF'
+            cat > output/signup.md << 'EOF'
 # Newsletter Signup
-            
-##join our community to get:
-- Latest AI tools and prompts
-- Exclusive tutorials
-- Special offers
-
-[Register to get started]
+Join for latest AI tools and prompts!
 EOF
-            echo "✅ Template generated"
+            echo "Done"
           else
             python3 mindweave_ai_agent.py --mode generate-signup
           fi
