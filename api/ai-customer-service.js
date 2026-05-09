@@ -164,10 +164,5 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🤖 MindWeave API running on port ${PORT}`);
-});
-
-// Export for ESM
-export default app;
+// Export for server.js - don't start server here
+export { app };
