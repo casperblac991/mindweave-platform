@@ -23,9 +23,9 @@ on:
           - customer-service
 
 env:
-  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-  SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || '' }}
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL || '' }}
+  SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY || '' }}
 
 jobs:
   daily-automation:
@@ -47,6 +47,10 @@ jobs:
           
       - name: Run Daily AI Automation
         run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "⚠️ Skipping - OPENAI_API_KEY not configured"
+            exit 0
+          fi
           python3 mindweave_ai_agent.py --mode daily-automation "${{ github.event.inputs.topic || 'الذكاء الاصطناعي' }}"
           
       - name: Commit generated content
@@ -77,6 +81,10 @@ jobs:
           
       - name: Run Social Campaign
         run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "⚠️ Skipping - OPENAI_API_KEY not configured"
+            exit 0
+          fi
           python3 mindweave_ai_agent.py --mode social-campaign "${{ github.event.inputs.topic || 'منتج جديد' }}" "تعلم أسرع واستثمر وقتك"
           
       - name: Commit generated content
@@ -107,4 +115,21 @@ jobs:
           
       - name: Generate Signup Content
         run: |
-          python3 mindweave_ai_agent.py --mode generate-signup
+          # Skip if no API key - just generate template
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "⚠️ OPENAI_API_KEY not set - generating template content"
+            mkdir -p output
+            cat > output/signup_template.md << 'EOF'
+# Newsletter Signup
+            
+##join our community to get:
+- Latest AI tools and prompts
+- Exclusive tutorials
+- Special offers
+
+[Register to get started]
+EOF
+            echo "✅ Template generated"
+          else
+            python3 mindweave_ai_agent.py --mode generate-signup
+          fi
