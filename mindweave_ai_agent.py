@@ -18,13 +18,60 @@ import os
 import sys
 import json
 import time
-import smtplib
+import requests
 from email.mime.text import MIMEText
 from datetime import datetime
-from openai import OpenAI
 
-# Initialize OpenAI Client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+# ============ AI CLIENT WITH FALLBACK SUPPORT ============
+
+def get_ai_client():
+    """Initialize AI client with fallback options"""
+    # Option 1: Ollama (local - fastest & free!)
+    if os.getenv("OLLAMA_BASE_URL"):
+        return {"type": "ollama"}, "ollama"
+    
+    # Option 2: NVIDIA
+    if os.getenv("NVIDIA_API_KEY"):
+        return {"type": "nvidia"}, "nvidia"
+    
+    # Option 3: Groq (free tier)
+    if os.getenv("GROQ_API_KEY"):
+        try:
+            from groq import Groq
+            return Groq(api_key=os.getenv("GROQ_API_KEY")), "groq"
+        except ImportError:
+            pass
+    
+    # Option 4: OpenAI (paid fallback)
+    try:
+        from openai import OpenAI
+        return OpenAI(api_key=os.getenv("OPENAI_API_KEY")), "openai"
+    except:
+        return None, None
+
+
+def call_ollama(prompt: str, user_message: str, model: str = "llama3") -> str:
+    """Call Ollama API and handle streaming response"""
+    resp = requests.post(
+        f"{os.getenv('OLLAMA_BASE_URL')}/api/chat",
+        json={
+            "model": model,
+            "messages": [
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": user_message}
+            ],
+            "stream": False
+        },
+        timeout=300
+    )
+    first_line = resp.text.split('\n')[0]
+    data = json.loads(first_line)
+    return data.get("message", {}).get("content", "")
+
+
+# Initialize client
+client, client_type = get_ai_client()
 
 # Configuration
 SUPABASE_URL = os.getenv("SUPABASE_URL", "")
@@ -64,16 +111,30 @@ def handle_customer_message(user_message: str, customer_email: str = "") -> str:
     Handles customer inquiry with AI
     """
     try:
-        response = client.chat.completions.create(
-            model="gpt-4.1-mini",
-            messages=[
-                {"role": "system", "content": CUSTOMER_SERVICE_PROMPT},
-                {"role": "user", "content": f"رسالة العميل: {user_message}\nبريد العميل: {customer_email}"}
-            ],
-            max_tokens=500,
-            temperature=0.7
-        )
-        return response.choices[0].message.content
+        if client_type == "ollama":
+            return call_ollama(CUSTOMER_SERVICE_PROMPT, f"رسالة العميل: {user_message}\nبريد العميل: {customer_email}")
+        elif client_type == "groq":
+            response = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": CUSTOMER_SERVICE_PROMPT},
+                    {"role": "user", "content": f"رسالة العميل: {user_message}\nبريد العميل: {customer_email}"}
+                ],
+                max_tokens=500,
+                temperature=0.7
+            )
+            return response.choices[0].message.content
+        else:
+            response = client.chat.completions.create(
+                model="gpt-4.1-mini",
+                messages=[
+                    {"role": "system", "content": CUSTOMER_SERVICE_PROMPT},
+                    {"role": "user", "content": f"رسالة العميل: {user_message}\nبريد العميل: {customer_email}"}
+                ],
+                max_tokens=500,
+                temperature=0.7
+            )
+            return response.choices[0].message.content
     except Exception as e:
         return f"عذراً، حدث خطأ تقني. يرجى المحاولة لاحقاً. الخطأ: {str(e)}"
 
@@ -105,18 +166,32 @@ def generate_signup_email_content() -> str:
     Generates AI-powered email content for newsletter signup
     """
     try:
-        response = client.chat.completions.create(
-            model="gpt-4.1-mini",
-            messages=[
-                {"role": "system", "content": EMAIL_COLLECTION_PROMPT},
-                {"role": "user", "content": "اكتب رسالة تسجيل قصيرة للنشرة البريدية"}
-            ],
-            max_tokens=300,
-            temperature=0.8
-        )
-        return response.choices[0].message.content
+        if client_type == "ollama":
+            return call_ollama(EMAIL_COLLECTION_PROMPT, "اكتب رسالة تسجيل قصيرة للنشرة البريدية")
+        elif client_type == "groq":
+            response = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": EMAIL_COLLECTION_PROMPT},
+                    {"role": "user", "content": "اكتب رسالة تسجيل قصيرة للنشرة البريدية"}
+                ],
+                max_tokens=300,
+                temperature=0.8
+            )
+            return response.choices[0].message.content
+        else:
+            response = client.chat.completions.create(
+                model="gpt-4.1-mini",
+                messages=[
+                    {"role": "system", "content": EMAIL_COLLECTION_PROMPT},
+                    {"role": "user", "content": "اكتب رسالة تسجيل قصيرة للنشرة البريدية"}
+                ],
+                max_tokens=300,
+                temperature=0.8
+            )
+            return response.choices[0].message.content
     except Exception as e:
-        return "اشترك في نشرتنا للحصول على أحدث أدوات الذكاء الاصطناعي!"
+        return f"Error: {str(e)}"
 
 
 def collect_email(email: str, name: str = "", source: str = "website") -> dict:

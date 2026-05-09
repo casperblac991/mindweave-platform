@@ -1,7 +1,29 @@
 import os
-from openai import OpenAI
+import requests
 
-client = OpenAI()
+# Try Groq first, then Ollama, then OpenAI as fallback
+def get_ai_client():
+    """Initialize AI client with fallback options"""
+    # Try Groq first (free & fast)
+    if os.getenv("GROQ_API_KEY"):
+        try:
+            from groq import Groq
+            return Groq(api_key=os.getenv("GROQ_API_KEY")), "groq"
+        except ImportError:
+            pass
+    
+    # Try Ollama (local/free)
+    if os.getenv("OLLAMA_BASE_URL"):
+        return {"type": "ollama"}, "ollama"
+    
+    # Fallback to OpenAI
+    try:
+        from openai import OpenAI
+        return OpenAI(api_key=os.getenv("OPENAI_API_KEY")), "openai"
+    except:
+        return None, None
+
+client, client_type = get_ai_client()
 
 def generate_lead_magnet(topic):
     """
@@ -10,14 +32,42 @@ def generate_lead_magnet(topic):
     prompt = f"صمم 'مغناطيس عملاء' (Lead Magnet) مجاني وعالي القيمة حول موضوع: {topic}. يجب أن يكون شيئاً صغيراً ومفيداً جداً يدفع العميل لإعطاء بريده الإلكتروني للحصول عليه (مثل: قائمة مراجعة، دليل من صفحة واحدة، أو 10 أوامر AI سرية)."
     
     try:
-        response = client.chat.completions.create(
-            model="gpt-4.1-mini",
-            messages=[
-                {"role": "system", "content": "أنت خبير في بناء القوائم البريدية وتحويل الزوار إلى عملاء محتملين."},
-                {"role": "user", "content": prompt}
-            ]
-        )
-        return response.choices[0].message.content
+        if client_type == "groq":
+            response = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": "أنت خبير في بناء القوائم البريدية وتحويل الزوار إلى عملاء محتملين."},
+                    {"role": "user", "content": prompt}
+                ]
+            )
+            return response.choices[0].message.content
+        
+        elif client_type == "ollama":
+            resp = requests.post(
+                f"{os.getenv('OLLAMA_BASE_URL')}/api/chat",
+                json={
+                    "model": "llama3",
+                    "messages": [
+                        {"role": "system", "content": "أنت خبير في بناء القوائم البريدية وتحويل الزوار إلى عملاء محتملين."},
+                        {"role": "user", "content": prompt}
+                    ]
+                },
+                timeout=60
+            )
+            return resp.json().get("message", {}).get("content", "")
+        
+        else:
+            from openai import OpenAI
+            fallback_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+            response = fallback_client.chat.completions.create(
+                model="gpt-4.1-mini",
+                messages=[
+                    {"role": "system", "content": "أنت خبير في بناء القوائم البريدية وتحويل الزوار إلى عملاء محتملين."},
+                    {"role": "user", "content": prompt}
+                ]
+            )
+            return response.choices[0].message.content
+            
     except Exception as e:
         return f"Error: {str(e)}"
 

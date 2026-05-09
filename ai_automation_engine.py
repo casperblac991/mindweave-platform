@@ -1,10 +1,30 @@
 import os
 import time
-from openai import OpenAI
 import requests
 
-# The OpenAI client is pre-configured with the API key and base URL
-client = OpenAI()
+# Try Groq first, then Ollama, then OpenAI as fallback
+def get_ai_client():
+    """Initialize AI client with fallback options"""
+    # Try Groq first (free & fast)
+    if os.getenv("GROQ_API_KEY"):
+        try:
+            from groq import Groq
+            return Groq(api_key=os.getenv("GROQ_API_KEY")), "groq"
+        except ImportError:
+            pass
+    
+    # Try Ollama (local/free)
+    if os.getenv("OLLAMA_BASE_URL"):
+        return {"type": "ollama"}, "ollama"
+    
+    # Fallback to OpenAI
+    try:
+        from openai import OpenAI
+        return OpenAI(api_key=os.getenv("OPENAI_API_KEY")), "openai"
+    except:
+        return None, None
+
+client, client_type = get_ai_client()
 
 # Supabase Configuration - Reading from Render Environment Variables
 SUPABASE_URL = os.getenv("SUPABASE_URL", "https://mtirzcuntupkuavmjtcv.supabase.co")
@@ -25,15 +45,44 @@ def generate_ai_content(prompt_type, topic):
         "product": f"صمم حزمة أوامر AI متخصصة في: {topic}. اذكر الفوائد وكيفية الاستخدام.",
         "social": f"اكتب منشورات ترويجية لـ: {topic}. استخدم الهاشتاغات المناسبة."
     }
+    
     try:
-        response = client.chat.completions.create(
-            model="gpt-4.1-mini",
-            messages=[
-                {"role": "system", "content": system_prompts.get(prompt_type, "أنت مساعد ذكي.")},
-                {"role": "user", "content": user_prompts.get(prompt_type, topic)}
-            ]
-        )
-        return response.choices[0].message.content
+        if client_type == "groq":
+            response = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": system_prompts.get(prompt_type, "أنت مساعد ذكي.")},
+                    {"role": "user", "content": user_prompts.get(prompt_type, topic)}
+                ]
+            )
+            return response.choices[0].message.content
+        
+        elif client_type == "ollama":
+            resp = requests.post(
+                f"{os.getenv('OLLAMA_BASE_URL')}/api/chat",
+                json={
+                    "model": "llama3",
+                    "messages": [
+                        {"role": "system", "content": system_prompts.get(prompt_type, "أنت مساعد ذكي.")},
+                        {"role": "user", "content": user_prompts.get(prompt_type, topic)}
+                    ]
+                },
+                timeout=60
+            )
+            return resp.json().get("message", {}).get("content", "")
+        
+        else:
+            from openai import OpenAI
+            fallback_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+            response = fallback_client.chat.completions.create(
+                model="gpt-4.1-mini",
+                messages=[
+                    {"role": "system", "content": system_prompts.get(prompt_type, "أنت مساعد ذكي.")},
+                    {"role": "user", "content": user_prompts.get(prompt_type, topic)}
+                ]
+            )
+            return response.choices[0].message.content
+            
     except Exception as e:
         return f"Error generating content: {str(e)}"
 
