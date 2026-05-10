@@ -21,7 +21,7 @@ on:
 
 env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || '' }}
-  OLLAMA_BASE_URL: ${{ secrets.OLLAMA_BASE_URL || '' }}
+  OLLAMA_BASE_URL: http://localhost:11434
   GROQ_API_KEY: ${{ secrets.GROQ_API_KEY || '' }}
   NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY || '' }}
   SUPABASE_URL: ${{ secrets.SUPABASE_URL || '' }}
@@ -41,33 +41,74 @@ jobs:
         with:
           python-version: '3.11'
       
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v3
-      
-      - name: Start Ollama
-        run: |
-          docker run -d --name ollama -p 11434:11434 ollama/ollama:latest
-          sleep 30
-          docker exec ollama ollama pull llama3 || true
+      - name: Cache Python dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
       
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install groq
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo "Warning: requirements.txt not found"
+            pip install groq
+          fi
+      
+      - name: Start Ollama service
+        run: |
+          docker run -d \
+            --name ollama-daily-${{ github.run_id }} \
+            -p 11434:11434 \
+            ollama/ollama:latest
+          
+          # انتظر بدء الخدمة
+          sleep 10
+          
+          # تحقق من أن الخدمة تعمل
+          for i in {1..30}; do
+            if curl -s http://localhost:11434/api/tags > /dev/null 2>&1; then
+              echo "✓ Ollama is ready"
+              break
+            fi
+            echo "Waiting for Ollama... ($i/30)"
+            sleep 2
+          done
+          
+          # اسحب نموذج llama3
+          docker exec ollama-daily-${{ github.run_id }} ollama pull llama3 || echo "Could not pull llama3"
       
       - name: Run Daily AI Automation
         run: |
-          export OLLAMA_BASE_URL=http://localhost:11434
-          python3 mindweave_ai_agent.py --mode daily-automation "${{ github.event.inputs.topic || 'الذكاء الاصطناعي' }}"
-          
-      - name: Commit generated content
+          python3 mindweave_ai_agent.py \
+            --mode daily-automation \
+            --topic "${{ github.event.inputs.topic || 'الذكاء الاصطناعي' }}"
+        env:
+          OLLAMA_BASE_URL: http://localhost:11434
+      
+      - name: Commit and push generated content
+        if: success()
         run: |
-          git config --local user.email "openhands@all-hands.dev"
-          git config --local user.name "openhands"
-          git add -A
-          git diff --staged --quiet || git commit -m "AI Automation: Generated new content"
-          git push
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          if git diff --quiet; then
+            echo "No changes to commit"
+          else
+            git add -A
+            git commit -m "AI Automation: Generated daily content - $(date +'%Y-%m-%d')"
+            git push
+          fi
         continue-on-error: true
+      
+      - name: Clean up Docker
+        if: always()
+        run: |
+          docker rm -f ollama-daily-${{ github.run_id }} || true
 
   social-campaign:
     runs-on: ubuntu-latest
@@ -82,33 +123,71 @@ jobs:
         with:
           python-version: '3.11'
       
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v3
-      
-      - name: Start Ollama
-        run: |
-          docker run -d --name ollama -p 11434:11434 ollama/ollama:latest
-          sleep 30
-          docker exec ollama ollama pull llama3 || true
+      - name: Cache Python dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
       
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install groq
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install groq
+          fi
+      
+      - name: Start Ollama service
+        run: |
+          docker run -d \
+            --name ollama-social-${{ github.run_id }} \
+            -p 11434:11434 \
+            ollama/ollama:latest
+          
+          sleep 10
+          
+          for i in {1..30}; do
+            if curl -s http://localhost:11434/api/tags > /dev/null 2>&1; then
+              echo "✓ Ollama is ready"
+              break
+            fi
+            echo "Waiting for Ollama... ($i/30)"
+            sleep 2
+          done
+          
+          docker exec ollama-social-${{ github.run_id }} ollama pull llama3 || echo "Could not pull llama3"
       
       - name: Run Social Campaign
         run: |
-          export OLLAMA_BASE_URL=http://localhost:11434
-          python3 mindweave_ai_agent.py --mode social-campaign "${{ github.event.inputs.topic || 'منتج جديد' }}" "تعلم أسرع"
-          
-      - name: Commit generated content
+          python3 mindweave_ai_agent.py \
+            --mode social-campaign \
+            --topic "${{ github.event.inputs.topic || 'منتج جديد' }}" \
+            --hashtag "تعلم أسرع"
+        env:
+          OLLAMA_BASE_URL: http://localhost:11434
+      
+      - name: Commit and push campaign content
+        if: success()
         run: |
-          git config --local user.email "openhands@all-hands.dev"
-          git config --local user.name "openhands"
-          git add -A
-          git diff --staged --quiet || git commit -m "AI Social Campaign"
-          git push
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          if git diff --quiet; then
+            echo "No changes to commit"
+          else
+            git add -A
+            git commit -m "Social Campaign: New content generated"
+            git push
+          fi
         continue-on-error: true
+      
+      - name: Clean up Docker
+        if: always()
+        run: |
+          docker rm -f ollama-social-${{ github.run_id }} || true
 
   customer-service:
     runs-on: ubuntu-latest
@@ -123,21 +202,65 @@ jobs:
         with:
           python-version: '3.11'
       
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v3
-      
-      - name: Start Ollama
-        run: |
-          docker run -d --name ollama -p 11434:11434 ollama/ollama:latest
-          sleep 30
-          docker exec ollama ollama pull llama3 || true
+      - name: Cache Python dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
       
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install groq
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            pip install groq
+          fi
+      
+      - name: Start Ollama service
+        run: |
+          docker run -d \
+            --name ollama-customer-${{ github.run_id }} \
+            -p 11434:11434 \
+            ollama/ollama:latest
+          
+          sleep 10
+          
+          for i in {1..30}; do
+            if curl -s http://localhost:11434/api/tags > /dev/null 2>&1; then
+              echo "✓ Ollama is ready"
+              break
+            fi
+            echo "Waiting for Ollama... ($i/30)"
+            sleep 2
+          done
+          
+          docker exec ollama-customer-${{ github.run_id }} ollama pull llama3 || echo "Could not pull llama3"
       
       - name: Generate Signup Content
         run: |
-          export OLLAMA_BASE_URL=http://localhost:11434
           python3 mindweave_ai_agent.py --mode generate-signup
+        env:
+          OLLAMA_BASE_URL: http://localhost:11434
+      
+      - name: Commit and push signup content
+        if: success()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          if git diff --quiet; then
+            echo "No changes to commit"
+          else
+            git add -A
+            git commit -m "Customer Service: Generated signup content"
+            git push
+          fi
+        continue-on-error: true
+      
+      - name: Clean up Docker
+        if: always()
+        run: |
+          docker rm -f ollama-customer-${{ github.run_id }} || true
