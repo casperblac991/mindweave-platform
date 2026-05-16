@@ -1,0 +1,28 @@
+{
+  "selectors": {
+    "admin": {
+      "productsMenu": "[data-testid=\"products-menu\"]",
+      "newProductBtn": "[data-testid=\"new-product-btn\"]"
+    },
+    "products": {
+      "productNameInput": "[data-testid=\"product-name-input\"]",
+      "productPriceInput": "[data-testid=\"product-price-input\"]",
+      "productDescInput": "[data-testid=\"product-desc-input\"]",
+      "saveProductBtn": "[data-testid=\"save-product-btn\"]",
+      "deleteProductBtn": "[data-testid=\"delete-product-btn\"]",
+      "confirmDeleteBtn": "[data-testid=\"confirm-delete-btn\"]"
+    },
+    "content": {
+      "titleInput": "[data-testid=\"title-input\"]",
+      "contentEditor": "[data-testid=\"content-editor\"]",
+      "keywordsInput": "[data-testid=\"keywords-input\"]",
+      "publishBtn": "[data-testid=\"publish-btn\"]"
+    },
+    "customerService": {
+      "searchInput": "[data-testid=\"search-input\"]",
+      "customerResult": "[data-testid=\"customer-result\"]",
+      "replyInput": "[data-testid=\"reply-input\"]",
+      "sendReplyBtn": "[data-testid=\"send-reply-btn\"]"
+    }
+  }
+}

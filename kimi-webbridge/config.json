@@ -1,0 +1,11 @@
+{
+  "platformUrl": "https://mindweave-platform.com",
+  "adminUrl": "https://mindweave-platform.com/admin",
+  "defaultDelay": 1000,
+  "screenshotOnStep": true,
+  "screenshotDir": "./screenshots",
+  "outputDir": "./outputs",
+  "timeout": 30000,
+  "browser": "chrome",
+  "headless": false
+}
