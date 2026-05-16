@@ -39,14 +39,11 @@ cp .env.example .env
 ### Run Automation Scripts
 
 ```bash
-# Content creation
-node scripts/create-content.js --type blog --title "Your Title"
+npm install playwright
 
-# Product management
-node scripts/manage-product.js --action create --name "Product" --price 99
-
-# Customer service
-node scripts/customer-service.js --mode inquiry --email user@example.com
+# Use .cjs extension (required for CommonJS)
+node scripts/create-content.cjs --type blog --title "Your Title"
+node scripts/manage-product.cjs --action create --name "Product" --price 99
 ```
 
 ## Configuration
