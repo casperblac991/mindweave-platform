@@ -7,7 +7,17 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const config = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8'));
+const config = {
+  platformUrl: "https://work-1-fmkfmhzcbspsemde.prod-runtime.all-hands.dev",
+  adminUrl: "https://work-1-fmkfmhzcbspsemde.prod-runtime.all-hands.dev/admin",
+  defaultDelay: 1000,
+  screenshotOnStep: true,
+  screenshotDir: "./screenshots",
+  outputDir: "./outputs",
+  timeout: 30000,
+  browser: "chrome",
+  headless: true
+};
 
 const args = process.argv.slice(2);
 const params = {};
@@ -25,8 +35,7 @@ async function createContent() {
   console.log(`Creating ${type}: ${title}`);
   
   const browser = await chromium.launch({ 
-    headless: config.headless || false,
-    channel: config.browser || 'chrome'
+    headless: config.headless || true
   });
   
   const context = await browser.newContext();

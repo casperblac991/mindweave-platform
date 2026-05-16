@@ -1,6 +1,6 @@
 {
-  "platformUrl": "https://mindweave-platform.com",
-  "adminUrl": "https://mindweave-platform.com/admin",
+  "platformUrl": "https://work-1-fmkfmhzcbspsemde.prod-runtime.all-hands.dev",
+  "adminUrl": "https://work-1-fmkfmhzcbspsemde.prod-runtime.all-hands.dev/admin",
   "defaultDelay": 1000,
   "screenshotOnStep": true,
   "screenshotDir": "./screenshots",
