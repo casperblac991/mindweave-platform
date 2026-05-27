@@ -482,11 +482,19 @@ async function updateUIAfterAuth() {
 // ============================================
 
 /**
- * Initialize auth system on page load with strict guard
+ * Initialize auth system - NO AUTH GUARD on home page
+ * Homepage is always visible to everyone
  */
 document.addEventListener('DOMContentLoaded', async () => {
-    // ENFORCE AUTH GUARD - Block all access until authenticated
-    await enforceAuthGuard();
+    // Always show homepage content - don't block with auth guard
+    const isHomePage = window.location.pathname.endsWith('index.html') || 
+                       window.location.pathname === '/' || 
+                       window.location.pathname.endsWith('/');
+    
+    if (!isHomePage) {
+        // Only enforce auth guard on internal pages (store, library, creators, etc.)
+        await enforceAuthGuard();
+    }
     
     // Check if user is already logged in
     await updateUIAfterAuth();
