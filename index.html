@@ -1301,27 +1301,30 @@ let currentLang = localStorage.getItem('mw_lang') || 'ar';
 let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
 let currentFilter = 'all';
 let products = [];
+let blogPosts = [];
 let selectedCategory = 'general';
 let currentMode = 'generate';
 
 // ========== Load Products from JSON ==========
 async function loadProducts() {
   try {
-    const response = await fetch(\'content-data.json\');   const data = await response.json();
+    const response = await fetch('content-data.json');
+    const data = await response.json();
     products = data.products || [];
-    let blogPosts = data.blog || []; // Initialize blogPosts from content-data.json
+    blogPosts = data.blog || [];
     
     // تحديث الإحصائيات الحقيقية
     if (data.stats) {
-      document.getElementById('statProducts').textContent = data.stats.totalProducts;
-      document.getElementById('statSales').textContent = data.stats.totalSales.toLocaleString();
+      const prodStat = document.getElementById('statProducts');
+      const salesStat = document.getElementById('statSales');
+      if (prodStat) prodStat.textContent = data.stats.totalProducts || data.stats.products || 0;
+      if (salesStat) salesStat.textContent = data.stats.totalSales?.toLocaleString() || '0';
     }
     
     renderProducts();
-    renderBlogPosts(); // Call new function to render blog posts
+    renderBlogPosts();
   } catch (error) {
     console.error('خطأ في تحميل المنتجات:', error);
-    // عرض منتجات افتراضية في حالة الخطأ
     showNotification('⚠️', currentLang === 'ar' ? 'تعذر تحميل المنتجات' : 'Failed to load products');
   }
 }
@@ -1345,7 +1348,6 @@ function updateLanguage() {
   document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
   
   renderProducts();
-    renderBlogPosts(); // Call new function to render blog posts
 }
 
 function changeLanguage(lang) {
@@ -1370,9 +1372,8 @@ function addToCart(id) {
     cart.push(id);
     localStorage.setItem('mw_cart', JSON.stringify(cart));
     updateCartCount();
-    showNotification('✅', currentLang === 'ar' ? 'تمت الإضافة للسلة!' : currentLang === 'en' ? 'Added to cart!' : currentLang === 'es' ? '¡Añadido al carrito!' : 'Ajouté au panier!');
+    showNotification('✅', currentLang === 'ar' ? 'تمت الإضافة للسلة!' : currentLang === 'ar' ? 'Added to cart!' : currentLang === 'es' ? '¡Añadido al carrito!' : 'Ajouté au panier!');
     renderProducts();
-    renderBlogPosts(); // Call new function to render blog posts
   } else {
     showNotification('🛒', currentLang === 'ar' ? 'المنتج موجود بالفعل' : currentLang === 'en' ? 'Already in cart' : currentLang === 'es' ? 'Ya en el carrito' : 'Déjà dans le panier');
   }
@@ -1438,42 +1439,6 @@ function renderBlogPosts() {
   `).join('');
 }
 
-// Add this to the DOMContentLoaded event listener
-// renderBlogPosts();
-
-function getCategoryLabel(category) {
-  const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
-  const grid = document.getElementById('productsGrid');
-  if (!grid) return;
-  
-  grid.innerHTML = filtered.slice(0, 8).map(p => `
-    <div class="product-card" onclick="window.location.href='${p.gumroad}'">
-      <div class="product-thumb">
-        <span>${p.emoji}</span>
-        <span class="product-badge">${p.badge[currentLang]}</span>
-      </div>
-      <div class="product-body">
-        <div class="product-category">${getCategoryLabel(p.category)}</div>
-        <div class="product-name">${p.name[currentLang]}</div>
-        <div class="product-desc">${p.desc[currentLang]}</div>
-        <div class="product-meta">
-          <div class="product-rating">★ ${p.rating}</div>
-          <div>${p.sales[currentLang]}</div>
-        </div>
-        <div class="product-footer">
-          <div class="product-price">
-            <span class="price-original">${p.original}</span>
-            <span class="price-current">${p.price}</span>
-          </div>
-          <button class="add-cart-btn ${cart.includes(p.id) ? 'added' : ''}" onclick="event.stopPropagation(); addToCart('${p.id}')">
-            ${cart.includes(p.id) ? (currentLang === 'ar' ? '✓ تمت الإضافة' : currentLang === 'en' ? '✓ Added' : currentLang === 'es' ? '✓ Añadido' : '✓ Ajouté') : (currentLang === 'ar' ? '+ أضف للسلة' : currentLang === 'en' ? '+ Add to Cart' : currentLang === 'es' ? '+ Añadir' : '+ Ajouter')}
-          </button>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
 // ========== Prompt Lab Functions ==========
 async function generatePrompt() {
   const input = document.getElementById('promptInput').value.trim();
@@ -1523,12 +1488,23 @@ ${currentMode === 'generate' ? 'قم بتوليد أمر احترافي ومفص
     
   } catch (error) {
     console.error('خطأ في توليد الأمر:', error);
-    // Fallback: توليد محلي بسيط
-    const promptText = currentLang === 'ar' 
-      ? `✨ أمر احترافي مُولَّد:\n\n"قم بإنشاء محتوى ${selectedCategory === 'marketing' ? 'تسويقي' : selectedCategory === 'design' ? 'تصميمي' : selectedCategory === 'coding' ? 'برمجي' : selectedCategory === 'content' ? 'إبداعي' : selectedCategory === 'business' ? 'تجاري' : 'احترافي'} حول "${input}" مع مراعاة:\n- استخدام لغة واضحة ومباشرة\n- تضمين أمثلة عملية\n- التركيز على القيمة المضافة\n- الحفاظ على النبرة ${selectedCategory === 'marketing' ? 'التسويقية الجذابة' : selectedCategory === 'business' ? 'الرسمية' : 'الاحترافية'}"`
-      : `Professional Prompt:\n\n"Create ${selectedCategory} content about "${input}" considering:\n- Clear and direct language\n- Practical examples\n- Focus on added value\n- Maintain ${selectedCategory === 'marketing' ? 'engaging marketing' : selectedCategory === 'business' ? 'formal' : 'professional'} tone"`;
+    // Fallback: إخطار المستخدم بالخطأ مع نص توضيحي
+    const isArabic = currentLang === 'ar';
+    const fallbackTitle = isArabic ? '⚠️ الخادم غير متاح حالياً' : '⚠️ Server unavailable';
+    const fallbackDesc = isArabic 
+      ? 'تعذر الاتصال بخادم الذكاء الاصطناعي. يمكنك:\n• المحاولة لاحقاً\n• استخدام قوالبنا الجاهزة في المتجر'
+      : 'Could not connect to AI server. You can:\n• Try again later\n• Use our ready templates in the store';
+    const templateHint = isArabic
+      ? '💡 نصيحة: تصفح مجموعتنا من الأوامر الاحترافية الجاهزة'
+      : '💡 Tip: Browse our collection of ready professional prompts';
     
-    output.innerHTML = promptText;
+    const promptText = `${fallbackTitle}\n\n${fallbackDesc}\n\n${templateHint}`;
+    
+    output.innerHTML = `<div style="text-align:center; padding: 20px;">
+      <p style="color: var(--secondary, #FF6B35);">${fallbackTitle}</p>
+      <p style="margin: 15px 0;">${fallbackDesc.replace('\n', '<br>')}</p>
+      <a href="store.html" class="btn-primary" style="display:inline-block; margin-top:15px;">${isArabic ? 'تصفح المتجر →' : 'Browse Store →'}</a>
+    </div>`;
     actions.style.display = 'flex';
   } finally {
     btn.disabled = false;
@@ -1592,7 +1568,6 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active');
       currentFilter = btn.dataset.filter;
       renderProducts();
-    renderBlogPosts(); // Call new function to render blog posts
     });
   });
   
