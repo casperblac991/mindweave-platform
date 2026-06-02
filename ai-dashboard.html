@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-DZ4WQDX31M');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Dashboard | MindWeave</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+  --success: #00FF88;
+  --gold: #FFD700;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.logo span { color: var(--primary); }
+
+/* Main Container */
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 90px 2rem 2rem;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dashboard-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.dashboard-title span { color: var(--primary); }
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.15);
+  border-color: var(--primary);
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.stat-icon.primary { background: rgba(0, 212, 255, 0.15); }
+.stat-icon.secondary { background: rgba(255, 107, 53, 0.15); }
+.stat-icon.accent { background: rgba(124, 58, 237, 0.15); }
+.stat-icon.success { background: rgba(0, 255, 136, 0.15); }
+
+.stat-info h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.stat-info p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.stat-change {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.stat-change.positive {
+  background: rgba(0, 255, 136, 0.15);
+  color: var(--success);
+}
+
+.stat-change.negative {
+  background: rgba(255, 107, 53, 0.15);
+  color: var(--secondary);
+}
+
+/* Main Grid */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-title span { color: var(--primary); }
+
+/* Chart Placeholder */
+.chart-container {
+  height: 250px;
+  background: var(--bg-dark);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-line {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  right: 10%;
+  height: 60%;
+  background: linear-gradient(180deg, rgba(0, 212, 255, 0.3) 0%, transparent 100%);
+  border-radius: 8px;
+}
+
+.chart-line::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  right: 15%;
+  bottom: 0;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  border-radius: 4px;
+  clip-path: polygon(0 100%, 0 60%, 15% 40%, 30% 55%, 45% 30%, 60% 45%, 75% 20%, 90% 35%, 100% 15%, 100% 100%);
+}
+
+/* AI Chat Widget */
+.ai-chat-widget {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding-right: 0.5rem;
+}
+
+.message {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  max-width: 85%;
+}
+
+.message.ai {
+  background: var(--bg-dark);
+  margin-left: 0;
+}
+
+.message.user {
+  background: rgba(0, 212, 255, 0.1);
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.message-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.ai .message-avatar { background: var(--primary); }
+.user .message-avatar { background: var(--accent); }
+
+.message-content { font-size: 0.95rem; line-height: 1.5; }
+
+.chat-input-area {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-input {
+  flex: 1;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chat-input:focus { border-color: var(--primary); }
+.chat-input::placeholder { color: var(--text-muted); }
+
+.chat-send-btn {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.chat-send-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* Tasks Card */
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-dark);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.task-item:hover {
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 2px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.task-checkbox.checked {
+  background: var(--primary);
+}
+
+.task-checkbox.checked::after {
+  content: '✓';
+  color: var(--bg);
+  font-weight: bold;
+}
+
+.task-info { flex: 1; }
+
+.task-info h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.task-info.completed h4 { text-decoration: line-through; color: var(--text-muted); }
+
+.task-meta {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.task-priority {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.priority-high { background: rgba(255, 107, 53, 0.2); color: var(--secondary); }
+.priority-medium { background: rgba(255, 215, 0, 0.2); color: var(--gold); }
+.priority-low { background: rgba(0, 255, 136, 0.2); color: var(--success); }
+
+/* Quick Actions */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background: var(--bg-dark);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.action-btn:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.action-icon {
+  font-size: 1.5rem;
+}
+
+.action-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Recent Activity */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.activity-info { flex: 1; }
+
+.activity-info p {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.activity-time {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* AI Suggestions */
+.ai-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--bg-dark);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.suggestion-item:hover {
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid var(--accent);
+}
+
+.suggestion-icon {
+  font-size: 1.25rem;
+}
+
+.suggestion-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-header { flex-direction: column; align-items: flex-start; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .quick-actions { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">⚡</div>
+    Mind<span>Weave</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="store.html">المتجر</a></li>
+    <li><a href="library.html">المكتبة</a></li>
+    <li><a href="prompt-lab.html">Prompt Lab</a></li>
+    <li><a href="ai-dashboard.html" class="active">لوحة AI</a></li>
+    <li><a href="about.html">من نحن</a></li>
+  </ul>
+  <div class="header-actions">
+    <a href="cart.html" class="cart-btn">🛒</a>
+    <a href="login.html" class="btn-primary">تسجيل الدخول</a>
+  </div>
+</nav>
+
+<!-- Dashboard Container -->
+<div class="dashboard-container">
+  <!-- Header -->
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">مرحباً بك في <span>لوحة الذكاء الاصطناعي</span> 🚀</h1>
+    <div class="header-actions">
+      <button class="btn-outline" onclick="refreshDashboard()">🔄 تحديث</button>
+      <button class="btn-primary" onclick="showAISettings()">⚙️ إعدادات AI</button>
+    </div>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon primary">🤖</div>
+      <div class="stat-info">
+        <h3 id="totalPrompts">1,247</h3>
+        <p>أمر مُنتج</p>
+        <span class="stat-change positive">↑ 12% هذا الشهر</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon secondary">💰</div>
+      <div class="stat-info">
+        <h3 id="totalSales">$8,459</h3>
+        <p>إجمالي المبيعات</p>
+        <span class="stat-change positive">↑ 23%</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon accent">👥</div>
+      <div class="stat-info">
+        <h3 id="totalUsers">3,892</h3>
+        <p>مستخدم نشط</p>
+        <span class="stat-change positive">↑ 8%</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon success">⭐</div>
+      <div class="stat-info">
+        <h3 id="avgRating">4.8</h3>
+        <p>تقييم المنتجات</p>
+        <span class="stat-change positive">↑ 0.2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="main-grid">
+    <!-- Left Column -->
+    <div class="left-column">
+      <!-- Chart Card -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">📊 <span>إحصائيات الأداء</span></h2>
+          <select style="background: var(--bg-dark); border: 1px solid var(--border); color: var(--text); padding: 0.5rem; border-radius: 8px;">
+            <option>آخر 7 أيام</option>
+            <option>آخر 30 يوم</option>
+            <option>آخر 3 أشهر</option>
+          </select>
+        </div>
+        <div class="chart-container">
+          <div class="chart-line"></div>
+        </div>
+      </div>
+
+      <!-- Tasks Card -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">✅ <span>مهامي اليوم</span></h2>
+          <button class="btn-outline" onclick="addNewTask()">+ إضافة مهمة</button>
+        </div>
+        <div class="tasks-list" id="tasksList">
+          <div class="task-item">
+            <div class="task-checkbox" onclick="toggleTask(this)"></div>
+            <div class="task-info">
+              <h4>مراجعة أوامر AI الجديدة</h4>
+              <div class="task-meta">
+                <span class="task-priority priority-high">عاجل</span>
+                <span>⏰ 10:00 ص</span>
+              </div>
+            </div>
+          </div>
+          <div class="task-item">
+            <div class="task-checkbox" onclick="toggleTask(this)"></div>
+            <div class="task-info">
+              <h4>تحديث قوالب Notion</h4>
+              <div class="task-meta">
+                <span class="task-priority priority-medium">متوسط</span>
+                <span>⏰ 2:00 م</span>
+              </div>
+            </div>
+          </div>
+          <div class="task-item">
+            <div class="task-checkbox checked" onclick="toggleTask(this)"></div>
+            <div class="task-info completed">
+              <h4>إنشاء محتوى جديد للمدونة</h4>
+              <div class="task-meta">
+                <span class="task-priority priority-low">مرن</span>
+                <span>✓ مكتمل</span>
+              </div>
+            </div>
+          </div>
+          <div class="task-item">
+            <div class="task-checkbox" onclick="toggleTask(this)"></div>
+            <div class="task-info">
+              <h4>تحليل أداء الشهر الماضي</h4>
+              <div class="task-meta">
+                <span class="task-priority priority-high">عاجل</span>
+                <span>⏰ 5:00 م</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🕐 <span>النشاط الأخير</span></h2>
+        </div>
+        <div class="activity-list">
+          <div class="activity-item">
+            <div class="activity-icon" style="background: rgba(0, 212, 255, 0.15);">🛒</div>
+            <div class="activity-info">
+              <p>مشتري جديد: <strong>قالب Notion الإحترافي</strong></p>
+              <span class="activity-time">منذ 5 دقائق</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon" style="background: rgba(255, 107, 53, 0.15);">⭐</div>
+            <div class="activity-info">
+              <p>تقييم جديد: <strong>5 نجوم</strong> على أمر ChatGPT</p>
+              <span class="activity-time">منذ 23 دقيقة</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon" style="background: rgba(124, 58, 237, 0.15);">🤖</div>
+            <div class="activity-info">
+              <p>تم إنشاء <strong>15 أمر جديد</strong> بواسطة AI</p>
+              <span class="activity-time">منذ ساعة</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="right-column">
+      <!-- AI Chat Widget -->
+      <div class="ai-chat-widget">
+        <div class="card-header">
+          <h2 class="card-title">🤖 <span>مساعد AI</span></h2>
+          <span style="background: var(--primary); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem;">متصل</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="message ai">
+            <div class="message-header">
+              <div class="message-avatar">🤖</div>
+              <span>MindWeave AI</span>
+            </div>
+            <div class="message-content">
+              مرحباً! 👋 أنا مساعدك الذكي في MindWeave. كيف يمكنني مساعدتك اليوم؟
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" class="chat-input" id="chatInput" placeholder="اكتب رسالتك هنا..." onkeypress="handleChatKeypress(event)">
+          <button class="chat-send-btn" onclick="sendMessage()">إرسال</button>
+        </div>
+      </div>
+
+      <!-- AI Suggestions -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">💡 <span>اقتراحات ذكية</span></h2>
+        </div>
+        <div class="ai-suggestions">
+          <div class="suggestion-item" onclick="applySuggestion('Create a new prompt for social media marketing that focuses on increasing engagement')">
+            <div class="suggestion-icon">📝</div>
+            <span class="suggestion-text">إنشاء أمر جديد للتسويق</span>
+          </div>
+          <div class="suggestion-item" onclick="applySuggestion('Analyze current sales data and suggest optimization strategies')">
+            <div class="suggestion-icon">📈</div>
+            <span class="suggestion-text">تحليل أداء المبيعات</span>
+          </div>
+          <div class="suggestion-item" onclick="applySuggestion('Generate new product ideas based on trending AI topics')">
+            <div class="suggestion-icon">🎯</div>
+            <span class="suggestion-text">أفكار منتجات جديدة</span>
+          </div>
+          <div class="suggestion-item" onclick="applySuggestion('Create email campaign for product launch')">
+            <div class="suggestion-icon">📧</div>
+            <span class="suggestion-text">حملة بريد إلكتروني</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">⚡ <span>إجراءات سريعة</span></h2>
+        </div>
+        <div class="quick-actions">
+          <a href="prompt-lab.html" class="action-btn">
+            <span class="action-icon">✨</span>
+            <span class="action-label">إنشاء أمر</span>
+          </a>
+          <a href="creators.html" class="action-btn">
+            <span class="action-icon">💎</span>
+            <span class="action-label">بيع منتج</span>
+          </a>
+          <a href="store.html" class="action-btn">
+            <span class="action-icon">🛍️</span>
+            <span class="action-label">تصفح المتجر</span>
+          </a>
+          <a href="community.html" class="action-btn">
+            <span class="action-icon">👥</span>
+            <span class="action-label">المجتمع</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Task Management
+function toggleTask(checkbox) {
+  checkbox.classList.toggle('checked');
+  const taskInfo = checkbox.nextElementSibling;
+  taskInfo.classList.toggle('completed');
+}
+
+function addNewTask() {
+  const task = prompt('أدخل مهمة جديدة:');
+  if (task) {
+    const tasksList = document.getElementById('tasksList');
+    const taskItem = document.createElement('div');
+    taskItem.className = 'task-item';
+    taskItem.innerHTML = `
+      <div class="task-checkbox" onclick="toggleTask(this)"></div>
+      <div class="task-info">
+        <h4>${task}</h4>
+        <div class="task-meta">
+          <span class="task-priority priority-medium">متوسط</span>
+          <span>⏰ غير محدد</span>
+        </div>
+      </div>
+    `;
+    tasksList.insertBefore(taskItem, tasksList.firstChild);
+  }
+}
+
+// AI Chat Functions
+function handleChatKeypress(event) {
+  if (event.key === 'Enter') {
+    sendMessage();
+  }
+}
+
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const message = input.value.trim();
+  if (!message) return;
+
+  const messagesContainer = document.getElementById('chatMessages');
+  
+  // Add user message
+  const userMsg = document.createElement('div');
+  userMsg.className = 'message user';
+  userMsg.innerHTML = `
+    <div class="message-header">
+      <div class="message-avatar">👤</div>
+      <span>أنت</span>
+    </div>
+    <div class="message-content">${message}</div>
+  `;
+  messagesContainer.appendChild(userMsg);
+  input.value = '';
+
+  // Add AI thinking indicator
+  const thinkingMsg = document.createElement('div');
+  thinkingMsg.className = 'message ai';
+  thinkingMsg.innerHTML = `
+    <div class="message-header">
+      <div class="message-avatar">🤖</div>
+      <span>MindWeave AI</span>
+    </div>
+    <div class="message-content">جارٍ الكتابة...</div>
+  `;
+  messagesContainer.appendChild(thinkingMsg);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+  // Simulate AI response
+  setTimeout(() => {
+    thinkingMsg.querySelector('.message-content').textContent = getAIResponse(message);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }, 1500);
+}
+
+function getAIResponse(message) {
+  const responses = {
+    'prompts': 'يمكنني مساعدتك في إنشاء أوامر AI احترافية! جرب استخدام Prompt Lab لإنشاء أوامر مخصصة لأدوات مختلفة مثل ChatGPT و Midjourney و Claude.',
+    'sales': 'لتحسين مبيعاتك، أنصحك بالتركيز على: 1) تحسين وصف المنتجات 2) إضافة صور جذابة 3) استخدام التسعير النفسي 4) بناء مجتمع نشط.',
+    'products': 'المنتجات الأكثر مبيعاً حالياً هي قوالب Notion وأوامر ChatGPT للتسويق. أنصحك بإنشاء محتوى متعلق بـ AI.',
+    'marketing': 'استراتيجيات التسويق الفعالة تشمل: التسويق بالمحتوى، استخدام وسائل التواصل الاجتماعي، والبريد الإلكتروني. يمكنني إنشاء حملة تسويقية لك!',
+  };
+
+  const lowerMsg = message.toLowerCase();
+  for (const [key, response] of Object.entries(responses)) {
+    if (lowerMsg.includes(key)) return response;
+  }
+  
+  return 'شكراً لسؤالك! أنا هنا لمساعدتك في كل ما يتعلق بأدوات الذكاء الاصطناعي والمنتجات الرقمية. كيف يمكنني تقديم يد المساعدة؟';
+}
+
+// AI Suggestions
+function applySuggestion(suggestion) {
+  const chatInput = document.getElementById('chatInput');
+  chatInput.value = suggestion;
+  chatInput.focus();
+}
+
+// Dashboard Functions
+function refreshDashboard() {
+  // Simulate refresh animation
+  const stats = document.querySelectorAll('.stat-info h3');
+  stats.forEach(stat => {
+    stat.style.opacity = '0.5';
+    setTimeout(() => stat.style.opacity = '1', 300);
+  });
+  showNotification('🔄', 'تم تحديث البيانات!');
+}
+
+function showAISettings() {
+  alert('إعدادات AI - قريباً!');
+}
+
+function showNotification(icon, text) {
+  const notification = document.createElement('div');
+  notification.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    border: 1px solid var(--primary);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 2000;
+    animation: slideUp 0.3s ease;
+  `;
+  notification.innerHTML = `<span>${icon}</span><span>${text}</span>`;
+  document.body.appendChild(notification);
+  setTimeout(() => notification.remove(), 3000);
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  // Add animation keyframes
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+  `;
+  document.head.appendChild(style);
+});
+</script>
+</body>
+</html>

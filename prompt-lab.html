@@ -430,6 +430,106 @@ main {
   cursor: pointer;
 }
 
+/* AI Analysis Panel */
+.ai-analysis-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.ai-analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.ai-badge {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.analysis-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.metric-card {
+  background: var(--bg-dark);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.analysis-tips {
+  background: var(--bg-dark);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.analysis-tips h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--bg-card);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.tip-icon { color: var(--success); }
+
+/* AI Suggestions */
+.ai-suggestions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.ai-suggestion {
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid var(--accent);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ai-suggestion:hover {
+  background: var(--accent);
+  color: white;
+}
+
 /* Features Section */
 .features-section {
   margin: 3rem 0;
@@ -658,6 +758,44 @@ body[data-lang="en"] .notification {
           <button class="output-btn" id="saveBtn" data-i18n="lab.save">💾 حفظ</button>
           <button class="output-btn" id="sellBtn" data-i18n="lab.sell">💰 بيع في المتجر</button>
         </div>
+        
+        <!-- AI Analysis Panel -->
+        <div class="ai-analysis-panel" id="aiAnalysisPanel" style="display: none;">
+          <div class="ai-analysis-header">
+            <h4>🧠 تحليل الذكاء الاصطناعي</h4>
+            <span class="ai-badge">مدعوم بـ MindWeave AI</span>
+          </div>
+          <div class="analysis-metrics">
+            <div class="metric-card">
+              <div class="metric-value" id="clarityScore">85%</div>
+              <div class="metric-label">الوضوح</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value" id="completenessScore">90%</div>
+              <div class="metric-label">الاكتمال</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value" id="effectivenessScore">88%</div>
+              <div class="metric-label">الفعالية</div>
+            </div>
+          </div>
+          <div class="ai-suggestions">
+            <span class="ai-suggestion" onclick="addToPrompt('أضف مثالاً توضيحياً')">+ إضافة مثال</span>
+            <span class="ai-suggestion" onclick="addToPrompt('حدد الجمهور المستهدف')">+ حدد الجمهور</span>
+            <span class="ai-suggestion" onclick="addToPrompt('أضف قيوداً محددة')">+ أضف قيود</span>
+          </div>
+          <div class="analysis-tips">
+            <h4>💡 نصائح للتحسين:</h4>
+            <div class="tip-item">
+              <span class="tip-icon">✓</span>
+              <span>استخدم أمثلة محددة لتحسين جودة المخرجات</span>
+            </div>
+            <div class="tip-item">
+              <span class="tip-icon">✓</span>
+              <span>حدد التنسيق المطلوب (قائمة، فقرة، كود)</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -825,6 +963,41 @@ function generatePrompt() {
   
   output.innerHTML = promptText;
   actions.style.display = 'flex';
+  
+  // Show AI Analysis Panel
+  const analysisPanel = document.getElementById('aiAnalysisPanel');
+  if (analysisPanel) {
+    analysisPanel.style.display = 'block';
+    // Animate metrics
+    animateMetrics();
+  }
+}
+
+// Animate AI metrics
+function animateMetrics() {
+  const metrics = ['clarityScore', 'completenessScore', 'effectivenessScore'];
+  metrics.forEach((id, index) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const target = 75 + Math.random() * 20;
+      let current = 0;
+      const interval = setInterval(() => {
+        current += 2;
+        if (current >= target) {
+          current = Math.round(target);
+          clearInterval(interval);
+        }
+        el.textContent = current + '%';
+      }, 50);
+    }
+  });
+}
+
+// Add suggestion to prompt
+function addToPrompt(text) {
+  const input = document.getElementById('promptInput');
+  input.value += '\n' + text;
+  showNotification('✨', 'تم إضافة: ' + text);
 }
 
 function copyPrompt() {

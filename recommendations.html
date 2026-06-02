@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4WQDX31M"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-DZ4WQDX31M');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Recommendations | MindWeave</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+  --success: #00FF88;
+  --gold: #FFD700;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.logo span { color: var(--primary); }
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+/* Main Container */
+.recommendations-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 90px 2rem 2rem;
+}
+
+/* Header */
+.recommendations-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.recommendations-header h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.recommendations-header h1 span {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.recommendations-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* AI Preference Form */
+.preference-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.preference-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.preference-section h2 span { color: var(--primary); }
+
+.preference-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.preference-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.preference-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.preference-group select,
+.preference-group input {
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.preference-group select:focus,
+.preference-group input:focus {
+  border-color: var(--primary);
+}
+
+.analyze-btn {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.analyze-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+}
+
+/* AI Analysis Results */
+.analysis-results {
+  background: var(--bg-dark);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  display: none;
+}
+
+.analysis-results.active { display: block; }
+
+.analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.analysis-header h3 {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ai-badge {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.insight-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.insight-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.insight-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Recommendations Grid */
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.recommendation-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+  border-color: var(--primary);
+}
+
+.card-image {
+  height: 160px;
+  background: linear-gradient(135deg, var(--bg-dark), var(--bg-card));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+}
+
+.card-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--accent);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.match-score {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--success);
+  color: var(--bg);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-category {
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.card-description {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.card-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-tag {
+  background: var(--bg-dark);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.card-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.card-cta {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.card-cta:hover {
+  transform: scale(1.05);
+}
+
+/* AI Insights Section */
+.ai-insights {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.ai-insights h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ai-insights h2 span { color: var(--accent); }
+
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.insight-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-dark);
+  border-radius: 12px;
+  border-right: 3px solid var(--primary);
+}
+
+.insight-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.insight-content h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.insight-content p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.insight-score {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Why These Recommendations */
+.why-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.why-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.reason-card {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--bg-dark);
+  border-radius: 16px;
+  transition: all 0.2s;
+}
+
+.reason-card:hover {
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.reason-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.reason-card h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.reason-card p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 1px solid var(--primary);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 2000;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .recommendations-grid { grid-template-columns: 1fr; }
+  .preference-form { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">⚡</div>
+    Mind<span>Weave</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="store.html">المتجر</a></li>
+    <li><a href="library.html">المكتبة</a></li>
+    <li><a href="prompt-lab.html">Prompt Lab</a></li>
+    <li><a href="ai-dashboard.html">لوحة AI</a></li>
+    <li><a href="ai-assistant.html">المساعد</a></li>
+  </ul>
+  <div class="header-actions">
+    <a href="cart.html" class="cart-btn">🛒</a>
+    <a href="login.html" class="btn-primary">تسجيل الدخول</a>
+  </div>
+</nav>
+
+<!-- Main Container -->
+<div class="recommendations-container">
+  <!-- Header -->
+  <div class="recommendations-header">
+    <h1>🎯 <span>توصيات ذكية</span> مخصصة لك</h1>
+    <p>استناداً إلى اهتماماتك وأهدافك، اخترنا لك أفضل المنتجات التي تناسبك</p>
+  </div>
+
+  <!-- Preference Form -->
+  <div class="preference-section">
+    <h2>🤖 <span>أخبرنا عن نفسك</span></h2>
+    <div class="preference-form">
+      <div class="preference-group">
+        <label>ما هو هدفك الرئيسي؟</label>
+        <select id="goalSelect">
+          <option value="">اختر هدفك...</option>
+          <option value="marketing">التسويق الرقمي</option>
+          <option value="design">التصميم والإبداع</option>
+          <option value="productivity">الإنتاجية</option>
+          <option value="learning">التعلم والتطوير</option>
+          <option value="business">الأعمال والتجارة</option>
+        </select>
+      </div>
+      <div class="preference-group">
+        <label>ما الأداة التي تستخدمها أكثر؟</label>
+        <select id="toolSelect">
+          <option value="">اختر الأداة...</option>
+          <option value="chatgpt">ChatGPT</option>
+          <option value="midjourney">Midjourney</option>
+          <option value="notion">Notion</option>
+          <option value="claude">Claude</option>
+          <option value="other">أخرى</option>
+        </select>
+      </div>
+      <div class="preference-group">
+        <label>ما مستوى خبرتك؟</label>
+        <select id="experienceSelect">
+          <option value="">اختر مستواك...</option>
+          <option value="beginner">مبتدئ</option>
+          <option value="intermediate">متوسط</option>
+          <option value="advanced">متقدم</option>
+          <option value="expert">خبير</option>
+        </select>
+      </div>
+      <div class="preference-group">
+        <label>ما الميزانية الشهرية؟</label>
+        <select id="budgetSelect">
+          <option value="">اختر الميزانية...</option>
+          <option value="free">مجاني فقط</option>
+          <option value="low">أقل من $10</option>
+          <option value="medium">$10 - $50</option>
+          <option value="high">$50 - $100</option>
+          <option value="premium">+ $100</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="analysis-results" id="analysisResults">
+      <div class="analysis-header">
+        <h3>📊 تحليل AI <span class="ai-badge">Powered by MindWeave</span></h3>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-value" id="matchScore">95%</div>
+          <div class="insight-label">مطابقة التوصيات</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-value" id="savings">$127</div>
+          <div class="insight-label">توفير محتمل</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-value" id="timeSave">12h</div>
+          <div class="insight-label">توفير في الوقت</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-value" id="roi">+340%</div>
+          <div class="insight-label">العائد المتوقع</div>
+        </div>
+      </div>
+    </div>
+    
+    <button class="analyze-btn" onclick="analyzePreferences()">
+      🤖 احصل على توصياتي
+    </button>
+  </div>
+
+  <!-- Recommendations Grid -->
+  <h2 style="margin: 2rem 0 1rem; font-size: 1.5rem;">✨ <span>المنتجات الموصى بها لك</span></h2>
+  <div class="recommendations-grid" id="recommendationsGrid">
+    <!-- Product 1 -->
+    <div class="recommendation-card" onclick="viewProduct('prompt-master')">
+      <div class="card-image">
+        ✨
+        <span class="card-badge">الأكثر مبيعاً</span>
+        <span class="match-score">98% ✔</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">أوامر ChatGPT</div>
+        <h3 class="card-title">مجموعة أوامر التسويق الاحترافية</h3>
+        <p class="card-description">50+ أمر متخصص لأتمتة التسويق وإنشاء المحتوى بسرعة</p>
+        <div class="card-features">
+          <span class="feature-tag">📝 50 أمر</span>
+          <span class="feature-tag">🎯 مُحدث</span>
+          <span class="feature-tag">📚 دليل</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">$29</span>
+          <button class="card-cta">عرض المنتج</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="recommendation-card" onclick="viewProduct('notion-pro')">
+      <div class="card-image">
+        📋
+        <span class="card-badge">جديد</span>
+        <span class="match-score">96% ✔</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">قوالب Notion</div>
+        <h3 class="card-title">قالب نظام الإنتاجية الذكي</h3>
+        <p class="card-description">نظام متكامل لإدارة المهام والأهداف مع تكامل AI</p>
+        <div class="card-features">
+          <span class="feature-tag">📊 لوحة Kanban</span>
+          <span class="feature-tag">🤖 AI</span>
+          <span class="feature-tag">📈 تحليل</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">$19</span>
+          <button class="card-cta">عرض المنتج</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="recommendation-card" onclick="viewProduct('midjourney-essentials')">
+      <div class="card-image">
+        🎨
+        <span class="card-badge">مميز</span>
+        <span class="match-score">94% ✔</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">أوامر Midjourney</div>
+        <h3 class="card-title">دليل إنشاء الشعارات والهوية البصرية</h3>
+        <p class="card-description">80+ أمر لإنشاء شعارات احترافية وهوية بصرية متكاملة</p>
+        <div class="card-features">
+          <span class="feature-tag">🎯 80 أمر</span>
+          <span class="feature-tag">💼 احترافي</span>
+          <span class="feature-tag">📐 أنماط</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">$39</span>
+          <button class="card-cta">عرض المنتج</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="recommendation-card" onclick="viewProduct('social-ai')">
+      <div class="card-image">
+        📱
+        <span class="card-badge">عروض</span>
+        <span class="match-score">91% ✔</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">أتمتة AI</div>
+        <h3 class="card-title">قالب جدولة المحتوى الذكي</h3>
+        <p class="card-description">قالب Notion + أوامر AI لجدولة محتوى شهر كامل</p>
+        <div class="card-features">
+          <span class="feature-tag">📅 30 يوم</span>
+          <span class="feature-tag">📊 تحليل</span>
+          <span class="feature-tag">🤖 أتمتة</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">$24</span>
+          <button class="card-cta">عرض المنتج</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="recommendation-card" onclick="viewProduct('ebook-ai')">
+      <div class="card-image">
+        📚
+        <span class="match-score">89% ✔</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">كتب إلكترونية</div>
+        <h3 class="card-title">دليل كتابة الأوامر الاحترافية</h3>
+        <p class="card-description">كتاب شامل يشرح أسرار كتابة الأوامر الفعالة</p>
+        <div class="card-features">
+          <span class="feature-tag">📖 150 صفحة</span>
+          <span class="feature-tag">💡 أمثلة</span>
+          <span class="feature-tag">✅ تمارين</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">$15</span>
+          <button class="card-cta">عرض المنتج</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="recommendation-card" onclick="viewProduct('design-prompt')">
+      <div class="card-image">
+        🖼️
+        <span class="card-badge">حصري</span>
+        <span class="match-score">87% ✔</span>
+      </div>
+      <div class="card-body">
+        <div class="card-category">أوامر DALL-E</div>
+        <h3 class="card-title">مجموعة أوامر التصميم المتقدم</h3>
+        <p class="card-description">60+ أمر لإنشاء تصاميم احترافية بذكاء اصطناعي</p>
+        <div class="card-features">
+          <span class="feature-tag">🎨 أنماط</span>
+          <span class="feature-tag">📐 قوالب</span>
+          <span class="feature-tag">🔧 متقدم</span>
+        </div>
+        <div class="card-footer">
+          <span class="card-price">$34</span>
+          <button class="card-cta">عرض المنتج</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Insights -->
+  <div class="ai-insights">
+    <h2>🧠 <span>رؤى الذكاء الاصطناعي</span></h2>
+    <div class="insights-list">
+      <div class="insight-item">
+        <div class="insight-icon">💡</div>
+        <div class="insight-content">
+          <h4>تحسين استخدام الأوامر</h4>
+          <p>بناءً على تحليلنا، استخدام الأوامر القصيرة (15-25 كلمة) يحقق نتائج أفضل بنسبة 40%</p>
+        </div>
+        <span class="insight-score">+40%</span>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">📈</div>
+        <div class="insight-content">
+          <h4>أفضل وقت للنشر</h4>
+          <p>المنشورات في الفترة 9-11 صباحاً تحقق تفاعل أعلى بـ 35% في السوق العربي</p>
+        </div>
+        <span class="insight-score">+35%</span>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">🎯</div>
+        <div class="insight-content">
+          <h4>التسعير الأمثل</h4>
+          <p>المنتجات بين $15-35 تحقق أعلى معدل تحويل. نوصيك بتسعير منتجاتك في هذا النطاق</p>
+        </div>
+        <span class="insight-score">الأمثل</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why These Recommendations -->
+  <div class="why-section">
+    <h2>❓ <span>لماذا هذه التوصيات؟</span></h2>
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <div class="reason-icon">🧠</div>
+        <h4>تحليل سلوكي</h4>
+        <p>نستخدم خوارزميات ذكية لتحليل سلوك المستخدمين المشابهين لك</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">📊</div>
+        <h4>بيانات حقيقية</h4>
+        <p>التوصيات مبنية على بيانات المبيعات والتقييمات الفعلية</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">🔄</div>
+        <h4>تحديث مستمر</h4>
+        <p>نظام التوصيات يتعلم ويتطور باستمرار لتحسين النتائج</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-icon">🎯</div>
+        <h4>تخصيص كامل</h4>
+        <p>كل توصية مصممة خصيصاً بناءً على أهدافك وتفضيلاتك</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Analyze preferences and generate recommendations
+function analyzePreferences() {
+  const goal = document.getElementById('goalSelect').value;
+  const tool = document.getElementById('toolSelect').value;
+  const experience = document.getElementById('experienceSelect').value;
+  const budget = document.getElementById('budgetSelect').value;
+
+  if (!goal || !tool) {
+    showNotification('⚠️', 'يرجى اختيار الهدف والأداة على الأقل');
+    return;
+  }
+
+  // Show analysis results
+  const analysisResults = document.getElementById('analysisResults');
+  analysisResults.classList.add('active');
+
+  // Animate insight values
+  animateValue('matchScore', 87, 98, 1500);
+  animateValue('savings', 80, 127, 1500, '$');
+  animateValue('timeSave', 8, 12, 1500, '', 'h');
+  animateValue('roi', 280, 340, 1500, '+', '%');
+
+  // Reorder recommendations based on preferences
+  reorderRecommendations(goal, tool);
+
+  showNotification('✅', 'تم تحليل تفضيلاتك بنجاح!');
+}
+
+// Animate number values
+function animateValue(elementId, start, end, duration, prefix = '', suffix = '') {
+  const element = document.getElementById(elementId);
+  const range = end - start;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const current = Math.floor(start + (range * easeOutQuad(progress)));
+    element.textContent = prefix + current + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  function easeOutQuad(t) {
+    return t * (2 - t);
+  }
+
+  requestAnimationFrame(update);
+}
+
+// Reorder recommendations based on preferences
+function reorderRecommendations(goal, tool) {
+  const grid = document.getElementById('recommendationsGrid');
+  const cards = Array.from(grid.children);
+  
+  // Calculate match scores
+  cards.forEach(card => {
+    let score = 80; // Base score
+    const category = card.querySelector('.card-category').textContent.toLowerCase();
+    const title = card.querySelector('.card-title').textContent.toLowerCase();
+    
+    if (goal === 'marketing' && (category.includes('تسويق') || title.includes('تسويق'))) score += 15;
+    if (goal === 'design' && (category.includes('تصميم') || title.includes('تصميم'))) score += 15;
+    if (tool === 'chatgpt' && category.includes('chatgpt')) score += 10;
+    if (tool === 'midjourney' && category.includes('midjourney')) score += 10;
+    if (tool === 'notion' && category.includes('notion')) score += 10;
+    
+    card.dataset.score = score;
+  });
+
+  // Sort by score
+  cards.sort((a, b) => parseInt(b.dataset.score) - parseInt(a.dataset.score));
+
+  // Update match scores and reorder
+  cards.forEach((card, index) => {
+    const score = card.dataset.score;
+    card.querySelector('.match-score').textContent = score + '% ✔';
+    grid.appendChild(card);
+  });
+}
+
+// View product
+function viewProduct(productId) {
+  showNotification('🔍', 'جاري تحميل المنتج...');
+  setTimeout(() => {
+    window.location.href = 'store.html';
+  }, 500);
+}
+
+// Show notification
+function showNotification(icon, text) {
+  const notification = document.createElement('div');
+  notification.className = 'notification';
+  notification.innerHTML = `<span>${icon}</span><span>${text}</span>`;
+  document.body.appendChild(notification);
+  setTimeout(() => notification.remove(), 3000);
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  // Add animation to cards
+  const cards = document.querySelectorAll('.recommendation-card');
+  cards.forEach((card, index) => {
+    card.style.animationDelay = `${index * 0.1}s`;
+    card.style.animation = 'fadeInUp 0.5s ease forwards';
+  });
+});
+
+// Add fadeInUp animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>
