@@ -1,0 +1,9 @@
+# MindWeave Security Policy
+# Contact: Report security vulnerabilities at security@mindweave.store
+
+Contact: mailto:security@mindweave.store
+Expires: 2027-12-31T23:59:59.000Z
+Encryption: https://keys.openpgp.org
+Preferred-Languages: en, ar
+Canonical: https://mindweave.store/.well-known/security.txt
+Policy: https://mindweave.store/terms.html
