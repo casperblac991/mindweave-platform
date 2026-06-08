@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المقال | MindWeave</title>
+<meta name="description" content="اقرأ أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #00D4FF;
+  --secondary: #FF6B35;
+  --accent: #7C3AED;
+  --bg: #050A0F;
+  --bg-card: #0A1628;
+  --bg-dark: #0F1F3D;
+  --text: #E8F4FD;
+  --text-muted: #7A9BB5;
+  --border: rgba(0,212,255,0.2);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  line-height: 1.6;
+}
+
+body[data-lang="en"],
+body[data-lang="es"],
+body[data-lang="fr"] {
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+body[data-lang="ar"] {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(5, 10, 15, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 1001;
+}
+
+body[data-lang="en"] .lang-dropdown,
+body[data-lang="es"] .lang-dropdown,
+body[data-lang="fr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-selector.active .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lang-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--secondary);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body[data-lang="en"] .cart-count {
+  right: auto;
+  left: -8px;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 2rem 4rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.article-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.article-category {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.article-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.article-meta {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.article-image {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.article-image div {
+  font-size: 5rem;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.article-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.article-content p {
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.article-content h2 {
+  color: var(--primary);
+  margin: 1.5rem 0 1rem;
+  font-size: 1.3rem;
+}
+
+.article-content h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 1rem 0;
+  padding-right: 1.5rem;
+  color: var(--text-muted);
+}
+
+body[data-lang="en"] .article-content ul,
+body[data-lang="en"] .article-content ol {
+  padding-right: 0;
+  padding-left: 1.5rem;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+}
+
+.article-content blockquote {
+  border-right: 3px solid var(--primary);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(0, 212, 255, 0.05);
+  border-radius: 12px;
+  color: var(--text);
+}
+
+body[data-lang="en"] .article-content blockquote {
+  border-right: none;
+  border-left: 3px solid var(--primary);
+}
+
+.article-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.share-btn:hover {
+  background: var(--primary);
+  color: var(--bg);
+}
+
+.related-posts {
+  margin-top: 3rem;
+}
+
+.related-posts h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.related-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.related-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+}
+
+.related-card-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.related-card h4 {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.related-card p {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body data-lang="ar">
+
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🧠</div>
+    Mind<span>Weave</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+    <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
+    <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+    <li><a href="prompt-lab.html" data-i18n="nav.promptlab">Prompt Lab ✨</a></li>
+    <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
+    <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
+  </ul>
+
+  <div class="nav-buttons">
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn">
+        <span id="currentLangFlag">🇸🇦</span>
+        <span id="currentLangLabel">العربية</span>
+        <span>▼</span>
+      </button>
+      <div class="lang-dropdown" id="langMenu">
+        <div class="lang-option" data-lang="ar">🇸🇦 العربية</div>
+        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+      </div>
+    </div>
+    <a href="cart.html" class="cart-btn">
+      🛒 <span data-i18n="nav.cart">السلة</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+  <a href="blog.html" class="back-link reveal" data-i18n="back">← العودة إلى المدونة</a>
+
+  <div class="article-header reveal">
+    <span class="article-category" id="articleCategory"></span>
+    <h1 id="articleTitle"></h1>
+    <div class="article-meta">
+      <span id="articleDate"></span>
+      <span id="articleReadTime"></span>
+      <span id="articleAuthor">✍️ <span data-i18n="author">فريق MindWeave</span></span>
+    </div>
+  </div>
+
+  <div class="article-image reveal">
+    <div id="articleIcon"></div>
+  </div>
+
+  <div class="article-content reveal" id="articleContent"></div>
+
+  <div class="article-footer reveal">
+    <div class="share-buttons">
+      <button class="share-btn" onclick="shareArticle('twitter')">🐦 <span data-i18n="share.twitter">تويتر</span></button>
+      <button class="share-btn" onclick="shareArticle('facebook')">📘 <span data-i18n="share.facebook">فيسبوك</span></button>
+      <button class="share-btn" onclick="shareArticle('linkedin')">💼 <span data-i18n="share.linkedin">لينكدإن</span></button>
+      <button class="share-btn" onclick="copyLink()">🔗 <span data-i18n="share.copy">نسخ الرابط</span></button>
+    </div>
+  </div>
+
+  <div class="related-posts reveal">
+    <h3 data-i18n="related.title">📖 مقالات ذات صلة</h3>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div><a href="index.html" class="logo" style="margin-bottom: 1rem; display: inline-flex;"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a><p style="color: var(--text-muted); margin-top: 1rem;" data-i18n="footer.desc">منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.</p></div>
+    <div><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li><li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li><li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li></ul></div>
+    <div><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="about.html" data-i18n="footer.about">من نحن</a></li><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div>
+    <div><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">شروط الاستخدام</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — جميع الحقوق محفوظة 🧠</p></div>
+</footer>
+
+<script>
+// ========== TRANSLATIONS ==========
+const translations = {
+  ar: {
+    nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", promptlab: "Prompt Lab ✨", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة" },
+    back: "← العودة إلى المدونة",
+    author: "فريق MindWeave",
+    share: { twitter: "تويتر", facebook: "فيسبوك", linkedin: "لينكدإن", copy: "نسخ الرابط" },
+    related: { title: "📖 مقالات ذات صلة" },
+    footer: { desc: "منصة عالمية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، وأدوات الإبداع.", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — جميع الحقوق محفوظة 🧠" }
+  },
+  en: {
+    nav: { home: "Home", store: "Store", library: "Free Library", promptlab: "Prompt Lab ✨", creators: "Creator Program", blog: "Blog", cart: "Cart" },
+    back: "← Back to Blog",
+    author: "MindWeave Team",
+    share: { twitter: "Twitter", facebook: "Facebook", linkedin: "LinkedIn", copy: "Copy Link" },
+    related: { title: "📖 Related Articles" },
+    footer: { desc: "A comprehensive global platform for AI prompts, digital templates, and creative tools.", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — All Rights Reserved 🧠" }
+  },
+  es: {
+    nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito" },
+    back: "← Volver al Blog",
+    author: "Equipo MindWeave",
+    share: { twitter: "Twitter", facebook: "Facebook", linkedin: "LinkedIn", copy: "Copiar Enlace" },
+    related: { title: "📖 Artículos Relacionados" },
+    footer: { desc: "Plataforma global integral para prompts de IA, plantillas digitales y herramientas creativas.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Todos los derechos reservados 🧠" }
+  },
+  fr: {
+    nav: { home: "Accueil", store: "Boutique", library: "Bibliothèque Gratuite", promptlab: "Prompt Lab ✨", creators: "Programme Créateurs", blog: "Blog", cart: "Panier" },
+    back: "← Retour au Blog",
+    author: "Équipe MindWeave",
+    share: { twitter: "Twitter", facebook: "Facebook", linkedin: "LinkedIn", copy: "Copier le Lien" },
+    related: { title: "📖 Articles Connexes" },
+    footer: { desc: "Plateforme mondiale complète pour les prompts IA, templates numériques et outils créatifs.", platform: "Plateforme", support: "Support", legal: "Juridique", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Tous droits réservés 🧠" }
+  }
+};
+
+// ========== 12 BLOG POSTS WITH FULL CONTENT ==========
+const blogPosts = [
+  {
+    id: 1,
+    category: { ar: "تعلم", en: "Learning", es: "Aprendizaje", fr: "Apprentissage" },
+    icon: "📚",
+    title: { ar: "كيف تكتب أوامر ChatGPT احترافية: دليل المبتدئين", en: "How to Write Professional ChatGPT Prompts: A Beginner's Guide", es: "Cómo escribir prompts profesionales de ChatGPT: Guía para principiantes", fr: "Comment rédiger des prompts ChatGPT professionnels : Guide du débutant" },
+    date: { ar: "15 مارس 2026", en: "March 15, 2026", es: "15 de marzo de 2026", fr: "15 mars 2026" },
+    readTime: { ar: "5 دقائق", en: "5 min read", es: "5 min de lectura", fr: "5 min de lecture" },
+    content: {
+      ar: `<p>هندسة الأوامر (Prompt Engineering) هي فن صياغة الأسئلة والتعليمات للحصول على أفضل النتائج من نماذج الذكاء الاصطناعي مثل ChatGPT. في هذا الدليل الشامل، سنتعلم أساسيات كتابة الأوامر الاحترافية.</p>
+      <h2>ما هي هندسة الأوامر؟</h2>
+      <p>هندسة الأوامر هي عملية تصميم وتطوير الأوامر (prompts) التي تستخدم للتفاعل مع نماذج الذكاء الاصطناعي. الهدف هو الحصول على ردود دقيقة وذات صلة عالية باحتياجات المستخدم.</p>
+      <h2>أساسيات كتابة أمر فعال</h2>
+      <p><strong>1. كن محدداً:</strong> كلما كنت أكثر تحديداً في طلبك، كانت النتائج أفضل. بدلاً من "اكتب مقالاً"، قل "اكتب مقالاً من 500 كلمة عن فوائد الذكاء الاصطناعي في التعليم".</p>
+      <p><strong>2. قدم سياقاً واضحاً:</strong> أعطِ النموذج معلومات كافية عن الخلفية والجمهور المستهدف والهدف من النص.</p>
+      <p><strong>3. حدد التنسيق المطلوب:</strong> أخبر النموذج بالشكل الذي تريد الإجابة به: قائمة، فقرات، جدول، كود، إلخ.</p>
+      <p><strong>4. استخدم الأمثلة:</strong> قدم أمثلة على النتائج التي تريدها لتوجيه النموذج بشكل أفضل.</p>
+      <h2>أمثلة عملية</h2>
+      <p><strong>مثال 1 (سيء):</strong> "اكتب عن التسويق"</p>
+      <p><strong>مثال 1 (جيد):</strong> "أنت خبير تسويق رقمي. اكتب دليلاً من 5 نقاط عن استراتيجيات التسويق عبر وسائل التواصل الاجتماعي للشركات الناشئة. استخدم لغة بسيطة وأضف أمثلة عملية."</p>
+      <h2>نصائح متقدمة</h2>
+      <p>يمكنك تحسين نتائجك بشكل كبير باستخدام تقنيات مثل: سلسلة الأفكار (Chain of Thought)، حيث تطلب من النموذج شرح خطوات تفكيره، أو تعيين شخصية (Role-playing) حيث تطلب من النموذج التحدث من منظور خبير محدد.</p>
+      <blockquote>تذكر أن الذكاء الاصطناعي أداة قوية، لكن النتائج تعتمد بشكل كبير على جودة الأوامر التي تقدمها. استثمر وقتك في تعلم هندسة الأوامر وستحصل على نتائج مذهلة.</blockquote>`,
+      en: `<p>Prompt Engineering is the art of crafting questions and instructions to get the best results from AI models like ChatGPT. In this comprehensive guide, we'll learn the basics of professional prompt writing.</p>
+      <h2>What is Prompt Engineering?</h2>
+      <p>Prompt Engineering is the process of designing and developing prompts used to interact with AI models. The goal is to get accurate and highly relevant responses to user needs.</p>
+      <h2>Basics of Writing an Effective Prompt</h2>
+      <p><strong>1. Be Specific:</strong> The more specific you are, the better the results. Instead of "write an article," say "write a 500-word article about the benefits of AI in education."</p>
+      <p><strong>2. Provide Clear Context:</strong> Give the model enough information about the background, target audience, and purpose of the text.</p>
+      <p><strong>3. Specify the Desired Format:</strong> Tell the model the format you want: list, paragraphs, table, code, etc.</p>
+      <p><strong>4. Use Examples:</strong> Provide examples of the results you want to better guide the model.</p>
+      <h2>Practical Examples</h2>
+      <p><strong>Bad Example:</strong> "Write about marketing"</p>
+      <p><strong>Good Example:</strong> "You are a digital marketing expert. Write a 5-point guide on social media marketing strategies for startups. Use simple language and add practical examples."</p>
+      <h2>Advanced Tips</h2>
+      <p>You can significantly improve your results using techniques like Chain of Thought, where you ask the model to explain its reasoning steps, or Role-playing, where you ask the model to speak from a specific expert perspective.</p>
+      <blockquote>Remember that AI is a powerful tool, but the results depend heavily on the quality of prompts you provide. Invest time in learning prompt engineering and you'll get amazing results.</blockquote>`
+    }
+  },
+  {
+    id: 2,
+    category: { ar: "تصميم", en: "Design", es: "Diseño", fr: "Design" },
+    icon: "🎨",
+    title: { ar: "أفضل 50 أمر Midjourney لتصميم شعارات احترافية", en: "Best 50 Midjourney Prompts for Professional Logo Design", es: "Los 50 mejores prompts de Midjourney para diseño de logotipos profesionales", fr: "Les 50 meilleurs prompts Midjourney pour la conception de logos professionnels" },
+    date: { ar: "10 مارس 2026", en: "March 10, 2026", es: "10 de marzo de 2026", fr: "10 mars 2026" },
+    readTime: { ar: "8 دقائق", en: "8 min read", es: "8 min de lectura", fr: "8 min de lecture" },
+    content: {
+      ar: `<p>في هذا الدليل الشامل، نقدم لك أفضل 50 أمراً لاستخدامها في Midjourney لتصميم شعارات احترافية ومميزة. سواء كنت مصمماً محترفاً أو مبتدئاً، ستجد هنا أوامر تناسب احتياجاتك.</p>
+      <h2>أساسيات تصميم الشعارات بـ Midjourney</h2>
+      <p>قبل البدء، من المهم فهم كيفية عمل Midjourney. النموذج يولد صوراً بناءً على الأوامر النصية التي تقدمها. كلما كان أمرك أكثر تفصيلاً، كانت النتائج أكثر دقة.</p>
+      <h2>أمثلة على أوامر تصميم الشعارات</h2>
+      <p><strong>1. شعار بسيط وأنيق:</strong><br>"Minimalist logo design for [company name], clean lines, modern, vector, white background --v 6"</p>
+      <p><strong>2. شعار بألوان متدرجة:</strong><br>"Gradient logo design for tech startup, blue to purple gradient, geometric shapes, futuristic, 3D render --v 6"</p>
+      <p><strong>3. شعار طبيعي وعضوي:</strong><br>"Nature-inspired logo for organic brand, leaf and tree elements, earthy colors, hand-drawn style, green and brown --v 6"</p>
+      <h2>نصائح للحصول على أفضل النتائج</h2>
+      <p>• استخدم إصدار Midjourney v6 للحصول على أفضل جودة<br>• أضف كلمات مثل "vector" و"clean" و"professional" للحصول على نتائج احترافية<br>• حدد الألوان بدقة<br>• جرب نسب عرض مختلفة باستخدام --ar</p>
+      <blockquote>نصيحة: لا تتردد في تعديل الأوامر وتجربة أشكال مختلفة. أفضل الشعارات تأتي من التجربة والخطأ.</blockquote>`,
+      en: `<p>In this comprehensive guide, we present the best 50 prompts to use in Midjourney for professional and distinctive logo design. Whether you're a professional designer or a beginner, you'll find prompts that suit your needs.</p>
+      <h2>Basics of Logo Design with Midjourney</h2>
+      <p>Before starting, it's important to understand how Midjourney works. The model generates images based on the text prompts you provide. The more detailed your prompt, the more accurate the results.</p>
+      <h2>Examples of Logo Design Prompts</h2>
+      <p><strong>1. Simple and Elegant Logo:</strong><br>"Minimalist logo design for [company name], clean lines, modern, vector, white background --v 6"</p>
+      <p><strong>2. Gradient Logo:</strong><br>"Gradient logo design for tech startup, blue to purple gradient, geometric shapes, futuristic, 3D render --v 6"</p>
+      <p><strong>3. Natural and Organic Logo:</strong><br>"Nature-inspired logo for organic brand, leaf and tree elements, earthy colors, hand-drawn style, green and brown --v 6"</p>
+      <h2>Tips for Best Results</h2>
+      <p>• Use Midjourney v6 for best quality<br>• Add words like "vector", "clean", and "professional" for professional results<br>• Specify colors precisely<br>• Try different aspect ratios with --ar</p>
+      <blockquote>Tip: Don't hesitate to modify prompts and try different variations. The best logos come from experimentation and iteration.</blockquote>`
+    }
+  },
+  {
+    id: 3,
+    category: { ar: "أدوات", en: "Tools", es: "Herramientas", fr: "Outils" },
+    icon: "🛠️",
+    title: { ar: "دليل شامل لأدوات الذكاء الاصطناعي المجانية 2026", en: "Complete Guide to Free AI Tools 2026", es: "Guía completa de herramientas de IA gratuitas 2026", fr: "Guide complet des outils IA gratuits 2026" },
+    date: { ar: "5 مارس 2026", en: "March 5, 2026", es: "5 de marzo de 2026", fr: "5 mars 2026" },
+    readTime: { ar: "10 دقائق", en: "10 min read", es: "10 min de lectura", fr: "10 min de lecture" },
+    content: {
+      ar: `<p>في هذا الدليل الشامل، نستعرض أكثر من 50 أداة ذكاء اصطناعي مجانية يمكنك استخدامها لتعزيز إنتاجيتك وتوفير الوقت والمال. تم اختيار هذه الأدوات بعناية لتغطي مختلف المجالات.</p>
+      <h2>أدوات كتابة المحتوى</h2>
+      <p>• ChatGPT - مساعد كتابة ذكي<br>• Copy.ai - لتوليد نصوص تسويقية<br>• Jasper - لكتابة محتوى طويل<br>• Writesonic - لتوليد محتوى SEO</p>
+      <h2>أدوات توليد الصور</h2>
+      <p>• Midjourney - لتوليد صور احترافية<br>• DALL-E - من OpenAI<br>• Leonardo AI - بديل مجاني قوي<br>• Playground AI - توليد صور متعددة</p>
+      <h2>أدوات الإنتاجية</h2>
+      <p>• Notion AI - مساعد ذكي داخل Notion<br>• Otter.ai - لتحويل الصوت إلى نص<br>• Grammarly - لتدقيق النصوص<br>• Fireflies.ai - لتسجيل وتلخيص الاجتماعات</p>
+      <blockquote>نصيحة: جرب الأدوات المختلفة واختر التي تناسب احتياجاتك. معظم هذه الأدوات تقدم نسخاً مجانية مع ميزات أساسية.</blockquote>`,
+      en: `<p>In this comprehensive guide, we review over 50 free AI tools you can use to boost your productivity and save time and money. These tools have been carefully selected to cover various fields.</p>
+      <h2>Content Writing Tools</h2>
+      <p>• ChatGPT - Smart writing assistant<br>• Copy.ai - For generating marketing copy<br>• Jasper - For long-form content<br>• Writesonic - For SEO content</p>
+      <h2>Image Generation Tools</h2>
+      <p>• Midjourney - For professional images<br>• DALL-E - From OpenAI<br>• Leonardo AI - Powerful free alternative<br>• Playground AI - Multi-image generation</p>
+      <h2>Productivity Tools</h2>
+      <p>• Notion AI - Smart assistant inside Notion<br>• Otter.ai - For speech to text<br>• Grammarly - For proofreading<br>• Fireflies.ai - For meeting recording and summaries</p>
+      <blockquote>Tip: Try different tools and choose what suits your needs. Most of these tools offer free versions with basic features.</blockquote>`
+    }
+  },
+  {
+    id: 4,
+    category: { ar: "ريادة أعمال", en: "Entrepreneurship", es: "Emprendimiento", fr: "Entrepreneuriat" },
+    icon: "💡",
+    title: { ar: "كيف تبدأ مشروعك الجانبي باستخدام الذكاء الاصطناعي", en: "How to Start Your Side Project Using AI", es: "Cómo iniciar tu proyecto secundario usando IA", fr: "Comment démarrer votre projet parallèle en utilisant l'IA" },
+    date: { ar: "28 فبراير 2026", en: "February 28, 2026", es: "28 de febrero de 2026", fr: "28 février 2026" },
+    readTime: { ar: "7 دقائق", en: "7 min read", es: "7 min de lectura", fr: "7 min de lecture" },
+    content: {
+      ar: `<p>الذكاء الاصطناعي يفتح آفاقاً جديدة للعمل الحر والمشاريع الجانبية. في هذا المقال، سنستعرض أفكاراً عملية لتحويل مهاراتك في الذكاء الاصطناعي إلى مصدر دخل إضافي.</p>
+      <h2>أفكار مشاريع جانبية باستخدام الذكاء الاصطناعي</h2>
+      <p><strong>1. خدمات كتابة المحتوى باستخدام AI:</strong> استخدم ChatGPT و Jasper لكتابة مقالات، منشورات، وإعلانات للعملاء.</p>
+      <p><strong>2. تصميم الشعارات والهويات البصرية:</strong> باستخدام Midjourney، يمكنك تقديم خدمات تصميم شعارات احترافية.</p>
+      <p><strong>3. إنشاء قوالب Notion مدعومة بالذكاء الاصطناعي:</strong> صمم وبع قوالب Notion مع أتمتة ذكية.</p>
+      <p><strong>4. دورات تدريبية في هندسة الأوامر:</strong> علم الآخرين كيفية كتابة أوامر فعالة.</p>
+      <h2>كيف تبدأ؟</h2>
+      <p>ابدأ بتعلم الأساسيات، ثم أنشئ محفظة أعمال (Portfolio) تعرض قدراتك. استخدم منصات مثل Fiverr و Upwork لتسويق خدماتك.</p>
+      <blockquote>الذكاء الاصطناعي ليس بديلاً عن الإبداع البشري، بل أداة تعززه. استخدمه لتقديم قيمة حقيقية لعملائك.</blockquote>`,
+      en: `<p>AI is opening new horizons for freelancing and side projects. In this article, we'll explore practical ideas to turn your AI skills into an additional income source.</p>
+      <h2>Side Project Ideas Using AI</h2>
+      <p><strong>1. AI Content Writing Services:</strong> Use ChatGPT and Jasper to write articles, posts, and ads for clients.</p>
+      <p><strong>2. Logo and Visual Identity Design:</strong> Using Midjourney, you can offer professional logo design services.</p>
+      <p><strong>3. Create AI-Powered Notion Templates:</strong> Design and sell Notion templates with smart automation.</p>
+      <p><strong>4. Prompt Engineering Courses:</strong> Teach others how to write effective prompts.</p>
+      <h2>How to Start?</h2>
+      <p>Start by learning the basics, then build a portfolio showcasing your skills. Use platforms like Fiverr and Upwork to market your services.</p>
+      <blockquote>AI is not a replacement for human creativity, but a tool that enhances it. Use it to deliver real value to your clients.</blockquote>`
+    }
+  },
+  {
+    id: 5,
+    category: { ar: "تسويق", en: "Marketing", es: "Marketing", fr: "Marketing" },
+    icon: "📈",
+    title: { ar: "10 طرق لاستخدام الذكاء الاصطناعي في التسويق الرقمي", en: "10 Ways to Use AI in Digital Marketing", es: "10 formas de usar la IA en marketing digital", fr: "10 façons d'utiliser l'IA dans le marketing numérique" },
+    date: { ar: "20 فبراير 2026", en: "February 20, 2026", es: "20 de febrero de 2026", fr: "20 février 2026" },
+    readTime: { ar: "6 دقائق", en: "6 min read", es: "6 min de lectura", fr: "6 min de lecture" },
+    content: {
+      ar: `<p>الذكاء الاصطناعي يغير قواعد اللعبة في التسويق الرقمي. إليك 10 طرق عملية لاستخدامه في حملاتك التسويقية:</p>
+      <h2>1. تحليل سلوك العملاء</h2>
+      <p>استخدم أدوات AI لتحليل بيانات العملاء وفهم سلوكهم وتوقع احتياجاتهم المستقبلية.</p>
+      <h2>2. تخصيص المحتوى (Personalization)</h2>
+      <p>قدم محتوى مخصصاً لكل عميل بناءً على اهتماماته وسلوكه السابق.</p>
+      <h2>3. كتابة الإعلانات</h2>
+      <p>استخدم ChatGPT و Jasper لكتابة نصوص إعلانية مقنعة ومؤثرة.</p>
+      <h2>4. تحسين محركات البحث (SEO)</h2>
+      <p>أدوات AI تساعد في تحليل الكلمات المفتاحية وتحسين المحتوى لمحركات البحث.</p>
+      <h2>5. إنشاء محتوى مرئي</h2>
+      <p>استخدم Midjourney و DALL-E لإنشاء صور ورسوم بيانية جذابة.</p>
+      <blockquote>الذكاء الاصطناعي يمكن أن يضاعف فعالية حملاتك التسويقية إذا استخدمته بشكل صحيح.</blockquote>`,
+      en: `<p>AI is changing the game in digital marketing. Here are 10 practical ways to use it in your marketing campaigns:</p>
+      <h2>1. Customer Behavior Analysis</h2>
+      <p>Use AI tools to analyze customer data and understand their behavior and future needs.</p>
+      <h2>2. Content Personalization</h2>
+      <p>Deliver personalized content to each customer based on their interests and past behavior.</p>
+      <h2>3. Ad Copywriting</h2>
+      <p>Use ChatGPT and Jasper to write compelling and effective ad copy.</p>
+      <h2>4. SEO Optimization</h2>
+      <p>AI tools help analyze keywords and optimize content for search engines.</p>
+      <h2>5. Visual Content Creation</h2>
+      <p>Use Midjourney and DALL-E to create engaging images and graphics.</p>
+      <blockquote>AI can multiply the effectiveness of your marketing campaigns if used correctly.</blockquote>`
+    }
+  },
+  {
+    id: 6,
+    category: { ar: "برمجة", en: "Coding", es: "Programación", fr: "Programmation" },
+    icon: "💻",
+    title: { ar: "أفضل 50 أمر برمجي باستخدام الذكاء الاصطناعي", en: "Best 50 Coding Prompts Using AI", es: "Los 50 mejores prompts de programación con IA", fr: "Les 50 meilleurs prompts de programmation avec l'IA" },
+    date: { ar: "15 فبراير 2026", en: "February 15, 2026", es: "15 de febrero de 2026", fr: "15 février 2026" },
+    readTime: { ar: "8 دقائق", en: "8 min read", es: "8 min de lectura", fr: "8 min de lecture" },
+    content: {
+      ar: `<p>في هذا المقال، نقدم مجموعة من الأوامر البرمجية التي تساعدك في توليد وتصحيح الأكواد باستخدام الذكاء الاصطناعي.</p>
+      <h2>أوامر لتوليد الأكواد</h2>
+      <p><strong>1. توليد دالة بلغة Python:</strong><br>"Write a Python function that takes a list of numbers and returns the average, median, and mode."</p>
+      <p><strong>2. توليد كود React Component:</strong><br>"Create a React component for a login form with email and password fields, including validation and error handling."</p>
+      <h2>أوامر لتصحيح الأخطاء</h2>
+      <p><strong>3. تصحيح كود JavaScript:</strong><br>"Debug the following JavaScript code: [paste code]. Identify the bug and provide a fixed version with explanation."</p>
+      <h2>أوامر لتحسين الأداء</h2>
+      <p><strong>4. تحسين استعلام SQL:</strong><br>"Optimize this SQL query for better performance: [paste query]"</p>
+      <blockquote>استخدم هذه الأوامر كنقطة بداية وعدلها حسب احتياجاتك الخاصة.</blockquote>`,
+      en: `<p>In this article, we present a set of coding prompts that help you generate and debug code using AI.</p>
+      <h2>Code Generation Prompts</h2>
+      <p><strong>1. Generate Python Function:</strong><br>"Write a Python function that takes a list of numbers and returns the average, median, and mode."</p>
+      <p><strong>2. Generate React Component:</strong><br>"Create a React component for a login form with email and password fields, including validation and error handling."</p>
+      <h2>Debugging Prompts</h2>
+      <p><strong>3. Debug JavaScript Code:</strong><br>"Debug the following JavaScript code: [paste code]. Identify the bug and provide a fixed version with explanation."</p>
+      <h2>Performance Optimization Prompts</h2>
+      <p><strong>4. Optimize SQL Query:</strong><br>"Optimize this SQL query for better performance: [paste query]"</p>
+      <blockquote>Use these prompts as a starting point and modify them according to your specific needs.</blockquote>`
+    }
+  },
+  {
+    id: 7,
+    category: { ar: "مقارنة", en: "Comparison", es: "Comparación", fr: "Comparaison" },
+    icon: "⚖️",
+    title: { ar: "ChatGPT vs Midjourney: أيهما أفضل لمشروعك؟", en: "ChatGPT vs Midjourney: Which is Better for Your Project?", es: "ChatGPT vs Midjourney: ¿Cuál es mejor para tu proyecto?", fr: "ChatGPT vs Midjourney: Lequel est le meilleur pour votre projet?" },
+    date: { ar: "10 فبراير 2026", en: "February 10, 2026", es: "10 de febrero de 2026", fr: "10 février 2026" },
+    readTime: { ar: "9 دقائق", en: "9 min read", es: "9 min de lectura", fr: "9 min de lecture" },
+    content: {
+      ar: `<p>ChatGPT و Midjourney هما من أقوى أدوات الذكاء الاصطناعي، لكن لكل منهما استخدامات مختلفة. في هذا المقال، نقارن بينهما لمساعدتك في اختيار الأداة المناسبة لمشروعك.</p>
+      <h2>ChatGPT - معالج النصوص</h2>
+      <p><strong>الاستخدامات:</strong> كتابة المحتوى، البرمجة، التحليل، الترجمة، الدعم الفني.</p>
+      <p><strong>المميزات:</strong> مجاني جزئياً، دعم متعدد اللغات، قدرة على فهم السياق.</p>
+      <h2>Midjourney - معالج الصور</h2>
+      <p><strong>الاستخدامات:</strong> تصميم الشعارات، إنشاء الصور الفنية، الرسوم البيانية.</p>
+      <p><strong>المميزات:</strong> جودة عالية، إبداع فني، تحكم دقيق بالأسلوب.</p>
+      <h2>متى تستخدم كل منهما؟</h2>
+      <p>استخدم ChatGPT للمهام النصية والتحليلية. استخدم Midjourney للمشاريع البصرية والتصميمية. يمكنك أيضاً دمجهما معاً للحصول على نتائج أفضل.</p>
+      <blockquote>اختر الأداة المناسبة بناءً على طبيعة مشروعك، ولا تتردد في استخدام كليهما معاً.</blockquote>`,
+      en: `<p>ChatGPT and Midjourney are among the most powerful AI tools, but each has different uses. In this article, we compare them to help you choose the right tool for your project.</p>
+      <h2>ChatGPT - Text Processor</h2>
+      <p><strong>Uses:</strong> Content writing, coding, analysis, translation, customer support.</p>
+      <p><strong>Features:</strong> Partially free, multilingual support, context understanding.</p>
+      <h2>Midjourney - Image Processor</h2>
+      <p><strong>Uses:</strong> Logo design, artistic images, graphics creation.</p>
+      <p><strong>Features:</strong> High quality, artistic creativity, precise style control.</p>
+      <h2>When to Use Each?</h2>
+      <p>Use ChatGPT for text-based and analytical tasks. Use Midjourney for visual projects and design. You can also combine both for better results.</p>
+      <blockquote>Choose the right tool based on your project's nature, and don't hesitate to use both together.</blockquote>`
+    }
+  },
+  {
+    id: 8,
+    category: { ar: "إنتاجية", en: "Productivity", es: "Productividad", fr: "Productivité" },
+    icon: "📊",
+    title: { ar: "أفضل 20 قالب Notion مع دعم الذكاء الاصطناعي", en: "Best 20 Notion Templates with AI Support", es: "Los 20 mejores plantillas de Notion con soporte de IA", fr: "Les 20 meilleurs templates Notion avec support IA" },
+    date: { ar: "5 فبراير 2026", en: "February 5, 2026", es: "5 de febrero de 2026", fr: "5 février 2026" },
+    readTime: { ar: "6 دقائق", en: "6 min read", es: "6 min de lectura", fr: "6 min de lecture" },
+    content: {
+      ar: `<p>Notion مع Notion AI يصبح أداة إنتاجية لا مثيل لها. في هذا المقال، نستعرض أفضل 20 قالباً يمكنك استخدامها لتعزيز إنتاجيتك.</p>
+      <h2>قوالب إدارة المشاريع</h2>
+      <p>• قالب إدارة المشاريع مع تتبع المهام<br>• قالب اجتماعات الفريق مع ملاحظات AI<br>• قالب تخطيط الاستراتيجية</p>
+      <h2>قوالب الإنتاجية الشخصية</h2>
+      <p>• قالب إدارة الوقت والأهداف<br>• قالب اليوميات الذكية<br>• قالب التخطيط الأسبوعي</p>
+      <h2>قوالب الأعمال</h2>
+      <p>• قالب إدارة العملاء (CRM)<br>• قالب تخطيط المحتوى<br>• قالب إدارة الميزانيات</p>
+      <blockquote>استخدم Notion AI لتلخيص الملاحظات وإنشاء المهام وتوليد المحتوى مباشرة داخل القوالب.</blockquote>`,
+      en: `<p>Notion with Notion AI becomes an unmatched productivity tool. In this article, we review the best 20 templates you can use to boost your productivity.</p>
+      <h2>Project Management Templates</h2>
+      <p>• Project management with task tracking<br>• Team meetings with AI notes<br>• Strategy planning template</p>
+      <h2>Personal Productivity Templates</h2>
+      <p>• Time and goals management<br>• Smart journaling template<br>• Weekly planning template</p>
+      <h2>Business Templates</h2>
+      <p>• CRM template<br>• Content planning template<br>• Budget management template</p>
+      <blockquote>Use Notion AI to summarize notes, create tasks, and generate content directly within the templates.</blockquote>`
+    }
+  },
+  {
+    id: 9,
+    category: { ar: "تصميم", en: "Design", es: "Diseño", fr: "Design" },
+    icon: "🖼️",
+    title: { ar: "نصائح احترافية لتوليد الصور بالذكاء الاصطناعي", en: "Professional Tips for AI Image Generation", es: "Consejos profesionales para la generación de imágenes con IA", fr: "Conseils professionnels pour la génération d'images IA" },
+    date: { ar: "28 يناير 2026", en: "January 28, 2026", es: "28 de enero de 2026", fr: "28 janvier 2026" },
+    readTime: { ar: "7 دقائق", en: "7 min read", es: "7 min de lectura", fr: "7 min de lecture" },
+    content: {
+      ar: `<p>توليد الصور بالذكاء الاصطناعي أصبح فناً قائماً بذاته. إليك نصائح احترافية للحصول على أفضل النتائج:</p>
+      <h2>1. كن محدداً في وصفك</h2>
+      <p>بدلاً من "قطة"، قل "قطة صغيرة سوداء تجلس على كرسي خشبي، ضوء طبيعي، خلفية ضبابية".</p>
+      <h2>2. استخدم كلمات فنية</h2>
+      <p>أضف كلمات مثل: "photorealistic, 4k, detailed, cinematic lighting, professional photography" للحصول على نتائج واقعية.</p>
+      <h2>3. جرب أنماطاً مختلفة</h2>
+      <p>استخدم كلمات مثل: "oil painting, watercolor, sketch, vector art, 3d render" لتغيير الأسلوب.</p>
+      <h2>4. استخدم النسب المناسبة</h2>
+      <p>أضف --ar 16:9 للصور العريضة، --ar 1:1 للمربع، --ar 9:16 للمحمول.</p>
+      <blockquote>التجربة المستمرة هي مفتاح النجاح. جرب أوامر مختلفة وسجل ما يعمل بشكل أفضل.</blockquote>`,
+      en: `<p>AI image generation has become an art form in itself. Here are professional tips for getting the best results:</p>
+      <h2>1. Be Specific in Your Description</h2>
+      <p>Instead of "cat," say "small black cat sitting on a wooden chair, natural lighting, blurry background."</p>
+      <h2>2. Use Artistic Keywords</h2>
+      <p>Add words like: "photorealistic, 4k, detailed, cinematic lighting, professional photography" for realistic results.</p>
+      <h2>3. Try Different Styles</h2>
+      <p>Use words like: "oil painting, watercolor, sketch, vector art, 3d render" to change the style.</p>
+      <h2>4. Use Appropriate Ratios</h2>
+      <p>Add --ar 16:9 for widescreen, --ar 1:1 for square, --ar 9:16 for mobile.</p>
+      <blockquote>Continuous experimentation is the key to success. Try different prompts and record what works best.</blockquote>`
+    }
+  },
+  {
+    id: 10,
+    category: { ar: "أعمال", en: "Business", es: "Negocios", fr: "Affaires" },
+    icon: "🏢",
+    title: { ar: "كيف تستخدم الذكاء الاصطناعي في أتمتة أعمالك", en: "How to Use AI for Business Automation", es: "Cómo usar la IA para la automatización empresarial", fr: "Comment utiliser l'IA pour l'automatisation des entreprises" },
+    date: { ar: "20 يناير 2026", en: "January 20, 2026", es: "20 de enero de 2026", fr: "20 janvier 2026" },
+    readTime: { ar: "8 دقائق", en: "8 min read", es: "8 min de lectura", fr: "8 min de lecture" },
+    content: {
+      ar: `<p>أتمتة الأعمال باستخدام الذكاء الاصطناعي يمكن أن توفر الوقت والمال بشكل كبير. إليك كيفية البدء:</p>
+      <h2>1. أتمتة خدمة العملاء</h2>
+      <p>استخدم ChatGPT لإنشاء ردود تلقائية على الأسئلة الشائعة، أو استخدم روبوتات محادثة متقدمة.</p>
+      <h2>2. أتمتة المحتوى والتسويق</h2>
+      <p>استخدم أدوات AI لجدولة المنشورات، كتابة الإعلانات، وتحليل أداء الحملات.</p>
+      <h2>3. أتمتة المهام الإدارية</h2>
+      <p>أتمتة إدخال البيانات، تنظيم الملفات، وإدارة البريد الإلكتروني باستخدام أدوات الذكاء الاصطناعي.</p>
+      <h2>4. أتمتة التحليلات والتقارير</h2>
+      <p>استخدم AI لتحليل البيانات وإنشاء تقارير تلقائية مع رؤى قابلة للتنفيذ.</p>
+      <blockquote>ابدأ بأتمتة المهام المتكررة التي تستغرق وقتاً طويلاً، ثم وسع نطاق الأتمتة تدريجياً.</blockquote>`,
+      en: `<p>Business automation using AI can save significant time and money. Here's how to get started:</p>
+      <h2>1. Automate Customer Service</h2>
+      <p>Use ChatGPT to create automated responses to FAQs, or use advanced chatbots.</p>
+      <h2>2. Automate Content and Marketing</h2>
+      <p>Use AI tools to schedule posts, write ads, and analyze campaign performance.</p>
+      <h2>3. Automate Administrative Tasks</h2>
+      <p>Automate data entry, file organization, and email management using AI tools.</p>
+      <h2>4. Automate Analytics and Reporting</h2>
+      <p>Use AI to analyze data and generate automated reports with actionable insights.</p>
+      <blockquote>Start by automating repetitive time-consuming tasks, then gradually expand automation.</blockquote>`
+    }
+  },
+  {
+    id: 11,
+    category: { ar: "أدوات", en: "Tools", es: "Herramientas", fr: "Outils" },
+    icon: "💎",
+    title: { ar: "دليل اشتراك Midjourney: أي خطة تناسبك؟", en: "Midjourney Subscription Guide: Which Plan Suits You?", es: "Guía de suscripción a Midjourney: ¿Qué plan te conviene?", fr: "Guide d'abonnement Midjourney: Quel plan vous convient?" },
+    date: { ar: "15 يناير 2026", en: "January 15, 2026", es: "15 de enero de 2026", fr: "15 janvier 2026" },
+    readTime: { ar: "5 دقائق", en: "5 min read", es: "5 min de lectura", fr: "5 min de lecture" },
+    content: {
+      ar: `<p>Midjourney يقدم عدة خطط اشتراك تناسب مختلف المستخدمين. في هذا الدليل، نشرح كل خطة لمساعدتك في اختيار الأنسب لك.</p>
+      <h2>الخطة الأساسية (Basic Plan)</h2>
+      <p>• السعر: $10/شهر<br>• عدد الصور: ~200 صورة/شهر<br>• مناسب للمبتدئين والاستخدام الخفيف</p>
+      <h2>الخطة القياسية (Standard Plan)</h2>
+      <p>• السعر: $30/شهر<br>• عدد الصور: ~900 صورة/شهر<br>• مناسب للمصممين المحترفين</p>
+      <h2>الخطة الاحترافية (Pro Plan)</h2>
+      <p>• السعر: $60/شهر<br>• عدد الصور: ~1800 صورة/شهر<br>• مناسب للاستخدام التجاري الكثيف</p>
+      <h2>الخطة المؤسسية (Mega Plan)</h2>
+      <p>• السعر: $120/شهر<br>• عدد الصور: غير محدود تقريباً<br>• مناسب للشركات والاستوديوهات</p>
+      <blockquote>ابدأ بالخطة الأساسية وجرب، ثم قم بالترقية حسب احتياجاتك.</blockquote>`,
+      en: `<p>Midjourney offers several subscription plans for different users. In this guide, we explain each plan to help you choose the right one.</p>
+      <h2>Basic Plan</h2>
+      <p>• Price: $10/month<br>• Images: ~200 images/month<br>• Suitable for beginners and light use</p>
+      <h2>Standard Plan</h2>
+      <p>• Price: $30/month<br>• Images: ~900 images/month<br>• Suitable for professional designers</p>
+      <h2>Pro Plan</h2>
+      <p>• Price: $60/month<br>• Images: ~1800 images/month<br>• Suitable for heavy commercial use</p>
+      <h2>Mega Plan</h2>
+      <p>• Price: $120/month<br>• Images: Almost unlimited<br>• Suitable for companies and studios</p>
+      <blockquote>Start with the Basic Plan and try it, then upgrade based on your needs.</blockquote>`
+    }
+  },
+  {
+    id: 12,
+    category: { ar: "تعلم", en: "Learning", es: "Aprendizaje", fr: "Apprentissage" },
+    icon: "⚠️",
+    title: { ar: "10 أخطاء شائعة في هندسة الأوامر وكيف تتجنبها", en: "10 Common Prompt Engineering Mistakes and How to Avoid Them", es: "10 errores comunes en la ingeniería de prompts y cómo evitarlos", fr: "10 erreurs courantes en ingénierie des prompts et comment les éviter" },
+    date: { ar: "10 يناير 2026", en: "January 10, 2026", es: "10 de enero de 2026", fr: "10 janvier 2026" },
+    readTime: { ar: "6 دقائق", en: "6 min read", es: "6 min de lectura", fr: "6 min de lecture" },
+    content: {
+      ar: `<p>هندسة الأوامر مهارة تحتاج إلى ممارسة. إليك 10 أخطاء شائعة وكيفية تجنبها:</p>
+      <h2>1. الأوامر الغامضة</h2>
+      <p>الحل: كن محدداً وواضحاً في طلبك. اذكر التفاصيل المهمة.</p>
+      <h2>2. عدم توفير السياق</h2>
+      <p>الحل: أعطِ النموذج معلومات عن الخلفية والجمهور والهدف.</p>
+      <h2>3. الأوامر الطويلة جداً</h2>
+      <p>الحل: قسم الأمر إلى أجزاء أو استخدم سلسلة من الأوامر.</p>
+      <h2>4. تجاهل تنسيق الإجابة</h2>
+      <p>الحل: حدد بوضوح الشكل الذي تريد الإجابة به (قائمة، فقرات، جدول).</p>
+      <h2>5. عدم استخدام الأمثلة</h2>
+      <p>الحل: قدم أمثلة على النتائج التي تريدها لتوجيه النموذج.</p>
+      <blockquote>تذكر أن جودة المخرجات تعتمد بشكل كبير على جودة المدخلات.</blockquote>`,
+      en: `<p>Prompt Engineering is a skill that requires practice. Here are 10 common mistakes and how to avoid them:</p>
+      <h2>1. Vague Prompts</h2>
+      <p>Solution: Be specific and clear in your request. Mention important details.</p>
+      <h2>2. Lack of Context</h2>
+      <p>Solution: Give the model information about background, audience, and purpose.</p>
+      <h2>3. Overly Long Prompts</h2>
+      <p>Solution: Break the prompt into parts or use a chain of prompts.</p>
+      <h2>4. Ignoring Response Format</h2>
+      <p>Solution: Clearly specify the format you want (list, paragraphs, table).</p>
+      <h2>5. Not Using Examples</h2>
+      <p>Solution: Provide examples of the results you want to guide the model.</p>
+      <blockquote>Remember that output quality depends heavily on input quality.</blockquote>`
+    }
+  }
+];
+
+let currentLang = localStorage.getItem('mw_lang') || 'ar';
+let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+
+function updateLanguage() {
+  const t = translations[currentLang];
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const value = key.split('.').reduce((obj, k) => obj?.[k], t);
+    if (value) el.textContent = value;
+  });
+  
+  const flags = { ar: '🇸🇦', en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷' };
+  const labels = { ar: 'العربية', en: 'English', es: 'Español', fr: 'Français' };
+  document.getElementById('currentLangFlag').textContent = flags[currentLang];
+  document.getElementById('currentLangLabel').textContent = labels[currentLang];
+  
+  document.body.setAttribute('data-lang', currentLang);
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  
+  renderArticle();
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('mw_lang', lang);
+  updateLanguage();
+  toggleLangMenu();
+}
+
+function toggleLangMenu() {
+  document.getElementById('langSelector').classList.toggle('active');
+}
+
+function updateCartCount() {
+  const countEl = document.getElementById('cartCount');
+  if (countEl) countEl.textContent = cart.length;
+}
+
+function getPostIdFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('id');
+}
+
+async function renderArticle() {
+  const postId = getPostIdFromUrl();
+  let post;
+  
+  if (postId && postId.startsWith('ai-')) {
+    try {
+      const response = await fetch('./content-data.json');
+      if (response.ok) {
+        const data = await response.json();
+        const aiId = parseInt(postId.replace('ai-', ''));
+        const aiPost = data.blog.find(p => p.id === aiId);
+        if (aiPost) {
+          // Convert Markdown to HTML-like structure for display
+          const htmlContent = aiPost.content.split('\n').map(line => {
+            if (line.trim() === '') return '';
+            if (line.startsWith('###')) return `<h3>${line.replace('###', '').trim()}</h3>`;
+            if (line.startsWith('##')) return `<h2>${line.replace('##', '').trim()}</h2>`;
+            if (line.startsWith('#')) return `<h1>${line.replace('#', '').trim()}</h1>`;
+            return `<p>${line.trim()}</p>`;
+          }).join('');
+          
+          post = {
+            id: postId,
+            category: { ar: "أدوات", en: "Tools" },
+            icon: "🤖",
+            title: { ar: aiPost.title, en: aiPost.title },
+            date: { ar: aiPost.date, en: aiPost.date },
+            readTime: { ar: "5 دقائق", en: "5 min read" },
+            content: { ar: htmlContent, en: htmlContent }
+          };
+        }
+      }
+    } catch (e) { console.log('Error loading AI post', e); }
+  }
+  
+  if (!post) {
+    const numericId = parseInt(postId);
+    post = blogPosts.find(p => p.id === numericId) || blogPosts[0];
+  }
+  
+  if (!post) return;
+  
+  document.getElementById('articleCategory').textContent = post.category[currentLang];
+  document.getElementById('articleTitle').textContent = post.title[currentLang];
+  document.getElementById('articleDate').textContent = `📅 ${post.date[currentLang]}`;
+  document.getElementById('articleReadTime').textContent = `⏱️ ${post.readTime[currentLang]}`;
+  document.getElementById('articleIcon').textContent = post.icon;
+  document.getElementById('articleContent').innerHTML = post.content[currentLang];
+  
+  document.title = `${post.title[currentLang]} | MindWeave`;
+  
+  const related = blogPosts.filter(p => p.id !== postId).slice(0, 3);
+  const relatedGrid = document.getElementById('relatedGrid');
+  relatedGrid.innerHTML = related.map(p => `
+    <div class="related-card" onclick="window.location.href='article.html?id=${p.id}'">
+      <div class="related-card-icon">${p.icon}</div>
+      <h4>${p.title[currentLang]}</h4>
+      <p>📅 ${p.date[currentLang]}</p>
+    </div>
+  `).join('');
+}
+
+function shareArticle(platform) {
+  const url = encodeURIComponent(window.location.href);
+  const title = encodeURIComponent(document.getElementById('articleTitle').textContent);
+  
+  const shareUrls = {
+    twitter: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+    linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`
+  };
+  
+  window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href);
+  const msg = currentLang === 'ar' ? 'تم نسخ الرابط!' : currentLang === 'en' ? 'Link copied!' : currentLang === 'es' ? '¡Enlace copiado!' : 'Lien copié !';
+  alert(msg);
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  updateLanguage();
+  updateCartCount();
+  await renderArticle();
+  
+  document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => changeLanguage(opt.dataset.lang));
+  });
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.lang-selector')) {
+      document.getElementById('langSelector')?.classList.remove('active');
+    }
+  });
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+</script>
+</body>
+</html>
