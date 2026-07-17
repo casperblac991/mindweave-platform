@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المكتبة المجانية | MindWeave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #00D4FF; --bg: #050A0F; --bg-card: #0A1628;
+      --text: #E8F4FD; --text-muted: #7A9BB5; --border: rgba(0,212,255,0.2);
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; line-height: 1.6; }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
+    .logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; }
+    .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), #7C3AED); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .nav-links { display: flex; gap: 0.5rem; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; }
+    .nav-links a:hover, .nav-links a.active { color: var(--primary); background: rgba(0, 212, 255, 0.1); }
+    main { max-width: 1000px; margin: 0 auto; padding: 120px 2rem 4rem; text-align: center; }
+    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .resource-card { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; border-radius: 20px; text-align: right; }
+    .resource-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .btn-download { display: inline-block; margin-top: 1.5rem; background: var(--primary); color: var(--bg); padding: 0.6rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="store.html">المتجر</a></li>
+      <li><a href="library.html" class="active">المكتبة</a></li>
+      <li><a href="blog.html">المدونة</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <h1>المكتبة المجانية</h1>
+      <p>موارد وأدوات مجانية لمساعدتك في رحلتك مع الذكاء الاصطناعي</p>
+    </div>
+
+    <div class="resource-grid">
+      <div class="resource-card">
+        <div class="resource-icon">📚</div>
+        <h3>دليل المبتدئين في ChatGPT</h3>
+        <p>كل ما تحتاجه للبدء في استخدام ChatGPT بفعالية.</p>
+        <a href="#" class="btn-download">تحميل مجاني</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">🎨</div>
+        <h3>قوالب Midjourney مذهلة</h3>
+        <p>مجموعة من الأوامر الجاهزة لتوليد صور احترافية.</p>
+        <a href="#" class="btn-download">تحميل مجاني</a>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">📊</div>
+        <h3>قالب Notion لتنظيم العمل</h3>
+        <p>نظم مشاريعك وأفكارك باستخدام هذا القالب المجاني.</p>
+        <a href="#" class="btn-download">تحميل مجاني</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الأسئلة الشائعة | MindWeave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #00D4FF; --bg: #050A0F; --bg-card: #0A1628;
+      --text: #E8F4FD; --text-muted: #7A9BB5; --border: rgba(0,212,255,0.2);
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; line-height: 1.6; }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
+    .logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; }
+    main { max-width: 800px; margin: 0 auto; padding: 120px 2rem 4rem; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem; }
+    .faq-question { font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; cursor: pointer; }
+    .faq-answer { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">🧠 Mind<span>Weave</span></a>
+  </nav>
+
+  <main>
+    <h1 style="text-align: center; margin-bottom: 3rem;">الأسئلة الشائعة</h1>
+    
+    <div class="faq-item">
+      <div class="faq-question">ما هي منصة MindWeave؟</div>
+      <div class="faq-answer">هي منصة عربية تقدم أوامر ذكاء اصطناعي (Prompts) جاهزة، قوالب رقمية، ودروس تعليمية لمساعدتك في استخدام أدوات الـ AI باحترافية.</div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">كيف أحصل على المنتجات بعد الشراء؟</div>
+      <div class="faq-answer">بعد إتمام عملية الدفع، ستصلك روابط التحميل فوراً على بريدك الإلكتروني، كما يمكنك الوصول إليها من حسابك في المنصة.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">هل يمكنني بيع منتجاتي الخاصة على المنصة؟</div>
+      <div class="faq-answer">نعم، من خلال برنامج المبدعين يمكنك رفع أوامرك وقوالبك والحصول على نسبة 70% من كل عملية بيع.</div>
+    </div>
+  </main>
+</body>
+</html>

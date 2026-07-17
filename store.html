@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المتجر | MindWeave</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    window.ENV = {
+      SUPABASE_URL: "https://mtirzcuntupkuavmjtcv.supabase.co",
+      SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aXJ6Y3VudHVwa3Vhdm1qdGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDEwNjEsImV4cCI6MjA5Mjc3NzA2MX0.npI70eZJU5PB-Si0cST_iYJnRFzomn8tBx1IeVU7wHU"
+    };
+  </script>
+  <script src="supabase-auth.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #00D4FF; --secondary: #FF6B35; --accent: #7C3AED;
+      --bg: #050A0F; --bg-card: #0A1628; --bg-dark: #0F1F3D;
+      --text: #E8F4FD; --text-muted: #7A9BB5; --border: rgba(0,212,255,0.2);
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; line-height: 1.6; }
+    body[data-lang="en"] { font-family: 'Inter', sans-serif; direction: ltr; text-align: left; }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
+    .logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; }
+    .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .nav-links { display: flex; gap: 0.5rem; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; }
+    .nav-links a:hover, .nav-links a.active { color: var(--primary); background: rgba(0, 212, 255, 0.1); }
+    .nav-buttons { display: flex; gap: 1rem; align-items: center; }
+    .lang-btn, .cart-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; text-decoration: none; }
+    main { max-width: 1200px; margin: 0 auto; padding: 100px 2rem 4rem; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .store-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 0.5rem 1.5rem; border-radius: 50px; cursor: pointer; transition: 0.3s; }
+    .filter-btn.active { background: var(--primary); color: var(--bg); border-color: var(--primary); }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+    .product-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: 0.3s; }
+    .product-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+    .product-thumb { height: 180px; background: var(--bg-dark); display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; }
+    .product-body { padding: 1.5rem; }
+    .product-category { font-size: 0.8rem; color: var(--primary); margin-bottom: 0.5rem; }
+    .product-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
+    .product-footer { display: flex; justify-content: space-between; align-items: center; }
+    .product-price { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
+    .btn-buy { background: var(--primary); color: var(--bg); padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; font-weight: 700; }
+    footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    .footer-links { list-style: none; margin-top: 1rem; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="store.html" class="active">المتجر</a></li>
+      <li><a href="library.html">المكتبة</a></li>
+      <li><a href="blog.html">المدونة</a></li>
+    </ul>
+    <div class="nav-buttons">
+      <a href="cart.html" class="cart-btn">🛒 <span id="cartCount">0</span></a>
+      <a href="login.html" class="lang-btn">🔐 دخول</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="section-header">
+      <h1 id="pageTitle">متجر المنتجات الرقمية</h1>
+      <p id="pageSubtitle">أفضل أدوات وأوامر الذكاء الاصطناعي لتسريع عملك</p>
+    </div>
+
+    <div class="store-filters">
+      <button class="filter-btn active" data-filter="all">الكل</button>
+      <button class="filter-btn" data-filter="prompts">أوامر AI</button>
+      <button class="filter-btn" data-filter="design">تصميم</button>
+      <button class="filter-btn" data-filter="notion">Notion</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+      <!-- Loading state -->
+      <p>جاري تحميل المنتجات...</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div><h3>MindWeave</h3><p>منصة عربية متكاملة للذكاء الاصطناعي</p></div>
+      <div><h4>المنصة</h4><ul class="footer-links"><li><a href="store.html">المتجر</a></li><li><a href="library.html">المكتبة</a></li></ul></div>
+      <div><h4>الدعم</h4><ul class="footer-links"><li><a href="contact.html">تواصل معنا</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li></ul></div>
+      <div><h4>قانوني</h4><ul class="footer-links"><li><a href="privacy.html">الخصوصية</a></li><li><a href="terms.html">الشروط</a></li></ul></div>
+    </div>
+  </footer>
+
+  <script>
+    async function loadProducts() {
+      try {
+        const response = await fetch('content-data.json');
+        const data = await response.json();
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = data.products.map(p => `
+          <div class="product-card">
+            <div class="product-thumb">${p.emoji || '✨'}</div>
+            <div class="product-body">
+              <div class="product-category">${p.category}</div>
+              <div class="product-name">${p.name}</div>
+              <div class="product-footer">
+                <div class="product-price">${p.price}</div>
+                <a href="#" class="btn-buy">شراء الآن</a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    loadProducts();
+  </script>
+</body>
+</html>

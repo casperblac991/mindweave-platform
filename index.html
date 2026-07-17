@@ -1267,9 +1267,10 @@ let currentMode = 'generate';
 // ========== Load Products from JSON ==========
 async function loadProducts() {
   try {
-    const response = await fetch(\'content-data.json\');   const data = await response.json();
+    const response = await fetch('content-data.json');
+    const data = await response.json();
     products = data.products || [];
-    let blogPosts = data.blog || []; // Initialize blogPosts from content-data.json
+    window.blogPosts = data.blog || []; // Make blogPosts globally accessible
     
     // تحديث الإحصائيات الحقيقية
     if (data.stats) {
@@ -1382,17 +1383,17 @@ function renderProducts() {
 }
 
 function renderBlogPosts() {
-  const blogGrid = document.getElementById('blogGrid');
-  if (!blogGrid) return;
+  const blogGrid = document.getElementById('blogGrid') || document.getElementById('blogList');
+  if (!blogGrid || !window.blogPosts) return;
 
-  blogGrid.innerHTML = blogPosts.slice(0, 3).map(post => `
+  blogGrid.innerHTML = window.blogPosts.slice(0, 3).map(post => `
     <div class="blog-card">
-      <img src="${post.image}" alt="${post.title[currentLang]}" class="blog-thumb">
+      <div class="blog-image">📰</div>
       <div class="blog-body">
-        <div class="blog-category">${post.category[currentLang]}</div>
-        <h3 class="blog-title">${post.title[currentLang]}</h3>
-        <p class="blog-desc">${post.description[currentLang]}</p>
-        <a href="${post.link}" class="blog-link">${currentLang === 'ar' ? 'اقرأ المزيد →' : 'Read More →'}</a>
+        <div class="blog-category">${post.category}</div>
+        <h3 class="blog-title">${post.title}</h3>
+        <p class="blog-desc">${post.excerpt || post.description || ''}</p>
+        <a href="article.html?id=${post.id}" class="blog-link">${currentLang === 'ar' ? 'اقرأ المزيد →' : 'Read More →'}</a>
       </div>
     </div>
   `).join('');
@@ -1612,11 +1613,11 @@ async function loadDynamicContent() {
         const data = await response.json();
         
         // Update statistics - Match exact IDs from the HTML
-        const prodStat = document.getElementById('statProducts') || document.querySelector('.stat-number');
-        if (prodStat) prodStat.textContent = data.stats.products;
-        
-        const salesStat = document.getElementById('statSales') || document.querySelectorAll('.stat-number')[1];
-        if (salesStat) salesStat.textContent = data.stats.sales.toLocaleString();
+      const prodStat = document.getElementById('statProducts') || document.querySelector('.stat-number');
+      if (prodStat) prodStat.textContent = data.stats.products || data.stats.totalProducts;
+      
+      const salesStat = document.getElementById('statSales') || document.querySelectorAll('.stat-number')[1];
+      if (salesStat) salesStat.textContent = (data.stats.sales || data.stats.totalSales || 0).toLocaleString();
         
         // Update products grid
         const productsGrid = document.getElementById('productsGrid');
