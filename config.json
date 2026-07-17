@@ -1,0 +1,102 @@
+{
+  "platform": {
+    "name": "MindWeave",
+    "tagline": "منصة الذكاء الاصطناعي العربية الأولى",
+    "description": "A comprehensive Arabic platform for AI prompts, digital templates, and e-books",
+    "version": "2.0.0",
+    "launchDate": "2026-06-01",
+    "timezone": "UTC+3"
+  },
+  "supabase": {
+    "url": "https://mtirzcuntupkuavmjtcv.supabase.co",
+    "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aXJ6Y3VudHVwa3Vhdm1qdGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDEwNjEsImV4cCI6MjA5Mjc3NzA2MX0.npI70eZJU5PB-Si0cST_iYJnRFzomn8tBx1IeVU7wHU"
+  },
+  "languages": [
+    {
+      "code": "ar",
+      "name": "العربية",
+      "flag": "🇸🇦",
+      "direction": "rtl",
+      "font": "Cairo"
+    },
+    {
+      "code": "en",
+      "name": "English",
+      "flag": "🇬🇧",
+      "direction": "ltr",
+      "font": "Inter"
+    },
+    {
+      "code": "es",
+      "name": "Español",
+      "flag": "🇪🇸",
+      "direction": "ltr",
+      "font": "Inter"
+    },
+    {
+      "code": "fr",
+      "name": "Français",
+      "flag": "🇫🇷",
+      "direction": "ltr",
+      "font": "Inter"
+    }
+  ],
+  "colors": {
+    "primary": "#00D4FF",
+    "secondary": "#FF6B35",
+    "accent": "#7C3AED",
+    "background": "#050A0F",
+    "cardBackground": "#0A1628",
+    "darkBackground": "#0F1F3D",
+    "text": "#E8F4FD",
+    "textMuted": "#7A9BB5",
+    "border": "rgba(0,212,255,0.2)",
+    "success": "#00FF88",
+    "gold": "#FFD700"
+  },
+  "pages": {
+    "home": "index.html",
+    "store": "store.html",
+    "library": "library.html",
+    "promptLab": "prompt-lab.html",
+    "creators": "creators.html",
+    "blog": "blog.html",
+    "article": "article.html",
+    "login": "login.html",
+    "signup": "signup.html",
+    "cart": "cart.html",
+    "about": "about.html",
+    "contact": "contact.html",
+    "faq": "faq.html",
+    "privacy": "privacy.html",
+    "terms": "terms.html"
+  },
+  "features": {
+    "authentication": true,
+    "cart": true,
+    "newsletter": true,
+    "promptLab": true,
+    "creatorProgram": true,
+    "blog": true,
+    "multiLanguage": true,
+    "darkMode": true
+  },
+  "stats": {
+    "products": 20,
+    "sales": 2097,
+    "rating": 4.85,
+    "creators": 50,
+    "support": "24/7"
+  },
+  "social": {
+    "twitter": "https://twitter.com/mindweave",
+    "instagram": "https://instagram.com/mindweave",
+    "facebook": "https://facebook.com/mindweave",
+    "linkedin": "https://linkedin.com/company/mindweave"
+  },
+  "contact": {
+    "email": "info@mindweave.store",
+    "phone": "+966-XX-XXXX-XXXX",
+    "address": "Saudi Arabia"
+  }
+}
