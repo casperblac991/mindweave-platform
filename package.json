@@ -1,0 +1,21 @@
+{
+  "name": "mindweave-platform",
+  "version": "2.0.0",
+  "description": "منصة الذكاء الاصطناعي العربية الأولى - MindWeave Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "ai",
+    "prompts",
+    "arabic",
+    "platform"
+  ],
+  "author": "MindWeave Team",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
