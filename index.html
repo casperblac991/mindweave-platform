@@ -1533,14 +1533,34 @@ function sellPrompt() {
   window.location.href = 'creators.html';
 }
 
-function subscribeEmail() {
+async function subscribeEmail() {
   const email = document.getElementById('emailInput').value;
+  const btn = document.getElementById('subscribeBtn');
+  
   if (!email || !email.includes('@')) {
     showNotification('⚠️', currentLang === 'ar' ? 'يرجى إدخال بريد إلكتروني صحيح' : currentLang === 'en' ? 'Please enter a valid email' : currentLang === 'es' ? 'Por favor ingrese un email válido' : 'Veuillez entrer un email valide');
     return;
   }
-  showNotification('🎁', currentLang === 'ar' ? 'تم إرسال الأوامر المجانية لبريدك!' : currentLang === 'en' ? 'Free prompts sent to your email!' : currentLang === 'es' ? '¡Prompts enviados a tu email!' : 'Prompts envoyés à votre email !');
-  document.getElementById('emailInput').value = '';
+  
+  btn.disabled = true;
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner"></span>';
+  
+  try {
+    const subscribers = JSON.parse(localStorage.getItem('mw_subscribers') || '[]');
+    if (!subscribers.find(s => s.email === email)) {
+      subscribers.push({ email, date: new Date().toISOString() });
+      localStorage.setItem('mw_subscribers', JSON.stringify(subscribers));
+    }
+    
+    showNotification('🎁', currentLang === 'ar' ? 'تم إرسال الأوامر المجانية لبريدك!' : currentLang === 'en' ? 'Free prompts sent to your email!' : currentLang === 'es' ? '¡Prompts enviados a tu email!' : 'Prompts envoyés à votre email !');
+    document.getElementById('emailInput').value = '';
+  } catch (e) {
+    showNotification('❌', 'حدث خطأ، يرجى المحاولة لاحقاً');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
 }
 
 function showNotification(icon, text) {
