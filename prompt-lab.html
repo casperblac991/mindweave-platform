@@ -17,16 +17,25 @@
     .logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; }
     .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), #7C3AED); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
     main { max-width: 1000px; margin: 0 auto; padding: 120px 2rem 4rem; }
-    .lab-container { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 2rem; }
-    .lab-header { margin-bottom: 2rem; text-align: center; }
+    .lab-header { text-align: center; margin-bottom: 3rem; }
+    .lab-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
     .lab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     @media (max-width: 768px) { .lab-grid { grid-template-columns: 1fr; } }
-    .input-area, .output-area { display: flex; flex-direction: column; gap: 1rem; }
-    textarea { width: 100%; height: 200px; padding: 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; color: white; font-family: inherit; resize: none; }
-    .output-box { width: 100%; height: 200px; padding: 1rem; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 12px; color: var(--text-muted); overflow-y: auto; }
-    .btn-generate { background: var(--primary); color: var(--bg); padding: 1rem; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
-    .actions { display: flex; gap: 1rem; }
-    .btn-action { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; padding: 0.8rem; border-radius: 10px; cursor: pointer; }
+    .lab-card { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; border-radius: 24px; display: flex; flex-direction: column; height: 100%; }
+    .input-group { margin-bottom: 1.5rem; }
+    label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
+    select, textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; color: white; padding: 1rem; font-family: inherit; }
+    textarea { height: 250px; resize: none; }
+    .btn-test { background: var(--primary); color: var(--bg); padding: 1rem 2rem; border: none; border-radius: 12px; font-weight: 900; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; }
+    .btn-test:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,212,255,0.4); }
+    .btn-test:disabled { opacity: 0.6; cursor: not-allowed; }
+    .result-area { margin-top: 1.5rem; padding: 1.5rem; background: rgba(0,212,255,0.05); border-radius: 12px; border: 1px dashed var(--primary); display: none; position: relative; flex-grow: 1; }
+    .copy-btn { position: absolute; top: 1rem; left: 1rem; background: var(--primary); color: var(--bg); border: none; border-radius: 6px; padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; }
+    .prompt-suggestions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .suggestion-chip { background: var(--bg); border: 1px solid var(--border); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; }
+    .suggestion-chip:hover { border-color: var(--primary); color: var(--primary); }
+    .spinner { width: 18px; height: 18px; border: 2px solid rgba(0,0,0,0.1); border-top-color: var(--bg); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -35,24 +44,39 @@
   </nav>
 
   <main>
-    <div class="lab-container">
-      <div class="lab-header">
-        <h1>Prompt Lab ✨</h1>
-        <p>قم بتوليد وتحسين أوامر الذكاء الاصطناعي الخاصة بك</p>
+    <div class="lab-header">
+      <h1>Prompt Lab ✨</h1>
+      <p>صمم، اختبر، وحسّن أوامرك باستخدام الذكاء الاصطناعي قبل استخدامها</p>
+    </div>
+
+    <div class="lab-grid">
+      <div class="lab-card">
+        <div class="input-group">
+          <label>النموذج المستهدف</label>
+          <select id="modelSelect">
+            <option value="gpt4">ChatGPT (GPT-4)</option>
+            <option value="claude">Claude 3.5 Sonnet</option>
+            <option value="midjourney">Midjourney v6</option>
+            <option value="dalle">DALL-E 3</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>اكتب مسودة الأمر الخاص بك</label>
+          <textarea id="promptInput" placeholder="مثال: اكتب لي مقالاً عن فوائد القهوة..."></textarea>
+          <div class="prompt-suggestions" id="suggestionContainer"></div>
+        </div>
+        <button class="btn-test" id="testBtn">⚗️ حسّن الأمر الآن</button>
       </div>
 
-      <div class="lab-grid">
-        <div class="input-area">
-          <h3>📝 وصف احتياجك</h3>
-          <textarea id="labInput" placeholder="اكتب ما تريد أن يفعله الذكاء الاصطناعي..."></textarea>
-          <button class="btn-generate" onclick="generate()">⚡ توليد أمر احترافي</button>
-        </div>
-        <div class="output-area">
-          <h3>🤖 الأمر المُولَّد</h3>
-          <div class="output-box" id="labOutput">سيظهر الأمر هنا...</div>
-          <div class="actions">
-            <button class="btn-action">📋 نسخ</button>
-            <button class="btn-action">💾 حفظ</button>
+      <div class="lab-card">
+        <div class="input-group">
+          <label>الأمر المحسن (النتيجة)</label>
+          <div class="result-area" id="resultArea">
+            <button class="copy-btn" id="copyBtn">نسخ</button>
+            <div id="resultContent" style="white-space: pre-wrap;"></div>
+          </div>
+          <div id="placeholderText" style="color: var(--text-muted); text-align: center; padding: 4rem 0;">
+            اضغط على "حسّن الأمر" لرؤية السحر هنا ✨
           </div>
         </div>
       </div>
@@ -60,16 +84,55 @@
   </main>
 
   <script>
-    function generate() {
-      const input = document.getElementById('labInput').value;
-      const output = document.getElementById('labOutput');
-      if (!input) return;
-      output.innerText = "جاري التوليد...";
+    const testBtn = document.getElementById('testBtn');
+    const resultArea = document.getElementById('resultArea');
+    const resultContent = document.getElementById('resultContent');
+    const placeholderText = document.getElementById('placeholderText');
+    const promptInput = document.getElementById('promptInput');
+    const suggestionContainer = document.getElementById('suggestionContainer');
+
+    const suggestions = [
+      "اكتب مقالاً تقنياً",
+      "صمم شعاراً مودرن",
+      "ترجم نصاً قانونياً",
+      "لخص كتاباً"
+    ];
+
+    suggestionContainer.innerHTML = suggestions.map(s => `<span class="suggestion-chip">${s}</span>`).join('');
+
+    document.querySelectorAll('.suggestion-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        promptInput.value = chip.textContent;
+      });
+    });
+
+    testBtn.addEventListener('click', async () => {
+      const prompt = promptInput.value;
+      if (!prompt) return;
+
+      testBtn.innerHTML = '<span class="spinner"></span> جاري التحسين...';
+      testBtn.disabled = true;
+      placeholderText.style.display = 'none';
+      resultArea.style.display = 'none';
+
+      // Simulate AI processing
       setTimeout(() => {
-        output.innerText = "هذا أمر احترافي تم توليده بناءً على: " + input + "\n\nسياق: أنت خبير في...\nمهمة: قم بـ...\nقيود: تجنب...";
-        output.style.color = "white";
-      }, 1000);
-    }
+        resultArea.style.display = 'block';
+        const model = document.getElementById('modelSelect').value;
+        let enhanced = `[محسن بواسطة MindWeave AI لنموذج ${model}]\n\n`;
+        enhanced += `الهدف: ${prompt}\n\n`;
+        enhanced += `الأمر الاحترافي المقترح:\n"أنت خبير محترف في هذا المجال. قم بإنشاء محتوى عالي الجودة يتناول ${prompt} مع التركيز على الدقة العلمية والأسلوب الجذاب. تأكد من تقسيم النص إلى عناوين فرعية واستخدام نقاط واضحة."`;
+        
+        resultContent.textContent = enhanced;
+        testBtn.innerHTML = '⚗️ حسّن الأمر الآن';
+        testBtn.disabled = false;
+      }, 1500);
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(resultContent.textContent);
+      alert('تم نسخ الأمر المحسن!');
+    });
   </script>
 </body>
 </html>

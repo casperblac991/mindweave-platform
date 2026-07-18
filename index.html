@@ -972,8 +972,19 @@ body[data-lang="en"] .notification {
   transform: translateY(0);
 }
 
-/* Loading Spinner */
-.spinner {
+  /* Search Styles */
+  .search-container { position: relative; margin-left: 1rem; }
+  #globalSearch { background: var(--bg); border: 1px solid var(--border); color: white; padding: 0.5rem 1rem; border-radius: 20px; width: 150px; transition: all 0.3s; font-family: inherit; }
+  #globalSearch:focus { width: 200px; border-color: var(--primary); outline: none; }
+  .search-results { position: absolute; top: 110%; left: 0; right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; display: none; max-height: 300px; overflow-y: auto; z-index: 1001; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  .search-item { padding: 0.8rem; border-bottom: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; gap: 10px; }
+  .search-item:hover { background: rgba(0,212,255,0.1); }
+  .search-item-icon { font-size: 1.2rem; }
+  .search-item-info h4 { font-size: 0.9rem; margin: 0; }
+  .search-item-info p { font-size: 0.75rem; color: var(--text-muted); margin: 0; }
+
+  /* Loading Spinner */
+  .spinner {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -1006,6 +1017,10 @@ body[data-lang="en"] .notification {
   </ul>
 
   <div class="nav-buttons">
+    <div class="search-container">
+      <input type="text" id="globalSearch" placeholder="بحث..." data-i18n-placeholder="nav.search">
+      <div id="searchResults" class="search-results"></div>
+    </div>
     <div class="lang-selector" id="langSelector">
       <button class="lang-btn" id="langBtn">
         <span id="currentLangFlag">🇸🇦</span>
@@ -1593,11 +1608,62 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Reveal Animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-});
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Search Logic
+    const searchInput = document.getElementById('globalSearch');
+    const searchResults = document.getElementById('searchResults');
+    
+    searchInput?.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      if (query.length < 2) {
+        searchResults.style.display = 'none';
+        return;
+      }
+      
+      const results = [];
+      // Search in products
+      if (window.products) {
+        window.products.forEach(p => {
+          if (p.name.toLowerCase().includes(query) || p.description.toLowerCase().includes(query)) {
+            results.push({ title: p.name, desc: p.category, icon: p.emoji || '🛍️', link: `store.html?id=${p.id}` });
+          }
+        });
+      }
+      // Search in blog
+      if (window.blogPosts) {
+        window.blogPosts.forEach(b => {
+          if (b.title.toLowerCase().includes(query) || b.excerpt.toLowerCase().includes(query)) {
+            results.push({ title: b.title, desc: b.category, icon: '📰', link: `article.html?id=${b.id}` });
+          }
+        });
+      }
+      
+      if (results.length > 0) {
+        searchResults.innerHTML = results.map(r => `
+          <div class="search-item" onclick="window.location.href='${r.link}'">
+            <div class="search-item-icon">${r.icon}</div>
+            <div class="search-item-info">
+              <h4>${r.title}</h4>
+              <p>${r.desc}</p>
+            </div>
+          </div>
+        `).join('');
+        searchResults.style.display = 'block';
+      } else {
+        searchResults.style.display = 'none';
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container')) {
+        searchResults.style.display = 'none';
+      }
+    });
+  });
 </script>
 </body>
     </html>
