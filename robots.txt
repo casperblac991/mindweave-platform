@@ -1,0 +1,37 @@
+# MindWeave Platform - robots.txt
+# تم إنشاؤه: 2026-07-17
+
+# السماح لجميع محركات البحث
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /config.json
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# معدل الزحف
+User-agent: *
+Crawl-delay: 1
+
+# خريطة الموقع
+Sitemap: https://mindweave.store/sitemap.xml
+Sitemap: https://mindweave.store/sitemap-ar.xml
+Sitemap: https://mindweave.store/sitemap-en.xml
+Sitemap: https://mindweave.store/sitemap-es.xml
+Sitemap: https://mindweave.store/sitemap-fr.xml
+
+# الصفحات المهمة
+# يجب أن تكون مرئية لمحركات البحث
+Allow: /index.html
+Allow: /store.html
+Allow: /blog.html
+Allow: /library.html
+Allow: /creators.html
