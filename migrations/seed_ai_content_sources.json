@@ -1,0 +1,4 @@
+{
+  "project_id": "mtirzcuntupkuavmjtcv",
+  "query": "insert into public.ai_content_sources (name, source_url, language, is_enabled) values ('Hugging Face Blog', 'https://huggingface.co/blog/feed.xml', 'en', true), ('Google AI Blog', 'https://blog.google/innovation-and-ai/technology/ai/rss/', 'en', true) on conflict (source_url) do update set name = excluded.name, language = excluded.language, is_enabled = true;"
+}

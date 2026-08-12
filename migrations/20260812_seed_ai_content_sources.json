@@ -1,0 +1,5 @@
+{
+  "project_id": "mtirzcuntupkuavmjtcv",
+  "name": "seed_trusted_ai_content_sources",
+  "query": "-- Seed the initial trusted sources used by the review-only content workflow.\ninsert into public.ai_content_sources (name, source_url, language, is_enabled)\nvalues\n  ('Hugging Face Blog', 'https://huggingface.co/blog/feed.xml', 'en', true),\n  ('Google AI Blog', 'https://blog.google/innovation-and-ai/technology/ai/rss/', 'en', true)\non conflict (source_url) do update\nset name = excluded.name,\n    language = excluded.language,\n    is_enabled = true;"
+}
