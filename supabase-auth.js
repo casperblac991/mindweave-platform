@@ -157,7 +157,7 @@ async function signUpUser(email, password, fullName) {
             return { success: false, message: 'يجب أن تتكون كلمة المرور من 6 أحرف أو أكثر.' };
         }
 
-        const redirectTo = new URL('login.html', window.location.origin).href;
+        const redirectTo = new URL('auth-callback.html', window.location.origin).href;
         const { data: authData, error: authError } = await supabaseClient.auth.signUp({
             email: normalizedEmail,
             password,

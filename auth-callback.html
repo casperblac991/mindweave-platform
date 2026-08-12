@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>تفعيل الحساب | MindWeave</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    window.ENV = {
+      SUPABASE_URL: "https://mtirzcuntupkuavmjtcv.supabase.co",
+      SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdWIiOiJtdGlyemN1bnR1cGt1YXZtanRjdiIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzc3MjAxMDYsImV4cCI6MjA5Mjc3NzA2MX0.npI70eZJU5PB-Si0cST_iYJnRFzomn8tBx1IeVU7wHU"
+    };
+  </script>
+  <script src="supabase-auth.js?v=20260812-2"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary:#00D4FF; --bg:#050A0F; --card:#0A1628; --text:#E8F4FD; --muted:#7A9BB5; --success:#19D895; --danger:#FF7777; }
+    * { box-sizing:border-box; }
+    body { min-height:100vh; margin:0; display:grid; place-items:center; padding:1.5rem; background:var(--bg); color:var(--text); font-family:'Cairo',sans-serif; }
+    .card { width:min(100%, 520px); padding:2.5rem; text-align:center; background:var(--card); border:1px solid rgba(0,212,255,.22); border-radius:24px; box-shadow:0 16px 60px rgba(0,0,0,.3); }
+    .brand { display:block; margin-bottom:2rem; color:#fff; text-decoration:none; font-size:1.45rem; font-weight:900; }
+    .brand span { color:var(--primary); }
+    .status-icon { width:64px; height:64px; display:grid; place-items:center; margin:0 auto 1rem; border-radius:50%; background:rgba(0,212,255,.12); color:var(--primary); font-size:1.7rem; }
+    h1 { margin:.25rem 0 .75rem; font-size:1.45rem; }
+    p { margin:0; color:var(--muted); line-height:1.9; }
+    .status { margin-top:1.25rem; padding:1rem; border-radius:12px; color:#d9fff0; background:rgba(25,216,149,.12); border:1px solid rgba(25,216,149,.32); }
+    .status.error { color:#ffd6d6; background:rgba(255,119,119,.12); border-color:rgba(255,119,119,.35); }
+    .btn { display:inline-block; margin-top:1.5rem; padding:.85rem 1.5rem; border-radius:12px; background:var(--primary); color:#041018; text-decoration:none; font-weight:800; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <a class="brand" href="index.html">🧠 Mind<span>Weave</span></a>
+    <div id="statusIcon" class="status-icon" aria-hidden="true">⏳</div>
+    <h1 id="title">جارٍ تفعيل الحساب</h1>
+    <p id="description">نؤكد بريدك الإلكتروني بأمان. لا تغلق هذه الصفحة.</p>
+    <div id="status" class="status" role="status" aria-live="polite">يُرجى الانتظار…</div>
+    <a id="continueLink" class="btn" href="dashboard.html" hidden>الانتقال إلى لوحة التحكم</a>
+  </main>
+
+  <script>
+    const title = document.getElementById('title');
+    const description = document.getElementById('description');
+    const status = document.getElementById('status');
+    const statusIcon = document.getElementById('statusIcon');
+    const continueLink = document.getElementById('continueLink');
+
+    function showError(message) {
+      statusIcon.textContent = '✕';
+      title.textContent = 'تعذر تفعيل الرابط';
+      description.textContent = 'قد يكون الرابط منتهي الصلاحية أو استُخدم سابقاً. يمكنك تسجيل الدخول إن كان الحساب مفعّلاً.';
+      status.textContent = message || 'تعذر إتمام التفعيل. أعد طلب رسالة تفعيل جديدة أو تواصل مع الدعم.';
+      status.classList.add('error');
+      continueLink.href = 'login.html';
+      continueLink.textContent = 'الذهاب إلى تسجيل الدخول';
+      continueLink.hidden = false;
+    }
+
+    async function completeConfirmation() {
+      const query = new URLSearchParams(window.location.search);
+      const fragment = new URLSearchParams(window.location.hash.slice(1));
+      const message = query.get('error_description') || fragment.get('error_description');
+      if (query.get('error') || fragment.get('error')) {
+        showError(message);
+        return;
+      }
+
+      try {
+        const { data, error } = await supabaseClient.auth.getSession();
+        if (error) throw error;
+        if (!data.session) {
+          showError('لم تُنشأ جلسة تفعيل صالحة. حاول فتح أحدث رسالة تفعيل فقط.');
+          return;
+        }
+
+        statusIcon.textContent = '✓';
+        title.textContent = 'تم تفعيل حسابك بنجاح';
+        description.textContent = 'تم تأكيد بريدك الإلكتروني. سيتم تحويلك إلى لوحة التحكم خلال لحظات.';
+        status.textContent = 'اكتمل التفعيل بنجاح.';
+        continueLink.hidden = false;
+        window.setTimeout(() => window.location.replace('dashboard.html'), 1400);
+      } catch (error) {
+        showError(error?.message);
+      }
+    }
+
+    completeConfirmation();
+  </script>
+</body>
+</html>
