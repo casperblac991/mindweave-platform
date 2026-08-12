@@ -109,7 +109,7 @@
 
     async function loadProducts() {
       try {
-        const response = await fetch('content-data.json');
+        const response = await fetch('content-data.json?v=' + Date.now());
         const data = await response.json();
         allProducts = data.products;
         renderProducts('all');

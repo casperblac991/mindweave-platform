@@ -93,7 +93,7 @@
 
     async function loadBlog() {
       try {
-        const response = await fetch('content-data.json');
+        const response = await fetch('content-data.json?v=' + Date.now());
         const data = await response.json();
         const grid = document.getElementById('blogGrid');
         

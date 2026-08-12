@@ -1315,7 +1315,7 @@ let currentMode = 'generate';
 // ========== Load Products from JSON ==========
 async function loadProducts() {
   try {
-    const response = await fetch('./content-data.json?v=' + Date.now());
+    const response = await fetch('content-data.json');
     if (!response.ok) throw new Error('Failed to fetch content');
     const data = await response.json();
     products = data.products || [];
