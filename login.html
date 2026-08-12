@@ -32,6 +32,10 @@
     .btn-auth:disabled { opacity: 0.6; cursor: not-allowed; }
     .switch-auth { text-align: center; margin-top: 1.5rem; color: var(--text-muted); }
     .switch-auth a { color: var(--primary); text-decoration: none; }
+    .form-status { display: none; margin: 1rem 0; padding: 0.85rem 1rem; border-radius: 10px; font-size: 0.9rem; line-height: 1.7; }
+    .form-status.show { display: block; }
+    .form-status.error { color: #ffd6d6; background: rgba(255, 75, 75, 0.12); border: 1px solid rgba(255, 75, 75, 0.35); }
+    .form-status.success { color: #d9fff0; background: rgba(0, 212, 150, 0.12); border: 1px solid rgba(0, 212, 150, 0.35); }
   </style>
 </head>
 <body>
@@ -41,12 +45,13 @@
     <form id="loginForm">
       <div class="form-group">
         <label>البريد الإلكتروني</label>
-        <input type="email" id="email" required placeholder="example@mail.com">
+        <input type="email" id="email" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" required placeholder="example@mail.com">
       </div>
       <div class="form-group">
         <label>كلمة المرور</label>
-        <input type="password" id="password" required placeholder="••••••••">
+        <input type="password" id="password" autocomplete="current-password" required placeholder="••••••••">
       </div>
+      <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
       <button type="submit" class="btn-auth" id="submitBtn">دخول</button>
     </form>
     <div class="switch-auth">
@@ -55,26 +60,40 @@
   </div>
 
   <script>
+    const status = document.getElementById('formStatus');
+    const showStatus = (message, type) => {
+      status.textContent = message;
+      status.className = `form-status show ${type}`;
+    };
+
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = document.getElementById('email').value;
+      const emailField = document.getElementById('email');
+      const email = emailField.value.trim().toLowerCase().replace(/\s+/g, '');
       const password = document.getElementById('password').value;
       const btn = document.getElementById('submitBtn');
-      
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showStatus('يرجى إدخال بريد إلكتروني صحيح.', 'error');
+      if (!password) return showStatus('يرجى إدخال كلمة المرور.', 'error');
+      emailField.value = email;
       btn.disabled = true;
       btn.textContent = 'جاري التحقق...';
-      
+      status.className = 'form-status';
+
       const result = await signInUser(email, password);
       if (result.success) {
         window.location.href = 'dashboard.html';
       } else {
-        alert('خطأ: ' + result.message);
+        showStatus(result.message, 'error');
         btn.disabled = false;
         btn.textContent = 'دخول';
       }
     });
 
     document.addEventListener('DOMContentLoaded', async () => {
+      if (new URLSearchParams(window.location.search).get('verified') === 'pending') {
+        showStatus('تم إنشاء الحساب. تحقق من صندوق الوارد ومجلد الرسائل غير المرغوب فيها، ثم افتح رابط التفعيل قبل تسجيل الدخول.', 'success');
+      }
       const user = await getCurrentUser();
       if (user) window.location.href = 'dashboard.html';
     });

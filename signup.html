@@ -51,12 +51,12 @@
       </div>
       <div class="form-group">
         <label for="email">البريد الإلكتروني</label>
-        <input type="email" id="email" name="email" autocomplete="email" required placeholder="example@mail.com">
+        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" required placeholder="example@mail.com">
       </div>
       <div class="form-group">
         <label for="password">كلمة المرور</label>
         <input type="password" id="password" name="password" autocomplete="new-password" required minlength="6" placeholder="••••••••">
-        <small class="form-help">6 أحرف على الأقل. ستصلك رسالة لتفعيل البريد الإلكتروني.</small>
+        <small class="form-help">اختر كلمة مرور قوية من 6 أحرف على الأقل. بعد نجاح إنشاء الحساب ستصل رسالة التفعيل إلى بريدك.</small>
       </div>
       <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
       <button type="submit" class="btn-auth" id="submitBtn">إنشاء الحساب</button>
@@ -69,7 +69,8 @@
   <script>
     document.getElementById('signupForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = document.getElementById('email').value.trim();
+      const emailField = document.getElementById('email');
+      const email = emailField.value.trim().toLowerCase().replace(/\s+/g, '');
       const password = document.getElementById('password').value;
       const fullName = document.getElementById('fullName').value.trim();
       const btn = document.getElementById('submitBtn');
@@ -80,7 +81,9 @@
       };
 
       if (fullName.length < 2) return showStatus('يرجى إدخال الاسم الكامل.', 'error');
-      if (password.length < 6) return showStatus('يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.', 'error');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showStatus('يرجى إدخال بريد إلكتروني صحيح، من دون مسافات أو رموز زائدة.', 'error');
+      emailField.value = email;
+      if (password.length < 6) return showStatus('يجب أن تتكون كلمة المرور من 6 أحرف أو أكثر.', 'error');
 
       btn.disabled = true;
       btn.textContent = 'جاري إنشاء الحساب...';

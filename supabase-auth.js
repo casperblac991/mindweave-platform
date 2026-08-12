@@ -135,7 +135,7 @@ function showVerificationPendingModal(email) {
 function getFriendlyAuthMessage(error) {
     const message = String(error?.message || error || '').toLowerCase();
     if (message.includes('already registered') || message.includes('already been registered')) return 'هذا البريد الإلكتروني مسجل مسبقاً. جرّب تسجيل الدخول أو استعادة كلمة المرور.';
-    if (message.includes('invalid email')) return 'يرجى إدخال بريد إلكتروني صحيح.';
+    if (message.includes('invalid email') || message.includes('validate email address') || message.includes('invalid format')) return 'يرجى إدخال بريد إلكتروني صحيح، من دون مسافات أو رموز زائدة.';
     if (message.includes('password') && (message.includes('6') || message.includes('short'))) return 'يجب أن تتكون كلمة المرور من 6 أحرف أو أكثر.';
     if (message.includes('rate limit') || message.includes('too many')) return 'تم تجاوز عدد المحاولات. انتظر قليلاً ثم حاول مرة أخرى.';
     if (message.includes('redirect')) return 'تعذر إعداد رابط التفعيل. تواصل مع إدارة المنصة لإضافة رابط الموقع إلى إعدادات Supabase.';
@@ -147,7 +147,7 @@ function getFriendlyAuthMessage(error) {
  * so a missing table or restrictive RLS policy cannot make a valid account appear to fail.
  */
 async function signUpUser(email, password, fullName) {
-    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const normalizedEmail = String(email || '').trim().toLowerCase().replace(/\s+/g, '');
     const normalizedName = String(fullName || '').trim();
     try {
         if (!normalizedEmail || !/^\S+@\S+\.\S+$/.test(normalizedEmail)) {
@@ -281,7 +281,7 @@ async function getCurrentUser() {
  * Subscribe user to newsletter
  */
 async function subscribeToNewsletter(email, source = 'website') {
-    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const normalizedEmail = String(email || '').trim().toLowerCase().replace(/\s+/g, '');
     try {
         if (!/^\S+@\S+\.\S+$/.test(normalizedEmail)) {
             return { success: false, message: 'يرجى إدخال بريد إلكتروني صحيح.' };
