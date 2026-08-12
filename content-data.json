@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-07-18T14:00:00Z",
+  "lastUpdate": "2026-08-12T16:50:00Z",
   "stats": {
     "products": { "ar": 25, "en": 25, "es": 25, "fr": 25 },
     "sales": { "ar": 2150, "en": 2150, "es": 2150, "fr": 2150 },
@@ -9,161 +9,281 @@
   "products": [
     {
       "id": 1,
-      "name": {
-        "ar": "حزمة أوامر ChatGPT الاحترافية",
-        "en": "Professional ChatGPT Prompt Bundle",
-        "es": "Paquete Profesional de Prompts para ChatGPT",
-        "fr": "Pack Professionnel de Prompts ChatGPT"
-      },
-      "description": {
-        "ar": "أكثر من 500 أمر مصمم بدقة لزيادة إنتاجيتك في العمل والتعلم.",
-        "en": "Over 500 precision-crafted prompts to boost your work and learning productivity.",
-        "es": "Más de 500 prompts diseñados con precisión para aumentar tu productividad laboral y educativa.",
-        "fr": "Plus de 500 prompts conçus avec précision pour booster votre productivité au travail et dans vos études."
-      },
+      "name": { "ar": "حزمة أوامر ChatGPT الاحترافية", "en": "Professional ChatGPT Prompt Bundle", "es": "Paquete Profesional de Prompts para ChatGPT", "fr": "Pack Professionnel de Prompts ChatGPT" },
+      "description": { "ar": "أكثر من 500 أمر مصمم بدقة لزيادة إنتاجيتك في العمل والتعلم.", "en": "Over 500 precision-crafted prompts to boost your work and learning productivity.", "es": "Más de 500 prompts diseñados con precisión para aumentar tu productividad laboral y educativa.", "fr": "Plus de 500 prompts conçus avec précision pour booster votre productivité au travail et dans vos études." },
       "price": "$19.99",
-      "category": {
-        "ar": "أوامر AI",
-        "en": "AI Prompts",
-        "es": "Prompts de IA",
-        "fr": "Prompts IA"
-      },
+      "category": { "ar": "أوامر AI", "en": "AI Prompts", "es": "Prompts de IA", "fr": "Prompts IA" },
       "emoji": "🧠",
-      "badge": {
-        "ar": "الأكثر مبيعاً",
-        "en": "Best Seller",
-        "es": "Más Vendido",
-        "fr": "Meilleure Vente"
-      },
+      "badge": { "ar": "الأكثر مبيعاً", "en": "Best Seller", "es": "Más Vendido", "fr": "Meilleure Vente" },
       "rating": "4.9",
-      "sales": {
-        "ar": "1.2k+ مبيعات",
-        "en": "1.2k+ sales",
-        "es": "1.2k+ ventas",
-        "fr": "1.2k+ ventes"
-      }
+      "sales": { "ar": "1.2k+ مبيعات", "en": "1.2k+ sales", "es": "1.2k+ ventas", "fr": "1.2k+ ventes" }
     },
     {
       "id": 2,
-      "name": {
-        "ar": "قالب Notion لإدارة المشاريع بالذكاء الاصطناعي",
-        "en": "AI Project Management Notion Template",
-        "es": "Plantilla de Notion para Gestión de Proyectos con IA",
-        "fr": "Template Notion de Gestion de Projet IA"
-      },
-      "description": {
-        "ar": "نظام متكامل لإدارة مهامك ومشاريعك مع دمج أدوات AI.",
-        "en": "Integrated system to manage your tasks and projects with AI tool integration.",
-        "es": "Sistema integrado para gestionar tus tareas y proyectos con integración de herramientas de IA.",
-        "fr": "Système intégré pour gérer vos tâches et projets avec intégration d'outils IA."
-      },
+      "name": { "ar": "قالب Notion لإدارة المشاريع بالذكاء الاصطناعي", "en": "AI Project Management Notion Template", "es": "Plantilla de Notion para Gestión de Proyectos con IA", "fr": "Template Notion de Gestion de Projet IA" },
+      "description": { "ar": "نظام متكامل لإدارة مهامك ومشاريعك مع دمج أدوات AI.", "en": "Integrated system to manage your tasks and projects with AI tool integration.", "es": "Sistema integrado para gestionar tus tareas y proyectos con integración de herramientas de IA.", "fr": "Système intégré pour gérer vos tâches et projets avec intégration d'outils IA." },
       "price": "$29.99",
-      "category": {
-        "ar": "Notion",
-        "en": "Notion",
-        "es": "Notion",
-        "fr": "Notion"
-      },
+      "category": { "ar": "Notion", "en": "Notion", "es": "Notion", "fr": "Notion" },
       "emoji": "📊",
-      "badge": {
-        "ar": "جديد",
-        "en": "New",
-        "es": "Nuevo",
-        "fr": "Nouveau"
-      },
+      "badge": { "ar": "جديد", "en": "New", "es": "Nuevo", "fr": "Nouveau" },
       "rating": "4.8",
-      "sales": {
-        "ar": "850+ مبيعات",
-        "en": "850+ sales",
-        "es": "850+ ventas",
-        "fr": "850+ ventes"
-      }
+      "sales": { "ar": "850+ مبيعات", "en": "850+ sales", "es": "850+ ventas", "fr": "850+ ventes" }
     },
     {
       "id": 3,
-      "name": {
-        "ar": "دليل هندسة الأوامر (Prompt Engineering)",
-        "en": "Prompt Engineering Guide",
-        "es": "Guía de Ingeniería de Prompts",
-        "fr": "Guide d'Ingénierie des Prompts"
-      },
-      "description": {
-        "ar": "كتاب إلكتروني شامل لتعلم فن كتابة الأوامر الفعالة.",
-        "en": "Comprehensive ebook to learn the art of writing effective prompts.",
-        "es": "Ebook completo para aprender el arte de escribir prompts efectivos.",
-        "fr": "Ebook complet pour apprendre l'art d'écrire des prompts efficaces."
-      },
+      "name": { "ar": "دليل هندسة الأوامر (Prompt Engineering)", "en": "Prompt Engineering Guide", "es": "Guía de Ingeniería de Prompts", "fr": "Guide d'Ingénierie des Prompts" },
+      "description": { "ar": "كتاب إلكتروني شامل لتعلم فن كتابة الأوامر الفعالة.", "en": "Comprehensive ebook to learn the art of writing effective prompts.", "es": "Ebook completo para aprender el arte de escribir prompts efectivos.", "fr": "Ebook complet pour apprendre l'art d'écrire des prompts efficaces." },
       "price": "$14.99",
-      "category": {
-        "ar": "كتب إلكترونية",
-        "en": "E-books",
-        "es": "Libros electrónicos",
-        "fr": "E-books"
-      },
+      "category": { "ar": "كتب إلكترونية", "en": "E-books", "es": "Libros electrónicos", "fr": "E-books" },
       "emoji": "📚",
-      "badge": {
-        "ar": "مميز",
-        "en": "Featured",
-        "es": "Destacado",
-        "fr": "En Vedette"
-      },
+      "badge": { "ar": "مميز", "en": "Featured", "es": "Destacado", "fr": "En Vedette" },
       "rating": "5.0",
-      "sales": {
-        "ar": "2.1k+ مبيعات",
-        "en": "2.1k+ sales",
-        "es": "2.1k+ ventas",
-        "fr": "2.1k+ ventes"
-      }
+      "sales": { "ar": "2.1k+ مبيعات", "en": "2.1k+ sales", "es": "2.1k+ ventas", "fr": "2.1k+ ventes" }
     }
   ],
   "blog": [
     {
       "id": 1,
-      "title": {
-        "ar": "كيف تبدأ في مجال هندسة الأوامر؟",
-        "en": "How to Start in Prompt Engineering?",
-        "es": "¿Cómo empezar en la ingeniería de prompts?",
-        "fr": "Comment débuter en ingénierie des prompts ?"
-      },
-      "excerpt": {
-        "ar": "دليل المبتدئين لفهم أساسيات التواصل مع النماذج اللغوية الكبيرة.",
-        "en": "A beginner's guide to understanding the basics of communicating with LLMs.",
-        "es": "Una guía para principiantes para entender los conceptos básicos de la comunicación con LLMs.",
-        "fr": "Un guide pour débutants pour comprendre les bases de la communication avec les LLM."
-      },
-      "date": "2026-07-15",
-      "category": {
-        "ar": "تعليم",
-        "en": "Education",
-        "es": "Educación",
-        "fr": "Éducation"
-      },
-      "author": "MindWeave Team",
-      "icon": "🎓"
+      "category": { "ar": "كتابة إبداعية", "en": "Creative Writing", "es": "Escritura Creativa", "fr": "Ériture Créative" },
+      "icon": "✍️",
+      "title": { "ar": "أفضل 10 أدوات ذكاء اصطناعي للكتابة الإبداعية", "en": "Top 10 AI Tools for Creative Writing", "es": "Las 10 mejores herramientas de IA para escritura creativa", "fr": "Les 10 meilleurs outils d'IA pour l'écriture créative" },
+      "excerpt": { "ar": "اكتشف أفضل أدوات الذكاء الاصطناعي لمساعدتك في الكتابة الإبداعية والروائية.", "en": "Discover the best AI tools to help you with creative and novel writing.", "es": "Descubre las mejores herramientas de IA para ayudarte con la escritura creativa.", "fr": "Découvrez les meilleurs outils d'IA pour vous aider dans l'écriture créative." },
+      "date": "15 مارس 2026",
+      "author": "MindWeave Team"
     },
     {
       "id": 2,
-      "title": {
-        "ar": "أفضل 10 أدوات AI للمصممين في 2026",
-        "en": "Top 10 AI Tools for Designers in 2026",
-        "es": "Las 10 mejores herramientas de IA para diseñadores en 2026",
-        "fr": "Top 10 des outils IA pour les designers en 2026"
-      },
-      "excerpt": {
-        "ar": "قائمة محدثة بأهم الأدوات التي ستغير طريقة عملك كمصمم.",
-        "en": "An updated list of the most important tools that will change your way of working as a designer.",
-        "es": "Una lista actualizada de las herramientas más importantes que cambiarán tu forma de trabajar como diseñador.",
-        "fr": "Une liste mise à jour des outils les plus importants qui changeront votre façon de travailler en tant que designer."
-      },
-      "date": "2026-07-10",
-      "category": {
-        "ar": "تصميم",
-        "en": "Design",
-        "es": "Diseño",
-        "fr": "Design"
-      },
-      "author": "Sarah Ahmed",
-      "icon": "🎨"
+      "category": { "ar": "كتابة إبداعية", "en": "Creative Writing", "es": "Escritura Creativa", "fr": "Ériture Créative" },
+      "icon": "📚",
+      "title": { "ar": "كيف تكتب كتاباً إلكترونياً باستخدام الذكاء الاصطناعي", "en": "How to Write an E-book Using AI", "es": "Cómo escribir un libro electrónico usando IA", "fr": "Comment écrire un livre électronique en utilisant l'IA" },
+      "excerpt": { "ar": "دليل شامل لكتابة وتصميم ونشر كتابك الإلكتروني باستخدام أدوات الذكاء الاصطناعي.", "en": "A complete guide to writing, designing, and publishing your e-book using AI tools.", "es": "Una guía completa para escribir, diseñar y publicar su libro electrónico usando herramientas de IA.", "fr": "Un guide complet pour écrire, concevoir et publier votre livre électronique en utilisant des outils d'IA." },
+      "date": "10 مارس 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 3,
+      "category": { "ar": "أعمال", "en": "Business", "es": "Negocios", "fr": "Affaires" },
+      "icon": "🚀",
+      "title": { "ar": "دليل رائد الأعمال: كيف تستخدم الذكاء الاصطناعي", "en": "Entrepreneur's Guide: How to Use AI", "es": "Guía del emprendedor: cómo usar la IA", "fr": "Guide de l'entrepreneur: comment utiliser l'IA" },
+      "excerpt": { "ar": "كيف يمكن لرواد الأعمال الاستفادة من الذكاء الاصطناعي لتنمية أعمالهم.", "en": "How entrepreneurs can leverage AI to grow their businesses.", "es": "Cómo los emprendedores pueden aprovechar la IA para hacer crecer sus negocios.", "fr": "Comment les entrepreneurs peuvent tirer parti de l'IA pour développer leurs entreprises." },
+      "date": "5 مارس 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 4,
+      "category": { "ar": "أدوات", "en": "Tools", "es": "Herramientas", "fr": "Outils" },
+      "icon": "🔮",
+      "title": { "ar": "مستقبل الذكاء الاصطناعي: ماذا نتوقع في 2030؟", "en": "The Future of AI: What to Expect in 2030?", "es": "El futuro de la IA: ¿Qué esperar en 2030?", "fr": "L'avenir de l'IA: à quoi s'attendre en 2030?" },
+      "excerpt": { "ar": "توقعات الخبراء حول مستقبل الذكاء الاصطناعي وتأثيره على مختلف المجالات.", "en": "Expert predictions about the future of AI and its impact on various fields.", "es": "Predicciones de expertos sobre el futuro de la IA y su impacto en diversos campos.", "fr": "Prédictions d'experts sur l'avenir de l'IA et son impact sur divers domaines." },
+      "date": "28 فبراير 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 5,
+      "category": { "ar": "أدوات", "en": "Tools", "es": "Herramientas", "fr": "Outils" },
+      "icon": "🎨",
+      "title": { "ar": "أفضل أدوات توليد الصور بالذكاء الاصطناعي", "en": "Best AI Image Generation Tools", "es": "Las mejores herramientas de generación de imágenes con IA", "fr": "Les meilleurs outils de génération d'images IA" },
+      "excerpt": { "ar": "مقارنة شاملة بين أفضل أدوات توليد الصور مثل Midjourney و DALL-E.", "en": "A comprehensive comparison of the best image generation tools like Midjourney and DALL-E.", "es": "Una comparación completa de las mejores herramientas de generación de imágenes como Midjourney y DALL-E.", "fr": "Une comparaison complète des meilleurs outils de génération d'images comme Midjourney et DALL-E." },
+      "date": "20 فبراير 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 6,
+      "category": { "ar": "تسويق", "en": "Marketing", "es": "Marketing", "fr": "Marketing" },
+      "icon": "📈",
+      "title": { "ar": "الذكاء الاصطناعي في التسويق: استراتيجيات حديثة", "en": "AI in Marketing: Modern Strategies", "es": "IA en marketing: estrategias modernas", "fr": "IA dans le marketing: stratégies modernes" },
+      "excerpt": { "ar": "كيف تستخدم الذكاء الاصطناعي لتحسين حملاتك التسويقية وزيادة المبيعات.", "en": "How to use AI to improve your marketing campaigns and increase sales.", "es": "Cómo utilizar la IA para mejorar tus campañas de marketing y aumentar las ventas.", "fr": "Comment utiliser l'IA pour améliorer vos campagnes marketing et augmenter les ventes." },
+      "date": "15 فبراير 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 7,
+      "category": { "ar": "أدوات", "en": "Tools", "es": "Herramientas", "fr": "Outils" },
+      "icon": "📊",
+      "title": { "ar": "أدوات الذكاء الاصطناعي لإنشاء عروض تقديمية احترافية", "en": "AI Tools for Creating Professional Presentations", "es": "Herramientas de IA para crear presentaciones profesionales", "fr": "Outils d'IA pour créer des présentations professionnelles" },
+      "excerpt": { "ar": "أفضل الأدوات لإنشاء عروض تقديمية مذهلة في دقائق.", "en": "The best tools for creating stunning presentations in minutes.", "es": "Las mejores herramientas para crear presentaciones impresionantes en minutos.", "fr": "Les meilleurs outils pour créer des présentations époustouflantes en quelques minutes." },
+      "date": "10 فبراير 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 8,
+      "category": { "ar": "برمجة", "en": "Coding", "es": "Programación", "fr": "Programmation" },
+      "icon": "💻",
+      "title": { "ar": "أفضل 50 أمر برمجي باستخدام الذكاء الاصطناعي", "en": "Best 50 Coding Prompts Using AI", "es": "Los 50 mejores prompts de programación con IA", "fr": "Les 50 meilleurs prompts de programmation avec l'IA" },
+      "excerpt": { "ar": "قائمة شاملة بالأوامر التي تساعد المطورين على زيادة إنتاجيتكم.", "en": "A comprehensive list of prompts that help developers increase their productivity.", "es": "Una lista completa de prompts que ayudan a los desarrolladores a aumentar su productividad.", "fr": "Une liste complète de prompts qui aident les développeurs à augmenter leur productivité." },
+      "date": "5 فبراير 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 9,
+      "category": { "ar": "تسويق", "en": "Marketing", "es": "Marketing", "fr": "Marketing" },
+      "icon": "🔍",
+      "title": { "ar": "تحسين محركات البحث بالذكاء الاصطناعي: دليل 2026", "en": "AI SEO: 2026 Guide", "es": "SEO con IA: Guía 2026", "fr": "SEO avec IA: Guide 2026" },
+      "excerpt": { "ar": "كيف تستخدم الذكاء الاصطناعي لتحسين ترتيب موقعك في محركات البحث.", "en": "How to use AI to improve your website's search engine ranking.", "es": "Cómo utilizar la IA para mejorar el posicionamiento de su sitio web en los motores de búsqueda.", "fr": "Comment utiliser l'IA pour améliorer le classement de votre site Web dans les moteurs de recherche." },
+      "date": "28 يناير 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 10,
+      "category": { "ar": "أدوات", "en": "Tools", "es": "Herramientas", "fr": "Outils" },
+      "icon": "🎓",
+      "title": { "ar": "أدوات الذكاء الاصطناعي للطلاب: دليل شامل", "en": "AI Tools for Students: Complete Guide", "es": "Herramientas de IA para estudiantes: Guía completa", "fr": "Outils d'IA pour les étudiants: Guide complet" },
+      "excerpt": { "ar": "أفضل أدوات الذكاء الاصطناعي التي تساعد الطلاب في الدراسة والبحث.", "en": "The best AI tools to help students with studying and research.", "es": "Las mejores herramientas de IA para ayudar a los estudiantes con el estudio y la investigación.", "fr": "Les meilleurs outils d'IA pour aider les étudiants dans leurs études et leurs recherches." },
+      "date": "20 يناير 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 11,
+      "category": { "ar": "أدوات", "en": "Tools", "es": "Herramientas", "fr": "Outils" },
+      "icon": "🛠️",
+      "title": { "ar": "دليل شامل لأدوات الذكاء الاصطناعي 2026", "en": "Complete Guide to AI Tools 2026", "es": "Guía completa de herramientas de IA 2026", "fr": "Guide complet des outils d'IA 2026" },
+      "excerpt": { "ar": "أكثر من 50 أداة ذكاء اصطناعي مجانية ومدفوعة لجميع المجالات.", "en": "Over 50 free and paid AI tools for all fields.", "es": "Más de 50 herramientas de IA gratuitas y de pago para todos los campos.", "fr": "Plus de 50 outils d'IA gratuits et payants pour tous les domaines." },
+      "date": "15 يناير 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 12,
+      "category": { "ar": "برمجة", "en": "Coding", "es": "Programación", "fr": "Programmation" },
+      "icon": "💻",
+      "title": { "ar": "برمجة تطبيقات باستخدام ChatGPT", "en": "Building Apps with ChatGPT", "es": "Creación de aplicaciones con ChatGPT", "fr": "Création d'applications avec ChatGPT" },
+      "excerpt": { "ar": "كيف تستخدم ChatGPT لكتابة وتصحيح الأكواد البرمجية.", "en": "How to use ChatGPT to write and debug code.", "es": "Cómo usar ChatGPT para escribir y depurar código.", "fr": "Comment utiliser ChatGPT para escribir y depurar código." },
+      "date": "10 يناير 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 13,
+      "category": { "ar": "أدوات", "en": "Tools", "es": "Herramientas", "fr": "Outils" },
+      "icon": "💬",
+      "title": { "ar": "دليل استخدام ChatGPT: من البداية إلى الاحتراف", "en": "ChatGPT Guide: From Beginner to Pro", "es": "Guía de ChatGPT: De principiante a profesional", "fr": "Guide ChatGPT: Du débutant au professionnel" },
+      "excerpt": { "ar": "كل ما تحتاج معرفته عن ChatGPT، من التثبيت إلى الاستخدامات المتقدمة.", "en": "Everything you need to know about ChatGPT, from setup to advanced uses.", "es": "Todo lo que necesitas saber sobre ChatGPT, desde la configuración hasta los usos avanzados.", "fr": "Tout ce que vous devez savoir sur ChatGPT, de l'installation aux utilisations avancées." },
+      "date": "5 يناير 2026",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 14,
+      "category": { "ar": "أعمال", "en": "Business", "es": "Negocios", "fr": "Affaires" },
+      "icon": "💡",
+      "title": { "ar": "أفكار منتجات رقمية يمكنك بيعها عبر الإنترنت", "en": "Digital Product Ideas You Can Sell Online", "es": "Ideas de productos digitales que puedes vender en línea", "fr": "Idées de produits numériques que vous pouvez vendre en ligne" },
+      "excerpt": { "ar": "أفكار مبتكرة لمنتجات رقمية يمكنك إنشاؤها وبيعها أونلاين.", "en": "Innovative digital product ideas you can create and sell online.", "es": "Ideas innovadoras de productos digitales que puedes crear y vender en línea.", "fr": "Idées innovantes de produits numériques que vous pouvez créer et vendre en ligne." },
+      "date": "28 ديسمبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 15,
+      "category": { "ar": "تسويق", "en": "Marketing", "es": "Marketing", "fr": "Marketing" },
+      "icon": "📸",
+      "title": { "ar": "نمو حساب إنستغرام باستخدام الذكاء الاصطناعي", "en": "Grow Your Instagram Account Using AI", "es": "Haz crecer tu cuenta de Instagram usando IA", "fr": "Développez votre compte Instagram en utilisant l'IA" },
+      "excerpt": { "ar": "استراتيجيات ذكية لزيادة المتابعين والتفاعل باستخدام الذكاء الاصطناعي.", "en": "Smart strategies to increase followers and engagement using AI.", "es": "Estrategias inteligentes para aumentar seguidores y compromiso usando IA.", "fr": "Stratégies intelligentes pour augmenter les abonnés et l'engagement en utilisant l'IA." },
+      "date": "20 ديسمبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 16,
+      "category": { "ar": "أدوات", "en": "Tools", "es": "Herramientas", "fr": "Outils" },
+      "icon": "📖",
+      "title": { "ar": "أفضل مصادر تعلم الذكاء الاصطناعي للمبتدئين", "en": "Best Resources to Learn AI for Beginners", "es": "Los mejores recursos para aprender IA para principiantes", "fr": "Les meilleures ressources pour apprendre l'IA pour les débutants" },
+      "excerpt": { "ar": "قائمة بأفضل الكورسات والكتب والقنوات لتعلم الذكاء الاصطناعي.", "en": "A list of the best courses, books, and channels to learn AI.", "es": "Una lista de los mejores cursos, libros y canales para aprender IA.", "fr": "Une liste des meilleurs cours, livres et chaînes pour apprendre l'IA." },
+      "date": "15 ديسمبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 17,
+      "category": { "ar": "كتابة إبداعية", "en": "Creative Writing", "es": "Escritura Creativa", "fr": "Ériture Créative" },
+      "icon": "🎨",
+      "title": { "ar": "تصميم شعارات احترافية باستخدام Midjourney", "en": "Professional Logo Design Using Midjourney", "es": "Diseño de logotipos profesionales con Midjourney", "fr": "Conception de logos professionnels avec Midjourney" },
+      "excerpt": { "ar": "دليل خطوة بخطوة لتصميم شعارات مميزة باستخدام Midjourney.", "en": "A step-by-step guide to designing distinctive logos using Midjourney.", "es": "Una guía paso a paso para diseñar logotipos distintivos con Midjourney.", "fr": "Un guide étape par étape pour concevoir des logos distinctifs avec Midjourney." },
+      "date": "10 ديسمبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 18,
+      "category": { "ar": "أدوات", "en": "Tools", "es": "Herramientas", "fr": "Outils" },
+      "icon": "💎",
+      "title": { "ar": "دليل اشتراك Midjourney: أي خطة تناسبك؟", "en": "Midjourney Subscription Guide: Which Plan Suits You?", "es": "Guía de suscripción a Midjourney: ¿Qué plan te conviene?", "fr": "Guide d'abonnement Midjourney: Quel plan vous convient?" },
+      "excerpt": { "ar": "شرح مفصل لخطط Midjourney المختلفة ومميزات كل خطة.", "en": "Detailed explanation of Midjourney plans and their features.", "es": "Explicación detallada de los planes de Midjourney y sus características.", "fr": "Explication détaillée des plans Midjourney et de leurs fonctionnalités." },
+      "date": "5 ديسمبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 19,
+      "category": { "ar": "كتابة إبداعية", "en": "Creative Writing", "es": "Escritura Creativa", "fr": "Ériture Créative" },
+      "icon": "🎨",
+      "title": { "ar": "تصميم هوية بصرية متكاملة باستخدام Midjourney", "en": "Complete Visual Identity Design Using Midjourney", "es": "Diseño de identidad visual completo con Midjourney", "fr": "Conception d'identité visuelle complète avec Midjourney" },
+      "excerpt": { "ar": "كيف تصمم هوية بصرية متكاملة للعلامات التجارية باستخدام Midjourney.", "en": "How to design a complete visual identity for brands using Midjourney.", "es": "Cómo diseñar una identidad visual completa para marcas usando Midjourney.", "fr": "Comment concevoir une identité visuelle complète pour les marques en utilisant Midjourney." },
+      "date": "28 نوفمبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 20,
+      "category": { "ar": "أدوات", "en": "Tools", "es": "Herramientas", "fr": "Outils" },
+      "icon": "📊",
+      "title": { "ar": "Notion AI: دليل الاستخدام الكامل", "en": "Notion AI: Complete User Guide", "es": "Notion AI: Guía de usuario completa", "fr": "Notion AI: Guide d'utilisation complet" },
+      "excerpt": { "ar": "كيف تستفيد من Notion AI لتعزيز إنتاجيتك وتنظيم عملك.", "en": "How to leverage Notion AI to boost your productivity and organize your work.", "es": "Cómo aprovechar Notion AI para aumentar su productividad y organizar su trabajo.", "fr": "Comment tirer parti de Notion AI pour booster votre productivité et organiser votre travail." },
+      "date": "20 نوفمبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 21,
+      "category": { "ar": "أدوات", "en": "Tools", "es": "Herramientas", "fr": "Outils" },
+      "icon": "📊",
+      "title": { "ar": "أفضل 20 قالب Notion مع دعم الذكاء الاصطناعي", "en": "Best 20 Notion Templates with AI Support", "es": "Los 20 mejores plantillas de Notion con soporte de IA", "fr": "Les 20 meilleurs templates Notion avec support IA" },
+      "excerpt": { "ar": "قوالب Notion مدعومة بالذكاء الاصطناعي لزيادة إنتاجيتك.", "en": "Notion templates powered by AI to boost your productivity.", "es": "Plantillas de Notion con IA para aumentar tu productividad.", "fr": "Templates Notion avec IA pour booster votre productivité." },
+      "date": "15 نوفمبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 22,
+      "category": { "ar": "كتابة إبداعية", "en": "Creative Writing", "es": "Escritura Creativa", "fr": "Ériture Créative" },
+      "icon": "📷",
+      "title": { "ar": "تصوير المنتجات الاحترافي باستخدام Midjourney", "en": "Professional Product Photography Using Midjourney", "es": "Fotografía de productos profesional con Midjourney", "fr": "Photographie de produit professionnelle avec Midjourney" },
+      "excerpt": { "ar": "كيف تنشئ صور منتجات احترافية باستخدام Midjourney.", "en": "How to create professional product images using Midjourney.", "es": "Cómo crear imágenes de productos profesionales con Midjourney.", "fr": "Comment créer des images de produits professionnelles avec Midjourney." },
+      "date": "10 نوفمبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 23,
+      "category": { "ar": "برمجة", "en": "Coding", "es": "Programación", "fr": "Programmation" },
+      "icon": "⚙️",
+      "title": { "ar": "هندسة الأوامر: دليل شامل للمحترفين", "en": "Prompt Engineering: Complete Guide for Professionals", "es": "Ingeniería de prompts: Guía completa para profesionales", "fr": "Ingénierie des prompts: Guide complet pour les professionnels" },
+      "excerpt": { "ar": "كل ما تحتاج معرفته عن هندسة الأوامر للحصول على أفضل النتائج.", "en": "Everything you need to know about prompt engineering to get the best results.", "es": "Todo lo que necesitas saber sobre ingeniería de prompts para obtener los mejores resultados.", "fr": "Tout ce que vous devez savoir sur l'ingénierie des prompts pour obtenir les meilleurs résultats." },
+      "date": "5 نوفمبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 24,
+      "category": { "ar": "برمجة", "en": "Coding", "es": "Programación", "fr": "Programmation" },
+      "icon": "⚠️",
+      "title": { "ar": "10 أخطاء شائعة في هندسة الأوامر وكيف تتجنبها", "en": "10 Common Prompt Engineering Mistakes and How to Avoid Them", "es": "10 errores comunes en la ingeniería de prompts y cómo evitarlos", "fr": "10 erreurs courantes en ingénierie des prompts et comment les éviter" },
+      "excerpt": { "ar": "تعرف على الأخطاء التي تقلل جودة أوامرك وكيفية إصلاحها.", "en": "Learn about the mistakes that reduce your prompt quality and how to fix them.", "es": "Aprende sobre los errores que reducen la calidad de tus prompts y cómo solucionarlos.", "fr": "Découvrez les erreurs qui réduisent la qualité de vos prompts et comment les corriger." },
+      "date": "28 أكتوبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 25,
+      "category": { "ar": "أعمال", "en": "Business", "es": "Negocios", "fr": "Affaires" },
+      "icon": "💰",
+      "title": { "ar": "كيف تبيع أوامر الذكاء الاصطناعي وتكسب المال", "en": "How to Sell AI Prompts and Make Money", "es": "Cómo vender prompts de IA y ganar dinero", "fr": "Comment vendre des prompts d'IA et gagner de l'argent" },
+      "excerpt": { "ar": "دليل عملي لبيع أوامر الذكاء الاصطناعي وكسب دخل من إبداعاتك.", "en": "A practical guide to selling AI prompts and earning income from your creations.", "es": "Una guía práctica para vender prompts de IA y ganar ingresos de tus creaciones.", "fr": "Un guide pratique pour vendre des prompts d'IA et gagner un revenu de vos créations." },
+      "date": "20 أكتوبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 26,
+      "category": { "ar": "أعمال", "en": "Business", "es": "Negocios", "fr": "Affaires" },
+      "icon": "🚀",
+      "title": { "ar": "كيف تبدأ مشروعك الجانبي باستخدام الذكاء الاصطناعي", "en": "How to Start Your Side Project Using AI", "es": "Cómo iniciar tu proyecto secundario usando IA", "fr": "Comment démarrer votre projet parallèle en utilisant l'IA" },
+      "excerpt": { "ar": "أفكار عملية لتحويل مهاراتك في الذكاء الاصطناعي إلى مصدر دخل إضافي.", "en": "Practical ideas to turn your AI skills into an additional income source.", "es": "Ideas prácticas para convertir tus habilidades de IA en una fuente de ingresos adicional.", "fr": "Des idées pratiques pour transformer vos compétences en IA en une source de revenus supplémentaire." },
+      "date": "15 أكتوبر 2025",
+      "author": "MindWeave Team"
+    },
+    {
+      "id": 27,
+      "category": { "ar": "تسويق", "en": "Marketing", "es": "Marketing", "fr": "Marketing" },
+      "icon": "🎥",
+      "title": { "ar": "نمو قناة يوتيوب باستخدام الذكاء الاصطناعي", "en": "Grow Your YouTube Channel Using AI", "es": "Haz crecer tu canal de YouTube usando IA", "fr": "Développez votre chaîne YouTube en utilisant l'IA" },
+      "excerpt": { "ar": "استراتيجيات ذكية لزيادة المشتركين والمشاهدات باستخدام الذكاء الاصطناعي.", "en": "Smart strategies to increase subscribers and views using AI.", "es": "Estrategias inteligentes para aumentar suscriptores y vistas usando IA.", "fr": "Stratégies intelligentes pour augmenter les abonnés et les vues en utilisant l'IA." },
+      "date": "10 أكتوبر 2025",
+      "author": "MindWeave Team"
     }
   ]
 }
