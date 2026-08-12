@@ -254,12 +254,13 @@ async function signOutUser() {
  */
 async function getCurrentUser() {
     try {
-        const { data: { user }, error } = await supabaseClient.auth.getUser();
-        if (error) {
-            console.error('Get user error:', error.message);
+        // Use the browser's persisted Supabase session for immediate, consistent UI state.
+        const { data: { session }, error } = await supabaseClient.auth.getSession();
+        if (error || !session?.user) {
+            if (error) console.error('Get user error:', error.message);
             return null;
         }
-        return user;
+        return session.user;
     } catch (error) {
         console.error('Get user error:', error);
         return null;
