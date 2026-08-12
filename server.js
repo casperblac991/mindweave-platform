@@ -2,11 +2,17 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { spawn } = require('child_process');
 
 const app = express();
 const port = Number(process.env.PORT || 10000);
 const startedAt = new Date();
 const rootDir = __dirname;
+
+function contentCycleIntervalMs(value) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? Math.max(parsed, 6 * 60 * 60 * 1000) : 6 * 60 * 60 * 1000;
+}
 
 const config = {
   openaiApiKey: process.env.OPENAI_API_KEY || '',
@@ -16,6 +22,9 @@ const config = {
   supabaseAnonKey: process.env.SUPABASE_ANON_KEY || '',
   maxRequestsPerWindow: Number(process.env.AI_RATE_LIMIT || 20),
   rateWindowMs: Number(process.env.AI_RATE_WINDOW_MS || 10 * 60 * 1000),
+  contentCycleEnabled: process.env.AI_CONTENT_CYCLE_ENABLED === 'true',
+  contentCycleIntervalMs: contentCycleIntervalMs(process.env.AI_CONTENT_CYCLE_INTERVAL_MS),
+  contentCycleRunOnStart: process.env.AI_CONTENT_CYCLE_ON_START !== 'false',
 };
 
 const metrics = {
@@ -24,6 +33,13 @@ const metrics = {
   assistantFailures: 0,
   lastAssistantSuccessAt: null,
   lastAssistantFailureAt: null,
+  contentCycle: {
+    running: false,
+    lastStartedAt: null,
+    lastCompletedAt: null,
+    lastExitCode: null,
+    lastFailureAt: null,
+  },
 };
 const rateBuckets = new Map();
 let knowledgeCache = { mtimeMs: 0, documents: [] };
@@ -181,6 +197,14 @@ app.get('/api/health', (req, res) => {
     startedAt: startedAt.toISOString(),
     uptimeSeconds: Math.floor(process.uptime()),
     version: process.env.RENDER_GIT_COMMIT || process.env.APP_VERSION || 'local',
+    contentCycle: {
+      enabled: config.contentCycleEnabled,
+      intervalHours: Math.round(config.contentCycleIntervalMs / (60 * 60 * 1000)),
+      running: metrics.contentCycle.running,
+      lastStartedAt: metrics.contentCycle.lastStartedAt,
+      lastCompletedAt: metrics.contentCycle.lastCompletedAt,
+      lastExitCode: metrics.contentCycle.lastExitCode,
+    },
   });
 });
 
@@ -348,6 +372,51 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(rootDir, 'index.html'));
 });
 
+function runContentCycle(trigger) {
+  if (!config.contentCycleEnabled || metrics.contentCycle.running) return;
+  const scriptPath = path.join(rootDir, 'scripts', 'content-cycle.js');
+  metrics.contentCycle.running = true;
+  metrics.contentCycle.lastStartedAt = new Date().toISOString();
+  console.log(`Starting review-only content cycle (${trigger}).`);
+
+  const child = spawn(process.execPath, [scriptPath], {
+    cwd: rootDir,
+    env: { ...process.env, AI_CONTENT_CYCLE_ENABLED: 'true' },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  const maxRunTimer = setTimeout(() => {
+    console.error('Content cycle exceeded its maximum runtime and was stopped.');
+    child.kill('SIGTERM');
+  }, 8 * 60 * 1000);
+  maxRunTimer.unref();
+
+  const logChunk = (stream) => stream.on('data', (chunk) => {
+    const message = String(chunk).replace(/\s+/g, ' ').trim().slice(0, 1000);
+    if (message) console.log(`[Content cycle] ${message}`);
+  });
+  logChunk(child.stdout);
+  logChunk(child.stderr);
+
+  child.on('error', (error) => {
+    metrics.contentCycle.lastFailureAt = new Date().toISOString();
+    console.error('Content cycle process failed to start:', error.message);
+  });
+  child.on('close', (code) => {
+    clearTimeout(maxRunTimer);
+    metrics.contentCycle.running = false;
+    metrics.contentCycle.lastCompletedAt = new Date().toISOString();
+    metrics.contentCycle.lastExitCode = Number.isInteger(code) ? code : -1;
+    if (code !== 0) metrics.contentCycle.lastFailureAt = metrics.contentCycle.lastCompletedAt;
+    console.log(`Review-only content cycle completed with exit code ${metrics.contentCycle.lastExitCode}.`);
+  });
+}
+
 app.listen(port, () => {
   console.log(`MindWeave server running on port ${port}`);
+  if (config.contentCycleEnabled && config.contentCycleRunOnStart) {
+    setTimeout(() => runContentCycle('startup'), 30000).unref();
+  }
+  if (config.contentCycleEnabled) {
+    setInterval(() => runContentCycle('interval'), config.contentCycleIntervalMs).unref();
+  }
 });

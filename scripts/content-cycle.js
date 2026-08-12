@@ -214,6 +214,14 @@ async function run() {
       try {
         const items = (await fetchFeed(source.source_url)).slice(0, config.maxItemsPerSource);
         for (const rawItem of items) {
+          const draftAlreadyExists = await rpc('ai_content_draft_exists_for_worker', {
+            p_source_url: rawItem.link,
+            p_source_title: rawItem.title,
+          });
+          if (draftAlreadyExists) {
+            console.log(`Skipped existing review draft: ${rawItem.link}`);
+            continue;
+          }
           const item = await hydrateItem(rawItem);
           if (item.summary.length < 80) {
             console.warn(`Skipped item without sufficient public excerpt: ${item.link}`);
