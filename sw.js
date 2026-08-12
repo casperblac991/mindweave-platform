@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mindweave-v4';
+const CACHE_NAME = 'mindweave-v5';
 const ASSETS = [
   '/',
   '/index.html',
@@ -30,7 +30,7 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
@@ -39,7 +39,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   
   // Strategy: Network-First for HTML files to ensure updates
-  if (event.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/') {
+  if (event.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/' || url.pathname.endsWith('/supabase-auth.js')) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {

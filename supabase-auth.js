@@ -175,15 +175,8 @@ async function signUpUser(email, password, fullName) {
             return { success: false, message: 'لم يتم إنشاء الحساب. تأكد من إعدادات Supabase ثم حاول مرة أخرى.' };
         }
 
-        // Do not block registration if the optional profile table/RLS is unavailable.
-        const { error: profileError } = await supabaseClient.from('user_profiles').upsert({
-            user_id: authData.user.id,
-            email: normalizedEmail,
-            full_name: normalizedName,
-            created_at: new Date().toISOString(),
-            is_newsletter_subscriber: true
-        }, { onConflict: 'user_id' });
-        if (profileError) console.warn('Profile was not saved; account creation succeeded:', profileError.message);
+        // The database trigger creates the profile atomically with auth.users. Avoid a second
+        // browser-side upsert because email confirmation normally returns no authenticated session.
 
         // Capture the registration email as a newsletter lead without blocking auth.
         const newsletterResult = await subscribeToNewsletter(normalizedEmail, 'signup');
