@@ -20,19 +20,19 @@ const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
  */
 async function checkAuthStatus() {
     try {
-        const { data: { user }, error } = await supabaseClient.auth.getUser();
-        
+        // Read the persisted session first. This avoids redirecting a valid user away from
+        // protected pages when a transient network check to Auth is slow or unavailable.
+        const { data: { session }, error } = await supabaseClient.auth.getSession();
+        const user = session?.user;
         if (error || !user) {
             return { authenticated: false, verified: false };
         }
 
-        // Check if email is confirmed
-        const isEmailConfirmed = user.email_confirmed_at !== null;
-        
-        return { 
-            authenticated: true, 
+        const isEmailConfirmed = Boolean(user.email_confirmed_at);
+        return {
+            authenticated: true,
             verified: isEmailConfirmed,
-            user: user
+            user
         };
     } catch (error) {
         console.error('Auth check error:', error);
