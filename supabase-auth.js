@@ -132,48 +132,75 @@ function showVerificationPendingModal(email) {
 /**
  * Sign up a new user
  */
+function getFriendlyAuthMessage(error) {
+    const message = String(error?.message || error || '').toLowerCase();
+    if (message.includes('already registered') || message.includes('already been registered')) return 'هذا البريد الإلكتروني مسجل مسبقاً. جرّب تسجيل الدخول أو استعادة كلمة المرور.';
+    if (message.includes('invalid email')) return 'يرجى إدخال بريد إلكتروني صحيح.';
+    if (message.includes('password') && (message.includes('6') || message.includes('short'))) return 'يجب أن تتكون كلمة المرور من 6 أحرف أو أكثر.';
+    if (message.includes('rate limit') || message.includes('too many')) return 'تم تجاوز عدد المحاولات. انتظر قليلاً ثم حاول مرة أخرى.';
+    if (message.includes('redirect')) return 'تعذر إعداد رابط التفعيل. تواصل مع إدارة المنصة لإضافة رابط الموقع إلى إعدادات Supabase.';
+    return error?.message || 'تعذر إتمام العملية. حاول مرة أخرى.';
+}
+
+/**
+ * Sign up a new user. The account is created first; profile/newsletter writes are best-effort
+ * so a missing table or restrictive RLS policy cannot make a valid account appear to fail.
+ */
 async function signUpUser(email, password, fullName) {
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const normalizedName = String(fullName || '').trim();
     try {
-        // Create user in Supabase Auth with email confirmation required
+        if (!normalizedEmail || !/^\S+@\S+\.\S+$/.test(normalizedEmail)) {
+            return { success: false, message: 'يرجى إدخال بريد إلكتروني صحيح.' };
+        }
+        if (!password || password.length < 6) {
+            return { success: false, message: 'يجب أن تتكون كلمة المرور من 6 أحرف أو أكثر.' };
+        }
+
+        const redirectTo = new URL('login.html', window.location.origin).href;
         const { data: authData, error: authError } = await supabaseClient.auth.signUp({
-            email: email,
-            password: password,
+            email: normalizedEmail,
+            password,
             options: {
-                emailRedirectTo: window.location.origin,
+                emailRedirectTo: redirectTo,
+                data: { full_name: normalizedName }
             }
         });
 
         if (authError) {
-            console.error('Auth Error:', authError.message);
-            return { success: false, message: authError.message };
+            console.error('Auth Error:', authError);
+            return { success: false, message: getFriendlyAuthMessage(authError) };
+        }
+        if (!authData?.user) {
+            return { success: false, message: 'لم يتم إنشاء الحساب. تأكد من إعدادات Supabase ثم حاول مرة أخرى.' };
         }
 
-        // Store user profile in database
-        const { data: profileData, error: profileError } = await supabaseClient
-            .from('user_profiles')
-            .insert([
-                {
-                    user_id: authData.user.id,
-                    email: email,
-                    full_name: fullName,
-                    created_at: new Date().toISOString(),
-                    is_newsletter_subscriber: true,
-                }
-            ]);
+        // Do not block registration if the optional profile table/RLS is unavailable.
+        const { error: profileError } = await supabaseClient.from('user_profiles').upsert({
+            user_id: authData.user.id,
+            email: normalizedEmail,
+            full_name: normalizedName,
+            created_at: new Date().toISOString(),
+            is_newsletter_subscriber: true
+        }, { onConflict: 'user_id' });
+        if (profileError) console.warn('Profile was not saved; account creation succeeded:', profileError.message);
 
-        if (profileError) {
-            console.error('Profile Error:', profileError.message);
-            return { success: false, message: 'فشل في إنشاء الملف الشخصي' };
-        }
+        // Capture the registration email as a newsletter lead without blocking auth.
+        const newsletterResult = await subscribeToNewsletter(normalizedEmail, 'signup');
+        if (!newsletterResult.success) console.warn('Newsletter capture deferred:', newsletterResult.message);
 
-        return { 
-            success: true, 
-            message: 'تم إنشاء الحساب بنجاح! يرجى التحقق من بريدك الإلكتروني لتفعيل الحساب.',
+        const needsVerification = !authData.session;
+        return {
+            success: true,
+            needsVerification,
+            message: needsVerification
+                ? 'تم إنشاء الحساب. افتح رسالة التفعيل في بريدك الإلكتروني ثم سجّل الدخول.'
+                : 'تم إنشاء الحساب وتسجيل الدخول بنجاح.',
             user: authData.user
         };
     } catch (error) {
         console.error('Sign up error:', error);
-        return { success: false, message: error.message };
+        return { success: false, message: getFriendlyAuthMessage(error) };
     }
 }
 
@@ -253,46 +280,37 @@ async function getCurrentUser() {
 /**
  * Subscribe user to newsletter
  */
-async function subscribeToNewsletter(email) {
+async function subscribeToNewsletter(email, source = 'website') {
+    const normalizedEmail = String(email || '').trim().toLowerCase();
     try {
-        // Check if email already exists
-        const { data: existingEmail, error: checkError } = await supabaseClient
-            .from('newsletter_subscribers')
-            .select('id')
-            .eq('email', email)
-            .single();
-
-        if (existingEmail) {
-            return { 
-                success: false, 
-                message: 'هذا البريد الإلكتروني مسجل بالفعل في النشرة البريدية.' 
-            };
+        if (!/^\S+@\S+\.\S+$/.test(normalizedEmail)) {
+            return { success: false, message: 'يرجى إدخال بريد إلكتروني صحيح.' };
         }
 
-        // Add new subscriber
-        const { data, error } = await supabaseClient
+        const { error } = await supabaseClient
             .from('newsletter_subscribers')
-            .insert([
-                {
-                    email: email,
-                    subscribed_at: new Date().toISOString(),
-                    is_active: true,
-                }
-            ]);
+            .upsert({
+                email: normalizedEmail,
+                subscribed_at: new Date().toISOString(),
+                is_active: true,
+                source
+            }, { onConflict: 'email' });
 
         if (error) {
             console.error('Newsletter subscription error:', error.message);
-            return { success: false, message: 'فشل الاشتراك. حاول مرة أخرى.' };
+            // Keep a retry queue on this device instead of silently losing the lead.
+            const pending = JSON.parse(localStorage.getItem('mw_pending_subscribers') || '[]');
+            if (!pending.some(item => item.email === normalizedEmail)) {
+                pending.push({ email: normalizedEmail, source, date: new Date().toISOString() });
+                localStorage.setItem('mw_pending_subscribers', JSON.stringify(pending));
+            }
+            return { success: false, queued: true, message: 'تعذر الاتصال بقاعدة البيانات؛ تم حفظ طلبك مؤقتاً وسيعاد إرساله لاحقاً.' };
         }
 
-        return { 
-            success: true, 
-            message: 'شكراً! تم اشتراكك في النشرة البريدية. ستتلقى آخر التحديثات.',
-            data: data
-        };
+        return { success: true, message: 'شكراً! تم تسجيل بريدك الإلكتروني بنجاح.', email: normalizedEmail };
     } catch (error) {
         console.error('Newsletter subscription error:', error);
-        return { success: false, message: error.message };
+        return { success: false, message: 'تعذر حفظ البريد حالياً. حاول مرة أخرى.' };
     }
 }
 

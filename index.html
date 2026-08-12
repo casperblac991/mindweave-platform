@@ -1568,29 +1568,51 @@ function sellPrompt() {
 }
 
 async function subscribeEmail() {
-  const email = document.getElementById('emailInput').value;
+  const input = document.getElementById('emailInput');
   const btn = document.getElementById('subscribeBtn');
-  
-  if (!email || !email.includes('@')) {
-    showNotification('⚠️', currentLang === 'ar' ? 'يرجى إدخال بريد إلكتروني صحيح' : currentLang === 'en' ? 'Please enter a valid email' : currentLang === 'es' ? 'Por favor ingrese un email válido' : 'Veuillez entrer un email valide');
+  const email = input?.value.trim().toLowerCase();
+  const messages = {
+    ar: { invalid: 'يرجى إدخال بريد إلكتروني صحيح', success: 'تم تسجيل بريدك الإلكتروني بنجاح!', queued: 'تم حفظ بريدك مؤقتاً وسيعاد إرساله عند عودة الاتصال.', error: 'حدث خطأ، يرجى المحاولة لاحقاً' },
+    en: { invalid: 'Please enter a valid email', success: 'Your email was registered successfully!', queued: 'Your email was saved temporarily and will be retried.', error: 'Something went wrong. Please try again.' },
+    es: { invalid: 'Introduce un email válido', success: '¡Tu email se registró correctamente!', queued: 'Tu email se guardó temporalmente y se reintentará.', error: 'Ocurrió un error. Inténtalo de nuevo.' },
+    fr: { invalid: 'Veuillez saisir une adresse e-mail valide', success: 'Votre e-mail a été enregistré avec succès !', queued: 'Votre e-mail a été enregistré temporairement et sera réessayé.', error: 'Une erreur est survenue. Réessayez.' }
+  };
+  const text = messages[currentLang] || messages.ar;
+
+  if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+    showNotification('⚠️', text.invalid);
+    input?.focus();
     return;
   }
-  
+
   btn.disabled = true;
   const originalText = btn.innerHTML;
   btn.innerHTML = '<span class="spinner"></span>';
-  
+
   try {
+    const result = typeof subscribeToNewsletter === 'function'
+      ? await subscribeToNewsletter(email, 'homepage')
+      : { success: false, queued: true };
+
+    // Keep a local copy for recovery and duplicate prevention on this device.
     const subscribers = JSON.parse(localStorage.getItem('mw_subscribers') || '[]');
-    if (!subscribers.find(s => s.email === email)) {
-      subscribers.push({ email, date: new Date().toISOString() });
+    if (!subscribers.some(item => item.email === email)) {
+      subscribers.push({ email, date: new Date().toISOString(), synced: result.success });
       localStorage.setItem('mw_subscribers', JSON.stringify(subscribers));
     }
-    
-    showNotification('🎁', currentLang === 'ar' ? 'تم إرسال الأوامر المجانية لبريدك!' : currentLang === 'en' ? 'Free prompts sent to your email!' : currentLang === 'es' ? '¡Prompts enviados a tu email!' : 'Prompts envoyés à votre email !');
-    document.getElementById('emailInput').value = '';
-  } catch (e) {
-    showNotification('❌', 'حدث خطأ، يرجى المحاولة لاحقاً');
+
+    if (result.success) {
+      showNotification('🎁', text.success);
+      input.value = '';
+    } else if (result.queued) {
+      showNotification('⏳', text.queued);
+      input.value = '';
+    } else {
+      showNotification('❌', result.message || text.error);
+    }
+  } catch (error) {
+    console.error('Newsletter form error:', error);
+    showNotification('❌', text.error);
   } finally {
     btn.disabled = false;
     btn.innerHTML = originalText;
