@@ -3,7 +3,7 @@
   "stats": {
     "products": { "ar": 25, "en": 25, "es": 25, "fr": 25 },
     "sales": { "ar": 2150, "en": 2150, "es": 2150, "fr": 2150 },
-    "rating": { "ar": 4.9, "en": 4.9, "es": 4.9, "fr": 4.9 },
+    "rating": { "ar": "4.9★", "en": "4.9★", "es": "4.9★", "fr": "4.9★" },
     "activeCreators": { "ar": 55, "en": 55, "es": 55, "fr": 55 }
   },
   "products": [
@@ -34,6 +34,13 @@
         "en": "Best Seller",
         "es": "Más Vendido",
         "fr": "Meilleure Vente"
+      },
+      "rating": "4.9",
+      "sales": {
+        "ar": "1.2k+ مبيعات",
+        "en": "1.2k+ sales",
+        "es": "1.2k+ ventas",
+        "fr": "1.2k+ ventes"
       }
     },
     {
@@ -51,13 +58,25 @@
         "fr": "Système intégré pour gérer vos tâches et projets avec intégration d'outils IA."
       },
       "price": "$29.99",
-      "category": "Notion",
+      "category": {
+        "ar": "Notion",
+        "en": "Notion",
+        "es": "Notion",
+        "fr": "Notion"
+      },
       "emoji": "📊",
       "badge": {
         "ar": "جديد",
         "en": "New",
         "es": "Nuevo",
         "fr": "Nouveau"
+      },
+      "rating": "4.8",
+      "sales": {
+        "ar": "850+ مبيعات",
+        "en": "850+ sales",
+        "es": "850+ ventas",
+        "fr": "850+ ventes"
       }
     },
     {
@@ -87,6 +106,13 @@
         "en": "Featured",
         "es": "Destacado",
         "fr": "En Vedette"
+      },
+      "rating": "5.0",
+      "sales": {
+        "ar": "2.1k+ مبيعات",
+        "en": "2.1k+ sales",
+        "es": "2.1k+ ventas",
+        "fr": "2.1k+ ventes"
       }
     }
   ],
