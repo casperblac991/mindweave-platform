@@ -46,7 +46,7 @@ async function checkAuthStatus() {
 async function enforceAuthGuard() {
     const authStatus = await checkAuthStatus();
     const path = window.location.pathname;
-    const protectedPages = ['dashboard.html', 'creators.html', 'cart.html'];
+    const protectedPages = ['dashboard.html', 'creators.html', 'cart.html', 'ai-ops.html'];
     const isProtected = protectedPages.some(p => path.endsWith(p));
     
     if (!authStatus.authenticated) {

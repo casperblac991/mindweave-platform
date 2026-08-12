@@ -1,20 +1,26 @@
 {
   "name": "mindweave-platform",
-  "version": "2.0.0",
-  "description": "منصة الذكاء الاصطناعي العربية الأولى - MindWeave Platform",
+  "version": "3.0.0",
+  "description": "MindWeave AI platform with a resilient assistant and reviewable content operations",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "content:cycle": "node scripts/content-cycle.js",
+    "health": "node scripts/health-check.js"
   },
   "keywords": [
     "ai",
     "prompts",
     "arabic",
-    "platform"
+    "platform",
+    "ai-operations"
   ],
   "author": "MindWeave Team",
   "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "express": "^4.19.2"
   }

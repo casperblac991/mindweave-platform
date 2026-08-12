@@ -14,3 +14,12 @@ security-audit-local.txt
 # Dependencies and OS files
 node_modules/
 .DS_Store
+
+# Temporary provider and deployment diagnostics
+.render_*.json
+.nvidia_*.json
+.tmp_*.json
+
+# Local authentication diagnostics and one-time administrative helpers
+auth_debug_notes.md
+tools/

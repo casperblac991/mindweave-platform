@@ -1,0 +1,5 @@
+{
+  "project_id": "mtirzcuntupkuavmjtcv",
+  "name": "create_ai_ops_admins",
+  "query": "-- MindWeave AI operations admins. No public read policy is created.\ncreate table if not exists public.ai_ops_admins (\n  user_id uuid primary key references auth.users(id) on delete cascade,\n  created_at timestamptz not null default now()\n);\n\nalter table public.ai_ops_admins enable row level security;\n\n-- Seed the verified platform owner used to manage this deployment.\ninsert into public.ai_ops_admins (user_id)\nselect id from auth.users where lower(email) = lower('schaik462@gmail.com')\non conflict (user_id) do nothing;"
+}

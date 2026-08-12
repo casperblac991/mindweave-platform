@@ -56,6 +56,7 @@
       <a href="store.html" class="sidebar-link">📦 المتجر</a>
       <a href="library.html" class="sidebar-link">📚 المكتبة المجانية</a>
       <a href="creators.html" class="sidebar-link">💰 برنامج المبدعين</a>
+      <a href="ai-ops.html" id="aiOpsLink" class="sidebar-link" style="display:none">⚙️ عمليات الذكاء الاصطناعي</a>
     </aside>
 
     <section class="content">
@@ -104,8 +105,12 @@
       const user = await getCurrentUser();
       if (user) {
         document.getElementById('userNameDisplay').textContent = user.user_metadata.full_name || user.email;
+        if ((user.email || '').toLowerCase() === 'schaik462@gmail.com') {
+          document.getElementById('aiOpsLink').style.display = 'block';
+        }
       }
     });
   </script>
+  <script src="ai-assistant.js?v=20260812-1"></script>
 </body>
 </html>
