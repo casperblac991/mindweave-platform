@@ -1,0 +1,16 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Subscriber exports and temporary local queues
+subscribers*.csv
+newsletter*.csv
+exports/
+
+# Local audit artifacts
+security-audit-local.txt
+
+# Dependencies and OS files
+node_modules/
+.DS_Store
