@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>المقال | MindWeave</title>
-<meta name="description" content="اقرأ أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المقال | MindWeave</title>
+  <meta name="description" content="اقرأ أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي">
+  
+  <!-- SEO & Social Sharing -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" id="metaOgTitle" content="المقال | MindWeave">
+  <meta property="og:description" id="metaOgDesc" content="اقرأ أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" id="metaTwTitle" content="المقال | MindWeave">
+  <meta property="twitter:description" id="metaTwDesc" content="اقرأ أحدث المقالات والدروس التعليمية في عالم الذكاء الاصطناعي">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -1074,6 +1082,14 @@ async function renderArticle() {
   document.getElementById('articleContent').innerHTML = post.content[currentLang];
   
   document.title = `${post.title[currentLang]} | MindWeave`;
+  
+  // Update Meta Tags for Social Sharing
+  const metaTitle = post.title[currentLang];
+  const metaDesc = post.excerpt ? post.excerpt[currentLang] : post.title[currentLang];
+  document.getElementById('metaOgTitle').setAttribute('content', metaTitle);
+  document.getElementById('metaOgDesc').setAttribute('content', metaDesc);
+  document.getElementById('metaTwTitle').setAttribute('content', metaTitle);
+  document.getElementById('metaTwDesc').setAttribute('content', metaDesc);
   
   const related = blogPosts.filter(p => p.id !== postId).slice(0, 3);
   const relatedGrid = document.getElementById('relatedGrid');

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم | MindWeave</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="لوحة تحكم المستخدم في MindWeave - أدر مشترياتك وأوامرك الرقمية.">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    window.ENV = {
+      SUPABASE_URL: "https://mtirzcuntupkuavmjtcv.supabase.co",
+      SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aXJ6Y3VudHVwa3Vhdm1qdGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDEwNjEsImV4cCI6MjA5Mjc3NzA2MX0.npI70eZJU5PB-Si0cST_iYJnRFzomn8tBx1IeVU7wHU"
+    };
+  </script>
+  <script src="supabase-auth.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #00D4FF; --bg: #050A0F; --bg-card: #0A1628;
+      --text: #E8F4FD; --text-muted: #7A9BB5; --border: rgba(0,212,255,0.2);
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; display: none; } /* Hidden by default for auth guard */
+    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
+    .logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; }
+    main { display: flex; padding-top: 70px; min-height: 100vh; }
+    .sidebar { width: 250px; background: var(--bg-card); border-left: 1px solid var(--border); padding: 2rem 1rem; }
+    .sidebar-link { display: block; padding: 1rem; color: var(--text-muted); text-decoration: none; border-radius: 12px; margin-bottom: 0.5rem; transition: all 0.3s; }
+    .sidebar-link.active, .sidebar-link:hover { background: rgba(0,212,255,0.1); color: var(--primary); }
+    .content { flex: 1; padding: 3rem; }
+    .welcome-card { background: linear-gradient(135deg, var(--bg-card), var(--bg)); border: 1px solid var(--border); padding: 2.5rem; border-radius: 24px; margin-bottom: 2rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+    .stat-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; border-radius: 20px; text-align: center; }
+    .downloads-list { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; }
+    .download-item { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border-bottom: 1px solid var(--border); }
+    .download-item:last-child { border-bottom: none; }
+    .btn-download { background: var(--primary); color: var(--bg); padding: 0.5rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+    .btn-logout-nav { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+    .btn-logout-nav:hover { border-color: #ff4d4d; color: #ff4d4d; }
+    @media (max-width: 768px) { main { flex-direction: column; } .sidebar { width: 100%; border-left: none; border-bottom: 1px solid var(--border); } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">🧠 Mind<span>Weave</span></a>
+    <button onclick="handleSignOut()" class="btn-logout-nav">تسجيل الخروج</button>
+  </nav>
+
+  <main>
+    <aside class="sidebar">
+      <a href="#" class="sidebar-link active">🏠 نظرة عامة</a>
+      <a href="store.html" class="sidebar-link">📦 المتجر</a>
+      <a href="library.html" class="sidebar-link">📚 المكتبة المجانية</a>
+      <a href="creators.html" class="sidebar-link">💰 برنامج المبدعين</a>
+    </aside>
+
+    <section class="content">
+      <div class="welcome-card">
+        <h1>أهلاً بك، <span id="userNameDisplay">المستخدم</span> 👋</h1>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">إليك ملخص لنشاطك على منصة MindWeave</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div style="font-size: 2rem;">🛍️</div>
+          <div style="font-size: 1.5rem; font-weight: 900; color: var(--primary);">0</div>
+          <div style="color: var(--text-muted);">مشتريات</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size: 2rem;">✨</div>
+          <div style="font-size: 1.5rem; font-weight: 900; color: var(--primary);">0</div>
+          <div style="color: var(--text-muted);">أوامر محفوظة</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size: 2rem;">💰</div>
+          <div style="font-size: 1.5rem; font-weight: 900; color: var(--primary);">$0.00</div>
+          <div style="color: var(--text-muted);">إجمالي الإنفاق</div>
+        </div>
+      </div>
+
+      <h2>تنزيلاتك الأخيرة</h2>
+      <div class="downloads-list" id="downloadsList">
+        <div style="padding: 3rem; text-align: center; color: var(--text-muted);">لا توجد تنزيلات حالياً. ابدأ باستكشاف المتجر!</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    async function handleSignOut() {
+      const result = await signOutUser();
+      if (result.success) {
+        window.location.href = 'index.html';
+      } else {
+        alert(result.message);
+      }
+    }
+
+    // Initialize Dashboard UI
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await getCurrentUser();
+      if (user) {
+        document.getElementById('userNameDisplay').textContent = user.user_metadata.full_name || user.email;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>المتجر | MindWeave</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="متجر MindWeave للمنتجات الرقمية وأوامر الذكاء الاصطناعي.">
+  
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     window.ENV = {
@@ -22,7 +26,7 @@
       --text: #E8F4FD; --text-muted: #7A9BB5; --border: rgba(0,212,255,0.2);
     }
     body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; line-height: 1.6; }
-    body[data-lang="en"] { font-family: 'Inter', sans-serif; direction: ltr; text-align: left; }
+    body[data-lang="en"], body[data-lang="es"], body[data-lang="fr"] { font-family: 'Inter', sans-serif; direction: ltr; text-align: left; }
     nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
     .logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; }
     .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
@@ -37,89 +41,146 @@
     .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 0.5rem 1.5rem; border-radius: 50px; cursor: pointer; transition: 0.3s; }
     .filter-btn.active { background: var(--primary); color: var(--bg); border-color: var(--primary); }
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
-    .product-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: 0.3s; }
+    .product-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; }
     .product-card:hover { transform: translateY(-5px); border-color: var(--primary); }
     .product-thumb { height: 180px; background: var(--bg-dark); display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; }
-    .product-body { padding: 1.5rem; }
+    .product-badge { position: absolute; top: 1rem; right: 1rem; background: var(--primary); color: var(--bg); padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; font-weight: 900; }
+    .product-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
     .product-category { font-size: 0.8rem; color: var(--primary); margin-bottom: 0.5rem; }
-    .product-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
-    .product-footer { display: flex; justify-content: space-between; align-items: center; }
+    .product-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .product-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+    .product-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
     .product-price { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
-    .btn-buy { background: var(--primary); color: var(--bg); padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; font-weight: 700; }
+    .btn-buy { background: var(--primary); color: var(--bg); padding: 0.6rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; }
+    .btn-buy:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,212,255,0.3); }
     footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
     .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
     .footer-links { list-style: none; margin-top: 1rem; }
     .footer-links li { margin-bottom: 0.5rem; }
     .footer-links a { color: var(--text-muted); text-decoration: none; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
   </style>
 </head>
 <body>
   <nav>
     <a href="index.html" class="logo"><div class="logo-icon">🧠</div>Mind<span>Weave</span></a>
     <ul class="nav-links">
-      <li><a href="index.html">الرئيسية</a></li>
-      <li><a href="store.html" class="active">المتجر</a></li>
-      <li><a href="library.html">المكتبة</a></li>
-      <li><a href="blog.html">المدونة</a></li>
+      <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+      <li><a href="store.html" class="active" data-i18n="nav.store">المتجر</a></li>
+      <li><a href="library.html" data-i18n="nav.library">المكتبة</a></li>
+      <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
     </ul>
     <div class="nav-buttons">
       <a href="cart.html" class="cart-btn">🛒 <span id="cartCount">0</span></a>
-      <a href="login.html" class="lang-btn">🔐 دخول</a>
+      <div id="authButtons"></div>
     </div>
   </nav>
 
   <main>
     <div class="section-header">
-      <h1 id="pageTitle">متجر المنتجات الرقمية</h1>
-      <p id="pageSubtitle">أفضل أدوات وأوامر الذكاء الاصطناعي لتسريع عملك</p>
+      <h1 id="pageTitle" data-i18n="store.title">متجر المنتجات الرقمية</h1>
+      <p id="pageSubtitle" data-i18n="store.subtitle">أفضل أدوات وأوامر الذكاء الاصطناعي لتسريع عملك</p>
     </div>
 
     <div class="store-filters">
-      <button class="filter-btn active" data-filter="all">الكل</button>
-      <button class="filter-btn" data-filter="prompts">أوامر AI</button>
-      <button class="filter-btn" data-filter="design">تصميم</button>
-      <button class="filter-btn" data-filter="notion">Notion</button>
+      <button class="filter-btn active" data-filter="all" data-i18n="filter.all">الكل</button>
+      <button class="filter-btn" data-filter="prompts" data-i18n="filter.prompts">أوامر AI</button>
+      <button class="filter-btn" data-filter="design" data-i18n="filter.design">تصميم</button>
+      <button class="filter-btn" data-filter="notion" data-i18n="filter.notion">Notion</button>
     </div>
 
     <div class="products-grid" id="productsGrid">
-      <!-- Loading state -->
       <p>جاري تحميل المنتجات...</p>
     </div>
   </main>
 
   <footer>
     <div class="footer-grid">
-      <div><h3>MindWeave</h3><p>منصة عربية متكاملة للذكاء الاصطناعي</p></div>
-      <div><h4>المنصة</h4><ul class="footer-links"><li><a href="store.html">المتجر</a></li><li><a href="library.html">المكتبة</a></li></ul></div>
-      <div><h4>الدعم</h4><ul class="footer-links"><li><a href="contact.html">تواصل معنا</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li></ul></div>
-      <div><h4>قانوني</h4><ul class="footer-links"><li><a href="privacy.html">الخصوصية</a></li><li><a href="terms.html">الشروط</a></li></ul></div>
+      <div><h3>MindWeave</h3><p data-i18n="footer.desc">منصة عربية متكاملة للذكاء الاصطناعي</p></div>
+      <div><h4 data-i18n="footer.platform">المنصة</h4><ul class="footer-links"><li><a href="store.html" data-i18n="nav.store">المتجر</a></li><li><a href="library.html" data-i18n="nav.library">المكتبة</a></li></ul></div>
+      <div><h4 data-i18n="footer.support">الدعم</h4><ul class="footer-links"><li><a href="contact.html" data-i18n="footer.contact">تواصل معنا</a></li><li><a href="faq.html" data-i18n="footer.faq">الأسئلة الشائعة</a></li></ul></div>
+      <div><h4 data-i18n="footer.legal">قانوني</h4><ul class="footer-links"><li><a href="privacy.html" data-i18n="footer.privacy">الخصوصية</a></li><li><a href="terms.html" data-i18n="footer.terms">الشروط</a></li></ul></div>
     </div>
   </footer>
 
   <script>
+    let currentLang = localStorage.getItem('mw_lang') || 'ar';
+    let allProducts = [];
+
     async function loadProducts() {
       try {
         const response = await fetch('content-data.json');
         const data = await response.json();
-        const grid = document.getElementById('productsGrid');
-        grid.innerHTML = data.products.map(p => `
-          <div class="product-card">
-            <div class="product-thumb">${p.emoji || '✨'}</div>
-            <div class="product-body">
-              <div class="product-category">${p.category}</div>
-              <div class="product-name">${p.name}</div>
-              <div class="product-footer">
-                <div class="product-price">${p.price}</div>
-                <a href="#" class="btn-buy">شراء الآن</a>
-              </div>
-            </div>
-          </div>
-        `).join('');
+        allProducts = data.products;
+        renderProducts('all');
       } catch (e) {
         console.error(e);
       }
     }
-    loadProducts();
+
+    function renderProducts(filter) {
+      const grid = document.getElementById('productsGrid');
+      const filtered = filter === 'all' ? allProducts : allProducts.filter(p => {
+        const cat = typeof p.category === 'object' ? p.category[currentLang] : p.category;
+        return cat.toLowerCase().includes(filter.toLowerCase());
+      });
+
+      grid.innerHTML = filtered.map(p => {
+        const name = typeof p.name === 'object' ? p.name[currentLang] : p.name;
+        const desc = typeof p.description === 'object' ? p.description[currentLang] : p.description;
+        const cat = typeof p.category === 'object' ? p.category[currentLang] : p.category;
+        const badge = p.badge ? (typeof p.badge === 'object' ? p.badge[currentLang] : p.badge) : null;
+
+        return `
+          <div class="product-card">
+            <div class="product-thumb">
+              ${p.emoji || '✨'}
+              ${badge ? `<span class="product-badge">${badge}</span>` : ''}
+            </div>
+            <div class="product-body">
+              <div class="product-category">${cat}</div>
+              <div class="product-name">${name}</div>
+              <div class="product-desc">${desc}</div>
+              <div class="product-footer">
+                <div class="product-price">${p.price}</div>
+                <button class="btn-buy" onclick="addToCart(${p.id})">${currentLang === 'ar' ? 'شراء الآن' : 'Buy Now'}</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function addToCart(id) {
+      let cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+      const product = allProducts.find(p => p.id === id);
+      if (product && !cart.find(item => item.id === id)) {
+        cart.push(product);
+        localStorage.setItem('mw_cart', JSON.stringify(cart));
+        updateCartCount();
+        alert(currentLang === 'ar' ? 'تمت الإضافة للسلة!' : 'Added to cart!');
+      }
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
+      document.getElementById('cartCount').textContent = cart.length;
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProducts(btn.dataset.filter);
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProducts();
+      updateCartCount();
+      document.body.setAttribute('data-lang', currentLang);
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+    });
   </script>
 </body>
 </html>

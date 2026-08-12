@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>سلة التسوق | MindWeave</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    window.ENV = {
+      SUPABASE_URL: "https://mtirzcuntupkuavmjtcv.supabase.co",
+      SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aXJ6Y3VudHVwa3Vhdm1qdGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDEwNjEsImV4cCI6MjA5Mjc3NzA2MX0.npI70eZJU5PB-Si0cST_iYJnRFzomn8tBx1IeVU7wHU"
+    };
+  </script>
+  <script src="supabase-auth.js"></script>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <style>
@@ -12,7 +22,7 @@
       --primary: #00D4FF; --bg: #050A0F; --bg-card: #0A1628;
       --text: #E8F4FD; --text-muted: #7A9BB5; --border: rgba(0,212,255,0.2);
     }
-    body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; line-height: 1.6; }
+    body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; line-height: 1.6; display: none; }
     nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
     .logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; }
     main { max-width: 800px; margin: 0 auto; padding: 120px 2rem 4rem; }
@@ -20,46 +30,62 @@
     .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
     .cart-item:last-child { border-bottom: none; }
     .cart-total { margin-top: 2rem; text-align: left; font-size: 1.5rem; font-weight: 900; color: var(--primary); }
-    .btn-checkout { display: block; width: 100%; background: var(--primary); color: var(--bg); padding: 1rem; border: none; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 2rem; cursor: pointer; text-align: center; text-decoration: none; }
+    .btn-checkout { display: block; width: 100%; background: var(--primary); color: var(--bg); padding: 1rem; border: none; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 2rem; cursor: pointer; text-align: center; text-decoration: none; font-family: inherit; }
     .empty-cart { text-align: center; padding: 3rem; color: var(--text-muted); }
   </style>
 </head>
 <body>
   <nav>
     <a href="index.html" class="logo">🧠 Mind<span>Weave</span></a>
+    <div id="authButtons"></div>
   </nav>
 
   <main>
-    <h1 style="margin-bottom: 2rem;">سلة التسوق</h1>
+    <h1 style="margin-bottom: 2rem;">سلة التسوق 🛒</h1>
     <div class="cart-container" id="cartContainer">
       <div class="empty-cart">السلة فارغة حالياً</div>
     </div>
     <div class="cart-total" id="cartTotal" style="display: none;">الإجمالي: $0.00</div>
-    <a href="#" class="btn-checkout" id="checkoutBtn" style="display: none;">إتمام الشراء</a>
+    <button class="btn-checkout" id="checkoutBtn" style="display: none;" onclick="handleCheckout()">إتمام الشراء</button>
   </main>
 
   <script>
+    async function handleCheckout() {
+      const user = await getCurrentUser();
+      if (!user) {
+        showAuthModal('login');
+        return;
+      }
+      alert('سيتم تحويلك إلى بوابة الدفع الآمنة... (هذه ميزة تجريبية)');
+    }
+
     function loadCart() {
       const cart = JSON.parse(localStorage.getItem('mw_cart') || '[]');
       const container = document.getElementById('cartContainer');
       if (cart.length === 0) return;
 
-      // In a real app, we would fetch product details by IDs
-      container.innerHTML = cart.map(id => `
+      // Simple display for demo
+      container.innerHTML = cart.map(item => `
         <div class="cart-item">
           <div>
-            <h3>منتج رقم ${id}</h3>
+            <h3>${typeof item === 'object' ? item.name : 'منتج رقم ' + item}</h3>
             <p style="color: var(--text-muted)">منتج رقمي</p>
           </div>
-          <div style="font-weight: 700">$9.99</div>
+          <div style="font-weight: 700">${typeof item === 'object' ? item.price : '$9.99'}</div>
         </div>
       `).join('');
       
+      const total = cart.reduce((sum, item) => {
+        const price = typeof item === 'object' ? parseFloat(item.price.replace('$', '')) : 9.99;
+        return sum + price;
+      }, 0);
+
       document.getElementById('cartTotal').style.display = 'block';
-      document.getElementById('cartTotal').textContent = `الإجمالي: $${(cart.length * 9.99).toFixed(2)}`;
+      document.getElementById('cartTotal').textContent = `الإجمالي: $${total.toFixed(2)}`;
       document.getElementById('checkoutBtn').style.display = 'block';
     }
-    loadCart();
+    
+    document.addEventListener('DOMContentLoaded', loadCart);
   </script>
 </body>
 </html>

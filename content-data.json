@@ -1,67 +1,143 @@
 {
-  "lastUpdate": "2026-06-10T07:09:05.402317",
+  "lastUpdate": "2026-07-18T14:00:00Z",
   "stats": {
-    "products": 20,
-    "sales": 2097,
-    "rating": 4.85,
-    "support": "24/7"
+    "products": { "ar": 25, "en": 25, "es": 25, "fr": 25 },
+    "sales": { "ar": 2150, "en": 2150, "es": 2150, "fr": 2150 },
+    "rating": { "ar": 4.9, "en": 4.9, "es": 4.9, "fr": 4.9 },
+    "activeCreators": { "ar": 55, "en": 55, "es": 55, "fr": 55 }
   },
   "products": [
     {
-      "id": 3,
-      "name": "الذكاء الاصطناعي في التسويق - الدليل الكامل",
-      "description": "دليل شامل لتعلم الذكاء الاصطناعي في التسويق باحترافية وسهولة. هذا المنتج يساعدك على توفير الوقت والجهد.",
-      "price": "$9.99",
-      "category": "AI Products",
-      "rating": 4.8,
-      "emoji": "✨"
+      "id": 1,
+      "name": {
+        "ar": "حزمة أوامر ChatGPT الاحترافية",
+        "en": "Professional ChatGPT Prompt Bundle",
+        "es": "Paquete Profesional de Prompts para ChatGPT",
+        "fr": "Pack Professionnel de Prompts ChatGPT"
+      },
+      "description": {
+        "ar": "أكثر من 500 أمر مصمم بدقة لزيادة إنتاجيتك في العمل والتعلم.",
+        "en": "Over 500 precision-crafted prompts to boost your work and learning productivity.",
+        "es": "Más de 500 prompts diseñados con precisión para aumentar tu productividad laboral y educativa.",
+        "fr": "Plus de 500 prompts conçus avec précision pour booster votre productivité au travail et dans vos études."
+      },
+      "price": "$19.99",
+      "category": {
+        "ar": "أوامر AI",
+        "en": "AI Prompts",
+        "es": "Prompts de IA",
+        "fr": "Prompts IA"
+      },
+      "emoji": "🧠",
+      "badge": {
+        "ar": "الأكثر مبيعاً",
+        "en": "Best Seller",
+        "es": "Más Vendido",
+        "fr": "Meilleure Vente"
+      }
     },
     {
       "id": 2,
-      "name": "أوامر ChatGPT للمبدعين - الدليل الكامل",
-      "description": "دليل شامل لتعلم أوامر ChatGPT للمبدعين باحترافية وسهولة. هذا المنتج يساعدك على توفير الوقت والجهد.",
-      "price": "$9.99",
-      "category": "AI Products",
-      "rating": 4.8,
-      "emoji": "✨"
+      "name": {
+        "ar": "قالب Notion لإدارة المشاريع بالذكاء الاصطناعي",
+        "en": "AI Project Management Notion Template",
+        "es": "Plantilla de Notion para Gestión de Proyectos con IA",
+        "fr": "Template Notion de Gestion de Projet IA"
+      },
+      "description": {
+        "ar": "نظام متكامل لإدارة مهامك ومشاريعك مع دمج أدوات AI.",
+        "en": "Integrated system to manage your tasks and projects with AI tool integration.",
+        "es": "Sistema integrado para gestionar tus tareas y proyectos con integración de herramientas de IA.",
+        "fr": "Système intégré pour gérer vos tâches et projets avec intégration d'outils IA."
+      },
+      "price": "$29.99",
+      "category": "Notion",
+      "emoji": "📊",
+      "badge": {
+        "ar": "جديد",
+        "en": "New",
+        "es": "Nuevo",
+        "fr": "Nouveau"
+      }
     },
     {
-      "id": 1,
-      "name": "مستقبل العمل مع AI - الدليل الكامل",
-      "description": "دليل شامل لتعلم مستقبل العمل مع AI باحترافية وسهولة. هذا المنتج يساعدك على توفير الوقت والجهد.",
-      "price": "$9.99",
-      "category": "AI Products",
-      "rating": 4.8,
-      "emoji": "✨"
+      "id": 3,
+      "name": {
+        "ar": "دليل هندسة الأوامر (Prompt Engineering)",
+        "en": "Prompt Engineering Guide",
+        "es": "Guía de Ingeniería de Prompts",
+        "fr": "Guide d'Ingénierie des Prompts"
+      },
+      "description": {
+        "ar": "كتاب إلكتروني شامل لتعلم فن كتابة الأوامر الفعالة.",
+        "en": "Comprehensive ebook to learn the art of writing effective prompts.",
+        "es": "Ebook completo para aprender el arte de escribir prompts efectivos.",
+        "fr": "Ebook complet pour apprendre l'art d'écrire des prompts efficaces."
+      },
+      "price": "$14.99",
+      "category": {
+        "ar": "كتب إلكترونية",
+        "en": "E-books",
+        "es": "Libros electrónicos",
+        "fr": "E-books"
+      },
+      "emoji": "📚",
+      "badge": {
+        "ar": "مميز",
+        "en": "Featured",
+        "es": "Destacado",
+        "fr": "En Vedette"
+      }
     }
   ],
   "blog": [
     {
-      "id": 3,
-      "title": "الذكاء الاصطناعي في التسويق",
-      "excerpt": "هذا مقال مفصل حول الذكاء الاصطناعي في التسويق وكيف يغير الذكاء الاصطناعي مستقبلنا.  الأهمية يعتبر الذكاء الاصطناعي في التسويق من أهم المجالات حالياً.",
-      "content": "# الذكاء الاصطناعي في التسويق\nهذا مقال مفصل حول الذكاء الاصطناعي في التسويق وكيف يغير الذكاء الاصطناعي مستقبلنا.\n## الأهمية\nيعتبر الذكاء الاصطناعي في التسويق من أهم المجالات حالياً.\n## التطبيقات\nتتعدد التطبيقات لتشمل كل جوانب الحياة.\n",
-      "date": "2026-06-10",
-      "category": "AI News",
-      "author": "MindWeave AI"
+      "id": 1,
+      "title": {
+        "ar": "كيف تبدأ في مجال هندسة الأوامر؟",
+        "en": "How to Start in Prompt Engineering?",
+        "es": "¿Cómo empezar en la ingeniería de prompts?",
+        "fr": "Comment débuter en ingénierie des prompts ?"
+      },
+      "excerpt": {
+        "ar": "دليل المبتدئين لفهم أساسيات التواصل مع النماذج اللغوية الكبيرة.",
+        "en": "A beginner's guide to understanding the basics of communicating with LLMs.",
+        "es": "Una guía para principiantes para entender los conceptos básicos de la comunicación con LLMs.",
+        "fr": "Un guide pour débutants pour comprendre les bases de la communication avec les LLM."
+      },
+      "date": "2026-07-15",
+      "category": {
+        "ar": "تعليم",
+        "en": "Education",
+        "es": "Educación",
+        "fr": "Éducation"
+      },
+      "author": "MindWeave Team",
+      "icon": "🎓"
     },
     {
       "id": 2,
-      "title": "أوامر ChatGPT للمبدعين",
-      "excerpt": "هذا مقال مفصل حول أوامر ChatGPT للمبدعين وكيف يغير الذكاء الاصطناعي مستقبلنا.  الأهمية يعتبر أوامر ChatGPT للمبدعين من أهم المجالات حالياً.",
-      "content": "# أوامر ChatGPT للمبدعين\nهذا مقال مفصل حول أوامر ChatGPT للمبدعين وكيف يغير الذكاء الاصطناعي مستقبلنا.\n## الأهمية\nيعتبر أوامر ChatGPT للمبدعين من أهم المجالات حالياً.\n## التطبيقات\nتتعدد التطبيقات لتشمل كل جوانب الحياة.\n",
-      "date": "2026-06-09",
-      "category": "AI News",
-      "author": "MindWeave AI"
-    },
-    {
-      "id": 1,
-      "title": "مستقبل العمل مع AI",
-      "excerpt": "هذا مقال مفصل حول مستقبل العمل مع AI وكيف يغير الذكاء الاصطناعي مستقبلنا.  الأهمية يعتبر مستقبل العمل مع AI من أهم المجالات حالياً.",
-      "content": "# مستقبل العمل مع AI\nهذا مقال مفصل حول مستقبل العمل مع AI وكيف يغير الذكاء الاصطناعي مستقبلنا.\n## الأهمية\nيعتبر مستقبل العمل مع AI من أهم المجالات حالياً.\n## التطبيقات\nتتعدد التطبيقات لتشمل كل جوانب الحياة.\n",
-      "date": "2026-06-08",
-      "category": "AI News",
-      "author": "MindWeave AI"
+      "title": {
+        "ar": "أفضل 10 أدوات AI للمصممين في 2026",
+        "en": "Top 10 AI Tools for Designers in 2026",
+        "es": "Las 10 mejores herramientas de IA para diseñadores en 2026",
+        "fr": "Top 10 des outils IA pour les designers en 2026"
+      },
+      "excerpt": {
+        "ar": "قائمة محدثة بأهم الأدوات التي ستغير طريقة عملك كمصمم.",
+        "en": "An updated list of the most important tools that will change your way of working as a designer.",
+        "es": "Una lista actualizada de las herramientas más importantes que cambiarán tu forma de trabajar como diseñador.",
+        "fr": "Une liste mise à jour des outils les plus importants qui changeront votre façon de travailler en tant que designer."
+      },
+      "date": "2026-07-10",
+      "category": {
+        "ar": "تصميم",
+        "en": "Design",
+        "es": "Diseño",
+        "fr": "Design"
+      },
+      "author": "Sarah Ahmed",
+      "icon": "🎨"
     }
   ]
 }

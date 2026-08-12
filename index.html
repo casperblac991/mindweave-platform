@@ -11,6 +11,38 @@ gtag('config', 'G-DZ4WQDX31M');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindWeave | نَسِج العقول بالذكاء الاصطناعي</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="MindWeave هي المنصة العربية العالمية الأولى لأوامر الذكاء الاصطناعي (AI Prompts)، القوالب الرقمية، والكتب الإلكترونية. اكتشف مستقبل الإبداع مع Prompt Lab مجاني.">
+<meta name="keywords" content="ذكاء اصطناعي, AI Prompts, أوامر ChatGPT, قوالب رقمية, كتب إلكترونية, Prompt Engineering, MindWeave">
+<meta name="author" content="MindWeave Team">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mindweave.store/">
+<meta property="og:title" content="MindWeave | نَسِج العقول بالذكاء الاصطناعي">
+<meta property="og:description" content="اكتشف وبع واختبر أفضل أوامر الذكاء الاصطناعي في العالم العربي.">
+<meta property="og:image" content="https://mindweave.store/assets/og-image.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://mindweave.store/">
+<meta property="twitter:title" content="MindWeave | نَسِج العقول بالذكاء الاصطناعي">
+<meta property="twitter:description" content="اكتشف وبع واختبر أفضل أوامر الذكاء الاصطناعي في العالم العربي.">
+<meta property="twitter:image" content="https://mindweave.store/assets/og-image.png">
+
+<link rel="canonical" href="https://mindweave.store/">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#050A0F">
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js');
+    });
+  }
+</script>
 <!-- Supabase Library -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- Environment Variables Configuration -->
@@ -1185,7 +1217,8 @@ body[data-lang="en"] .notification {
   <div class="footer-bottom"><p data-i18n="footer.copyright">© 2026 MindWeave — منصة عربية للذكاء الاصطناعي 🧠</p></div>
 </footer>
 
-<div class="notification" id="notification"><span id="notifIcon">✅</span><span id="notifText"></span></div>
+  <div class="notification" id="notification"><span id="notifIcon">✅</span><span id="notifText"></span></div>
+  <button id="backToTop" title="العودة للأعلى" style="position: fixed; bottom: 2rem; left: 2rem; background: var(--primary); color: var(--bg); border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: none; z-index: 999; font-size: 1.5rem; box-shadow: 0 5px 15px rgba(0,212,255,0.4);">↑</button>
 
 <!-- Auth Modal -->
 <div id="authModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
@@ -1682,6 +1715,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!e.target.closest('.search-container')) {
         searchResults.style.display = 'none';
       }
+    });
+
+    // Back to Top Logic
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 </script>
