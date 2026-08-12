@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mindweave-v3';
+const CACHE_NAME = 'mindweave-v4';
 const ASSETS = [
   '/',
   '/index.html',
