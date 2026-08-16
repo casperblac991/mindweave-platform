@@ -353,6 +353,26 @@ app.get('/api/ops/sources', requireOpsUser, async (req, res) => {
   } catch (error) { return opsError(res, error); }
 });
 
+app.get('/api/ops/newsletter/export', requireOpsUser, async (req, res) => {
+  try {
+    const subscribers = [];
+    for (let offset = 0; offset < 10000; offset += 1000) {
+      const rows = await supabaseForUser(req, `/rest/v1/newsletter_subscribers?select=email,source,consent_at,consent_version,subscribed_at&is_active=eq.true&order=subscribed_at.desc&limit=1000&offset=${offset}`);
+      subscribers.push(...(rows || []));
+      if (!Array.isArray(rows) || rows.length < 1000) break;
+    }
+    const csvCell = (value) => `"${String(value ?? '').replace(/"/g, '""')}"`;
+    const csv = [
+      'email,source,consent_at,consent_version,subscribed_at',
+      ...subscribers.map((row) => [row.email, row.source, row.consent_at, row.consent_version, row.subscribed_at].map(csvCell).join(',')),
+    ].join('\r\n');
+    res.setHeader('Cache-Control', 'no-store, max-age=0');
+    res.type('text/csv; charset=utf-8');
+    res.attachment('mindweave-newsletter-subscribers.csv');
+    return res.send(`\uFEFF${csv}`);
+  } catch (error) { return opsError(res, error); }
+});
+
 app.post('/api/ops/sources', requireOpsUser, async (req, res) => {
   const name = normaliseText(req.body?.name, 160);
   const sourceUrl = normaliseText(req.body?.sourceUrl, 1000);
