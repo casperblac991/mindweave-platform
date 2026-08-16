@@ -1084,6 +1084,7 @@ body[data-lang="en"] .notification {
     <div class="hero-actions">
       <a href="store.html" class="btn-primary" data-i18n="hero.cta1">🛒 استكشف المتجر</a>
       <a href="prompt-lab.html" class="btn-outline" data-i18n="hero.cta2">⚗️ جرّب Prompt Lab مجاناً</a>
+      <a href="#newsletter-signup" class="btn-outline" data-i18n="hero.cta3">🎁 احصل على 10 أوامر مجانية</a>
     </div>
   </div>
 
@@ -1196,7 +1197,7 @@ body[data-lang="en"] .notification {
   </div>
 
   <!-- CTA -->
-  <div class="cta-section reveal">
+  <div class="cta-section reveal" id="newsletter-signup">
     <div style="font-size: 2.5rem;">🎁</div>
     <h2 data-i18n="cta.title">احصل على <em style="color: var(--bg);">10 أوامر مجانية</em></h2>
     <p style="color: rgba(5, 10, 15, 0.8);" data-i18n="cta.desc">اشترك في النشرة البريدية واحصل فوراً على مجموعة أوامر ChatGPT المختارة مجاناً</p>
@@ -1252,7 +1253,7 @@ body[data-lang="en"] .notification {
 const translations = {
   ar: {
     nav: { home: "الرئيسية", store: "المتجر", library: "المكتبة المجانية", promptlab: "Prompt Lab ✨", creators: "برنامج المبدعين", blog: "المدونة", cart: "السلة", start: "ابدأ مجاناً →" },
-    hero: { badge: "🌍 المنصة العربية الأولى للذكاء الاصطناعي", title1: "نَسِج العقول", title2: "بالذكاء الاصطناعي", subtitle: "منصة عربية متكاملة لأوامر AI، القوالب الرقمية، والكتب الإلكترونية — مع Prompt Lab مجاني لاختبار أوامرك قبل الشراء", cta1: "🛒 استكشف المتجر", cta2: "⚗️ جرّب Prompt Lab مجاناً" },
+    hero: { badge: "🌍 المنصة العربية الأولى للذكاء الاصطناعي", title1: "نَسِج العقول", title2: "بالذكاء الاصطناعي", subtitle: "منصة عربية متكاملة لأوامر AI، القوالب الرقمية، والكتب الإلكترونية — مع Prompt Lab مجاني لاختبار أوامرك قبل الشراء", cta1: "🛒 استكشف المتجر", cta2: "⚗️ جرّب Prompt Lab مجاناً", cta3: "🎁 احصل على 10 أوامر مجانية" },
     stats: { products: "منتج رقمي", sales: "عملية بيع", rating: "تقييم المنصة", support: "دعم AI فوري" },
     trust: { security: "دفع آمن 100%", delivery: "تسليم فوري", updates: "تحديثات مجانية", refund: "ضمان استرداد 30 يوماً" },
     lab: { tab1: "توليد أمر", tab2: "تحسين أمر", tab3: "ترجمة", inputTitle: "📝 وصف احتياجك", generate: "⚡ توليد أمر احترافي", outputTitle: "🤖 الأمر المُولَّد", copy: "📋 نسخ", save: "💾 حفظ", sell: "💰 بيع في المتجر" },
@@ -1266,7 +1267,7 @@ const translations = {
   },
   en: {
     nav: { home: "Home", store: "Store", library: "Free Library", promptlab: "Prompt Lab ✨", creators: "Creator Program", blog: "Blog", cart: "Cart", start: "Start Free →" },
-    hero: { badge: "🌍 The First Arabic AI Platform", title1: "Weave Minds", title2: "With AI", subtitle: "A comprehensive Arabic platform for AI prompts, digital templates, and e-books — with free Prompt Lab to test your prompts before buying", cta1: "🛒 Explore Store", cta2: "⚗️ Try Prompt Lab Free" },
+    hero: { badge: "🌍 The First Arabic AI Platform", title1: "Weave Minds", title2: "With AI", subtitle: "A comprehensive Arabic platform for AI prompts, digital templates, and e-books — with free Prompt Lab to test your prompts before buying", cta1: "🛒 Explore Store", cta2: "⚗️ Try Prompt Lab Free", cta3: "🎁 Get 10 Free Prompts" },
     stats: { products: "Digital Products", sales: "Sales", rating: "Platform Rating", support: "Instant AI Support" },
     trust: { security: "100% Secure Payment", delivery: "Instant Delivery", updates: "Free Updates", refund: "30-Day Guarantee" },
     lab: { tab1: "Generate", tab2: "Improve", tab3: "Translate", inputTitle: "📝 Describe Your Need", generate: "⚡ Generate Prompt", outputTitle: "🤖 Generated Prompt", copy: "📋 Copy", save: "💾 Save", sell: "💰 Sell in Store" },
@@ -1280,7 +1281,7 @@ const translations = {
   },
   es: {
     nav: { home: "Inicio", store: "Tienda", library: "Biblioteca Gratis", promptlab: "Prompt Lab ✨", creators: "Programa de Creadores", blog: "Blog", cart: "Carrito", start: "Empezar Gratis →" },
-    hero: { badge: "🌍 La Primera Plataforma Árabe de IA", title1: "Tejer Mentes", title2: "Con IA", subtitle: "Plataforma árabe integral para prompts de IA, plantillas digitales y libros electrónicos — con Prompt Lab gratuito para probar tus prompts antes de comprar", cta1: "🛒 Explorar Tienda", cta2: "⚗️ Probar Prompt Lab Gratis" },
+    hero: { badge: "🌍 La Primera Plataforma Árabe de IA", title1: "Tejer Mentes", title2: "Con IA", subtitle: "Plataforma árabe integral para prompts de IA, plantillas digitales y libros electrónicos — con Prompt Lab gratuito para probar tus prompts antes de comprar", cta1: "🛒 Explorar Tienda", cta2: "⚗️ Probar Prompt Lab Gratis", cta3: "🎁 Obtén 10 Prompts Gratis" },
     stats: { products: "Productos Digitales", sales: "Ventas", rating: "Calificación", support: "Soporte IA" },
     trust: { security: "Pago 100% Seguro", delivery: "Entrega Instantánea", updates: "Actualizaciones Gratuitas", refund: "Garantía de 30 Días" },
     lab: { tab1: "Generar", tab2: "Mejorar", tab3: "Traducir", inputTitle: "📝 Describe tu Necesidad", generate: "⚡ Generar Prompt", outputTitle: "🤖 Prompt Generado", copy: "📋 Copiar", save: "💾 Guardar", sell: "💰 Vender en Tienda" },
@@ -1294,7 +1295,7 @@ const translations = {
   },
   fr: {
     nav: { home: "Accueil", store: "Boutique", library: "Bibliothèque Gratuite", promptlab: "Prompt Lab ✨", creators: "Programme Créateurs", blog: "Blog", cart: "Panier", start: "Commencer Gratuitement →" },
-    hero: { badge: "🌍 La Première Plateforme Arabe d'IA", title1: "Tisser des Esprits", title2: "Avec l'IA", subtitle: "Plateforme arabe complète pour les prompts IA, templates numériques et livres électroniques — avec Prompt Lab gratuit pour tester vos prompts avant achat", cta1: "🛒 Explorer la Boutique", cta2: "⚗️ Essayer Prompt Lab Gratuit" },
+    hero: { badge: "🌍 La Première Plateforme Arabe d'IA", title1: "Tisser des Esprits", title2: "Avec l'IA", subtitle: "Plateforme arabe complète pour les prompts IA, templates numériques et livres électroniques — avec Prompt Lab gratuit pour tester vos prompts avant achat", cta1: "🛒 Explorer la Boutique", cta2: "⚗️ Essayer Prompt Lab Gratuit", cta3: "🎁 Obtenez 10 Prompts Gratuits" },
     stats: { products: "Produits Numériques", sales: "Ventes", rating: "Note", support: "Support IA" },
     trust: { security: "Paiement 100% Sécurisé", delivery: "Livraison Instantanée", updates: "Mises à Jour Gratuites", refund: "Garantie 30 Jours" },
     lab: { tab1: "Générer", tab2: "Améliorer", tab3: "Traduire", inputTitle: "📝 Décrivez Votre Besoin", generate: "⚡ Générer Prompt", outputTitle: "🤖 Prompt Généré", copy: "📋 Copier", save: "💾 Sauvegarder", sell: "💰 Vendre en Boutique" },
