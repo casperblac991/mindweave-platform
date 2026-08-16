@@ -178,9 +178,7 @@ async function signUpUser(email, password, fullName) {
         // The database trigger creates the profile atomically with auth.users. Avoid a second
         // browser-side upsert because email confirmation normally returns no authenticated session.
 
-        // Capture the registration email as a newsletter lead without blocking auth.
-        const newsletterResult = await subscribeToNewsletter(normalizedEmail, 'signup');
-        if (!newsletterResult.success) console.warn('Newsletter capture deferred:', newsletterResult.message);
+        // Account registration does not subscribe the user to marketing messages by itself.
 
         const needsVerification = !authData.session;
         return {
@@ -274,34 +272,34 @@ async function getCurrentUser() {
 /**
  * Subscribe user to newsletter
  */
-async function subscribeToNewsletter(email, source = 'website') {
+async function subscribeToNewsletter(email, source = 'website', consent = false) {
     const normalizedEmail = String(email || '').trim().toLowerCase().replace(/\s+/g, '');
     try {
         if (!/^\S+@\S+\.\S+$/.test(normalizedEmail)) {
             return { success: false, message: 'يرجى إدخال بريد إلكتروني صحيح.' };
         }
+        if (consent !== true) {
+            return { success: false, message: 'يرجى الموافقة على استلام رسائل النشرة أولاً.' };
+        }
 
-        const { error } = await supabaseClient
-            .from('newsletter_subscribers')
-            .upsert({
-                email: normalizedEmail,
-                subscribed_at: new Date().toISOString(),
-                is_active: true,
-                source
-            }, { onConflict: 'email' });
+        const { data, error } = await supabaseClient.rpc('subscribe_to_newsletter', {
+            p_email: normalizedEmail,
+            p_source: String(source || 'website').toLowerCase().replace(/[^a-z0-9_-]/g, '_').slice(0, 80) || 'website',
+            p_consent: true
+        });
 
         if (error) {
             console.error('Newsletter subscription error:', error.message);
-            // Keep a retry queue on this device instead of silently losing the lead.
+            // Keep a retry queue on this device instead of silently losing a consented lead.
             const pending = JSON.parse(localStorage.getItem('mw_pending_subscribers') || '[]');
             if (!pending.some(item => item.email === normalizedEmail)) {
-                pending.push({ email: normalizedEmail, source, date: new Date().toISOString() });
+                pending.push({ email: normalizedEmail, source, consent: true, date: new Date().toISOString() });
                 localStorage.setItem('mw_pending_subscribers', JSON.stringify(pending));
             }
             return { success: false, queued: true, message: 'تعذر الاتصال بقاعدة البيانات؛ تم حفظ طلبك مؤقتاً وسيعاد إرساله لاحقاً.' };
         }
 
-        return { success: true, message: 'شكراً! تم تسجيل بريدك الإلكتروني بنجاح.', email: normalizedEmail };
+        return { success: true, message: 'شكراً! تم تسجيل بريدك الإلكتروني بنجاح.', email: data?.[0]?.email || normalizedEmail };
     } catch (error) {
         console.error('Newsletter subscription error:', error);
         return { success: false, message: 'تعذر حفظ البريد حالياً. حاول مرة أخرى.' };
@@ -503,13 +501,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('emailInput').value.trim();
+            const email = document.getElementById('emailInput')?.value.trim();
+            const consent = Boolean(document.getElementById('newsletterConsent')?.checked);
             if (email) {
-                const result = await subscribeToNewsletter(email);
-                alert(result.message);
-                if (result.success) {
-                    newsletterForm.reset();
+                const result = await subscribeToNewsletter(email, 'website', consent);
+                if (typeof window.showNotification === 'function') {
+                    window.showNotification(result.success ? '✅' : '⚠️', result.message);
+                } else {
+                    const status = document.getElementById('newsletterStatus');
+                    if (status) status.textContent = result.message;
                 }
+                if (result.success) newsletterForm.reset();
             }
         });
     }

@@ -1201,9 +1201,13 @@ body[data-lang="en"] .notification {
     <h2 data-i18n="cta.title">احصل على <em style="color: var(--bg);">10 أوامر مجانية</em></h2>
     <p style="color: rgba(5, 10, 15, 0.8);" data-i18n="cta.desc">اشترك في النشرة البريدية واحصل فوراً على مجموعة أوامر ChatGPT المختارة مجاناً</p>
     <div class="email-form">
-      <input type="email" class="email-input" id="emailInput" placeholder="بريدك الإلكتروني...">
+      <input type="email" class="email-input" id="emailInput" autocomplete="email" inputmode="email" placeholder="بريدك الإلكتروني...">
       <button class="btn-primary" id="subscribeBtn" data-i18n="cta.button" style="background: white; color: var(--bg);">احصل عليها →</button>
     </div>
+    <label style="display:flex;align-items:flex-start;justify-content:center;gap:.55rem;margin:.85rem auto 0;max-width:620px;font-size:.82rem;color:rgba(5,10,15,.85);cursor:pointer;text-align:right;">
+      <input type="checkbox" id="newsletterConsent" style="margin-top:.3rem;accent-color:var(--bg);">
+      <span><span data-i18n="cta.consent">أوافق على استلام رسائل النشرة والتحديثات من MindWeave.</span> <a href="privacy.html" style="color:inherit;text-decoration:underline;">سياسة الخصوصية</a></span>
+    </label>
   </div>
 </main>
 
@@ -1257,7 +1261,7 @@ const translations = {
     filter: { all: "الكل", prompts: "🧠 أوامر AI", design: "🎨 تصميم", notion: "📊 Notion", ebooks: "📚 كتب", coding: "💻 برمجة" },
     features: { badge: "✨ لماذا MindWeave؟", title: "ميزات لا تجدها في أي مكان آخر", new: "جديد", feature1: "Prompt Lab", feature3: "برنامج المبدعين", feature5: "منتجات حقيقية", desc1: "اختبر وولّد أوامر احترافية مجاناً قبل الشراء", desc3: "بيع أوامرك وقوالبك واكسب 70% من كل عملية بيع", desc5: "20 منتج احترافي جاهز للتحميل الفوري عبر Gumroad" },
     creator: { badge: "💰 برنامج المبدعين", title1: "حوّل إبداعك", title2: "إلى دخل", desc: "انضم إلى مجتمع المبدعين في MindWeave — بيع أوامرك، قوالبك، وأدواتك الرقمية واكسب 70% من كل عملية بيع.", stat1: "عمولة المبدع", stat2: "مبدع نشط", cta: "انضم كمبدع →", step1: "سجّل حساب مجاناً", step1Desc: "أنشئ حساب مبدع في أقل من دقيقة", step2: "ارفع منتجك الرقمي", step2Desc: "أوامر AI، قوالب، كتب إلكترونية", step3: "ابدأ الكسب", step3Desc: "احصل على 70% من كل عملية بيع" },
-    cta: { title: "احصل على 10 أوامر مجانية", desc: "اشترك في النشرة البريدية واحصل فوراً على مجموعة أوامر ChatGPT المختارة مجاناً", button: "احصل عليها →" },
+    cta: { title: "احصل على 10 أوامر مجانية", desc: "اشترك في النشرة البريدية واحصل فوراً على مجموعة أوامر ChatGPT المختارة مجاناً", button: "احصل عليها →", consent: "أوافق على استلام رسائل النشرة والتحديثات من MindWeave." },
     footer: { desc: "منصة عربية متكاملة لأوامر الذكاء الاصطناعي، القوالب الرقمية، والكتب الإلكترونية.", platform: "المنصة", support: "الدعم", legal: "قانوني", about: "من نحن", contact: "تواصل معنا", faq: "الأسئلة الشائعة", privacy: "سياسة الخصوصية", terms: "شروط الاستخدام", copyright: "© 2026 MindWeave — منصة عربية للذكاء الاصطناعي 🧠" }
   },
   en: {
@@ -1271,7 +1275,7 @@ const translations = {
     filter: { all: "All", prompts: "🧠 AI Prompts", design: "🎨 Design", notion: "📊 Notion", ebooks: "📚 Books", coding: "💻 Coding" },
     features: { badge: "✨ Why MindWeave?", title: "Features You Won't Find Anywhere Else", new: "New", feature1: "Prompt Lab", feature3: "Creator Program", feature5: "Real Products", desc1: "Test and generate professional prompts for free before buying", desc3: "Sell your prompts and templates, earn 70% commission", desc5: "20 professional products ready for instant download via Gumroad" },
     creator: { badge: "💰 Creator Program", title1: "Turn Creativity", title2: "Into Income", desc: "Join the MindWeave creator community — sell your prompts, templates, and digital tools, and earn 70% commission on every sale.", stat1: "Creator Commission", stat2: "Active Creators", cta: "Join as Creator →", step1: "Create Free Account", step1Desc: "Sign up as a creator in under a minute", step2: "Upload Your Product", step2Desc: "AI prompts, templates, e-books", step3: "Start Earning", step3Desc: "Get 70% from every sale" },
-    cta: { title: "Get 10 Free Prompts", desc: "Subscribe to our newsletter and instantly get curated ChatGPT prompts for free", button: "Get It →" },
+    cta: { title: "Get 10 Free Prompts", desc: "Subscribe to our newsletter and instantly get curated ChatGPT prompts for free", button: "Get It →", consent: "I agree to receive newsletter messages and updates from MindWeave." },
     footer: { desc: "A comprehensive Arabic platform for AI prompts, digital templates, and e-books.", platform: "Platform", support: "Support", legal: "Legal", about: "About", contact: "Contact", faq: "FAQ", privacy: "Privacy Policy", terms: "Terms of Service", copyright: "© 2026 MindWeave — Arabic AI Platform 🧠" }
   },
   es: {
@@ -1285,7 +1289,7 @@ const translations = {
     filter: { all: "Todos", prompts: "🧠 Prompts IA", design: "🎨 Diseño", notion: "📊 Notion", ebooks: "📚 Libros", coding: "💻 Programación" },
     features: { badge: "✨ ¿Por qué MindWeave?", title: "Características Únicas", new: "Nuevo", feature1: "Prompt Lab", feature3: "Programa de Creadores", feature5: "Productos Reales", desc1: "Prueba y genera prompts profesionales gratis", desc3: "Vende tus prompts y gana 70% de comisión", desc5: "20 productos profesionales listos para descarga instantánea vía Gumroad" },
     creator: { badge: "💰 Programa de Creadores", title1: "Convierte Creatividad", title2: "en Ingresos", desc: "Únete a la comunidad de creadores de MindWeave — vende tus prompts, plantillas y herramientas digitales, y gana 70% de comisión.", stat1: "Comisión", stat2: "Creadores Activos", cta: "Únete como Creador →", step1: "Crea Cuenta Gratis", step1Desc: "Regístrate como creador en menos de un minuto", step2: "Sube tu Producto", step2Desc: "Prompts IA, plantillas, libros", step3: "Comienza a Ganar", step3Desc: "Obtén 70% de cada venta" },
-    cta: { title: "Obtén 10 Prompts Gratis", desc: "Suscríbete a nuestro boletín y obtén instantáneamente prompts ChatGPT seleccionados gratis", button: "Obtener →" },
+    cta: { title: "Obtén 10 Prompts Gratis", desc: "Suscríbete a nuestro boletín y obtén instantáneamente prompts ChatGPT seleccionados gratis", button: "Obtener →", consent: "Acepto recibir mensajes y novedades del boletín de MindWeave." },
     footer: { desc: "Plataforma árabe integral para prompts de IA, plantillas digitales y libros electrónicos.", platform: "Plataforma", support: "Soporte", legal: "Legal", about: "Nosotros", contact: "Contacto", faq: "FAQ", privacy: "Política de Privacidad", terms: "Términos de Servicio", copyright: "© 2026 MindWeave — Plataforma Árabe de IA 🧠" }
   },
   fr: {
@@ -1299,7 +1303,7 @@ const translations = {
     filter: { all: "Tous", prompts: "🧠 Prompts IA", design: "🎨 Design", notion: "📊 Notion", ebooks: "📚 Livres", coding: "💻 Programmation" },
     features: { badge: "✨ Pourquoi MindWeave?", title: "Fonctionnalités Uniques", new: "Nouveau", feature1: "Prompt Lab", feature3: "Programme Créateurs", feature5: "Produits Réels", desc1: "Testez et générez des prompts professionnels gratuitement", desc3: "Vendez vos prompts et gagnez 70% de commission", desc5: "20 produits professionnels prêts pour téléchargement instantané via Gumroad" },
     creator: { badge: "💰 Programme Créateurs", title1: "Transformez la Créativité", title2: "en Revenus", desc: "Rejoignez la communauté de créateurs MindWeave — vendez vos prompts, templates et outils numériques, et gagnez 70% de commission.", stat1: "Commission", stat2: "Créateurs Actifs", cta: "Rejoindre comme Créateur →", step1: "Créez un Compte Gratuit", step1Desc: "Inscrivez-vous comme créateur en moins d'une minute", step2: "Téléchargez Votre Produit", step2Desc: "Prompts IA, templates, livres", step3: "Commencez à Gagner", step3Desc: "Obtenez 70% de chaque vente" },
-    cta: { title: "Obtenez 10 Prompts Gratuits", desc: "Abonnez-vous à notre newsletter et obtenez instantanément des prompts ChatGPT sélectionnés gratuitement", button: "Obtenir →" },
+    cta: { title: "Obtenez 10 Prompts Gratuits", desc: "Abonnez-vous à notre newsletter et obtenez instantanément des prompts ChatGPT sélectionnés gratuitement", button: "Obtenir →", consent: "J’accepte de recevoir la newsletter et les actualités de MindWeave." },
     footer: { desc: "Plateforme arabe complète pour les prompts IA, templates numériques et livres électroniques.", platform: "Plateforme", support: "Support", legal: "Juridique", about: "À propos", contact: "Contact", faq: "FAQ", privacy: "Politique de Confidentialité", terms: "Conditions d'Utilisation", copyright: "© 2026 MindWeave — Plateforme Arabe d'IA 🧠" }
   }
 };
@@ -1571,17 +1575,23 @@ async function subscribeEmail() {
   const input = document.getElementById('emailInput');
   const btn = document.getElementById('subscribeBtn');
   const email = input?.value.trim().toLowerCase();
+  const consent = document.getElementById('newsletterConsent');
   const messages = {
-    ar: { invalid: 'يرجى إدخال بريد إلكتروني صحيح', success: 'تم تسجيل بريدك الإلكتروني بنجاح!', queued: 'تم حفظ بريدك مؤقتاً وسيعاد إرساله عند عودة الاتصال.', error: 'حدث خطأ، يرجى المحاولة لاحقاً' },
-    en: { invalid: 'Please enter a valid email', success: 'Your email was registered successfully!', queued: 'Your email was saved temporarily and will be retried.', error: 'Something went wrong. Please try again.' },
-    es: { invalid: 'Introduce un email válido', success: '¡Tu email se registró correctamente!', queued: 'Tu email se guardó temporalmente y se reintentará.', error: 'Ocurrió un error. Inténtalo de nuevo.' },
-    fr: { invalid: 'Veuillez saisir une adresse e-mail valide', success: 'Votre e-mail a été enregistré avec succès !', queued: 'Votre e-mail a été enregistré temporairement et sera réessayé.', error: 'Une erreur est survenue. Réessayez.' }
+    ar: { invalid: 'يرجى إدخال بريد إلكتروني صحيح', consent: 'يرجى الموافقة على استلام رسائل النشرة أولاً', success: 'تم تسجيل بريدك الإلكتروني بنجاح!', queued: 'تم حفظ بريدك مؤقتاً وسيعاد إرساله عند عودة الاتصال.', error: 'حدث خطأ، يرجى المحاولة لاحقاً' },
+    en: { invalid: 'Please enter a valid email', consent: 'Please agree to receive newsletter messages first', success: 'Your email was registered successfully!', queued: 'Your email was saved temporarily and will be retried.', error: 'Something went wrong. Please try again.' },
+    es: { invalid: 'Introduce un email válido', consent: 'Primero acepta recibir los mensajes del boletín', success: '¡Tu email se registró correctamente!', queued: 'Tu email se guardó temporalmente y se reintentará.', error: 'Ocurrió un error. Inténtalo de nuevo.' },
+    fr: { invalid: 'Veuillez saisir une adresse e-mail valide', consent: 'Veuillez d’abord accepter de recevoir la newsletter', success: 'Votre e-mail a été enregistré avec succès !', queued: 'Votre e-mail a été enregistré temporairement et sera réessayé.', error: 'Une erreur est survenue. Réessayez.' }
   };
   const text = messages[currentLang] || messages.ar;
 
   if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
     showNotification('⚠️', text.invalid);
     input?.focus();
+    return;
+  }
+  if (!consent?.checked) {
+    showNotification('⚠️', text.consent);
+    consent?.focus();
     return;
   }
 
@@ -1591,19 +1601,13 @@ async function subscribeEmail() {
 
   try {
     const result = typeof subscribeToNewsletter === 'function'
-      ? await subscribeToNewsletter(email, 'homepage')
+      ? await subscribeToNewsletter(email, 'homepage', true)
       : { success: false, queued: true };
-
-    // Keep a local copy for recovery and duplicate prevention on this device.
-    const subscribers = JSON.parse(localStorage.getItem('mw_subscribers') || '[]');
-    if (!subscribers.some(item => item.email === email)) {
-      subscribers.push({ email, date: new Date().toISOString(), synced: result.success });
-      localStorage.setItem('mw_subscribers', JSON.stringify(subscribers));
-    }
 
     if (result.success) {
       showNotification('🎁', text.success);
       input.value = '';
+      if (consent) consent.checked = false;
     } else if (result.queued) {
       showNotification('⏳', text.queued);
       input.value = '';
