@@ -32,6 +32,9 @@
     .result-area { margin-top: 1.5rem; padding: 1.5rem; background: rgba(0,212,255,0.05); border-radius: 12px; border: 1px dashed var(--primary); display: none; position: relative; flex-grow: 1; }
     .copy-btn { position: absolute; top: 1rem; left: 1rem; background: var(--primary); color: var(--bg); border: none; border-radius: 6px; padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; }
     .prompt-suggestions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .product-context { display: none; margin: 0 auto 1.5rem; max-width: 760px; padding: .85rem 1rem; border: 1px solid var(--border); border-radius: 14px; background: rgba(0,212,255,.06); color: var(--muted); }
+    .product-context strong { color: var(--text); }
+    .product-context a { color: var(--primary); text-decoration: none; font-weight: 700; }
     .suggestion-chip { background: var(--bg); border: 1px solid var(--border); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; }
     .suggestion-chip:hover { border-color: var(--primary); color: var(--primary); }
     .spinner { width: 18px; height: 18px; border: 2px solid rgba(0,0,0,0.1); border-top-color: var(--bg); border-radius: 50%; animation: spin 0.8s linear infinite; }
@@ -48,6 +51,7 @@
       <h1>Prompt Lab ✨</h1>
       <p>صمم، اختبر، وحسّن أوامرك باستخدام الذكاء الاصطناعي قبل استخدامها</p>
     </div>
+    <div class="product-context" id="productContext"></div>
 
     <div class="lab-grid">
       <div class="lab-card">
@@ -90,6 +94,19 @@
     const placeholderText = document.getElementById('placeholderText');
     const promptInput = document.getElementById('promptInput');
     const suggestionContainer = document.getElementById('suggestionContainer');
+    const productContext = document.getElementById('productContext');
+
+    const productId = Number(new URLSearchParams(location.search).get('product'));
+    if (productId) {
+      fetch('content-data.json?v=' + Date.now()).then(response => response.json()).then(data => {
+        const product = data.products.find(item => item.id === productId);
+        if (!product) return;
+        const productName = typeof product.name === 'object' ? (product.name.ar || product.name.en) : product.name;
+        productContext.innerHTML = `تعمل الآن على تحسين أوامر مرتبطة بـ <strong>${productName}</strong>. <a href="product.html?id=${product.id}">العودة إلى تفاصيل المنتج</a>`;
+        productContext.style.display = 'block';
+        promptInput.placeholder = `اكتب مسودة مرتبطة بـ ${productName}...`;
+      }).catch(() => {});
+    }
 
     const suggestions = [
       "اكتب مقالاً تقنياً",

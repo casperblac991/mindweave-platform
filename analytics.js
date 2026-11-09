@@ -8,6 +8,8 @@
     'view_item',
     'select_content',
     'add_to_cart',
+    'remove_from_cart',
+    'begin_checkout',
     'generate_prompt',
     'copy_prompt',
     'save_prompt',

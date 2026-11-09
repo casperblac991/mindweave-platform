@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مراجعة الطلب | MindWeave</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box} :root{--primary:#00D4FF;--bg:#050A0F;--card:#0A1628;--text:#E8F4FD;--muted:#7A9BB5;--border:rgba(0,212,255,.2)}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Cairo,sans-serif;line-height:1.7} nav{height:68px;position:fixed;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1.2rem;background:rgba(5,10,15,.95);border-bottom:1px solid var(--border);z-index:2}.logo{color:var(--text);text-decoration:none;font-weight:900;font-size:1.2rem}.logo-mark{display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--primary),#7C3AED);border-radius:10px;margin-left:.4rem}.back{color:var(--primary);text-decoration:none}main{max-width:760px;margin:auto;padding:106px 1rem 3rem}.card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:1.4rem}.summary{display:grid;gap:.8rem}.item{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--border)}.item:last-child{border-bottom:0}.muted{color:var(--muted);font-size:.9rem}.total{display:flex;justify-content:space-between;font-size:1.3rem;font-weight:900;color:var(--primary);margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}.notice{margin-top:1rem;padding:1rem;border:1px dashed var(--primary);border-radius:14px;background:rgba(0,212,255,.06)}.actions{display:grid;gap:.7rem;margin-top:1rem}.btn{display:flex;justify-content:center;align-items:center;min-height:48px;border:0;border-radius:12px;padding:.75rem;font:inherit;font-weight:900;cursor:pointer;text-decoration:none}.primary{background:var(--primary);color:var(--bg)}.secondary{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text)}@media(max-width:520px){main{padding:92px .8rem 2rem}.card{padding:1rem;border-radius:18px}.item{align-items:flex-start;flex-direction:column;gap:.2rem}}
+  </style>
+</head>
+<body>
+  <nav><a class="logo" href="index.html"><span class="logo-mark">🧠</span>MindWeave</a><a class="back" href="cart.html">العودة للسلة</a></nav>
+  <main><div class="card"><h1>مراجعة الطلب</h1><p class="muted">تحقق من المنتجات قبل الانتقال إلى الدفع.</p><div id="summary" class="summary"></div><div id="notice" class="notice">بوابة الدفع غير مفعّلة حاليًا. لن يتم خصم أي مبلغ ولن نسجل عملية شراء حتى يتم ربط مزود دفع حقيقي.</div><div class="actions"><button id="payBtn" class="btn primary" type="button">المتابعة إلى الدفع</button><a class="btn secondary" href="store.html">متابعة التسوق</a></div></div></main>
+  <script>
+    const cart = JSON.parse(localStorage.getItem('mw_cart') || '[]'); const summary = document.getElementById('summary'); const payBtn = document.getElementById('payBtn');
+    const price = item => Number.parseFloat(String(item.price || '0').replace(/[^0-9.]/g,'')) || 0;
+    const total = cart.reduce((sum,item)=>sum+price(item),0);
+    summary.innerHTML = cart.length ? cart.map(item => `<div class="item"><span>${typeof item.name==='object' ? item.name.ar : item.name}</span><strong>$${price(item).toFixed(2)}</strong></div>`).join('') + `<div class="total"><span>الإجمالي</span><span>$${total.toFixed(2)}</span></div>` : '<p class="muted">السلة فارغة. <a href="store.html">اختر منتجًا أولًا</a></p>';
+    payBtn.disabled = !cart.length;
+    payBtn.addEventListener('click', () => { if (window.mwTrack) window.mwTrack('begin_checkout', { item_count: cart.length }); alert('الدفع غير متاح بعد. أضف رابط مزود الدفع في إعدادات الخادم قبل تفعيل الخصم.'); });
+  </script>
+  <script src="analytics.js?v=20261109"></script>
+</body>
+</html>

@@ -53,7 +53,8 @@
     .product-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
     .product-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
     .product-price { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
-    .btn-buy { background: var(--primary); color: var(--bg); padding: 0.6rem 1.2rem; min-height: 44px; border-radius: 10px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; }
+    .btn-buy, .btn-details { background: var(--primary); color: var(--bg); padding: 0.6rem 1.2rem; min-height: 44px; border-radius: 10px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; }
+    .btn-details { background: transparent; color: var(--primary); border: 1px solid var(--border); display: inline-flex; align-items: center; justify-content: center; }
     .btn-buy:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,212,255,0.3); }
     footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
     .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
@@ -181,7 +182,10 @@
               <div class="product-desc">${desc}</div>
               <div class="product-footer">
                 <div class="product-price">${p.price}</div>
-                <button class="btn-buy" data-product-id="${p.id}" onclick="addToCart(${p.id})">${currentLang === 'ar' ? 'شراء الآن' : 'Buy Now'}</button>
+                <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;justify-content:flex-end">
+                  <a class="btn-details" href="product.html?id=${p.id}">${currentLang === 'ar' ? 'التفاصيل' : 'Details'}</a>
+                  <button class="btn-buy" data-product-id="${p.id}" onclick="addToCart(${p.id})">${currentLang === 'ar' ? 'شراء الآن' : 'Buy Now'}</button>
+                </div>
               </div>
             </div>
           </div>

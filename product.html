@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="تفاصيل المنتج الرقمي من MindWeave مع عينة وفوائد وتقييم ومسار Prompt Lab.">
+  <title>تفاصيل المنتج | MindWeave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    :root { --primary:#00D4FF; --accent:#7C3AED; --bg:#050A0F; --card:#0A1628; --text:#E8F4FD; --muted:#7A9BB5; --border:rgba(0,212,255,.2); }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:'Cairo',sans-serif; line-height:1.7; }
+    nav { position:fixed; inset:0 0 auto; height:68px; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0 2rem; background:rgba(5,10,15,.94); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); }
+    .logo { color:var(--text); text-decoration:none; font-weight:900; font-size:1.35rem; }
+    .logo-mark { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; margin-left:.45rem; border-radius:11px; background:linear-gradient(135deg,var(--primary),var(--accent)); }
+    .nav-actions { display:flex; gap:.6rem; align-items:center; }
+    .nav-link,.cart-link { min-height:42px; display:inline-flex; align-items:center; gap:.35rem; padding:.55rem .9rem; border:1px solid var(--border); border-radius:10px; color:var(--text); text-decoration:none; }
+    main { max-width:1120px; margin:auto; padding:108px 1.25rem 4rem; }
+    .breadcrumbs { color:var(--muted); font-size:.88rem; margin-bottom:1.2rem; }
+    .breadcrumbs a { color:var(--primary); text-decoration:none; }
+    .product-hero { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:2rem; align-items:stretch; }
+    .visual,.detail-card,.info-card { background:var(--card); border:1px solid var(--border); border-radius:24px; }
+    .visual { min-height:390px; display:grid; place-items:center; position:relative; overflow:hidden; background:radial-gradient(circle at 50% 30%,rgba(0,212,255,.22),transparent 58%),var(--card); }
+    .visual-emoji { font-size:7rem; filter:drop-shadow(0 14px 26px rgba(0,212,255,.2)); }
+    .badge { position:absolute; top:1.1rem; right:1.1rem; background:var(--primary); color:var(--bg); padding:.35rem .8rem; border-radius:999px; font-size:.8rem; font-weight:900; }
+    .detail-card { padding:2rem; }
+    .category { color:var(--primary); font-size:.9rem; font-weight:700; }
+    h1 { margin:.35rem 0 .75rem; font-size:clamp(1.8rem,4vw,3rem); line-height:1.25; }
+    .description { color:var(--muted); font-size:1.04rem; }
+    .rating-row { display:flex; align-items:center; flex-wrap:wrap; gap:.7rem; margin:1.1rem 0; }
+    .stars { color:#FFD166; letter-spacing:.08rem; }
+    .sales { color:var(--muted); font-size:.88rem; }
+    .price-row { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1.5rem; padding-top:1.25rem; border-top:1px solid var(--border); }
+    .price { color:var(--primary); font-size:1.75rem; font-weight:900; }
+    .actions { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-top:1rem; }
+    .btn { min-height:48px; display:inline-flex; justify-content:center; align-items:center; border:0; border-radius:12px; padding:.75rem 1rem; font:inherit; font-weight:900; text-decoration:none; cursor:pointer; }
+    .btn-primary { color:var(--bg); background:var(--primary); }
+    .btn-secondary { color:var(--text); background:rgba(255,255,255,.06); border:1px solid var(--border); }
+    .section-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem; }
+    .info-card { padding:1.5rem; }
+    .info-card h2 { margin-top:0; font-size:1.25rem; }
+    .info-card p,.info-card li { color:var(--muted); }
+    .info-card ul { margin:.6rem 0 0; padding-right:1.2rem; }
+    .sample-box { background:rgba(0,212,255,.06); border:1px dashed var(--primary); padding:1rem; border-radius:14px; white-space:pre-wrap; color:var(--text); font-size:.94rem; }
+    .trust { color:var(--muted); text-align:center; margin-top:1.5rem; font-size:.85rem; }
+    @media (max-width:700px) {
+      nav { height:62px; padding:0 .85rem; }
+      .logo { font-size:1.1rem; }
+      .nav-link { display:none; }
+      .cart-link { min-width:44px; justify-content:center; padding:.5rem; }
+      main { padding:84px .85rem 3rem; }
+      .product-hero,.section-grid { grid-template-columns:1fr; gap:1rem; }
+      .visual { min-height:230px; border-radius:18px; }
+      .visual-emoji { font-size:5rem; }
+      .detail-card,.info-card { padding:1.15rem; border-radius:18px; }
+      h1 { font-size:1.8rem; }
+      .description { font-size:.96rem; }
+      .price-row { align-items:flex-start; flex-direction:column; }
+      .price { font-size:1.5rem; }
+      .actions { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="logo" href="index.html"><span class="logo-mark">🧠</span>MindWeave</a>
+    <div class="nav-actions"><a class="nav-link" href="store.html">← العودة للمتجر</a><a class="cart-link" href="cart.html" aria-label="السلة">🛒 <span id="cartCount">0</span></a></div>
+  </nav>
+  <main id="productPage"><p>جاري تحميل المنتج...</p></main>
+  <script>
+    let product;
+    const lang = localStorage.getItem('mw_lang') || 'ar';
+    const samples = {
+      1: 'اكتب خطة عمل عملية لمشروع رقمي جديد، مع تحليل الجمهور، عرض القيمة، خطة تسويق لمدة 30 يوماً، ومؤشرات قياس واضحة.',
+      2: 'لوحة مشاريع أسبوعية تحتوي على الأهداف، المهام ذات الأولوية، المخاطر، ومراجعة نهاية الأسبوع.',
+      3: 'الفكرة الأساسية: ابدأ بتحديد النتيجة المطلوبة، ثم أضف السياق والقيود ومعايير الجودة قبل صياغة الأمر النهائي.'
+    };
+    const benefits = {
+      1: ['تسريع الكتابة والتخطيط والتعلم', 'أمثلة قابلة للتعديل لأكثر من مجال', 'منهج عملي لتحويل الفكرة إلى أمر واضح'],
+      2: ['تنظيم المشاريع والمهام في مساحة واحدة', 'تقليل وقت المتابعة والتحديثات', 'قالب جاهز للتعديل حسب فريقك'],
+      3: ['فهم بنية الأمر الاحترافي', 'أمثلة قبل/بعد للتحسين', 'خطوات عملية لاختبار جودة النتائج']
+    };
+    function text(value) { return typeof value === 'object' ? (value[lang] || value.ar) : value; }
+    function money(value) { return String(value || '$0.00'); }
+    function getCart() { return JSON.parse(localStorage.getItem('mw_cart') || '[]'); }
+    function updateCart() { document.getElementById('cartCount').textContent = getCart().length; }
+    function addToCart() {
+      const cart = getCart();
+      if (!cart.some(item => item.id === product.id)) cart.push(product);
+      localStorage.setItem('mw_cart', JSON.stringify(cart));
+      updateCart();
+      const button = document.getElementById('addBtn');
+      button.textContent = 'تمت الإضافة ✓';
+      if (window.mwTrack) window.mwTrack('add_to_cart', { item_id: product.id, page_type: 'product' });
+    }
+    async function load() {
+      const id = Number(new URLSearchParams(location.search).get('id')) || 1;
+      const data = await fetch('content-data.json?v=' + Date.now()).then(r => r.json());
+      product = data.products.find(item => item.id === id) || data.products[0];
+      const name = text(product.name), desc = text(product.description), cat = text(product.category), badge = text(product.badge), sales = text(product.sales);
+      const stars = '★'.repeat(Math.round(Number(product.rating || 0))) + '☆'.repeat(Math.max(0, 5 - Math.round(Number(product.rating || 0))));
+      document.title = name + ' | MindWeave';
+      document.getElementById('productPage').innerHTML = `
+        <div class="breadcrumbs"><a href="store.html">المتجر</a> <span>›</span> ${name}</div>
+        <section class="product-hero">
+          <div class="visual"><span class="visual-emoji">${product.emoji || '✨'}</span>${badge ? `<span class="badge">${badge}</span>` : ''}</div>
+          <div class="detail-card">
+            <div class="category">${cat}</div><h1>${name}</h1><p class="description">${desc}</p>
+            <div class="rating-row"><span class="stars" aria-label="تقييم ${product.rating} من 5">${stars}</span><strong>${product.rating}/5</strong><span class="sales">${sales || 'تقييمات العملاء'}</span></div>
+            <div class="price-row"><span class="price">${money(product.price)}</span><span class="sales">منتج رقمي — وصول فوري بعد تفعيل الدفع</span></div>
+            <div class="actions"><button id="addBtn" class="btn btn-primary" type="button">أضف إلى السلة</button><a class="btn btn-secondary" href="prompt-lab.html?product=${product.id}">جرّبه في Prompt Lab</a></div>
+          </div>
+        </section>
+        <section class="section-grid"><article class="info-card"><h2>ماذا ستحصل عليه؟</h2><ul>${(benefits[product.id] || benefits[1]).map(item => `<li>${item}</li>`).join('')}</ul></article><article class="info-card"><h2>عينة من المنتج</h2><div class="sample-box">${samples[product.id] || samples[1]}</div></article></section>
+        <p class="trust">دفع آمن عند تفعيل مزود الدفع · لا نعرض بياناتك الحساسة في المتصفح</p>`;
+      document.getElementById('addBtn').addEventListener('click', addToCart);
+      updateCart();
+    }
+    load().catch(() => { document.getElementById('productPage').innerHTML = '<p>تعذر تحميل المنتج. <a href="store.html">العودة للمتجر</a></p>'; });
+  </script>
+  <script src="analytics.js?v=20261109"></script>
+</body>
+</html>
