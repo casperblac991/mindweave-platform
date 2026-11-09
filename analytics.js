@@ -17,7 +17,9 @@
     'newsletter_signup',
     'sign_up',
     'login',
-    'creator_application_submit'
+    'creator_application_submit',
+    'campaign_lead',
+    'campaign_share'
   ]);
 
   function cleanValue(value) {
