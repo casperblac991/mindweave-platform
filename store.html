@@ -27,18 +27,20 @@
     }
     body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; line-height: 1.6; }
     body[data-lang="en"], body[data-lang="es"], body[data-lang="fr"] { font-family: 'Inter', sans-serif; direction: ltr; text-align: left; }
-    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(5, 10, 15, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; z-index: 1000; }
     .logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 900; color: var(--text); text-decoration: none; }
     .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
     .nav-links { display: flex; gap: 0.5rem; list-style: none; }
     .nav-links a { color: var(--text-muted); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; }
     .nav-links a:hover, .nav-links a.active { color: var(--primary); background: rgba(0, 212, 255, 0.1); }
     .nav-buttons { display: flex; gap: 1rem; align-items: center; }
+    .menu-toggle { display: none; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text); min-width: 44px; min-height: 44px; border-radius: 10px; font-size: 1.2rem; cursor: pointer; }
+    .mobile-nav { display: none; }
     .lang-btn, .cart-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; text-decoration: none; }
     main { max-width: 1200px; margin: 0 auto; padding: 100px 2rem 4rem; }
     .section-header { text-align: center; margin-bottom: 3rem; }
     .store-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
-    .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 0.5rem 1.5rem; border-radius: 50px; cursor: pointer; transition: 0.3s; }
+    .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 0.65rem 1.5rem; min-height: 44px; border-radius: 50px; cursor: pointer; transition: 0.3s; white-space: nowrap; }
     .filter-btn.active { background: var(--primary); color: var(--bg); border-color: var(--primary); }
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
     .product-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; }
@@ -51,14 +53,42 @@
     .product-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
     .product-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
     .product-price { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
-    .btn-buy { background: var(--primary); color: var(--bg); padding: 0.6rem 1.2rem; border-radius: 10px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; }
+    .btn-buy { background: var(--primary); color: var(--bg); padding: 0.6rem 1.2rem; min-height: 44px; border-radius: 10px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; }
     .btn-buy:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,212,255,0.3); }
     footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 4rem 2rem 2rem; margin-top: 4rem; }
     .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
     .footer-links { list-style: none; margin-top: 1rem; }
     .footer-links li { margin-bottom: 0.5rem; }
     .footer-links a { color: var(--text-muted); text-decoration: none; }
-    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+    @media (max-width: 768px) {
+      nav { padding: 0.65rem 1rem; min-height: 64px; }
+      .logo { font-size: 1.1rem; }
+      .logo-icon { width: 34px; height: 34px; font-size: 1rem; }
+      .nav-links { display: none; }
+      .nav-buttons { gap: 0.5rem; }
+      .nav-buttons #authButtons { display: none; }
+      .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+      .mobile-nav { position: fixed; top: 64px; left: 0; right: 0; display: grid; gap: 0.35rem; padding: 0.75rem 1rem 1rem; background: rgba(5, 10, 15, 0.98); border-bottom: 1px solid var(--border); box-shadow: 0 16px 30px rgba(0,0,0,0.25); transform: translateY(-140%); transition: transform 0.25s ease; z-index: 999; }
+      .mobile-nav.is-open { transform: translateY(0); }
+      .mobile-nav a { color: var(--text); text-decoration: none; padding: 0.8rem 0.9rem; min-height: 44px; border-radius: 10px; background: rgba(255,255,255,0.04); }
+      main { padding: 88px 1rem 3rem; }
+      .section-header { margin-bottom: 1.5rem; }
+      .section-header h1 { font-size: clamp(1.65rem, 8vw, 2.2rem); line-height: 1.25; }
+      .section-header p { font-size: 0.95rem; }
+      .store-filters { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; margin: 0 -0.25rem 1.5rem; padding: 0.25rem 0.25rem 0.65rem; scrollbar-width: thin; }
+      .filter-btn { flex: 0 0 auto; padding-inline: 1rem; }
+      .products-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .product-card { border-radius: 16px; }
+      .product-thumb { height: 140px; font-size: 3.2rem; }
+      .product-body { padding: 1rem; }
+      .product-name { font-size: 1.05rem; }
+      .product-desc { font-size: 0.88rem; margin-bottom: 1rem; }
+      .product-footer { gap: 0.75rem; }
+      .product-price { font-size: 1.1rem; }
+      .btn-buy { flex: 1; padding-inline: 0.8rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 520px) and (max-width: 768px) { .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .product-footer { align-items: stretch; flex-direction: column; } .btn-buy { flex: none; width: 100%; } }
   </style>
 </head>
 <body>
@@ -73,8 +103,16 @@
     <div class="nav-buttons">
       <a href="cart.html" class="cart-btn">🛒 <span id="cartCount">0</span></a>
       <div id="authButtons"></div>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="فتح قائمة المتجر" aria-expanded="false">☰</button>
     </div>
   </nav>
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="index.html">الرئيسية</a>
+    <a href="store.html">المتجر</a>
+    <a href="library.html">المكتبة المجانية</a>
+    <a href="prompt-lab.html">Prompt Lab</a>
+    <a href="blog.html">المدونة</a>
+  </div>
 
   <main>
     <div class="section-header">
@@ -132,7 +170,7 @@
         const badge = p.badge ? (typeof p.badge === 'object' ? p.badge[currentLang] : p.badge) : null;
 
         return `
-          <div class="product-card">
+          <div class="product-card" data-product-id="${p.id}">
             <div class="product-thumb">
               ${p.emoji || '✨'}
               ${badge ? `<span class="product-badge">${badge}</span>` : ''}
@@ -143,7 +181,7 @@
               <div class="product-desc">${desc}</div>
               <div class="product-footer">
                 <div class="product-price">${p.price}</div>
-                <button class="btn-buy" onclick="addToCart(${p.id})">${currentLang === 'ar' ? 'شراء الآن' : 'Buy Now'}</button>
+                <button class="btn-buy" data-product-id="${p.id}" onclick="addToCart(${p.id})">${currentLang === 'ar' ? 'شراء الآن' : 'Buy Now'}</button>
               </div>
             </div>
           </div>
@@ -174,6 +212,21 @@
         renderProducts(btn.dataset.filter);
       });
     });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle?.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileNav.setAttribute('aria-hidden', String(!isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+    mobileNav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mobileNav.classList.remove('is-open');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      mobileNav?.setAttribute('aria-hidden', 'true');
+      if (menuToggle) menuToggle.textContent = '☰';
+    }));
 
     document.addEventListener('DOMContentLoaded', () => {
       loadProducts();
