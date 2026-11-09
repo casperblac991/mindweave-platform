@@ -20,6 +20,10 @@ const config = {
   aiModel: process.env.AI_MODEL || 'gpt-5-mini',
   supabaseUrl: (process.env.SUPABASE_URL || '').replace(/\/$/, ''),
   supabaseAnonKey: process.env.SUPABASE_ANON_KEY || '',
+  supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+  paypalClientId: process.env.PAYPAL_CLIENT_ID || '',
+  paypalClientSecret: process.env.PAYPAL_CLIENT_SECRET || '',
+  paypalEnvironment: process.env.PAYPAL_ENVIRONMENT === 'live' ? 'live' : 'sandbox',
   maxRequestsPerWindow: Number(process.env.AI_RATE_LIMIT || 20),
   rateWindowMs: Number(process.env.AI_RATE_WINDOW_MS || 10 * 60 * 1000),
   contentCycleEnabled: process.env.AI_CONTENT_CYCLE_ENABLED === 'true',
@@ -385,6 +389,122 @@ app.post('/api/ops/sources', requireOpsUser, async (req, res) => {
     });
     res.status(201).json({ source: rows?.[0] || null });
   } catch (error) { return opsError(res, error); }
+});
+
+const paypalApiBase = () => config.paypalEnvironment === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';
+
+function paypalReady() {
+  return Boolean(config.paypalClientId && config.paypalClientSecret);
+}
+
+async function paypalAccessToken() {
+  if (!paypalReady()) {
+    const error = new Error('PayPal is not configured');
+    error.code = 'PAYPAL_NOT_CONFIGURED';
+    throw error;
+  }
+  const credentials = Buffer.from(`${config.paypalClientId}:${config.paypalClientSecret}`).toString('base64');
+  const response = await fetch(`${paypalApiBase()}/v1/oauth2/token`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${credentials}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Accept: 'application/json',
+    },
+    body: 'grant_type=client_credentials',
+    signal: AbortSignal.timeout(15000),
+  });
+  if (!response.ok) {
+    const error = new Error(`PayPal token request failed: ${response.status}`);
+    error.status = response.status;
+    error.body = (await response.text().catch(() => '')).slice(0, 500);
+    throw error;
+  }
+  return (await response.json()).access_token;
+}
+
+function productCatalog() {
+  try { return JSON.parse(fs.readFileSync(path.join(rootDir, 'content-data.json'), 'utf8')).products || []; }
+  catch { return []; }
+}
+
+function validateProductIds(value) {
+  const ids = Array.isArray(value) ? value.map(Number).filter(Number.isInteger) : [];
+  const products = productCatalog();
+  const selected = [...new Set(ids)].map((id) => products.find((product) => Number(product.id) === id)).filter(Boolean);
+  if (!selected.length || selected.length !== [...new Set(ids)].length) {
+    const error = new Error('Invalid product selection');
+    error.code = 'INVALID_PRODUCT_SELECTION';
+    throw error;
+  }
+  return selected;
+}
+
+function productAmount(product) {
+  const amount = Number.parseFloat(String(product.price || '').replace(/[^0-9.]/g, ''));
+  return Number.isFinite(amount) ? amount : 0;
+}
+
+app.get('/api/paypal/config', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, max-age=0');
+  res.json({ enabled: paypalReady(), clientId: paypalReady() ? config.paypalClientId : null, environment: config.paypalEnvironment, currency: 'USD' });
+});
+
+app.post('/api/paypal/orders', async (req, res) => {
+  try {
+    const products = validateProductIds(req.body?.productIds);
+    const total = products.reduce((sum, product) => sum + productAmount(product), 0);
+    if (!total) return res.status(400).json({ error: 'INVALID_ORDER_TOTAL' });
+    const token = await paypalAccessToken();
+    const response = await fetch(`${paypalApiBase()}/v2/checkout/orders`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+        'PayPal-Request-Id': crypto.randomUUID(),
+      },
+      body: JSON.stringify({
+        intent: 'CAPTURE',
+        purchase_units: [{
+          custom_id: `mindweave:${products.map((product) => product.id).join(',')}`,
+          description: 'MindWeave digital products',
+          amount: { currency_code: 'USD', value: total.toFixed(2) },
+        }],
+      }),
+      signal: AbortSignal.timeout(20000),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) return res.status(502).json({ error: 'PAYPAL_ORDER_FAILED', details: data?.message || 'PayPal order creation failed' });
+    return res.status(201).json({ id: data.id, status: data.status });
+  } catch (error) {
+    if (error.code === 'PAYPAL_NOT_CONFIGURED') return res.status(503).json({ error: 'PAYPAL_NOT_CONFIGURED' });
+    if (error.code === 'INVALID_PRODUCT_SELECTION') return res.status(400).json({ error: error.code });
+    console.error('PayPal order creation failed:', error.message, error.body || '');
+    return res.status(502).json({ error: 'PAYPAL_UNAVAILABLE' });
+  }
+});
+
+app.post('/api/paypal/orders/:id/capture', async (req, res) => {
+  const orderId = String(req.params.id || '');
+  if (!/^[A-Z0-9-]{8,120}$/i.test(orderId)) return res.status(400).json({ error: 'INVALID_ORDER_ID' });
+  try {
+    const token = await paypalAccessToken();
+    const response = await fetch(`${paypalApiBase()}/v2/checkout/orders/${encodeURIComponent(orderId)}/capture`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json', Prefer: 'return=representation', 'PayPal-Request-Id': crypto.randomUUID() },
+      signal: AbortSignal.timeout(20000),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) return res.status(502).json({ error: 'PAYPAL_CAPTURE_FAILED', details: data?.message || 'PayPal capture failed' });
+    const completed = data.status === 'COMPLETED' || data.purchase_units?.[0]?.payments?.captures?.[0]?.status === 'COMPLETED';
+    if (!completed) return res.status(409).json({ error: 'PAYMENT_NOT_COMPLETED', status: data.status || 'UNKNOWN' });
+    return res.json({ success: true, orderId, status: 'COMPLETED' });
+  } catch (error) {
+    if (error.code === 'PAYPAL_NOT_CONFIGURED') return res.status(503).json({ error: 'PAYPAL_NOT_CONFIGURED' });
+    console.error('PayPal capture failed:', error.message, error.body || '');
+    return res.status(502).json({ error: 'PAYPAL_UNAVAILABLE' });
+  }
 });
 
 app.use(express.static(rootDir, { dotfiles: 'ignore', etag: true }));
