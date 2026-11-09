@@ -445,9 +445,49 @@ function productAmount(product) {
   return Number.isFinite(amount) ? amount : 0;
 }
 
+async function authenticatedSupabaseUser(req) {
+  const token = currentAccessToken(req);
+  if (!token || !config.supabaseUrl || !config.supabaseAnonKey) return null;
+  const response = await fetch(`${config.supabaseUrl}/auth/v1/user`, {
+    headers: { apikey: config.supabaseAnonKey, Authorization: `Bearer ${token}` },
+    signal: AbortSignal.timeout(10000),
+  });
+  return response.ok ? response.json() : null;
+}
+
+async function recordPayPalPurchase(req, paypalData, orderId) {
+  if (!config.supabaseServiceRoleKey) return false;
+  const user = await authenticatedSupabaseUser(req);
+  if (!user?.id) return false;
+  const customId = String(paypalData.purchase_units?.[0]?.custom_id || '');
+  const productIds = customId.startsWith('mindweave:') ? customId.slice('mindweave:'.length).split(',').map(Number) : [];
+  const products = validateProductIds(productIds);
+  const rows = products.map((product) => ({
+    user_id: user.id,
+    product_id: product.id,
+    product_name: product.name?.en || product.name?.ar || `MindWeave product ${product.id}`,
+    purchase_date: new Date().toISOString(),
+    amount: productAmount(product),
+    paypal_order_id: orderId,
+  }));
+  const response = await fetch(`${config.supabaseUrl}/rest/v1/user_purchases?on_conflict=paypal_order_id,product_id`, {
+    method: 'POST',
+    headers: {
+      apikey: config.supabaseServiceRoleKey,
+      Authorization: `Bearer ${config.supabaseServiceRoleKey}`,
+      'Content-Type': 'application/json',
+      Prefer: 'resolution=ignore-duplicates,return=minimal',
+    },
+    body: JSON.stringify(rows),
+    signal: AbortSignal.timeout(15000),
+  });
+  if (!response.ok) throw new Error(`Purchase record failed: ${response.status}`);
+  return true;
+}
+
 app.get('/api/paypal/config', (req, res) => {
   res.setHeader('Cache-Control', 'no-store, max-age=0');
-  res.json({ enabled: paypalReady(), clientId: paypalReady() ? config.paypalClientId : null, environment: config.paypalEnvironment, currency: 'USD' });
+  res.json({ enabled: paypalReady(), clientId: paypalReady() ? config.paypalClientId : null, environment: config.paypalEnvironment, currency: 'USD', purchaseRecording: Boolean(config.supabaseServiceRoleKey) });
 });
 
 app.post('/api/paypal/orders', async (req, res) => {
@@ -499,7 +539,10 @@ app.post('/api/paypal/orders/:id/capture', async (req, res) => {
     if (!response.ok) return res.status(502).json({ error: 'PAYPAL_CAPTURE_FAILED', details: data?.message || 'PayPal capture failed' });
     const completed = data.status === 'COMPLETED' || data.purchase_units?.[0]?.payments?.captures?.[0]?.status === 'COMPLETED';
     if (!completed) return res.status(409).json({ error: 'PAYMENT_NOT_COMPLETED', status: data.status || 'UNKNOWN' });
-    return res.json({ success: true, orderId, status: 'COMPLETED' });
+    let recorded = false;
+    try { recorded = await recordPayPalPurchase(req, data, orderId); }
+    catch (recordError) { console.error('PayPal purchase recording failed:', recordError.message); }
+    return res.json({ success: true, orderId, status: 'COMPLETED', recorded });
   } catch (error) {
     if (error.code === 'PAYPAL_NOT_CONFIGURED') return res.status(503).json({ error: 'PAYPAL_NOT_CONFIGURED' });
     console.error('PayPal capture failed:', error.message, error.body || '');

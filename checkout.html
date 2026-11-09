@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مراجعة الطلب | MindWeave</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>window.ENV={SUPABASE_URL:'https://mtirzcuntupkuavmjtcv.supabase.co',SUPABASE_ANON_KEY:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10aXJ6Y3VudHVwa3Vhdm1qdGN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDEwNjEsImV4cCI6MjA5Mjc3NzA2MX0.npI70eZJU5PB-Si0cST_iYJnRFzomn8tBx1IeVU7wHU'};</script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box}:root{--primary:#00D4FF;--bg:#050A0F;--card:#0A1628;--text:#E8F4FD;--muted:#7A9BB5;--border:rgba(0,212,255,.2)}
@@ -47,11 +49,12 @@
           },
           onApprove: async (data) => {
             paymentStatus.textContent = 'جارٍ تأكيد الدفع...';
-            const response = await fetch(`/api/paypal/orders/${encodeURIComponent(data.orderID)}/capture`, { method: 'POST' });
+            const session = window.supabaseClient ? (await window.supabaseClient.auth.getSession()).data.session : null;
+            const response = await fetch(`/api/paypal/orders/${encodeURIComponent(data.orderID)}/capture`, { method: 'POST', headers: session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {} });
             const result = await response.json();
             if (!response.ok || !result.success) throw new Error(result.error || 'تعذر تأكيد الدفع');
             localStorage.removeItem('mw_cart');
-            notice.textContent = 'تم تأكيد الدفع عبر PayPal بنجاح.';
+            notice.textContent = result.recorded ? 'تم تأكيد الدفع وتسجيل الطلب في حسابك.' : 'تم تأكيد الدفع، لكن يحتاج ربط الحساب لمزامنة الطلب مع سجل المشتريات.';
             paymentStatus.textContent = `رقم الطلب: ${result.orderId}`;
             document.getElementById('paypal-button-container').innerHTML = '<p>شكرًا لك. سيتم تجهيز وصولك الرقمي.</p>';
           },
@@ -62,6 +65,7 @@
         console.error(error); notice.textContent = 'تعذر تحميل PayPal حاليًا. لم يتم خصم أي مبلغ.';
       }
     }
+    window.supabaseClient = window.supabase?.createClient(window.ENV.SUPABASE_URL, window.ENV.SUPABASE_ANON_KEY);
     startPayPal();
   </script>
   <script src="analytics.js?v=20261109"></script>
