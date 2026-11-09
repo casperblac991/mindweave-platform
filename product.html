@@ -99,6 +99,8 @@
       const data = await fetch('content-data.json?v=' + Date.now()).then(r => r.json());
       product = data.products.find(item => item.id === id) || data.products[0];
       const name = text(product.name), desc = text(product.description), cat = text(product.category), badge = text(product.badge), sales = text(product.sales);
+      const productBenefits = product.benefits ? (product.benefits[lang] || product.benefits.ar) : (benefits[product.id] || benefits[1]);
+      const productSample = product.sample ? text(product.sample) : (samples[product.id] || samples[1]);
       const stars = '★'.repeat(Math.round(Number(product.rating || 0))) + '☆'.repeat(Math.max(0, 5 - Math.round(Number(product.rating || 0))));
       document.title = name + ' | MindWeave';
       document.getElementById('productPage').innerHTML = `
@@ -112,7 +114,7 @@
             <div class="actions"><button id="addBtn" class="btn btn-primary" type="button">أضف إلى السلة</button><a class="btn btn-secondary" href="prompt-lab.html?product=${product.id}">جرّبه في Prompt Lab</a></div>
           </div>
         </section>
-        <section class="section-grid"><article class="info-card"><h2>ماذا ستحصل عليه؟</h2><ul>${(benefits[product.id] || benefits[1]).map(item => `<li>${item}</li>`).join('')}</ul></article><article class="info-card"><h2>عينة من المنتج</h2><div class="sample-box">${samples[product.id] || samples[1]}</div></article></section>
+        <section class="section-grid"><article class="info-card"><h2>ماذا ستحصل عليه؟</h2><ul>${productBenefits.map(item => `<li>${item}</li>`).join('')}</ul></article><article class="info-card"><h2>عينة من المنتج</h2><div class="sample-box">${productSample}</div></article></section>
         <p class="trust">دفع آمن عند تفعيل مزود الدفع · لا نعرض بياناتك الحساسة في المتصفح</p>`;
       document.getElementById('addBtn').addEventListener('click', addToCart);
       updateCart();

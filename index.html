@@ -1035,6 +1035,7 @@ body[data-lang="en"] .notification {
     <li><a href="index.html" class="active" data-i18n="nav.home">الرئيسية</a></li>
     <li><a href="store.html" data-i18n="nav.store">المتجر</a></li>
     <li><a href="library.html" data-i18n="nav.library">المكتبة المجانية</a></li>
+    <li><a href="free-starter.html">🎁 10 أوامر مجانية</a></li>
     <li><a href="prompt-lab.html" data-i18n="nav.promptlab">Prompt Lab ✨</a></li>
     <li><a href="creators.html" data-i18n="nav.creators">برنامج المبدعين</a></li>
     <li><a href="blog.html" data-i18n="nav.blog">المدونة</a></li>
@@ -1076,15 +1077,15 @@ body[data-lang="en"] .notification {
     <div class="hero-actions">
       <a href="store.html" class="btn-primary" data-i18n="hero.cta1">🛒 استكشف المتجر</a>
       <a href="prompt-lab.html" class="btn-outline" data-i18n="hero.cta2">⚗️ جرّب Prompt Lab مجاناً</a>
-      <a href="#newsletter-signup" class="btn-outline" data-i18n="hero.cta3">🎁 احصل على 10 أوامر مجانية</a>
+      <a href="free-starter.html" class="btn-outline" data-i18n="hero.cta3">🎁 احصل على 10 أوامر مجانية</a>
     </div>
   </div>
 
   <!-- Stats (تحديث الإحصائيات الحقيقية) -->
   <div class="stats reveal">
-    <div class="stat-item"><div class="stat-number" id="statProducts">20</div><div class="stat-label" data-i18n="stats.products">منتج رقمي</div></div>
-    <div class="stat-item"><div class="stat-number" id="statSales">2,091</div><div class="stat-label" data-i18n="stats.sales">عملية بيع</div></div>
-    <div class="stat-item"><div class="stat-number">4.85★</div><div class="stat-label" data-i18n="stats.rating">تقييم المنصة</div></div>
+    <div class="stat-item"><div class="stat-number" id="statProducts">3</div><div class="stat-label" data-i18n="stats.products">منتج رقمي</div></div>
+    <div class="stat-item"><div class="stat-number" id="statSales">0</div><div class="stat-label" data-i18n="stats.sales">عملية بيع مسجلة</div></div>
+    <div class="stat-item"><div class="stat-number" id="statRating">—</div><div class="stat-label" data-i18n="stats.rating">تقييم موثق</div></div>
     <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label" data-i18n="stats.support">دعم AI فوري</div></div>
   </div>
 
@@ -1433,14 +1434,17 @@ function renderProducts() {
             <div class="product-rating">★ ${p.rating || '4.9'}</div>
             <div>${salesText}</div>
           </div>
-          <div class="product-footer">
+            <div class="product-footer">
             <div class="product-price">
               ${p.original ? `<span class="price-original">${p.original}</span>` : ''}
               <span class="price-current">${p.price}</span>
             </div>
-            <button class="add-cart-btn ${cart.includes(p.id) ? 'added' : ''}" onclick="addToCart('${p.id}')">
-              ${cart.includes(p.id) ? (currentLang === 'ar' ? '✓ تمت الإضافة' : '✓ Added') : (currentLang === 'ar' ? '+ أضف للسلة' : '+ Add to Cart')}
-            </button>
+            <div style="display:flex;gap:.45rem;align-items:center;flex-wrap:wrap;justify-content:flex-end">
+              <a class="btn-outline" href="product.html?id=${p.id}" style="padding:.55rem .7rem;text-decoration:none">${currentLang === 'ar' ? 'التفاصيل' : 'Details'}</a>
+              <button class="add-cart-btn ${cart.includes(p.id) ? 'added' : ''}" onclick="addToCart('${p.id}')">
+                ${cart.includes(p.id) ? (currentLang === 'ar' ? '✓ تمت الإضافة' : '✓ Added') : (currentLang === 'ar' ? '+ أضف للسلة' : '+ Add to Cart')}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1755,5 +1759,4 @@ document.addEventListener('DOMContentLoaded', () => {
   <script src="analytics.js?v=20261109"></script>
 </body>
     </html>
-
 
