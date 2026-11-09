@@ -1,0 +1,24 @@
+{
+  "routes": [
+    {"path": "/", "title": "MindWeave"},
+    {"path": "/index.html", "title": "MindWeave"},
+    {"path": "/store.html", "title": "المتجر"},
+    {"path": "/product.html", "title": "تفاصيل المنتج"},
+    {"path": "/cart.html", "title": "السلة"},
+    {"path": "/checkout.html", "title": "إتمام الشراء"},
+    {"path": "/prompt-lab.html", "title": "Prompt Lab"},
+    {"path": "/free-starter.html", "title": "الأوامر المجانية"},
+    {"path": "/campaign-free-prompts.html", "title": "الحملة المجانية"},
+    {"path": "/blog.html", "title": "المدونة"},
+    {"path": "/article.html", "title": "المقال"},
+    {"path": "/library.html", "title": "المكتبة"},
+    {"path": "/creators.html", "title": "برنامج المبدعين"},
+    {"path": "/about.html", "title": "عن MindWeave"},
+    {"path": "/faq.html", "title": "الأسئلة الشائعة"},
+    {"path": "/contact.html", "title": "تواصل معنا"},
+    {"path": "/login.html", "title": "تسجيل الدخول"},
+    {"path": "/signup.html", "title": "إنشاء حساب"},
+    {"path": "/privacy.html", "title": "الخصوصية"},
+    {"path": "/terms.html", "title": "الشروط والأحكام"}
+  ]
+}

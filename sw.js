@@ -1,12 +1,22 @@
-const CACHE_NAME = 'mindweave-v5';
+const CACHE_NAME = 'mindweave-v6';
 const ASSETS = [
   '/',
   '/index.html',
   '/store.html',
   '/blog.html',
+  '/campaign-free-prompts.html',
+  '/free-starter.html',
+  '/prompt-lab.html',
+  '/product.html',
+  '/cart.html',
+  '/checkout.html',
   '/library.html',
   '/manifest.json',
-  '/supabase-auth.js'
+  '/supabase-auth.js',
+  '/analytics.js',
+  '/assets/og-image.png',
+  '/assets/icon-192.png',
+  '/assets/icon-512.png'
 ];
 
 // Install Event - Pre-cache assets
