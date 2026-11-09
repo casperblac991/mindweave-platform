@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-11-09T01:59:00Z",
+  "lastUpdate": "2026-11-09T02:04:00Z",
   "stats": {
     "products": {
       "ar": 3,
@@ -886,6 +886,37 @@
       },
       "date": "10 أكتوبر 2025",
       "author": "MindWeave Team"
+    },
+    {
+      "id": 28,
+      "category": {
+        "ar": "أدوات عملية",
+        "en": "Practical Tools",
+        "es": "Herramientas Prácticas",
+        "fr": "Outils Pratiques"
+      },
+      "icon": "🎬",
+      "title": {
+        "ar": "10 أوامر مجانية تبدأ بها مع الذكاء الاصطناعي",
+        "en": "10 Free Prompts to Start Using AI",
+        "es": "10 prompts gratuitos para empezar con la IA",
+        "fr": "10 prompts gratuits pour commencer avec l’IA"
+      },
+      "excerpt": {
+        "ar": "شاهد الفيديو التعريفي، جرّب الأوامر العشرة، وحوّل الفكرة الخام إلى نتيجة أوضح في Prompt Lab.",
+        "en": "Watch the intro, try ten practical prompts, and turn a rough idea into a clearer result in Prompt Lab.",
+        "es": "Mira el vídeo, prueba diez prompts prácticos y convierte una idea en un resultado más claro.",
+        "fr": "Regardez la vidéo, testez dix prompts pratiques et transformez une idée brute en résultat plus clair."
+      },
+      "date": "9 نوفمبر 2026",
+      "author": "MindWeave Team",
+      "video": "assets/mindweave-campaign-intro.mp4",
+      "content": {
+        "ar": "# ابدأ من النتيجة لا من الأداة\n\nإذا كنت تفتح ChatGPT ولا تعرف ماذا تكتب، فالمشكلة غالبًا ليست في الأداة بل في صياغة الطلب. ابدأ بتحديد النتيجة التي تريدها، ثم أضف السياق والقيود ومعايير الجودة.\n\n## 1. حوّل الفكرة الخام إلى أمر واضح\n\nبدلًا من كتابة: «اكتب شيئًا عن التسويق»، اذكر الجمهور والهدف والقناة والنبرة والنتيجة المطلوبة. كل معلومة مفيدة تقلل التخمين وتزيد قابلية استخدام النتيجة.\n\n## 2. جرّب ثم حسّن\n\nاستخدم Prompt Lab لتوليد نسخة أولى، ثم اطلب من الأداة نقدها واقتراح تحسينات. لا تبحث عن أمر مثالي من المحاولة الأولى؛ ابنِه على مراحل.\n\n## 3. استخدم الأوامر المجانية\n\nابدأ من [صفحة الحملة المجانية](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts)، ثم جرّب النتيجة في Prompt Lab.\n\n### الخلاصة\n\nأفضل أمر هو الذي يشرح النتيجة والسياق والقيود بوضوح. ابدأ بأمر واحد اليوم، قِس النتيجة، ثم عدّل ما لم يعمل.",
+        "en": "# Start With the Outcome\n\nDefine the outcome, then add context, constraints, and quality criteria.\n\n## 1. Turn a rough idea into a clear prompt\n\nSpecify the audience, goal, channel, tone, and desired result.\n\n## 2. Test and improve\n\nUse Prompt Lab to create a first draft, then ask the tool to critique and improve it.\n\n## 3. Start with the free prompts\n\nVisit the [free campaign](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts), then test the result in Prompt Lab.\n\n### Summary\n\nStart with one prompt today and improve it from the result.",
+        "es": "# Empieza por el resultado\n\nDefine el resultado, añade contexto y restricciones, y prueba una primera versión en Prompt Lab.\n\n## 1. Convierte una idea en un prompt claro\n\nEspecifica público, objetivo, canal, tono y resultado esperado.\n\n## 2. Prueba y mejora\n\nPide una crítica y una versión mejorada después del primer resultado.\n\n## 3. Comienza con los prompts gratuitos\n\nVisita la [campaña gratuita](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts).",
+        "fr": "# Commencez par le résultat\n\nDéfinissez le résultat, ajoutez le contexte et les contraintes, puis testez une première version dans Prompt Lab.\n\n## 1. Transformez une idée en prompt clair\n\nPrécisez le public, l’objectif, le canal, le ton et le résultat attendu.\n\n## 2. Testez et améliorez\n\nDemandez une critique et une version améliorée.\n\n## 3. Commencez avec les prompts gratuits\n\nVisitez la [campagne gratuite](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts)."
+      }
     }
   ]
 }
