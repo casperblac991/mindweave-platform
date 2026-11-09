@@ -310,6 +310,27 @@ main {
   margin: 2rem 0;
 }
 
+.article-video {
+  max-width: 430px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.article-video video {
+  display: block;
+  width: 100%;
+  max-height: 72vh;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: #050A0F;
+}
+
+.video-caption {
+  margin: .7rem 0 0;
+  color: var(--text-muted);
+  font-size: .88rem;
+}
+
 .article-content p {
   margin-bottom: 1.2rem;
   line-height: 1.8;
@@ -1058,6 +1079,7 @@ async function renderArticle() {
           const title = typeof aiPost.title === 'object' ? aiPost.title : { ar: aiPost.title, en: aiPost.title };
           const category = typeof aiPost.category === 'object' ? aiPost.category : { ar: aiPost.category, en: aiPost.category };
           const rawContent = aiPost.content || aiPost.excerpt;
+          const videoHtml = aiPost.video ? `<div class="article-video"><video controls playsinline preload="metadata"><source src="${aiPost.video}" type="video/mp4">فيديو الحملة التعريفية</video><p class="video-caption">شاهد الفيديو التعريفي ثم جرّب الأوامر المجانية في Prompt Lab.</p></div>` : '';
           
           post = {
             id: postId,
@@ -1067,10 +1089,10 @@ async function renderArticle() {
             date: { ar: aiPost.date, en: aiPost.date, es: aiPost.date, fr: aiPost.date },
             readTime: { ar: "5 دقائق", en: "5 min read", es: "5 min", fr: "5 min" },
             content: {
-              ar: typeof rawContent === 'object' ? getHtml(rawContent.ar) : getHtml(rawContent),
-              en: typeof rawContent === 'object' ? getHtml(rawContent.en || rawContent.ar) : getHtml(rawContent),
-              es: typeof rawContent === 'object' ? getHtml(rawContent.es || rawContent.ar) : getHtml(rawContent),
-              fr: typeof rawContent === 'object' ? getHtml(rawContent.fr || rawContent.ar) : getHtml(rawContent)
+              ar: videoHtml + (typeof rawContent === 'object' ? getHtml(rawContent.ar) : getHtml(rawContent)),
+              en: videoHtml + (typeof rawContent === 'object' ? getHtml(rawContent.en || rawContent.ar) : getHtml(rawContent)),
+              es: videoHtml + (typeof rawContent === 'object' ? getHtml(rawContent.es || rawContent.ar) : getHtml(rawContent)),
+              fr: videoHtml + (typeof rawContent === 'object' ? getHtml(rawContent.fr || rawContent.ar) : getHtml(rawContent))
             }
           };
         }
