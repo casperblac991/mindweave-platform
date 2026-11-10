@@ -20,9 +20,10 @@
     const notice = document.getElementById('notice');
     const paymentStatus = document.getElementById('paymentStatus');
     const price = item => Number.parseFloat(String(item.price || '0').replace(/[^0-9.]/g,'')) || 0;
+    const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
     const total = cart.reduce((sum,item)=>sum+price(item),0);
     const productIds = cart.map(item => Number(item.id)).filter(Number.isInteger);
-    summary.innerHTML = cart.length ? cart.map(item => `<div class="item"><span>${typeof item.name==='object' ? item.name.ar : item.name}</span><strong>$${price(item).toFixed(2)}</strong></div>`).join('') + `<div class="total"><span>الإجمالي</span><span>$${total.toFixed(2)}</span></div>` : '<p class="muted">السلة فارغة. <a href="store.html">اختر منتجًا أولًا</a></p>';
+    summary.innerHTML = cart.length ? cart.map(item => `<div class="item"><span>${escapeHtml(typeof item.name==='object' ? item.name.ar : item.name)}</span><strong>$${price(item).toFixed(2)}</strong></div>`).join('') + `<div class="total"><span>الإجمالي</span><span>$${total.toFixed(2)}</span></div>` : '<p class="muted">السلة فارغة. <a href="store.html">اختر منتجًا أولًا</a></p>';
 
     function loadPayPalSdk(clientId) {
       return new Promise((resolve, reject) => {

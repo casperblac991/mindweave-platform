@@ -95,6 +95,9 @@
     const promptInput = document.getElementById('promptInput');
     const suggestionContainer = document.getElementById('suggestionContainer');
     const productContext = document.getElementById('productContext');
+    const MAX_PROMPT_LENGTH = 2000;
+    promptInput.maxLength = MAX_PROMPT_LENGTH;
+    const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
 
     const productId = Number(new URLSearchParams(location.search).get('product'));
     if (productId) {
@@ -102,7 +105,7 @@
         const product = data.products.find(item => item.id === productId);
         if (!product) return;
         const productName = typeof product.name === 'object' ? (product.name.ar || product.name.en) : product.name;
-        productContext.innerHTML = `تعمل الآن على تحسين أوامر مرتبطة بـ <strong>${productName}</strong>. <a href="product.html?id=${product.id}">العودة إلى تفاصيل المنتج</a>`;
+        productContext.innerHTML = `تعمل الآن على تحسين أوامر مرتبطة بـ <strong>${escapeHtml(productName)}</strong>. <a href="product.html?id=${encodeURIComponent(product.id)}">العودة إلى تفاصيل المنتج</a>`;
         productContext.style.display = 'block';
         promptInput.placeholder = `اكتب مسودة مرتبطة بـ ${productName}...`;
       }).catch(() => {});
@@ -124,26 +127,31 @@
     });
 
     testBtn.addEventListener('click', async () => {
-      const prompt = promptInput.value;
-      if (!prompt) return;
+      const prompt = promptInput.value.trim();
+      if (!prompt) { resultContent.textContent = 'اكتب مسودة الأمر أولاً.'; resultArea.style.display = 'block'; return; }
+      if (prompt.length > MAX_PROMPT_LENGTH) { resultContent.textContent = `الحد الأقصى ${MAX_PROMPT_LENGTH} حرف.`; resultArea.style.display = 'block'; return; }
 
       testBtn.innerHTML = '<span class="spinner"></span> جاري التحسين...';
       testBtn.disabled = true;
       placeholderText.style.display = 'none';
       resultArea.style.display = 'none';
-
-      // Simulate AI processing
-      setTimeout(() => {
+      try {
+        const response = await fetch('/api/prompt/enhance', {
+          method: 'POST', headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ prompt, language: document.documentElement.lang || 'ar', targetModel: document.getElementById('modelSelect').value })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || 'تعذر تحسين الأمر.');
+        resultContent.textContent = data.answer;
         resultArea.style.display = 'block';
-        const model = document.getElementById('modelSelect').value;
-        let enhanced = `[محسن بواسطة MindWeave AI لنموذج ${model}]\n\n`;
-        enhanced += `الهدف: ${prompt}\n\n`;
-        enhanced += `الأمر الاحترافي المقترح:\n"أنت خبير محترف في هذا المجال. قم بإنشاء محتوى عالي الجودة يتناول ${prompt} مع التركيز على الدقة العلمية والأسلوب الجذاب. تأكد من تقسيم النص إلى عناوين فرعية واستخدام نقاط واضحة."`;
-        
-        resultContent.textContent = enhanced;
+        if (window.mwTrack) window.mwTrack('generate_prompt', { target_model: data.targetModel });
+      } catch (error) {
+        resultContent.textContent = error.message || 'تعذر تحسين الأمر حالياً.';
+        resultArea.style.display = 'block';
+      } finally {
         testBtn.innerHTML = '⚗️ حسّن الأمر الآن';
         testBtn.disabled = false;
-      }, 1500);
+      }
     });
 
     document.getElementById('copyBtn').addEventListener('click', () => {
