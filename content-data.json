@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-11-10T01:41:00Z",
+  "lastUpdate": "2026-11-10T23:06:00Z",
   "stats": {
     "products": {
       "ar": 3,
@@ -910,12 +910,43 @@
       },
       "date": "9 نوفمبر 2026",
       "author": "MindWeave Team",
-    "video": "assets/mindweave-ad-vertical.mp4",
+      "video": "assets/mindweave-ad-vertical.mp4",
       "content": {
         "ar": "# ابدأ من النتيجة لا من الأداة\n\nإذا كنت تفتح ChatGPT ولا تعرف ماذا تكتب، فالمشكلة غالبًا ليست في الأداة بل في صياغة الطلب. ابدأ بتحديد النتيجة التي تريدها، ثم أضف السياق والقيود ومعايير الجودة.\n\n## 1. حوّل الفكرة الخام إلى أمر واضح\n\nبدلًا من كتابة: «اكتب شيئًا عن التسويق»، اذكر الجمهور والهدف والقناة والنبرة والنتيجة المطلوبة. كل معلومة مفيدة تقلل التخمين وتزيد قابلية استخدام النتيجة.\n\n## 2. جرّب ثم حسّن\n\nاستخدم Prompt Lab لتوليد نسخة أولى، ثم اطلب من الأداة نقدها واقتراح تحسينات. لا تبحث عن أمر مثالي من المحاولة الأولى؛ ابنِه على مراحل.\n\n## 3. استخدم الأوامر المجانية\n\nابدأ من [صفحة الحملة المجانية](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts)، ثم جرّب النتيجة في Prompt Lab.\n\n### الخلاصة\n\nأفضل أمر هو الذي يشرح النتيجة والسياق والقيود بوضوح. ابدأ بأمر واحد اليوم، قِس النتيجة، ثم عدّل ما لم يعمل.",
         "en": "# Start With the Outcome\n\nDefine the outcome, then add context, constraints, and quality criteria.\n\n## 1. Turn a rough idea into a clear prompt\n\nSpecify the audience, goal, channel, tone, and desired result.\n\n## 2. Test and improve\n\nUse Prompt Lab to create a first draft, then ask the tool to critique and improve it.\n\n## 3. Start with the free prompts\n\nVisit the [free campaign](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts), then test the result in Prompt Lab.\n\n### Summary\n\nStart with one prompt today and improve it from the result.",
         "es": "# Empieza por el resultado\n\nDefine el resultado, añade contexto y restricciones, y prueba una primera versión en Prompt Lab.\n\n## 1. Convierte una idea en un prompt claro\n\nEspecifica público, objetivo, canal, tono y resultado esperado.\n\n## 2. Prueba y mejora\n\nPide una crítica y una versión mejorada después del primer resultado.\n\n## 3. Comienza con los prompts gratuitos\n\nVisita la [campaña gratuita](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts).",
         "fr": "# Commencez par le résultat\n\nDéfinissez le résultat, ajoutez le contexte et les contraintes, puis testez une première version dans Prompt Lab.\n\n## 1. Transformez une idée en prompt clair\n\nPrécisez le public, l’objectif, le canal, le ton et le résultat attendu.\n\n## 2. Testez et améliorez\n\nDemandez une critique et une version améliorée.\n\n## 3. Commencez avec les prompts gratuits\n\nVisitez la [campagne gratuite](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts)."
+      }
+    },
+    {
+      "id": 29,
+      "category": {
+        "ar": "إنتاجية",
+        "en": "Productivity",
+        "es": "Productividad",
+        "fr": "Productivité"
+      },
+      "icon": "🗂️",
+      "title": {
+        "ar": "كيف تبني مكتبة أوامر شخصية توفر وقتك كل يوم",
+        "en": "How to Build a Personal Prompt Library That Saves Time",
+        "es": "Cómo crear una biblioteca personal de prompts que ahorra tiempo",
+        "fr": "Comment créer une bibliothèque de prompts personnelle qui fait gagner du temps"
+      },
+      "excerpt": {
+        "ar": "طريقة عملية لتنظيم أوامرك المتكررة وتحويلها إلى مكتبة سهلة الاستخدام داخل سير عملك.",
+        "en": "A practical method for organizing recurring prompts into a reusable workflow.",
+        "es": "Un método práctico para organizar prompts recurrentes en un flujo reutilizable.",
+        "fr": "Une méthode pratique pour organiser les prompts récurrents dans un flux réutilisable."
+      },
+      "date": "10 نوفمبر 2026",
+      "author": "MindWeave Team",
+      "video": "assets/mindweave-ad-vertical.mp4",
+      "content": {
+        "ar": "# ابنِ مكتبتك بدل إعادة الكتابة من الصفر\n\nإذا كنت تكرر نفس الطلبات في العمل أو الدراسة أو صناعة المحتوى، فالحل ليس حفظها في محادثات متفرقة. أنشئ مكتبة صغيرة تحتوي على أوامر واضحة، مصنفة حسب المهمة، وقابلة للتعديل مع الوقت.\n\n## 1. ابدأ بالمهام المتكررة\n\nاكتب قائمة بالمهام التي تنفذها أكثر من مرة: تلخيص نص، كتابة منشور، مراجعة رسالة، إعداد أفكار، أو تحويل ملاحظات إلى خطة. اختر مهمة واحدة وابدأ بها بدل محاولة تنظيم كل شيء دفعة واحدة.\n\n## 2. استخدم بطاقة ثابتة لكل أمر\n\nاجعل لكل أمر أربعة أجزاء: الدور المطلوب، السياق، النتيجة المتوقعة، والقيود. اترك مكانًا واضحًا للمتغيرات مثل الجمهور، طول النص، اللغة، والنبرة.\n\n## 3. سمِّ الأمر بطريقة تساعدك على العثور عليه\n\nاستخدم أسماء عملية مثل: «تسويق/منشور إطلاق» أو «عملاء/تلخيص مقابلة». الاسم الجيد يصف الاستخدام، وليس الأداة التي ستشغله.\n\n## 4. راجع النتيجة بعد كل استخدام\n\nأضف ملاحظة قصيرة: ما الذي نجح؟ وما الذي احتاج إلى تعديل؟ بعد عدة استخدامات ستصبح لديك نسخة أفضل مبنية على تجربتك الفعلية، لا على التخمين.\n\n## 5. جرّب قالبًا جاهزًا ثم خصصه\n\nيمكنك البدء من [العرض المجاني](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts)، ثم تعديل الأمر في [Prompt Lab](prompt-lab.html?utm_source=blog&utm_medium=owned&utm_campaign=prompt_lab) ليتناسب مع مهمتك.\n\n### الخلاصة\n\nالمكتبة المفيدة ليست مجموعة طويلة من الأوامر؛ إنها مجموعة صغيرة يسهل العثور عليها وتتحسن مع الاستخدام. اختر مهمة متكررة اليوم، أنشئ لها بطاقة واحدة، واختبرها قبل إضافة المزيد.",
+        "en": "# Build a library instead of starting over\n\nIf you repeat the same requests at work, school, or in content creation, keep them in a small reusable library organized by task.\n\n## 1. Start with recurring tasks\n\nList the tasks you repeat most often, then choose one to organize first.\n\n## 2. Use a consistent card\n\nGive every prompt a role, context, expected output, and constraints, with clear variables for audience, length, language, and tone.\n\n## 3. Name prompts by their use\n\nNames such as “Marketing/launch post” are easier to find than names based on a tool.\n\n## 4. Improve after each use\n\nRecord what worked and what needed adjustment. Your library will improve through real use.\n\n## 5. Start with a template\n\nTry the [free offer](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts), then customize it in [Prompt Lab](prompt-lab.html?utm_source=blog&utm_medium=owned&utm_campaign=prompt_lab).\n\n### Summary\n\nA useful library is small, searchable, and improved over time.",
+        "es": "# Crea una biblioteca en lugar de empezar de cero\n\nOrganiza las solicitudes que repites en una biblioteca pequeña y reutilizable.\n\n## 1. Empieza con tareas repetitivas\n\nElige una tarea que hagas con frecuencia y documenta primero esa.\n\n## 2. Usa una estructura constante\n\nIncluye rol, contexto, resultado esperado, restricciones y variables claras.\n\n## 3. Mejora después de cada uso\n\nAnota qué funcionó y qué debes ajustar.\n\nEmpieza con la [oferta gratuita](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts) y personalízala en [Prompt Lab](prompt-lab.html?utm_source=blog&utm_medium=owned&utm_campaign=prompt_lab).",
+        "fr": "# Créez une bibliothèque au lieu de recommencer\n\nOrganisez les demandes récurrentes dans une petite bibliothèque réutilisable.\n\n## 1. Commencez par les tâches répétitives\n\nChoisissez une tâche fréquente et documentez-la d’abord.\n\n## 2. Utilisez une structure constante\n\nAjoutez le rôle, le contexte, le résultat attendu, les contraintes et les variables.\n\n## 3. Améliorez après chaque utilisation\n\nNotez ce qui fonctionne et ce qui doit être ajusté.\n\nCommencez avec l’[offre gratuite](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts) et personnalisez-la dans [Prompt Lab](prompt-lab.html?utm_source=blog&utm_medium=owned&utm_campaign=prompt_lab)."
       }
     }
   ]
