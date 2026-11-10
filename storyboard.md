@@ -1,12 +1,13 @@
-# MindWeave campaign video — storyboard
+# MindWeave acquisition ad — storyboard
 
-Format: vertical 768×1344, 30 fps, 6 seconds, MP4, full-frame motion graphics. Arabic typography is rendered locally for exact legibility. Brand palette: #050A0F, #00D4FF, #7C3AED, #E8F4FD.
+Format: vertical 768×1344, 30 fps, 15 seconds, MP4, motion graphics with deterministic Arabic typography. Audience: Arabic-speaking creators, freelancers, students, and small-business owners. Objective: move a cold viewer from a clear pain point to the free Prompt Lab. Brand palette: #050A0F, #00D4FF, #7C3AED, #E8F4FD.
 
-| Time | Reading-hold frame | Motion and message |
-|---|---|---|
-| 0.0–1.4s | MindWeave mark and “ابدأ بذكاء” centered in the upper safe area | Cyan/violet nodes draw together; the logo mark fades and scales in with a soft glow. |
-| 1.4–3.4s | “10 أوامر مجانية” with smaller line “لعمل وتسويق وتعلّم أفضل” | A prompt card slides upward, three checkmarks reveal one at a time, then hold for reading. |
-| 3.4–4.8s | Before/after card: “فكرة خام” → “خطة واضحة” | The left card morphs into the right card with a cyan connector and a restrained click accent. |
-| 4.8–6.0s | “جرّب Prompt Lab مجانًا” and “mindweave.store” with logo mark | Background pulls back; CTA settles and holds cleanly through the final frame. |
+| Time | Beat | Reading-hold frame | Motion and sound |
+|---|---|---|---|
+| 0.0–2.2s | Hook | “تكتب كثيرًا؟” ثم “ابدأ بأمر أوضح” | Nodes converge into the MindWeave mark; quick pulse and first chime within the opening seconds. |
+| 2.2–5.8s | Value | “10 أوامر مجانية” / “لعمل وتسويق وتعلّم أفضل” | Prompt card rises, three use cases reveal one by one; light electronic bed. |
+| 5.8–9.8s | Product demo | “فكرة خام → خطة واضحة” / “جرّب قبل أن تشتري” | Prompt Lab card slides in and connector draws across the transformation. |
+| 9.8–12.5s | Proof | “مجاني · عربي · عملي” / “بدون بطاقة دفع” | Trust card settles with a short chime; no unsupported sales or user-count claims. |
+| 12.2–15.0s | CTA | “جرّب Prompt Lab مجانًا” / “mindweave.store” / “ابدأ الآن” | Logo returns, CTA button scales in and holds in the upper safe area. |
 
-Audio: subtle, royalty-free-feeling electronic bed generated deterministically with FFmpeg tones and soft whoosh/chime accents; no voice-over. Essential text remains in the upper 80% safe area and is rendered with a local Arabic-capable font.
+Audio: deterministic instrumental bed with soft electronic pulse and restrained chimes; no voice-over. Key text remains above the lower platform-control area. The video makes only confirmed claims from the current free-starter and Prompt Lab pages.
