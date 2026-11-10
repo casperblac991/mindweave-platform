@@ -29,9 +29,12 @@
     .field-help { color:var(--text-muted); font-size:.76rem; margin-top:.3rem; }
     .draft-actions { display:flex; gap:.55rem; margin-top:.75rem; }
     .draft-actions button { flex:1; min-height:42px; border:1px solid var(--border); border-radius:10px; background:transparent; color:var(--text); cursor:pointer; font:inherit; }
-    .draft-actions button:hover { border-color:var(--primary); color:var(--primary); }
+    .draft-actions button:hover, .draft-actions button:focus-visible { border-color: var(--primary); color: var(--primary); }
+    .draft-status { min-height: 1.4rem; color: var(--text-muted); font-size: .78rem; margin-top: .4rem; }
     label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
-    select, textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; color: white; padding: 1rem; font-family: inherit; }
+    input, select, textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; color: white; padding: 1rem; font-family: inherit; font-size: 1rem; }
+    input:focus, select:focus, textarea:focus { outline: 3px solid rgba(0,212,255,.22); border-color: var(--primary); }
+    input::placeholder, textarea::placeholder { color: #6f899d; }
     textarea { height: 250px; resize: none; }
     .btn-test { background: var(--primary); color: var(--bg); padding: 1rem 2rem; border: none; border-radius: 12px; font-weight: 900; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; }
     .btn-test:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,212,255,0.4); }
@@ -76,7 +79,7 @@
           </div>
           <div class="input-group">
             <label for="audienceInput">من الجمهور المستهدف؟</label>
-            <input id="audienceInput" type="text" maxlength="120" placeholder="مثال: أصحاب المشاريع الصغيرة" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:12px;color:white;padding:1rem;font:inherit;">
+            <input id="audienceInput" type="text" maxlength="120" placeholder="مثال: أصحاب المشاريع الصغيرة">
             <p class="field-help">اختياري، ولا يُرسل إلى التحليلات.</p>
           </div>
           <div class="input-group">
@@ -90,7 +93,7 @@
           </div>
           <div class="input-group">
             <label for="constraintsInput">قيود الجودة</label>
-            <input id="constraintsInput" type="text" maxlength="180" placeholder="مثال: لغة عربية، مختصر، دون مبالغة" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:12px;color:white;padding:1rem;font:inherit;">
+            <input id="constraintsInput" type="text" maxlength="180" placeholder="مثال: لغة عربية، مختصر، دون مبالغة">
           </div>
         </div>
         <div class="input-group">
@@ -107,6 +110,7 @@
           <textarea id="promptInput" placeholder="مثال: اكتب لي مقالاً عن فوائد القهوة..."></textarea>
           <div class="prompt-suggestions" id="suggestionContainer"></div>
           <div class="draft-actions"><button type="button" id="saveDraftBtn">حفظ المسودة على هذا الجهاز</button><button type="button" id="clearDraftBtn">مسح الحقول</button></div>
+          <div class="draft-status" id="draftStatus" role="status" aria-live="polite"></div>
         </div>
         <button class="btn-test" id="testBtn">⚗️ حسّن الأمر الآن</button>
       </div>
@@ -115,7 +119,7 @@
         <div class="input-group">
           <label>الأمر المحسن (النتيجة)</label>
           <div class="result-area" id="resultArea">
-            <button class="copy-btn" id="copyBtn">نسخ</button>
+            <button class="copy-btn" id="copyBtn" type="button">نسخ</button>
             <div id="resultContent" style="white-space: pre-wrap;"></div>
           </div>
           <div id="placeholderText" style="color: var(--text-muted); text-align: center; padding: 4rem 0;">
@@ -138,6 +142,7 @@
     const audienceInput = document.getElementById('audienceInput');
     const formatSelect = document.getElementById('formatSelect');
     const constraintsInput = document.getElementById('constraintsInput');
+    const draftStatus = document.getElementById('draftStatus');
     const draftKey = 'mindweave_prompt_workbench_draft_v1';
     const MAX_PROMPT_LENGTH = 2000;
     promptInput.maxLength = MAX_PROMPT_LENGTH;
@@ -175,10 +180,19 @@
       constraintsInput.value = draft.constraints || '';
       promptInput.value = draft.prompt || '';
     }
-    applyDraft(readDraft());
-    document.getElementById('saveDraftBtn').addEventListener('click', () => {
-      localStorage.setItem(draftKey, JSON.stringify({ task: taskSelect.value, audience: audienceInput.value.trim(), format: formatSelect.value, constraints: constraintsInput.value.trim(), prompt: promptInput.value.trim() }));
+    const savedDraft = readDraft();
+    applyDraft(savedDraft);
+    if (savedDraft) draftStatus.textContent = 'تم استرجاع مسودة محفوظة على هذا الجهاز.';
+    function currentDraft() {
+      return { task: taskSelect.value, audience: audienceInput.value.trim(), format: formatSelect.value, constraints: constraintsInput.value.trim(), prompt: promptInput.value.trim() };
+    }
+    function saveDraft(showStatus = true) {
+      localStorage.setItem(draftKey, JSON.stringify(currentDraft()));
+      if (showStatus) draftStatus.textContent = 'تم حفظ المسودة على هذا الجهاز.';
       if (window.mwTrack) window.mwTrack('prompt_draft_saved', { page_type: 'prompt-lab' });
+    }
+    document.getElementById('saveDraftBtn').addEventListener('click', () => {
+      saveDraft();
     });
     document.getElementById('clearDraftBtn').addEventListener('click', () => {
       localStorage.removeItem(draftKey);
@@ -186,7 +200,14 @@
       formatSelect.value = 'نص منظم بعناوين';
       resultArea.style.display = 'none';
       placeholderText.style.display = 'block';
+      draftStatus.textContent = 'تم مسح الحقول والمسودة المحفوظة.';
     });
+
+    let saveTimer;
+    [taskSelect, audienceInput, formatSelect, constraintsInput, promptInput].forEach(field => field.addEventListener('input', () => {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => saveDraft(false), 700);
+    }));
 
     document.querySelectorAll('.suggestion-chip').forEach(chip => {
       chip.addEventListener('click', () => {
@@ -231,9 +252,15 @@
       }
     });
 
-    document.getElementById('copyBtn').addEventListener('click', () => {
-      navigator.clipboard.writeText(resultContent.textContent);
-      alert('تم نسخ الأمر المحسن!');
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      const copyButton = document.getElementById('copyBtn');
+      try {
+        await navigator.clipboard.writeText(resultContent.textContent);
+        copyButton.textContent = 'تم النسخ ✓';
+      } catch (_) {
+        copyButton.textContent = 'تعذر النسخ';
+      }
+      setTimeout(() => { copyButton.textContent = 'نسخ'; }, 1800);
     });
   </script>
   <script src="ai-assistant.js?v=20260812-1"></script>
