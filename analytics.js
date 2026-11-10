@@ -19,7 +19,8 @@
     'login',
     'creator_application_submit',
     'campaign_lead',
-    'campaign_share'
+    'campaign_share',
+    'instagram_reel_click'
   ]);
 
   function cleanValue(value) {
