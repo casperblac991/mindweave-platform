@@ -107,6 +107,10 @@
       const safeBenefits = productBenefits.map(item => `<li>${escapeHtml(item)}</li>`).join('');
       const safeSample = escapeHtml(productSample);
       document.title = name + ' | MindWeave';
+      const productSchema = document.createElement('script');
+      productSchema.type = 'application/ld+json';
+      productSchema.textContent = JSON.stringify({ '@context':'https://schema.org', '@type':'Product', name, description:desc, category:cat, brand:{ '@type':'Brand', name:'MindWeave' }, offers:{ '@type':'Offer', url:location.href.split('#')[0], price:String(product.price || '').replace(/[^0-9.]/g,''), priceCurrency:'USD', availability:'https://schema.org/InStock' } });
+      document.head.appendChild(productSchema);
       document.getElementById('productPage').innerHTML = `
         <div class="breadcrumbs"><a href="store.html">المتجر</a> <span>›</span> ${safeName}</div>
         <section class="product-hero">

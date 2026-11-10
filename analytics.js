@@ -20,7 +20,9 @@
     'creator_application_submit',
     'campaign_lead',
     'campaign_share',
-    'instagram_reel_click'
+    'instagram_reel_click',
+    'prompt_workbench_run',
+    'prompt_draft_saved'
   ]);
 
   function cleanValue(value) {

@@ -21,8 +21,15 @@
     .lab-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
     .lab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     @media (max-width: 768px) { .lab-grid { grid-template-columns: 1fr; } }
+    @media (max-width:560px) { .workbench-grid { grid-template-columns:1fr; } .lab-card { padding:1.25rem; } }
     .lab-card { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; border-radius: 24px; display: flex; flex-direction: column; height: 100%; }
     .input-group { margin-bottom: 1.5rem; }
+    .workbench-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-bottom:1.25rem; }
+    .workbench-grid .input-group { margin-bottom:0; }
+    .field-help { color:var(--text-muted); font-size:.76rem; margin-top:.3rem; }
+    .draft-actions { display:flex; gap:.55rem; margin-top:.75rem; }
+    .draft-actions button { flex:1; min-height:42px; border:1px solid var(--border); border-radius:10px; background:transparent; color:var(--text); cursor:pointer; font:inherit; }
+    .draft-actions button:hover { border-color:var(--primary); color:var(--primary); }
     label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
     select, textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; color: white; padding: 1rem; font-family: inherit; }
     textarea { height: 250px; resize: none; }
@@ -55,6 +62,37 @@
 
     <div class="lab-grid">
       <div class="lab-card">
+        <div class="workbench-grid" aria-label="حقول بناء الأمر">
+          <div class="input-group">
+            <label for="taskSelect">ما المهمة التي تريد إنجازها؟</label>
+            <select id="taskSelect">
+              <option value="">اختر مهمة أو اكتبها في المسودة</option>
+              <option value="كتابة محتوى واضح">كتابة محتوى واضح</option>
+              <option value="خطة تسويقية عملية">خطة تسويقية عملية</option>
+              <option value="تلخيص وتحليل نص">تلخيص وتحليل نص</option>
+              <option value="تنظيم مشروع ومهام">تنظيم مشروع ومهام</option>
+            </select>
+            <p class="field-help">تحديد المهمة يقلل التخمين في النتيجة.</p>
+          </div>
+          <div class="input-group">
+            <label for="audienceInput">من الجمهور المستهدف؟</label>
+            <input id="audienceInput" type="text" maxlength="120" placeholder="مثال: أصحاب المشاريع الصغيرة" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:12px;color:white;padding:1rem;font:inherit;">
+            <p class="field-help">اختياري، ولا يُرسل إلى التحليلات.</p>
+          </div>
+          <div class="input-group">
+            <label for="formatSelect">شكل الناتج</label>
+            <select id="formatSelect">
+              <option value="نص منظم بعناوين">نص منظم بعناوين</option>
+              <option value="قائمة خطوات عملية">قائمة خطوات عملية</option>
+              <option value="جدول مختصر">جدول مختصر</option>
+              <option value="JSON منظم">JSON منظم</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="constraintsInput">قيود الجودة</label>
+            <input id="constraintsInput" type="text" maxlength="180" placeholder="مثال: لغة عربية، مختصر، دون مبالغة" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:12px;color:white;padding:1rem;font:inherit;">
+          </div>
+        </div>
         <div class="input-group">
           <label>النموذج المستهدف</label>
           <select id="modelSelect">
@@ -68,6 +106,7 @@
           <label>اكتب مسودة الأمر الخاص بك</label>
           <textarea id="promptInput" placeholder="مثال: اكتب لي مقالاً عن فوائد القهوة..."></textarea>
           <div class="prompt-suggestions" id="suggestionContainer"></div>
+          <div class="draft-actions"><button type="button" id="saveDraftBtn">حفظ المسودة على هذا الجهاز</button><button type="button" id="clearDraftBtn">مسح الحقول</button></div>
         </div>
         <button class="btn-test" id="testBtn">⚗️ حسّن الأمر الآن</button>
       </div>
@@ -95,6 +134,11 @@
     const promptInput = document.getElementById('promptInput');
     const suggestionContainer = document.getElementById('suggestionContainer');
     const productContext = document.getElementById('productContext');
+    const taskSelect = document.getElementById('taskSelect');
+    const audienceInput = document.getElementById('audienceInput');
+    const formatSelect = document.getElementById('formatSelect');
+    const constraintsInput = document.getElementById('constraintsInput');
+    const draftKey = 'mindweave_prompt_workbench_draft_v1';
     const MAX_PROMPT_LENGTH = 2000;
     promptInput.maxLength = MAX_PROMPT_LENGTH;
     const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
@@ -120,6 +164,30 @@
 
     suggestionContainer.innerHTML = suggestions.map(s => `<span class="suggestion-chip">${s}</span>`).join('');
 
+    function readDraft() {
+      try { return JSON.parse(localStorage.getItem(draftKey) || 'null'); } catch (_) { return null; }
+    }
+    function applyDraft(draft) {
+      if (!draft) return;
+      taskSelect.value = draft.task || '';
+      audienceInput.value = draft.audience || '';
+      formatSelect.value = draft.format || 'نص منظم بعناوين';
+      constraintsInput.value = draft.constraints || '';
+      promptInput.value = draft.prompt || '';
+    }
+    applyDraft(readDraft());
+    document.getElementById('saveDraftBtn').addEventListener('click', () => {
+      localStorage.setItem(draftKey, JSON.stringify({ task: taskSelect.value, audience: audienceInput.value.trim(), format: formatSelect.value, constraints: constraintsInput.value.trim(), prompt: promptInput.value.trim() }));
+      if (window.mwTrack) window.mwTrack('prompt_draft_saved', { page_type: 'prompt-lab' });
+    });
+    document.getElementById('clearDraftBtn').addEventListener('click', () => {
+      localStorage.removeItem(draftKey);
+      [taskSelect, audienceInput, constraintsInput, promptInput].forEach((field) => { field.value = ''; });
+      formatSelect.value = 'نص منظم بعناوين';
+      resultArea.style.display = 'none';
+      placeholderText.style.display = 'block';
+    });
+
     document.querySelectorAll('.suggestion-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         promptInput.value = chip.textContent;
@@ -127,7 +195,15 @@
     });
 
     testBtn.addEventListener('click', async () => {
-      const prompt = promptInput.value.trim();
+      const rawPrompt = promptInput.value.trim();
+      const promptParts = [
+        taskSelect.value && `المهمة: ${taskSelect.value}`,
+        audienceInput.value.trim() && `الجمهور: ${audienceInput.value.trim()}`,
+        `شكل الناتج: ${formatSelect.value}`,
+        constraintsInput.value.trim() && `قيود الجودة: ${constraintsInput.value.trim()}`,
+        rawPrompt && `المسودة: ${rawPrompt}`
+      ].filter(Boolean);
+      const prompt = promptParts.join('\n');
       if (!prompt) { resultContent.textContent = 'اكتب مسودة الأمر أولاً.'; resultArea.style.display = 'block'; return; }
       if (prompt.length > MAX_PROMPT_LENGTH) { resultContent.textContent = `الحد الأقصى ${MAX_PROMPT_LENGTH} حرف.`; resultArea.style.display = 'block'; return; }
 
@@ -145,6 +221,7 @@
         resultContent.textContent = data.answer;
         resultArea.style.display = 'block';
         if (window.mwTrack) window.mwTrack('generate_prompt', { target_model: data.targetModel });
+        if (window.mwTrack) window.mwTrack('prompt_workbench_run', { task: taskSelect.value || 'custom', output_format: formatSelect.value });
       } catch (error) {
         resultContent.textContent = error.message || 'تعذر تحسين الأمر حالياً.';
         resultArea.style.display = 'block';
