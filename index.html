@@ -1429,7 +1429,7 @@ function renderProducts() {
           <div class="product-name">${name}</div>
           <div class="product-desc">${desc}</div>
           <div class="product-meta">
-            <div class="product-rating">★ ${p.rating || '4.9'}</div>
+            <div class="product-rating">${p.rating ? `★ ${p.rating}` : (currentLang === 'ar' ? 'لا توجد تقييمات' : currentLang === 'en' ? 'No ratings yet' : currentLang === 'es' ? 'Sin valoraciones aún' : 'Aucune évaluation')}</div>
             <div>${salesText}</div>
           </div>
             <div class="product-footer">

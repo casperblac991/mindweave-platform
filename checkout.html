@@ -55,6 +55,7 @@
             const result = await response.json();
             if (!response.ok || !result.success) throw new Error(result.error || 'تعذر تأكيد الدفع');
             localStorage.removeItem('mw_cart');
+            if (window.mwTrack) window.mwTrack('purchase', { transaction_id: result.orderId, value: total, currency: 'USD', item_count: productIds.length, payment_environment: config.environment, payment_recorded: Boolean(result.recorded) });
             notice.textContent = result.recorded ? 'تم تأكيد الدفع وتسجيل الطلب في حسابك.' : 'تم تأكيد الدفع، لكن يحتاج ربط الحساب لمزامنة الطلب مع سجل المشتريات.';
             paymentStatus.textContent = `رقم الطلب: ${result.orderId}`;
             document.getElementById('paypal-button-container').innerHTML = '<p>شكرًا لك. سيتم تجهيز وصولك الرقمي.</p>';

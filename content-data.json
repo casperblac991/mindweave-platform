@@ -1,5 +1,17 @@
 {
-  "lastUpdate": "2026-11-10T23:06:00Z",
+  "lastUpdate": "2026-11-10T23:45:00Z",
+  "dataSources": {
+    "sales": {
+      "source": "Supabase public.purchases and public.user_purchases",
+      "verifiedAt": "2026-11-10T23:43:57Z",
+      "status": "verified_zero_records"
+    },
+    "ratings": {
+      "source": "No ratings table or verified review source found in the connected Supabase project",
+      "verifiedAt": "2026-11-10T23:43:39Z",
+      "status": "unavailable"
+    }
+  },
   "stats": {
     "products": {
       "ar": 3,
@@ -50,17 +62,17 @@
       },
       "emoji": "🧠",
       "badge": {
-        "ar": "الأكثر مبيعاً",
-        "en": "Best Seller",
-        "es": "Más Vendido",
-        "fr": "Meilleure Vente"
+        "ar": "متاح الآن",
+        "en": "Available now",
+        "es": "Disponible ahora",
+        "fr": "Disponible maintenant"
       },
-      "rating": "4.9",
+      "rating": null,
       "sales": {
-        "ar": "1.2k+ مبيعات",
-        "en": "1.2k+ sales",
-        "es": "1.2k+ ventas",
-        "fr": "1.2k+ ventes"
+        "ar": "لا توجد مبيعات مسجلة بعد",
+        "en": "No recorded sales yet",
+        "es": "Aún no hay ventas registradas",
+        "fr": "Aucune vente enregistrée pour le moment"
       },
       "audience": {
         "ar": "لصناع المحتوى وأصحاب المشاريع والطلاب",
@@ -125,12 +137,12 @@
         "es": "Nuevo",
         "fr": "Nouveau"
       },
-      "rating": "4.8",
+      "rating": null,
       "sales": {
-        "ar": "850+ مبيعات",
-        "en": "850+ sales",
-        "es": "850+ ventas",
-        "fr": "850+ ventes"
+        "ar": "لا توجد مبيعات مسجلة بعد",
+        "en": "No recorded sales yet",
+        "es": "Aún no hay ventas registradas",
+        "fr": "Aucune vente enregistrée pour le moment"
       },
       "audience": {
         "ar": "للفرق الصغيرة وأصحاب المشاريع الحرة",
@@ -195,12 +207,12 @@
         "es": "Destacado",
         "fr": "En Vedette"
       },
-      "rating": "5.0",
+      "rating": null,
       "sales": {
-        "ar": "2.1k+ مبيعات",
-        "en": "2.1k+ sales",
-        "es": "2.1k+ ventas",
-        "fr": "2.1k+ ventes"
+        "ar": "لا توجد مبيعات مسجلة بعد",
+        "en": "No recorded sales yet",
+        "es": "Aún no hay ventas registradas",
+        "fr": "Aucune vente enregistrée pour le moment"
       },
       "audience": {
         "ar": "لكل من يريد نتائج أفضل من أدوات الذكاء الاصطناعي",

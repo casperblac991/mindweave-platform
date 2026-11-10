@@ -102,7 +102,8 @@
       const name = text(product.name), desc = text(product.description), cat = text(product.category), badge = text(product.badge), sales = text(product.sales);
       const productBenefits = product.benefits ? (product.benefits[lang] || product.benefits.ar) : (benefits[product.id] || benefits[1]);
       const productSample = product.sample ? text(product.sample) : (samples[product.id] || samples[1]);
-      const stars = '★'.repeat(Math.round(Number(product.rating || 0))) + '☆'.repeat(Math.max(0, 5 - Math.round(Number(product.rating || 0))));
+      const hasRating = Number.isFinite(Number(product.rating)) && Number(product.rating) > 0;
+      const stars = hasRating ? '★'.repeat(Math.round(Number(product.rating))) + '☆'.repeat(Math.max(0, 5 - Math.round(Number(product.rating)))) : '';
       const safeName = escapeHtml(name), safeDescription = escapeHtml(desc), safeCategory = escapeHtml(cat), safeBadge = escapeHtml(badge), safeSales = escapeHtml(sales), safeEmoji = escapeHtml(product.emoji || '✨');
       const safeBenefits = productBenefits.map(item => `<li>${escapeHtml(item)}</li>`).join('');
       const safeSample = escapeHtml(productSample);
@@ -117,7 +118,7 @@
           <div class="visual"><span class="visual-emoji">${safeEmoji}</span>${badge ? `<span class="badge">${safeBadge}</span>` : ''}</div>
           <div class="detail-card">
             <div class="category">${safeCategory}</div><h1>${safeName}</h1><p class="description">${safeDescription}</p>
-            <div class="rating-row"><span class="stars" aria-label="تقييم ${escapeHtml(product.rating)} من 5">${stars}</span><strong>${escapeHtml(product.rating)}/5</strong><span class="sales">${safeSales || 'تقييمات العملاء'}</span></div>
+            <div class="rating-row">${hasRating ? `<span class="stars" aria-label="تقييم ${escapeHtml(product.rating)} من 5">${stars}</span><strong>${escapeHtml(product.rating)}/5</strong>` : '<span class="sales">لا توجد تقييمات موثقة بعد</span>'}<span class="sales">${safeSales || 'لا توجد مبيعات مسجلة بعد'}</span></div>
             <div class="price-row"><span class="price">${money(product.price)}</span><span class="sales">منتج رقمي — وصول فوري بعد تفعيل الدفع</span></div>
             <div class="actions"><button id="addBtn" class="btn btn-primary" type="button">أضف إلى السلة</button><a class="btn btn-secondary" href="prompt-lab.html?product=${product.id}">جرّبه في Prompt Lab</a></div>
           </div>

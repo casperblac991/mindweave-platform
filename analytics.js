@@ -10,6 +10,7 @@
     'add_to_cart',
     'remove_from_cart',
     'begin_checkout',
+    'purchase',
     'generate_prompt',
     'copy_prompt',
     'save_prompt',
@@ -32,14 +33,25 @@
 
   function track(eventName, parameters = {}) {
     if (!ALLOWED_EVENTS.has(eventName) || typeof window.gtag !== 'function') return;
+    const attribution = window.__mwAttribution || {};
     const safeParameters = Object.fromEntries(
-      Object.entries(parameters).filter(([, value]) => value !== undefined && value !== null && value !== '')
+      Object.entries({ ...attribution, ...parameters }).filter(([, value]) => value !== undefined && value !== null && value !== '')
         .map(([key, value]) => [key, cleanValue(value)])
     );
     window.gtag('event', eventName, safeParameters);
   }
 
   window.mwTrack = track;
+
+  function captureAttribution() {
+    const allowed = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    const current = Object.fromEntries(allowed.map(key => [key, new URLSearchParams(window.location.search).get(key)]).filter(([, value]) => value));
+    let stored = {};
+    try { stored = JSON.parse(sessionStorage.getItem('mw_attribution') || '{}'); } catch (_) {}
+    const attribution = { ...stored, ...current };
+    try { sessionStorage.setItem('mw_attribution', JSON.stringify(attribution)); } catch (_) {}
+    window.__mwAttribution = attribution;
+  }
 
   function initGoogleAnalytics() {
     window.dataLayer = window.dataLayer || [];
@@ -115,6 +127,7 @@
     });
   }
 
+  captureAttribution();
   initGoogleAnalytics();
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wireEvents, { once: true });
   else wireEvents();
