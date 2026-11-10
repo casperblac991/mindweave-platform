@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-11-09T02:04:00Z",
+  "lastUpdate": "2026-11-10T01:41:00Z",
   "stats": {
     "products": {
       "ar": 3,
@@ -910,7 +910,7 @@
       },
       "date": "9 نوفمبر 2026",
       "author": "MindWeave Team",
-      "video": "assets/mindweave-campaign-intro.mp4",
+    "video": "assets/mindweave-ad-vertical.mp4",
       "content": {
         "ar": "# ابدأ من النتيجة لا من الأداة\n\nإذا كنت تفتح ChatGPT ولا تعرف ماذا تكتب، فالمشكلة غالبًا ليست في الأداة بل في صياغة الطلب. ابدأ بتحديد النتيجة التي تريدها، ثم أضف السياق والقيود ومعايير الجودة.\n\n## 1. حوّل الفكرة الخام إلى أمر واضح\n\nبدلًا من كتابة: «اكتب شيئًا عن التسويق»، اذكر الجمهور والهدف والقناة والنبرة والنتيجة المطلوبة. كل معلومة مفيدة تقلل التخمين وتزيد قابلية استخدام النتيجة.\n\n## 2. جرّب ثم حسّن\n\nاستخدم Prompt Lab لتوليد نسخة أولى، ثم اطلب من الأداة نقدها واقتراح تحسينات. لا تبحث عن أمر مثالي من المحاولة الأولى؛ ابنِه على مراحل.\n\n## 3. استخدم الأوامر المجانية\n\nابدأ من [صفحة الحملة المجانية](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts)، ثم جرّب النتيجة في Prompt Lab.\n\n### الخلاصة\n\nأفضل أمر هو الذي يشرح النتيجة والسياق والقيود بوضوح. ابدأ بأمر واحد اليوم، قِس النتيجة، ثم عدّل ما لم يعمل.",
         "en": "# Start With the Outcome\n\nDefine the outcome, then add context, constraints, and quality criteria.\n\n## 1. Turn a rough idea into a clear prompt\n\nSpecify the audience, goal, channel, tone, and desired result.\n\n## 2. Test and improve\n\nUse Prompt Lab to create a first draft, then ask the tool to critique and improve it.\n\n## 3. Start with the free prompts\n\nVisit the [free campaign](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts), then test the result in Prompt Lab.\n\n### Summary\n\nStart with one prompt today and improve it from the result.",
