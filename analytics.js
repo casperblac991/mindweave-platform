@@ -2,6 +2,7 @@
   'use strict';
 
   const MEASUREMENT_ID = 'G-DZ4WQDX31M';
+  const TIKTOK_PIXEL_ID = window.MW_TIKTOK_PIXEL_ID || '';
   const MAX_VALUE_LENGTH = 120;
   const ALLOWED_EVENTS = new Set([
     'page_view',
@@ -39,6 +40,9 @@
         .map(([key, value]) => [key, cleanValue(value)])
     );
     window.gtag('event', eventName, safeParameters);
+    const ttEventMap = { page_view: 'PageView', view_item: 'ViewContent', add_to_cart: 'AddToCart', begin_checkout: 'InitiateCheckout', purchase: 'CompletePayment' };
+    const ttEvent = ttEventMap[eventName];
+    if (ttEvent && window.ttq?.track) window.ttq.track(ttEvent, safeParameters);
   }
 
   window.mwTrack = track;
@@ -70,6 +74,21 @@
       script.dataset.mindweaveGa = MEASUREMENT_ID;
       document.head.appendChild(script);
     }
+  }
+
+  function initTikTokPixel() {
+    if (!TIKTOK_PIXEL_ID || window.__mwTikTokConfigured) return;
+    !(function (w, d, t) {
+      w.TiktokAnalyticsObject = t;
+      const ttq = w[t] = w[t] || [];
+      ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie'];
+      ttq.setAndDefer = function (object, method) { object[method] = function () { object.push([method].concat(Array.prototype.slice.call(arguments, 0))); }; };
+      for (let i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+      ttq.instance = function (id) { const instance = ttq._i[id] || []; for (let i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(instance, ttq.methods[i]); return instance; };
+      ttq.load = function (id) { const script = d.createElement('script'); script.async = true; script.src = `https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=${encodeURIComponent(id)}&lib=${t}`; d.head.appendChild(script); };
+      ttq._i = ttq._i || {}; ttq._i[TIKTOK_PIXEL_ID] = []; ttq.load(TIKTOK_PIXEL_ID); ttq.page();
+    })(window, document, 'ttq');
+    window.__mwTikTokConfigured = true;
   }
 
   function pageType() {
@@ -129,6 +148,7 @@
 
   captureAttribution();
   initGoogleAnalytics();
+  initTikTokPixel();
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wireEvents, { once: true });
   else wireEvents();
 })();
