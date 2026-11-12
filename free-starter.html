@@ -18,6 +18,6 @@
   <script>
     const client=window.supabase?.createClient(window.ENV.SUPABASE_URL,window.ENV.SUPABASE_ANON_KEY); const form=document.getElementById('leadForm'); const status=document.getElementById('leadStatus');
     form.addEventListener('submit',async event=>{event.preventDefault();status.textContent='جارٍ الحفظ...';const email=document.getElementById('leadEmail').value;const consent=document.getElementById('leadConsent').checked;try{const {error}=await client.rpc('subscribe_to_newsletter',{p_email:email.trim().toLowerCase(),p_source:'free_starter',p_consent:consent});if(error)throw error;status.textContent='تم التسجيل. شكرًا لك!';if(window.mwTrack)window.mwTrack('newsletter_signup',{source:'free_starter'});form.reset();}catch(error){console.error(error);status.textContent='تعذر الحفظ الآن. حاول مرة أخرى.';}});
-  </script><script src="analytics.js?v=20261109"></script>
+  </script><script src="analytics.js?v=20261113"></script>
 </body>
 </html>

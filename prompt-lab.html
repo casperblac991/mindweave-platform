@@ -186,13 +186,17 @@
     function currentDraft() {
       return { task: taskSelect.value, audience: audienceInput.value.trim(), format: formatSelect.value, constraints: constraintsInput.value.trim(), prompt: promptInput.value.trim() };
     }
-    function saveDraft(showStatus = true) {
-      localStorage.setItem(draftKey, JSON.stringify(currentDraft()));
-      if (showStatus) draftStatus.textContent = 'تم حفظ المسودة على هذا الجهاز.';
-      if (window.mwTrack) window.mwTrack('prompt_draft_saved', { page_type: 'prompt-lab' });
+    function saveDraft({ announce = true, track = false } = {}) {
+      try {
+        localStorage.setItem(draftKey, JSON.stringify(currentDraft()));
+        if (announce) draftStatus.textContent = 'تم حفظ المسودة على هذا الجهاز.';
+        if (track && window.mwTrack) window.mwTrack('prompt_draft_saved', { page_type: 'prompt-lab', save_method: 'manual' });
+      } catch (_) {
+        draftStatus.textContent = 'تعذر حفظ المسودة محليًا في هذا المتصفح.';
+      }
     }
     document.getElementById('saveDraftBtn').addEventListener('click', () => {
-      saveDraft();
+      saveDraft({ track: true });
     });
     document.getElementById('clearDraftBtn').addEventListener('click', () => {
       localStorage.removeItem(draftKey);
@@ -206,7 +210,7 @@
     let saveTimer;
     [taskSelect, audienceInput, formatSelect, constraintsInput, promptInput].forEach(field => field.addEventListener('input', () => {
       clearTimeout(saveTimer);
-      saveTimer = setTimeout(() => saveDraft(false), 700);
+      saveTimer = setTimeout(() => saveDraft({ announce: false }), 700);
     }));
 
     document.querySelectorAll('.suggestion-chip').forEach(chip => {
@@ -230,6 +234,7 @@
 
       testBtn.innerHTML = '<span class="spinner"></span> جاري التحسين...';
       testBtn.disabled = true;
+      testBtn.setAttribute('aria-busy', 'true');
       placeholderText.style.display = 'none';
       resultArea.style.display = 'none';
       try {
@@ -243,12 +248,15 @@
         resultArea.style.display = 'block';
         if (window.mwTrack) window.mwTrack('generate_prompt', { target_model: data.targetModel });
         if (window.mwTrack) window.mwTrack('prompt_workbench_run', { task: taskSelect.value || 'custom', output_format: formatSelect.value });
+        draftStatus.textContent = 'تم تحسين الأمر بنجاح. يمكنك نسخه أو تعديل المسودة.';
       } catch (error) {
         resultContent.textContent = error.message || 'تعذر تحسين الأمر حالياً.';
         resultArea.style.display = 'block';
+        draftStatus.textContent = 'تعذر الاتصال بخدمة التحسين. حاول مرة أخرى.';
       } finally {
         testBtn.innerHTML = '⚗️ حسّن الأمر الآن';
         testBtn.disabled = false;
+        testBtn.removeAttribute('aria-busy');
       }
     });
 
@@ -257,6 +265,7 @@
       try {
         await navigator.clipboard.writeText(resultContent.textContent);
         copyButton.textContent = 'تم النسخ ✓';
+        if (window.mwTrack) window.mwTrack('copy_prompt', { page_type: 'prompt-lab' });
       } catch (_) {
         copyButton.textContent = 'تعذر النسخ';
       }
@@ -264,6 +273,6 @@
     });
   </script>
   <script src="ai-assistant.js?v=20260812-1"></script>
-  <script src="analytics.js?v=20261109"></script>
+  <script src="analytics.js?v=20261113"></script>
 </body>
 </html>

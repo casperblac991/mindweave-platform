@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mindweave-v6';
+const CACHE_NAME = 'mindweave-v7';
 const ASSETS = [
   '/',
   '/index.html',
@@ -14,6 +14,7 @@ const ASSETS = [
   '/manifest.json',
   '/supabase-auth.js',
   '/analytics.js',
+  '/content-data.json',
   '/assets/og-image.png',
   '/assets/icon-192.png',
   '/assets/icon-512.png'

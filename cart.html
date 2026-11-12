@@ -23,6 +23,6 @@
     function renderCart(){const cart=getCart(),container=document.getElementById('cartContainer');document.getElementById('cartCount').textContent=cart.length;if(!cart.length){container.innerHTML='<div class="empty-cart">السلة فارغة حالياً<br><a href="store.html">اكتشف المنتجات</a></div>';document.getElementById('cartActions').style.display='none';return;}container.innerHTML=cart.map(item=>`<div class="cart-item"><div><div class="item-name">${name(item)}</div><div class="item-meta">منتج رقمي · وصول فوري بعد الدفع</div></div><div class="item-price">$${amount(item).toFixed(2)}</div><button class="remove-btn" type="button" data-remove="${item.id}">حذف</button></div>`).join('');container.querySelectorAll('[data-remove]').forEach(btn=>btn.addEventListener('click',()=>removeItem(Number(btn.dataset.remove))));document.getElementById('cartTotal').textContent='$'+cart.reduce((sum,item)=>sum+amount(item),0).toFixed(2);document.getElementById('cartActions').style.display='block';}
     document.addEventListener('DOMContentLoaded',renderCart);
   </script>
-  <script src="ai-assistant.js?v=20260812-1"></script><script src="analytics.js?v=20261109"></script>
+  <script src="ai-assistant.js?v=20260812-1"></script><script src="analytics.js?v=20261113"></script>
 </body>
 </html>

@@ -30,6 +30,6 @@
     document.getElementById('shareBtn').addEventListener('click',async()=>{if(window.mwTrack)window.mwTrack('campaign_share',{campaign:'free_prompts'});if(navigator.share){await navigator.share({title:'10 أوامر مجانية من MindWeave',text:'ابدأ بأوامر عملية للذكاء الاصطناعي',url:campaignUrl}).catch(()=>{});}else{await navigator.clipboard?.writeText(campaignUrl);alert('تم نسخ رابط الحملة.');}});
     document.getElementById('copyBtn').addEventListener('click',async()=>{await navigator.clipboard?.writeText(campaignUrl);if(window.mwTrack)window.mwTrack('campaign_share',{campaign:'free_prompts',method:'copy'});alert('تم نسخ الرابط.');});
     document.querySelector('[data-track="instagram_reel_click"]')?.addEventListener('click',()=>{if(window.mwTrack)window.mwTrack('instagram_reel_click',{campaign:'free_prompts'});});
-  </script><script src="analytics.js?v=20261109"></script>
+  </script><script src="analytics.js?v=20261113"></script>
 </body>
 </html>
