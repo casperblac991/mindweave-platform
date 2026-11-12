@@ -31,6 +31,9 @@
     .draft-actions button { flex:1; min-height:42px; border:1px solid var(--border); border-radius:10px; background:transparent; color:var(--text); cursor:pointer; font:inherit; }
     .draft-actions button:hover, .draft-actions button:focus-visible { border-color: var(--primary); color: var(--primary); }
     .draft-status { min-height: 1.4rem; color: var(--text-muted); font-size: .78rem; margin-top: .4rem; }
+    .field-meta { display:flex; justify-content:space-between; align-items:center; gap:.75rem; margin-top:.3rem; }
+    .field-meta .field-help { margin-top:0; }
+    .char-count { color:var(--text-muted); font-size:.72rem; white-space:nowrap; direction:ltr; }
     label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
     input, select, textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; color: white; padding: 1rem; font-family: inherit; font-size: 1rem; }
     input:focus, select:focus, textarea:focus { outline: 3px solid rgba(0,212,255,.22); border-color: var(--primary); }
@@ -39,8 +42,18 @@
     .btn-test { background: var(--primary); color: var(--bg); padding: 1rem 2rem; border: none; border-radius: 12px; font-weight: 900; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; }
     .btn-test:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,212,255,0.4); }
     .btn-test:disabled { opacity: 0.6; cursor: not-allowed; }
-    .result-area { margin-top: 1.5rem; padding: 1.5rem; background: rgba(0,212,255,0.05); border-radius: 12px; border: 1px dashed var(--primary); display: none; position: relative; flex-grow: 1; }
-    .copy-btn { position: absolute; top: 1rem; left: 1rem; background: var(--primary); color: var(--bg); border: none; border-radius: 6px; padding: 0.3rem 0.7rem; font-size: 0.8rem; cursor: pointer; }
+    .result-area { margin-top: 1.5rem; padding: 1.25rem; background: linear-gradient(145deg, rgba(0,212,255,0.1), rgba(124,58,237,0.08)); border-radius: 18px; border: 1px solid var(--border); display: none; position: relative; flex-grow: 1; box-shadow: 0 16px 40px rgba(0,0,0,.16); }
+    .result-heading { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; padding-bottom:1rem; border-bottom:1px solid rgba(255,255,255,.08); }
+    .result-kicker { color:var(--primary); font-size:.72rem; font-weight:700; }
+    .result-heading h2 { font-size:1.1rem; margin:.15rem 0 .2rem; }
+    .result-meta { color:var(--text-muted); font-size:.76rem; }
+    .result-badge { color:#071019; background:var(--primary); border-radius:999px; padding:.2rem .6rem; font-size:.7rem; white-space:nowrap; }
+    .result-content { padding:1.15rem 0 .5rem; min-height:180px; max-height:520px; overflow:auto; white-space:pre-wrap; overflow-wrap:anywhere; }
+    .result-actions { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem; }
+    .result-actions button { flex:1 1 120px; min-height:40px; border:1px solid var(--border); border-radius:10px; background:rgba(5,10,15,.45); color:var(--text); cursor:pointer; font:inherit; font-size:.82rem; }
+    .result-actions button:first-child { background:var(--primary); color:var(--bg); border-color:var(--primary); font-weight:700; }
+    .result-actions button:hover, .result-actions button:focus-visible { border-color:var(--primary); color:var(--primary); }
+    .result-actions button:first-child:hover, .result-actions button:first-child:focus-visible { color:var(--bg); }
     .prompt-suggestions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
     .product-context { display: none; margin: 0 auto 1.5rem; max-width: 760px; padding: .85rem 1rem; border: 1px solid var(--border); border-radius: 14px; background: rgba(0,212,255,.06); color: var(--muted); }
     .product-context strong { color: var(--text); }
@@ -75,12 +88,12 @@
               <option value="تلخيص وتحليل نص">تلخيص وتحليل نص</option>
               <option value="تنظيم مشروع ومهام">تنظيم مشروع ومهام</option>
             </select>
-            <p class="field-help">تحديد المهمة يقلل التخمين في النتيجة.</p>
+            <div class="field-meta"><p class="field-help">تحديد المهمة يقلل التخمين في النتيجة.</p><span class="char-count" aria-hidden="true">اختيار</span></div>
           </div>
           <div class="input-group">
             <label for="audienceInput">من الجمهور المستهدف؟</label>
             <input id="audienceInput" type="text" maxlength="120" placeholder="مثال: أصحاب المشاريع الصغيرة">
-            <p class="field-help">اختياري، ولا يُرسل إلى التحليلات.</p>
+            <div class="field-meta"><p class="field-help">اختياري، ولا يُرسل إلى التحليلات.</p><span class="char-count" id="audienceCount">0/120</span></div>
           </div>
           <div class="input-group">
             <label for="formatSelect">شكل الناتج</label>
@@ -94,6 +107,7 @@
           <div class="input-group">
             <label for="constraintsInput">قيود الجودة</label>
             <input id="constraintsInput" type="text" maxlength="180" placeholder="مثال: لغة عربية، مختصر، دون مبالغة">
+            <div class="field-meta"><span class="field-help">اجعل القيد قابلًا للقياس قدر الإمكان.</span><span class="char-count" id="constraintsCount">0/180</span></div>
           </div>
         </div>
         <div class="input-group">
@@ -106,8 +120,9 @@
           </select>
         </div>
         <div class="input-group">
-          <label>اكتب مسودة الأمر الخاص بك</label>
+          <label for="promptInput">اكتب مسودة الأمر الخاص بك</label>
           <textarea id="promptInput" placeholder="مثال: اكتب لي مقالاً عن فوائد القهوة..."></textarea>
+          <div class="field-meta"><span class="field-help">لا ترسل كلمات مرور أو بيانات حساسة.</span><span class="char-count" id="promptCount">0/2000</span></div>
           <div class="prompt-suggestions" id="suggestionContainer"></div>
           <div class="draft-actions"><button type="button" id="saveDraftBtn">حفظ المسودة على هذا الجهاز</button><button type="button" id="clearDraftBtn">مسح الحقول</button></div>
           <div class="draft-status" id="draftStatus" role="status" aria-live="polite"></div>
@@ -116,12 +131,13 @@
       </div>
 
       <div class="lab-card">
-        <div class="input-group">
-          <label>الأمر المحسن (النتيجة)</label>
-          <div class="result-area" id="resultArea">
-            <button class="copy-btn" id="copyBtn" type="button">نسخ</button>
-            <div id="resultContent" style="white-space: pre-wrap;"></div>
-          </div>
+          <div class="input-group">
+            <label>الأمر المحسن (النتيجة)</label>
+            <div class="result-area" id="resultArea">
+            <div class="result-heading"><div><span class="result-kicker">PROMPT WORKBENCH</span><h2>نتيجتك الجاهزة للاستخدام</h2><p class="result-meta" id="resultMeta">سيظهر ملخص النتيجة هنا.</p></div><span class="result-badge">آمن كنص</span></div>
+            <div id="resultContent" class="result-content"></div>
+            <div class="result-actions"><button id="copyBtn" type="button">نسخ النتيجة</button><button id="retryBtn" type="button">إعادة التحسين</button><button id="saveResultBtn" type="button">حفظ النتيجة</button><button id="shareResultBtn" type="button">مشاركة</button></div>
+            </div>
           <div id="placeholderText" style="color: var(--text-muted); text-align: center; padding: 4rem 0;">
             اضغط على "حسّن الأمر" لرؤية السحر هنا ✨
           </div>
@@ -143,10 +159,19 @@
     const formatSelect = document.getElementById('formatSelect');
     const constraintsInput = document.getElementById('constraintsInput');
     const draftStatus = document.getElementById('draftStatus');
+    const resultMeta = document.getElementById('resultMeta');
+    const audienceCount = document.getElementById('audienceCount');
+    const constraintsCount = document.getElementById('constraintsCount');
+    const promptCount = document.getElementById('promptCount');
     const draftKey = 'mindweave_prompt_workbench_draft_v1';
     const MAX_PROMPT_LENGTH = 2000;
     promptInput.maxLength = MAX_PROMPT_LENGTH;
     const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+    function updateCharCounts() {
+      audienceCount.textContent = `${audienceInput.value.length}/120`;
+      constraintsCount.textContent = `${constraintsInput.value.length}/180`;
+      promptCount.textContent = `${promptInput.value.length}/${MAX_PROMPT_LENGTH}`;
+    }
 
     const productId = Number(new URLSearchParams(location.search).get('product'));
     if (productId) {
@@ -182,6 +207,7 @@
     }
     const savedDraft = readDraft();
     applyDraft(savedDraft);
+    updateCharCounts();
     if (savedDraft) draftStatus.textContent = 'تم استرجاع مسودة محفوظة على هذا الجهاز.';
     function currentDraft() {
       return { task: taskSelect.value, audience: audienceInput.value.trim(), format: formatSelect.value, constraints: constraintsInput.value.trim(), prompt: promptInput.value.trim() };
@@ -209,6 +235,7 @@
 
     let saveTimer;
     [taskSelect, audienceInput, formatSelect, constraintsInput, promptInput].forEach(field => field.addEventListener('input', () => {
+      updateCharCounts();
       clearTimeout(saveTimer);
       saveTimer = setTimeout(() => saveDraft({ announce: false }), 700);
     }));
@@ -246,6 +273,7 @@
         if (!response.ok) throw new Error(data.message || 'تعذر تحسين الأمر.');
         resultContent.textContent = data.answer;
         resultArea.style.display = 'block';
+        resultMeta.textContent = `النموذج: ${data.targetModel || document.getElementById('modelSelect').value} • ${data.answer.length} حرفًا`;
         if (window.mwTrack) window.mwTrack('generate_prompt', { target_model: data.targetModel });
         if (window.mwTrack) window.mwTrack('prompt_workbench_run', { task: taskSelect.value || 'custom', output_format: formatSelect.value });
         draftStatus.textContent = 'تم تحسين الأمر بنجاح. يمكنك نسخه أو تعديل المسودة.';
@@ -270,6 +298,21 @@
         copyButton.textContent = 'تعذر النسخ';
       }
       setTimeout(() => { copyButton.textContent = 'نسخ'; }, 1800);
+    });
+    document.getElementById('retryBtn').addEventListener('click', () => testBtn.click());
+    document.getElementById('saveResultBtn').addEventListener('click', () => {
+      try {
+        localStorage.setItem('mindweave_prompt_result_v1', resultContent.textContent);
+        draftStatus.textContent = 'تم حفظ النتيجة على هذا الجهاز.';
+        if (window.mwTrack) window.mwTrack('save_prompt', { page_type: 'prompt-lab', save_method: 'result' });
+      } catch (_) { draftStatus.textContent = 'تعذر حفظ النتيجة محليًا.'; }
+    });
+    document.getElementById('shareResultBtn').addEventListener('click', async () => {
+      const shareData = { title: 'نتيجة Prompt Lab من MindWeave', text: resultContent.textContent, url: location.href };
+      try {
+        if (navigator.share) await navigator.share(shareData);
+        else { await navigator.clipboard.writeText(resultContent.textContent); draftStatus.textContent = 'تم نسخ النتيجة للمشاركة.'; }
+      } catch (_) { draftStatus.textContent = 'تم إلغاء المشاركة أو تعذر تنفيذها.'; }
     });
   </script>
   <script src="ai-assistant.js?v=20260812-1"></script>
