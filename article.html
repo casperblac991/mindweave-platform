@@ -375,6 +375,25 @@ body[data-lang="en"] .article-content ol {
   color: var(--text);
 }
 
+.article-cta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(0,212,255,.1), rgba(124,58,237,.12));
+}
+.article-cta h3 { margin: 0 0 .25rem; color: var(--text); }
+.article-cta p { margin: 0; color: var(--text-muted); font-size: .9rem; }
+.article-cta-actions { display:flex; gap:.5rem; flex-wrap:wrap; }
+.article-cta a { min-height:42px; display:inline-flex; align-items:center; justify-content:center; padding:.55rem .85rem; border-radius:10px; text-decoration:none; font-weight:800; font-size:.85rem; }
+.article-cta .cta-primary { background:var(--primary); color:var(--bg); }
+.article-cta .cta-secondary { border:1px solid var(--border); color:var(--text); }
+@media (max-width:620px) { .article-cta { grid-template-columns:1fr; } .article-cta a { width:100%; } }
+
 body[data-lang="en"] .article-content blockquote {
   border-right: none;
   border-left: 3px solid var(--primary);
@@ -578,6 +597,10 @@ footer {
   </div>
 
   <div class="article-content reveal" id="articleContent"></div>
+  <section class="article-cta reveal" aria-label="ابدأ مع MindWeave">
+    <div><h3>حوّل الفكرة إلى أمر قابل للاستخدام</h3><p>جرّب Prompt Lab مجانًا أو ابدأ من مجموعة الأوامر العملية.</p></div>
+    <div class="article-cta-actions"><a class="cta-primary" id="articleLabCta" href="prompt-lab.html?utm_source=blog&utm_medium=organic&utm_campaign=article_cta">جرّب Prompt Lab</a><a class="cta-secondary" id="articleFreeCta" href="campaign-free-prompts.html?utm_source=blog&utm_medium=organic&utm_campaign=article_cta">10 أوامر مجانية</a></div>
+  </section>
 
   <div class="article-footer reveal">
     <div class="share-buttons">
@@ -1158,6 +1181,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   updateLanguage();
   updateCartCount();
   await renderArticle();
+
+  document.querySelectorAll('.article-cta a').forEach((link) => link.addEventListener('click', () => {
+    if (window.mwTrack) window.mwTrack('select_content', { content_type: link.id === 'articleLabCta' ? 'prompt_lab_cta' : 'free_prompts_cta', page_type: 'article' });
+  }));
   
   document.getElementById('langBtn')?.addEventListener('click', toggleLangMenu);
   document.querySelectorAll('.lang-option').forEach(opt => {
