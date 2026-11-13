@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-11-10T23:45:00Z",
+  "lastUpdate": "2026-11-13T00:02:00Z",
   "dataSources": {
     "sales": {
       "source": "Supabase public.purchases and public.user_purchases",
@@ -960,6 +960,34 @@
         "es": "# Crea una biblioteca en lugar de empezar de cero\n\nOrganiza las solicitudes que repites en una biblioteca pequeña y reutilizable.\n\n## 1. Empieza con tareas repetitivas\n\nElige una tarea que hagas con frecuencia y documenta primero esa.\n\n## 2. Usa una estructura constante\n\nIncluye rol, contexto, resultado esperado, restricciones y variables claras.\n\n## 3. Mejora después de cada uso\n\nAnota qué funcionó y qué debes ajustar.\n\nEmpieza con la [oferta gratuita](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts) y personalízala en [Prompt Lab](prompt-lab.html?utm_source=blog&utm_medium=owned&utm_campaign=prompt_lab).",
         "fr": "# Créez une bibliothèque au lieu de recommencer\n\nOrganisez les demandes récurrentes dans une petite bibliothèque réutilisable.\n\n## 1. Commencez par les tâches répétitives\n\nChoisissez une tâche fréquente et documentez-la d’abord.\n\n## 2. Utilisez une structure constante\n\nAjoutez le rôle, le contexte, le résultat attendu, les contraintes et les variables.\n\n## 3. Améliorez après chaque utilisation\n\nNotez ce qui fonctionne et ce qui doit être ajusté.\n\nCommencez avec l’[offre gratuite](campaign-free-prompts.html?utm_source=blog&utm_medium=owned&utm_campaign=free_prompts) et personnalisez-la dans [Prompt Lab](prompt-lab.html?utm_source=blog&utm_medium=owned&utm_campaign=prompt_lab)."
       }
+    },
+    {
+        "id": 30,
+        "category": {
+            "ar": "هندسة الأوامر",
+            "en": "Prompt Engineering",
+            "es": "Ingeniería de prompts",
+            "fr": "Ingénierie des prompts"
+        },
+        "icon": "🧩",
+        "title": {
+            "ar": "من الفكرة إلى أمر واضح: دليل عملي باستخدام Prompt Lab",
+            "en": "From Idea to a Clear Prompt: A Practical Prompt Lab Guide",
+            "es": "De la idea a un prompt claro: guía práctica con Prompt Lab",
+            "fr": "De l’idée au prompt clair : guide pratique avec Prompt Lab"
+        },
+        "excerpt": {
+            "ar": "تعلّم كيف تحدد المهمة والجمهور وشكل الناتج والقيود قبل إرسال الأمر إلى نموذج الذكاء الاصطناعي.",
+            "en": "Learn how to define the task, audience, output format, and constraints before sending a prompt to an AI model.",
+            "es": "Aprende a definir la tarea, la audiencia, el formato y las restricciones antes de enviar un prompt a un modelo de IA.",
+            "fr": "Définissez la tâche, l’audience, le format et les contraintes avant d’envoyer un prompt à un modèle d’IA."
+        },
+        "date": "13 نوفمبر 2026",
+        "author": "MindWeave Team",
+        "content": {
+            "ar": "ابدأ بالنتيجة التي تريدها، وليس بالأداة التي ستستخدمها. كلما كان الهدف واضحًا، أصبح من الأسهل على النموذج اقتراح إجابة قابلة للاستخدام.\n\n## 1. حدد المهمة\nاكتب فعلًا واضحًا مثل: لخّص، قارن، خطط، اشرح، أو أنشئ. تجنب الطلبات العامة التي لا تحدد ما الذي يجب أن يحدث في النهاية.\n\n## 2. عرّف الجمهور\nاذكر لمن ستُستخدم النتيجة. قد تختلف الإجابة جذريًا إذا كان الجمهور طالبًا أو عميلًا أو فريقًا تقنيًا.\n\n## 3. اختر شكل الناتج\nاطلب عناوين، خطوات، جدولًا، أو JSON عندما تحتاج إلى نتيجة منظمة. تحديد الشكل يقلل إعادة التنسيق بعد انتهاء النموذج.\n\n## 4. أضف قيود الجودة\nاذكر اللغة والطول والنبرة وما يجب تجنبه. اجعل القيود قابلة للمراجعة، مثل: استخدم خمس خطوات، دون ادعاءات غير موثقة.\n\n## 5. راجع ثم حسّن\nاستخدم Prompt Lab لجمع هذه العناصر في مسودة واحدة، ثم راجع النتيجة قبل نسخها إلى سير عملك. لا تضع كلمات مرور أو بيانات شخصية أو معلومات سرية داخل الأمر.\n\n### قالب سريع\nالمهمة: [ما الذي تريد إنجازه]\nالجمهور: [لمن النتيجة]\nشكل الناتج: [الهيكل المطلوب]\nالقيود: [اللغة والطول والجودة]\nالمسودة: [فكرتك الأولية]\n\nالجودة لا تأتي من طول الأمر، بل من وضوح الهدف والسياق ومعايير النتيجة.",
+            "en": "Start with the result you want, not with the tool you plan to use. A clear goal makes it easier for a model to produce an answer you can use.\n\n## 1. Define the task\nUse a clear action such as summarize, compare, plan, explain, or create. Avoid broad requests that do not define the desired outcome.\n\n## 2. Define the audience\nState who will use the result. A student, customer, and technical team may need very different answers.\n\n## 3. Choose the output format\nAsk for headings, steps, a table, or JSON when you need a structured result.\n\n## 4. Add quality constraints\nSpecify language, length, tone, and what to avoid. Make constraints reviewable, such as five steps and no unsupported claims.\n\n## 5. Review and improve\nUse Prompt Lab to combine these elements into one draft, then review the result before using it. Never include passwords, personal data, or confidential information.\n\nA strong prompt is not necessarily long. It is clear about the goal, context, and quality standard."
+        }
     }
   ]
 }
