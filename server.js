@@ -17,7 +17,7 @@ function contentCycleIntervalMs(value) {
 const config = {
   openaiApiKey: process.env.OPENAI_API_KEY || '',
   openaiBase: (process.env.OPENAI_API_BASE || 'https://api.openai.com/v1').replace(/\/$/, ''),
-  aiModel: process.env.AI_MODEL || 'gpt-5-mini',
+  aiModel: process.env.AI_MODEL || 'gpt-6.1-sol',
   supabaseUrl: (process.env.SUPABASE_URL || '').replace(/\/$/, ''),
   supabaseAnonKey: process.env.SUPABASE_ANON_KEY || '',
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
@@ -30,6 +30,16 @@ const config = {
   contentCycleIntervalMs: contentCycleIntervalMs(process.env.AI_CONTENT_CYCLE_INTERVAL_MS),
   contentCycleRunOnStart: process.env.AI_CONTENT_CYCLE_ON_START !== 'false',
 };
+
+function modelGenerationOptions(maxTokens) {
+  if (/^gpt-6(?:\.|$)/.test(config.aiModel)) {
+    return {
+      max_completion_tokens: maxTokens,
+      reasoning: { effort: process.env.AI_REASONING_EFFORT || 'low' },
+    };
+  }
+  return { max_tokens: maxTokens };
+}
 
 const metrics = {
   assistantRequests: 0,
@@ -192,7 +202,7 @@ async function callAi(messages, language, knowledge) {
     body: JSON.stringify({
       model: config.aiModel,
       temperature: 0.35,
-      max_tokens: Number(process.env.AI_MAX_TOKENS || 650),
+      ...modelGenerationOptions(Number(process.env.AI_MAX_TOKENS || 650)),
       messages: [
         { role: 'system', content: assistantPolicy(language, knowledge) },
         ...messages,
@@ -231,7 +241,7 @@ async function callPromptEnhancer(prompt, language, model) {
     body: JSON.stringify({
       model: config.aiModel,
       temperature: 0.25,
-      max_tokens: 700,
+      ...modelGenerationOptions(700),
       messages: [
         { role: 'system', content: promptEnhancerPolicy(model) },
         { role: 'user', content: `Language: ${language}\n<user_draft>\n${prompt}\n</user_draft>` },
