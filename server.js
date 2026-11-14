@@ -31,8 +31,15 @@ const config = {
   contentCycleRunOnStart: process.env.AI_CONTENT_CYCLE_ON_START !== 'false',
 };
 
-function modelGenerationOptions(maxTokens) {
-  if (/^gpt-6(?:\.|$)/.test(config.aiModel)) {
+function modelCandidates() {
+  return [...new Set([
+    config.aiModel,
+    ...(process.env.AI_FALLBACK_MODELS || 'gpt-6.1-sol,meta/llama-3.1-8b-instruct').split(',').map((model) => model.trim()).filter(Boolean),
+  ])];
+}
+
+function modelGenerationOptions(maxTokens, model = config.aiModel) {
+  if (/^gpt-6(?:\.|$)/.test(model)) {
     return {
       max_completion_tokens: maxTokens,
       reasoning: { effort: process.env.AI_REASONING_EFFORT || 'low' },
@@ -193,35 +200,39 @@ function assistantPolicy(language, knowledge) {
 }
 
 async function callAi(messages, language, knowledge) {
-  const response = await fetch(`${config.openaiBase}/chat/completions`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${config.openaiApiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: config.aiModel,
-      temperature: 0.35,
-      ...modelGenerationOptions(Number(process.env.AI_MAX_TOKENS || 650)),
-      messages: [
-        { role: 'system', content: assistantPolicy(language, knowledge) },
-        ...messages,
-      ],
-    }),
-    signal: AbortSignal.timeout(25000),
-  });
-
-  if (!response.ok) {
-    const body = await response.text().catch(() => '');
-    const error = new Error(`AI provider error ${response.status}`);
-    error.status = response.status;
-    error.body = body.slice(0, 400);
-    throw error;
+  let lastError;
+  for (const model of modelCandidates()) {
+    const response = await fetch(`${config.openaiBase}/chat/completions`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${config.openaiApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model,
+        temperature: 0.35,
+        ...modelGenerationOptions(Number(process.env.AI_MAX_TOKENS || 650), model),
+        messages: [
+          { role: 'system', content: assistantPolicy(language, knowledge) },
+          ...messages,
+        ],
+      }),
+      signal: AbortSignal.timeout(25000),
+    });
+    if (!response.ok) {
+      const body = await response.text().catch(() => '');
+      lastError = new Error(`AI provider error ${response.status}`);
+      lastError.status = response.status;
+      lastError.body = body.slice(0, 400);
+      if ([400, 404, 410].includes(response.status)) continue;
+      throw lastError;
+    }
+    const data = await response.json();
+    const answer = normaliseText(data?.choices?.[0]?.message?.content, 5000);
+    if (answer) return answer;
+    lastError = new Error('AI provider returned an empty answer');
   }
-  const data = await response.json();
-  const answer = normaliseText(data?.choices?.[0]?.message?.content, 5000);
-  if (!answer) throw new Error('AI provider returned an empty answer');
-  return answer;
+  throw lastError || new Error('AI provider returned no usable model');
 }
 
 function promptEnhancerPolicy(model) {
@@ -235,25 +246,33 @@ function promptEnhancerPolicy(model) {
 }
 
 async function callPromptEnhancer(prompt, language, model) {
-  const response = await fetch(`${config.openaiBase}/chat/completions`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${config.openaiApiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: config.aiModel,
-      temperature: 0.25,
-      ...modelGenerationOptions(700),
-      messages: [
-        { role: 'system', content: promptEnhancerPolicy(model) },
-        { role: 'user', content: `Language: ${language}\n<user_draft>\n${prompt}\n</user_draft>` },
-      ],
-    }),
-    signal: AbortSignal.timeout(25000),
-  });
-  if (!response.ok) throw new Error(`Prompt enhancer error ${response.status}`);
-  const data = await response.json();
-  const answer = normaliseText(data?.choices?.[0]?.message?.content, 6000);
-  if (!answer) throw new Error('Prompt enhancer returned an empty answer');
-  return answer;
+  let lastError;
+  for (const providerModel of modelCandidates()) {
+    const response = await fetch(`${config.openaiBase}/chat/completions`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${config.openaiApiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: providerModel,
+        temperature: 0.25,
+        ...modelGenerationOptions(700, providerModel),
+        messages: [
+          { role: 'system', content: promptEnhancerPolicy(model) },
+          { role: 'user', content: `Language: ${language}\n<user_draft>\n${prompt}\n</user_draft>` },
+        ],
+      }),
+      signal: AbortSignal.timeout(25000),
+    });
+    if (!response.ok) {
+      lastError = new Error(`Prompt enhancer error ${response.status}`);
+      if ([400, 404, 410].includes(response.status)) continue;
+      throw lastError;
+    }
+    const data = await response.json();
+    const answer = normaliseText(data?.choices?.[0]?.message?.content, 6000);
+    if (answer) return answer;
+    lastError = new Error('Prompt enhancer returned an empty answer');
+  }
+  throw lastError || new Error('Prompt enhancer returned no usable model');
 }
 
 app.get('/api/health', (req, res) => {
